@@ -6,6 +6,7 @@ const StyledNav = styled.nav`
   flex-direction: column;
   height: 100%;
   width: 200px;
+  background-color: blue;
 `;
 
 const Sidebar = (props: any) => {
