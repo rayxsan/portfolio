@@ -1,13 +1,11 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
-import * as theme from "../../shared/Theme";
-
 const StyledSidebar = styled.div`
   height: 100vh;
   width: 200px;
-  background-color: ${theme.BACKGROUND_COLOR};
-  color: ${theme.COLOR_PRIMARY};
+  background-color: ${({ theme }) => theme.backgroundColor};
+  color: ${({ theme }) => theme.primaryColor};
   padding: 10px;
   box-sizing: border-box;
   position: fixed;

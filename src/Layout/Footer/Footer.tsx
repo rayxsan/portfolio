@@ -1,25 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import * as theme from "../../shared/Theme";
 
-const StyledHeader = styled.div`
+const StyledHeader = styled.footer`
   position: relative;
-  float: left;
-  width: 100%;
-  height: 50px;
+  left: 0;
+  right: 0;
   bottom: 0;
-  background-color: ${theme.BACKGROUND_COLOR};
+  height: 5rem;
+  background-color: ${({ theme }) => theme.solidBackground};
   text-align: center;
-  color: ${theme.COLOR_PRIMARY};
+  color: ${({ theme }) => theme.primaryColor};
   z-index: 10;
 `;
 
 const Footer = () => {
-  return (
-    <>
-      <StyledHeader>THIS IS THE FOOTER</StyledHeader>
-    </>
-  );
+  return <StyledHeader>THIS IS THE FOOTER</StyledHeader>;
 };
 
 export default Footer;

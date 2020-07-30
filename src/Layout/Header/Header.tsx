@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import * as theme from "../../shared/Theme";
 
 const StyledHeader = styled.div`
   position: sticky;
@@ -8,17 +7,13 @@ const StyledHeader = styled.div`
   height: 30px;
   top: 0;
   padding-top: 15px;
-  background-color: ${theme.BACKGROUND_COLOR};
+  background-color: ${({ theme }) => theme.backgroundColor};
   text-align: center;
-  color: ${theme.COLOR_PRIMARY};
+  color: ${({ theme }) => theme.primaryColor};
 `;
 
 const Header = () => {
-  return (
-    <>
-      <StyledHeader>THIS IS THE HEADER</StyledHeader>
-    </>
-  );
+  return <StyledHeader>THIS IS THE HEADER</StyledHeader>;
 };
 
 export default Header;

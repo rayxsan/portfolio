@@ -1,7 +1,6 @@
 import styled from "styled-components";
-import * as theme from "../shared/Theme";
 
-export const ToggleStyle = styled.nav`
+export const ToggleStyle = styled.button`
   position: fixed;
   top: 1%;
   left: 1rem;
@@ -19,6 +18,6 @@ export const ToggleStyle = styled.nav`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${theme.COLOR_PRIMARY};
+    background: ${({ theme }) => theme.primaryColor};
   }
 `;
