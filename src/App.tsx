@@ -7,10 +7,8 @@ import { theme } from "./shared/Theme";
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <>
-        <GlobalStyles />
-        <Layout />
-      </>
+      <GlobalStyles />
+      <Layout />
     </ThemeProvider>
   );
 }
