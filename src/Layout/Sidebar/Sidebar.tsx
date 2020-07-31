@@ -11,22 +11,23 @@ const StyledSidebar = styled.div`
   position: fixed;
   z-index: 5;
   left: -100%;
-  animation: slide-open 0.8s forwards;
-
-  @keyframes slide-open {
-    100% {
-      left: 0;
-    }
-  }
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
 
   @media (max-width: 500px) {
     display: none;
   }
 `;
 
-const Sidebar = () => {
+interface Props {
+  // open: boolean;
+  // show: boolean;
+  closed: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+
+const Sidebar: FunctionComponent<Props> = (props) => {
   return (
-    <StyledSidebar>
+    <StyledSidebar clicked={props.closed}>
       <ul>
         <li>Component1</li>
         <li>Component2</li>

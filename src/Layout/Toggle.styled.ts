@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ToggleStyle = styled.button`
+export const ToggleStyle = styled.div`
   position: fixed;
   top: 1%;
   left: 1rem;

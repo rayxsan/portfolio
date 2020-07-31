@@ -2,13 +2,12 @@ import React, { FunctionComponent } from "react";
 import { ToggleStyle } from "./Toggle.styled";
 
 interface Props {
-  open: boolean;
-  setOpen: (open: boolean) => boolean;
+  clicked: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const Toggle: FunctionComponent = () => {
+const Toggle: FunctionComponent<Props> = (props) => {
   return (
-    <ToggleStyle>
+    <ToggleStyle onClick={props.clicked}>
       <div />
       <div />
       <div />

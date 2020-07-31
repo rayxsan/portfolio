@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { Component } from "react";
 
 import Header from "../Layout/Header/Header";
 import Sidebar from "../Layout/Sidebar/Sidebar";
@@ -11,22 +11,44 @@ const ContentBox = styled.div`
   width: 100%;
 `;
 
-const Layout = () => {
-  const [open, setOpen] = useState(false);
+interface State {
+  showSidebar: boolean;
+}
 
-  return (
-    <React.Fragment>
-      <Toggle />
-      <Header />
-      <Sidebar />
-      <ContentBox>
-        <div>Page Content</div>
-        <div>Page Content</div>
-        <div>Page Content</div>
-      </ContentBox>
-      {/* <Footer /> */}
-    </React.Fragment>
-  );
-};
+interface Props {}
+
+class Layout extends Component<Props, State> {
+  state = {
+    showSidebar: false,
+  };
+
+  sidebarToggleHandler = () => {
+    this.setState((prevState) => {
+      return { showSidebar: !prevState.showSidebar };
+    });
+  };
+
+  sidebarClosedHandler = () => {
+    this.setState({ showSidebar: false });
+  };
+
+  render() {
+    return (
+      <React.Fragment>
+        <Toggle clicked={this.sidebarToggleHandler} />
+        <Header />
+        <Sidebar closed={this.sidebarClosedHandler} />
+        <ContentBox>
+          <div>Page Content</div>
+          <div>Page Content</div>
+          <div>Page Content</div>
+          <div>Page Content</div>
+          <div>Page Content</div>
+        </ContentBox>
+        {/* <Footer /> */}
+      </React.Fragment>
+    );
+  }
+}
 
 export default Layout;
