@@ -37,7 +37,8 @@ class Layout extends Component<Props, State> {
       <React.Fragment>
         <Toggle clicked={this.sidebarToggleHandler} />
         <Header />
-        <Sidebar closed={this.sidebarClosedHandler} />
+        <Sidebar show={this.state.showSidebar} />
+
         <ContentBox>
           <div>Page Content</div>
           <div>Page Content</div>
