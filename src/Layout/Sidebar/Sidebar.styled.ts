@@ -10,4 +10,9 @@ export const StyledSidebar = styled.div`
   position: fixed;
   z-index: 5;
   transition: transform 0.3s ease-out;
+
+  ul {
+    display: flex;
+    flex-direction: column;
+  }
 `;

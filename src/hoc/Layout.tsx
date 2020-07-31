@@ -6,9 +6,9 @@ import Footer from "../Layout/Footer/Footer";
 import Toggle from "../Layout/Toggle";
 import styled from "styled-components";
 
-const ContentBox = styled.div`
-  height: calc(100vh - 30px);
-  width: 100%;
+const ContentBox = styled.main`
+  height: calc(100vh);
+  width: calc(80%);
 `;
 
 interface State {
@@ -39,13 +39,7 @@ class Layout extends Component<Props, State> {
         <Header />
         <Sidebar show={this.state.showSidebar} />
 
-        <ContentBox>
-          <div>Page Content</div>
-          <div>Page Content</div>
-          <div>Page Content</div>
-          <div>Page Content</div>
-          <div>Page Content</div>
-        </ContentBox>
+        <ContentBox>{this.props.children}</ContentBox>
         {/* <Footer /> */}
       </React.Fragment>
     );

@@ -1,4 +1,5 @@
 import React, { FunctionComponent } from "react";
+import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
 
 interface Props {
@@ -11,11 +12,13 @@ const Sidebar: FunctionComponent<Props> = (props) => {
     <StyledSidebar
       style={{ transform: props.show ? "translateX(0)" : "translateX(-100%)" }}
     >
-      <ul>
-        <li>Component1</li>
-        <li>Component2</li>
-        <li>Component3</li>
-      </ul>
+      <nav>
+        Components
+        <ul>
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/buttons"}>Buttons</NavLink>
+        </ul>
+      </nav>
     </StyledSidebar>
   );
 };

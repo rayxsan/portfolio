@@ -3,7 +3,7 @@ import { ThemeProps } from "styled-components";
 
 export const theme = {
   primaryColor: "hsla(60, 100%, 99%, 1)",
-  backgroundColor: "hsla(184, 100%, 3%, 0.8)",
+  backgroundColor: "hsla(197, 18%, 50%, 0.9)",
   solidBackground: "hsla(184, 100%, 3%, 1)",
 };
 
