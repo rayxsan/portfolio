@@ -14,6 +14,7 @@ html, body {
     height: 100%;
     text-align: center;
     font-family: 'Roboto', sans-serif; 
+    /* overflow: hidden; */
   }
   ul {
     list-style: none

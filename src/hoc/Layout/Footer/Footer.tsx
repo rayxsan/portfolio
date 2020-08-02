@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
 const StyledFooter = styled.footer`
@@ -11,8 +11,11 @@ const StyledFooter = styled.footer`
   color: ${({ theme }) => theme.primaryColor};
 `;
 
-const Footer = () => {
-  return <StyledFooter>THIS IS THE FOOTER</StyledFooter>;
+interface Props {
+  style: React.CSSProperties | undefined;
+}
+const Footer: FunctionComponent<Props> = (props) => {
+  return <StyledFooter style={props.style}>THIS IS THE FOOTER</StyledFooter>;
 };
 
 export default Footer;

@@ -38,17 +38,22 @@ class Layout extends Component<Props, State> {
   };
 
   render() {
+    let toggle: React.CSSProperties | undefined;
+
+    if (this.state.showSidebar) {
+      toggle = {
+        margin: "0 0 0 12rem",
+        width: "calc(100% - 12rem)",
+      };
+    }
+
     return (
       <Wrapper>
         <Toggle clicked={this.sidebarToggleHandler} />
         <Header />
         <Sidebar show={this.state.showSidebar} />
-        <MainContent
-          style={{ margin: "0 0 0 12rem", display: "content-block" }}
-        >
-          {this.props.children}
-        </MainContent>
-        <Footer />
+        <MainContent style={toggle}>{this.props.children}</MainContent>
+        <Footer style={toggle} />
       </Wrapper>
     );
   }

@@ -4,10 +4,6 @@ import styled from "styled-components";
 const StyledText = styled.div`
   font-family: "Roboto";
   height: 100%;
-
-  p {
-    margin-top: 16px;
-  }
 `;
 
 const Dummy = () => (
