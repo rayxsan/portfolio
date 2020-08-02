@@ -8,10 +8,12 @@ interface Props {
 }
 
 const Sidebar: FunctionComponent<Props> = (props) => {
+  const toggle = {
+    transform: props.show ? "translateX(0)" : "translateX(-100%)",
+  };
+
   return (
-    <StyledSidebar
-      style={{ transform: props.show ? "translateX(0)" : "translateX(-100%)" }}
-    >
+    <StyledSidebar style={toggle}>
       <nav>
         Components
         <ul>

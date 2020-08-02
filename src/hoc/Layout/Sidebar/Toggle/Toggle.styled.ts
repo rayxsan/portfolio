@@ -8,7 +8,7 @@ export const ToggleStyle = styled.div`
   flex-direction: column;
   justify-content: space-around;
   width: 2rem;
-  height: 2rem;
+  height: 1.7rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -17,7 +17,7 @@ export const ToggleStyle = styled.div`
 
   div {
     width: 2rem;
-    height: 0.25rem;
+    height: 0.2rem;
     background: ${({ theme }) => theme.primaryColor};
   }
 `;

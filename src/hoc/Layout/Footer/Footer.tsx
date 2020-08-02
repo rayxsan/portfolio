@@ -1,20 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledHeader = styled.footer`
-  position: relative;
-  left: 0;
-  right: 0;
+const StyledFooter = styled.footer`
+  position: absolute;
   bottom: 0;
+  width: 100%;
   height: 5rem;
-  background-color: ${({ theme }) => theme.solidBackground};
+  background-color: ${({ theme }) => theme.backgroundColor};
   text-align: center;
   color: ${({ theme }) => theme.primaryColor};
-  z-index: 10;
 `;
 
 const Footer = () => {
-  return <StyledHeader>THIS IS THE FOOTER</StyledHeader>;
+  return <StyledFooter>THIS IS THE FOOTER</StyledFooter>;
 };
 
 export default Footer;
