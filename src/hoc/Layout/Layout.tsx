@@ -12,8 +12,9 @@ const Wrapper = styled.div`
 `;
 
 const MainContent = styled.main`
-  padding-bottom: 5rem;
+  padding-bottom: ${({ theme }) => theme.footerHeight};
   width: 100%;
+  transition: transform 0.3s ease-in-out;
 `;
 
 interface State {
@@ -42,7 +43,7 @@ class Layout extends Component<Props, State> {
 
     if (this.state.showSidebar) {
       toggle = {
-        margin: "0 0 0 12rem",
+        transform: "translateX(12rem)",
         width: "calc(100% - 12rem)",
       };
     }
