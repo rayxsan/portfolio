@@ -4,7 +4,7 @@ import { StyledSidebar } from "./Sidebar.styled";
 
 interface Props {
   show: boolean;
-  //closed: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  style?: React.CSSProperties;
 }
 
 const Sidebar: FunctionComponent<Props> = (props) => {
@@ -18,7 +18,7 @@ const Sidebar: FunctionComponent<Props> = (props) => {
         Components
         <ul>
           <NavLink to={"/"}>Home</NavLink>
-          <NavLink to={"/buttons"}>Buttons</NavLink>
+          <NavLink to={"/components/buttons"}>Buttons</NavLink>
         </ul>
       </nav>
     </StyledSidebar>

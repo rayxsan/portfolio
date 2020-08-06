@@ -4,18 +4,7 @@ import Header from "../Layout/Header/Header";
 import Sidebar from "../Layout/Sidebar/Sidebar";
 import Footer from "../Layout/Footer/Footer";
 import Toggle from "../Layout/Sidebar/Toggle/Toggle";
-import styled from "styled-components";
-
-const Wrapper = styled.div`
-  position: relative;
-  min-height: 100vh;
-`;
-
-const MainContent = styled.main`
-  padding-bottom: ${({ theme }) => theme.footerHeight};
-  width: 100%;
-  transition: transform 0.3s ease-in-out;
-`;
+import { Wrapper, MainContent } from "./Layout.styled";
 
 interface State {
   showSidebar: boolean;
@@ -27,6 +16,12 @@ class Layout extends Component<Props, State> {
   state = {
     showSidebar: true,
   };
+
+  // componentDidMount() {
+  //   const mainContentHeight = document.getElementById("mainContent")
+  //     ?.clientHeight;
+  //   console.log(mainContentHeight);
+  // }
 
   sidebarToggleHandler = () => {
     this.setState((prevState) => {
@@ -48,11 +43,18 @@ class Layout extends Component<Props, State> {
       };
     }
 
+    const mainContentHeight = document.getElementById("MainContent")
+      ?.clientHeight;
+
     return (
       <Wrapper>
+        {console.log(mainContentHeight)}
         <Toggle clicked={this.sidebarToggleHandler} />
         <Header />
-        <Sidebar show={this.state.showSidebar} />
+        <Sidebar
+          show={this.state.showSidebar}
+          style={{ height: mainContentHeight }}
+        />
         <MainContent style={toggle}>{this.props.children}</MainContent>
         <Footer style={toggle} />
       </Wrapper>

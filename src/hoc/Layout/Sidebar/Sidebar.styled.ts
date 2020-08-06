@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const StyledSidebar = styled.div`
   position: fixed;
   width: ${({ theme }) => theme.sidebarWidth};
-  min-height: 100vh;
   height: 100%;
   background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.primaryColor};

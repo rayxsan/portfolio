@@ -1,5 +1,9 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
+import { StyledButton } from "./Button.styled";
 
-const Button = () => <button>Button</button>;
+interface Props {}
+const Button: FunctionComponent<Props> = (props) => (
+  <StyledButton>{props.children}</StyledButton>
+);
 
 export default Button;

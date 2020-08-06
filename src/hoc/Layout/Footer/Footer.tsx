@@ -13,7 +13,7 @@ const StyledFooter = styled.footer`
 `;
 
 interface Props {
-  style: React.CSSProperties | undefined;
+  style?: React.CSSProperties | undefined;
 }
 const Footer: FunctionComponent<Props> = (props) => {
   return <StyledFooter style={props.style}>THIS IS THE FOOTER</StyledFooter>;

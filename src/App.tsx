@@ -16,7 +16,7 @@ class App extends Component<Props, State> {
   render() {
     let routes = (
       <Switch>
-        <Route path="/buttons" component={Button} />
+        <Route path="/components/buttons" component={Button} />
         <Route path="/" exact component={Dummy} />
         <Redirect to="/" />
       </Switch>
