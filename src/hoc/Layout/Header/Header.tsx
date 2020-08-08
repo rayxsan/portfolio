@@ -7,9 +7,10 @@ const StyledHeader = styled.div`
   height: 30px;
   top: 0;
   padding-top: 15px;
-  background-color: ${({ theme }) => theme.backgroundColor};
+  background-color: ${({ theme }) => theme.solidBackground};
   text-align: center;
   color: ${({ theme }) => theme.primaryColor};
+  z-index: 999;
 `;
 
 const Header = () => {

@@ -1,18 +1,13 @@
 const theme1 = {
   //Colors
-  primaryColor: "hsla(60, 100%, 99%, 1)",
+  primaryColor: "lightblue",
+  secondaryColor: "lightgreen",
   backgroundColor: "hsla(197, 18%, 50%, 0.9)",
   solidBackground: "hsla(184, 100%, 3%, 1)",
 
   //Dimensions
   footerHeight: "5rem",
   sidebarWidth: "12rem",
-};
-
-const theme2 = {
-  primaryColor: "hsla(197, 88%, 69%, 1)",
-  backgroundColor: "hsla(229, 4%, 48%, 0.9)",
-  solidBackground: "hsla(229, 4%, 48%, 1)",
 };
 
 export const theme = theme1;
