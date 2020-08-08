@@ -130,17 +130,17 @@ export const CircularButton = styled.button.attrs<OutlinedButtonProps>(
     color: props.color || "orange",
   })
 )`
+  display: inline-flex;
+  position: relative;
   background: ${(props: Props) => props.color};
   border-radius: 50%;
   cursor: pointer;
   border: none;
-  text-align: center;
 
   /* button size: */
-  min-height: 1em;
-  min-width: 1em;;
+  
   margin: 0.2em;
-  padding: 0.6em;
+  padding: 0.6rem;
   font-size: ${(props: Props) => sizes[props.size!].fontSize};
 
   &:hover {
@@ -153,4 +153,5 @@ export const CircularButton = styled.button.attrs<OutlinedButtonProps>(
     color: #cccc;
     cursor: not-allowed;
   }
+
 `;

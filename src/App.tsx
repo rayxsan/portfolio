@@ -5,7 +5,8 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
 import { theme } from "./shared/Theme";
 import Dummy from "./Components/Dummy/Dummy";
-import ButtonPage from "./Components/Button/ButtonPage";
+import ButtonPage from "./Pages/ButtonPage";
+import CheckboxPage from "./Pages/CheckboxPage";
 
 interface OwnProps {}
 interface StateProps {}
@@ -16,8 +17,9 @@ class App extends Component<Props, State> {
   render() {
     let routes = (
       <Switch>
-        <Route path="/components/buttons" component={ButtonPage} />
         <Route path="/" exact component={Dummy} />
+        <Route path="/components/buttons" component={ButtonPage} />
+        <Route path="/components/checkbox" component={CheckboxPage} />
         <Redirect to="/" />
       </Switch>
     );

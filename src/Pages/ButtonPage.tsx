@@ -1,6 +1,7 @@
 import React from "react";
-import Button from "./Button";
+import Button from "../Components/Button/Button";
 import styled from "styled-components";
+import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
 const StyledButtonPage = styled.div``;
 
@@ -45,17 +46,34 @@ const ButtonPage = () => {
 
       <div>
         <p>Icon Buttons</p>
-        <Button circular icon="plus" />
-        <Button circular icon="minus" />
-        <Button circular icon="facebook" />
-        <Button circular icon="google" />
+        <Button primary>
+          <FaFacebookF />
+          Facebook
+        </Button>
+
+        <Button secondary>
+          <FaGoogle /> Google
+        </Button>
+
+        <Button>
+          <FaFacebookF />
+        </Button>
+        <Button>
+          <FaFacebookF />
+        </Button>
       </div>
 
       <div>
         <p>Circular Buttons</p>
-        <Button circular size="small" />
-        <Button circular size="medium" />
-        <Button circular size="large" />
+        <Button circular size="small">
+          <FaFacebookF />
+        </Button>
+        <Button circular primary size="medium">
+          <FaFacebookF />
+        </Button>
+        <Button circular secondary size="large">
+          <FaFacebookF />
+        </Button>
       </div>
 
       <div>

@@ -9,7 +9,7 @@ const StyledFooter = styled.footer`
   height: ${({ theme }) => theme.footerHeight};
   background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.primaryColor};
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-out;
 `;
 
 interface Props {

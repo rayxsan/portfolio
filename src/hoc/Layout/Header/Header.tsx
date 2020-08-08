@@ -4,13 +4,13 @@ import styled from "styled-components";
 const StyledHeader = styled.div`
   position: sticky;
   width: 100%;
-  height: 30px;
+  height: 2rem;
   top: 0;
   padding-top: 15px;
   background-color: ${({ theme }) => theme.solidBackground};
   text-align: center;
   color: ${({ theme }) => theme.primaryColor};
-  z-index: 999;
+  z-index: 5;
 `;
 
 const Header = () => {

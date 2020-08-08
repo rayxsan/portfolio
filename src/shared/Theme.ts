@@ -1,9 +1,9 @@
 const theme1 = {
   //Colors
-  primaryColor: "lightblue",
-  secondaryColor: "lightgreen",
+  primaryColor: "rgba(194, 239, 235, 1)",
+  secondaryColor: "rgba(110, 164, 191, 1)",
   backgroundColor: "hsla(197, 18%, 50%, 0.9)",
-  solidBackground: "hsla(184, 100%, 3%, 1)",
+  solidBackground: "rgba(51, 30, 54, 1)",
 
   //Dimensions
   footerHeight: "5rem",

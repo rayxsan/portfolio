@@ -48,7 +48,6 @@ class Layout extends Component<Props, State> {
 
     return (
       <Wrapper>
-        {console.log(mainContentHeight)}
         <Toggle clicked={this.sidebarToggleHandler} />
         <Header />
         <Sidebar

@@ -7,7 +7,6 @@ import {
 } from "./Button.styled";
 import { theme } from "../../shared/Theme";
 import { ButtonSizes, ButtonTypes } from "./Button.common";
-import { FiPlus } from "react-icons/fi";
 
 interface Props {
   disabled?: boolean;
@@ -18,7 +17,7 @@ interface Props {
   text?: boolean;
   outline?: boolean;
   circular?: boolean;
-  icon?: string;
+  icon?: string; // TODO: use this as the name of the icon to be rendered. See semantic UI for example. https://react.semantic-ui.com/elements/button/#types-icon
   clicked?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
@@ -30,11 +29,6 @@ const Button: FunctionComponent<Props> = (props) => {
   }
   if (props.secondary) {
     color = theme.secondaryColor;
-  }
-
-  let radius = "0.28rem";
-  if (props.circular) {
-    radius = "50%";
   }
 
   if (props.text) {
@@ -74,10 +68,11 @@ const Button: FunctionComponent<Props> = (props) => {
         color={color}
         onClick={props.clicked}
       >
-        <FiPlus />
+        {props.children}
       </CircularButton>
     );
   }
+
   return (
     <StyledButton
       disabled={props.disabled}
