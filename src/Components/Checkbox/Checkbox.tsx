@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyledCheckbox } from "./Checkbox.styled";
+import { StyledDiv } from "./Checkbox.styled";
 
 interface Props {
   primary?: boolean;
@@ -24,16 +24,28 @@ class Checkbox extends Component<Props, State> {
     };
   }
 
-  // TODO: add type to event
-  //   handleCheckboxChange = (event: any) =>
-  //     this.setState({ checked: event.target.checked });
+  componentDidMount = () => {
+    if (this.props.checked) {
+      this.setState({ checked: true });
+    }
+  };
+
+  handleCheckboxChange = () => {
+    if (!this.props.disabled) {
+      this.setState({ checked: !this.state.checked });
+    }
+  };
 
   render() {
     return (
-      <label>
-        <StyledCheckbox />
-        {this.props.label}
-      </label>
+      <StyledDiv onClick={this.handleCheckboxChange}>
+        <input
+          type="checkbox"
+          checked={this.state.checked}
+          disabled={this.props.disabled}
+        ></input>
+        <label>{this.props.label}</label>
+      </StyledDiv>
     );
   }
 }

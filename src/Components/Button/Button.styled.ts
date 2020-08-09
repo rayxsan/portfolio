@@ -122,7 +122,6 @@ export const OutlinedButton = styled.button.attrs<OutlinedButtonProps>(
 `;
 
 interface CircularButton extends Props {}
-
 export const CircularButton = styled.button.attrs<OutlinedButtonProps>(
   (props) => ({
     type: props.type || "button",
