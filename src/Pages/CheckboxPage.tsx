@@ -4,6 +4,10 @@ import styled from "styled-components";
 
 // See examples from https://react.semantic-ui.com/modules/checkbox/#types-slider
 
+// Implementation examples for the Toggle version of the checkbox
+// https://upmostly.com/tutorials/build-a-react-switch-toggle-component
+// https://codepen.io/voidale/pen/EWPGLb
+
 const StyledCheckboxPage = styled.div``;
 
 const CheckboxPage = () => (
