@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyledDiv } from "./Checkbox.styled";
+import { StyledCheckbox, StyledToggle, StyledSlider } from "./Checkbox.styled";
 
 interface Props {
   primary?: boolean;
@@ -37,15 +37,52 @@ class Checkbox extends Component<Props, State> {
   };
 
   render() {
+    if (this.props.toggle) {
+      return (
+        <>
+          <StyledToggle>
+            <input
+              type="checkbox"
+              checked={this.state.checked}
+              onChange={this.handleCheckboxChange}
+              disabled={this.props.disabled}
+            />
+            <div />
+          </StyledToggle>
+          <label>{this.props.label}</label>
+        </>
+      );
+    }
+
+    if (this.props.slider) {
+      return (
+        <>
+          <StyledSlider>
+            <input
+              type="checkbox"
+              checked={this.state.checked}
+              onChange={this.handleCheckboxChange}
+              disabled={this.props.disabled}
+            />
+            <label />
+            <div />
+          </StyledSlider>
+          <label>{this.props.label}</label>
+        </>
+      );
+    }
     return (
-      <StyledDiv onClick={this.handleCheckboxChange}>
-        <input
-          type="checkbox"
-          checked={this.state.checked}
-          disabled={this.props.disabled}
-        ></input>
-        <label>{this.props.label}</label>
-      </StyledDiv>
+      <>
+        <StyledCheckbox onClick={() => this.handleCheckboxChange()}>
+          <input
+            type="checkbox"
+            checked={this.state.checked}
+            onChange={this.handleCheckboxChange}
+            disabled={this.props.disabled}
+          />
+          <label>{this.props.label}</label>
+        </StyledCheckbox>
+      </>
     );
   }
 }

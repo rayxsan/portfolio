@@ -4,7 +4,7 @@ interface Props {
   checked: boolean;
 }
 
-export const StyledDiv = styled.div`
+export const StyledCheckbox = styled.label`
   display: inline-block;
   > input {
     opacity: 0;
@@ -73,4 +73,139 @@ export const StyledDiv = styled.div`
       border: 1px dotted blue !important;
     }
   }
+`;
+
+export const StyledToggle = styled.label`
+  position: relative;
+  display: inline-block;
+  margin: 0.5em;
+  width: 3em;
+  height: 1.5em;
+  outline: none;
+  > input {
+    opacity: 0;
+  }
+
+  > div {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 1.5em;
+  }
+  > div:before {
+    position: absolute;
+    content: "";
+    height: 1.3em;
+    width: 1.3em;
+    left: 0.15em;
+    bottom: 0.1em;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  > input:checked + div {
+    background-color: #2196f3;
+  }
+  > input:focus + div {
+    box-shadow: 0 0 1px #2196f3;
+  }
+  > input:checked + div:before {
+    -webkit-transform: translateX(1.3em);
+    -ms-transform: translateX(1.3em);
+    transform: translateX(1.3em);
+  }
+`;
+
+export const StyledSlider = styled.div`
+  position: relative;
+  display: inline-block;
+  margin: 0.5em;
+  width: 3em;
+  min-height: 1.25em;
+  outline: 0;
+  > input {
+    opacity: 0;
+  }
+
+  > label {
+    position: absolute;
+    display: block;
+    width: 3em;
+    height: 0.2em;
+    outline: 0;
+    font-size: 1em;
+    transition: color 0.1s ease;
+    line-height: 1rem;
+    padding-left: 0 !important;
+    cursor: pointer;
+    user-select: none;
+    color: rgba(0, 0, 0, 0.95) !important;
+  }
+  label:before {
+    display: block;
+    position: absolute;
+    content: "";
+    border: none;
+    left: 0;
+    z-index: 1;
+    top: 0.4rem;
+    width: 3em;
+    height: 0.2em;
+  }
+  /* > div:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    height: 1.3em;
+    width: 1.3em;
+    left: 0.15em;
+    bottom: 0.1em;
+    border: 1px solid red;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  } */
+
+  /* > div:last-child {
+    position: absolute;
+    cursor: pointer;
+    width: 3em;
+    border: 1px solid blue;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 1.5em;
+  }
+  > div:before {
+    position: absolute;
+    content: "";
+    height: 1.3em;
+    width: 1.3em;
+    left: 0.15em;
+    bottom: 0.1em;
+    border: 1px solid red;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  > input:checked + div {
+    background-color: #2196f3;
+  }
+  > input:focus + div {
+    box-shadow: 0 0 1px #2196f3;
+  }
+  > input:checked + div:before {
+    -webkit-transform: translateX(1.3em);
+    -ms-transform: translateX(1.3em);
+    transform: translateX(1.3em);
+  } */
 `;
