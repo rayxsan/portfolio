@@ -30,7 +30,7 @@ const CheckboxPage = () => (
     <div>
       <p>Other checkbox styles</p>
       <Checkbox toggle label="Toggle" />
-      <Checkbox slider label="Slider" />
+      <Checkbox slider disabled label="Slider" />
       <Checkbox disabled label="Disabled" />
     </div>
   </StyledCheckboxPage>

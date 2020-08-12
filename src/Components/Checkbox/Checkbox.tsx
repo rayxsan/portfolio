@@ -11,6 +11,7 @@ interface Props {
   labelPosition?: "top" | "bottom" | "left" | "right";
   checked?: boolean;
   onChange?: (checked: boolean) => void;
+  clicked?: (event: React.MouseEvent<HTMLLabelElement, MouseEvent>) => void;
 }
 interface State {
   checked: boolean;
@@ -57,7 +58,7 @@ class Checkbox extends Component<Props, State> {
     if (this.props.slider) {
       return (
         <>
-          <StyledSlider>
+          <StyledSlider onClick={this.handleCheckboxChange}>
             <input
               type="checkbox"
               checked={this.state.checked}
@@ -65,7 +66,6 @@ class Checkbox extends Component<Props, State> {
               disabled={this.props.disabled}
             />
             <label />
-            <div />
           </StyledSlider>
           <label>{this.props.label}</label>
         </>
@@ -73,7 +73,7 @@ class Checkbox extends Component<Props, State> {
     }
     return (
       <>
-        <StyledCheckbox onClick={() => this.handleCheckboxChange()}>
+        <StyledCheckbox onClick={this.handleCheckboxChange}>
           <input
             type="checkbox"
             checked={this.state.checked}

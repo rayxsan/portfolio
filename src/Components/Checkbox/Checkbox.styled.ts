@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-interface Props {
-  checked: boolean;
-}
-
 export const StyledCheckbox = styled.label`
   display: inline-block;
   > input {
@@ -123,89 +119,83 @@ export const StyledToggle = styled.label`
   }
 `;
 
+/*
+<div class="onoffswitch">
+    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0">
+    <label class="onoffswitch-label" for="myonoffswitch"></label>
+</div>
+
+*/
+
 export const StyledSlider = styled.div`
   position: relative;
+  width: 2.5em;
   display: inline-block;
   margin: 0.5em;
-  width: 3em;
-  min-height: 1.25em;
-  outline: 0;
   > input {
+    position: absolute;
     opacity: 0;
+    pointer-events: none;
   }
 
   > label {
-    position: absolute;
     display: block;
-    width: 3em;
-    height: 0.2em;
-    outline: 0;
-    font-size: 1em;
-    transition: color 0.1s ease;
-    line-height: 1rem;
-    padding-left: 0 !important;
+    overflow: hidden;
     cursor: pointer;
-    user-select: none;
-    color: rgba(0, 0, 0, 0.95) !important;
+    height: 0.5em;
+    padding: 0;
+    line-height: 0.5em;
+    border: 0px solid #ffffff;
+    border-radius: 0.25em;
+    background-color: #9e9e9e;
   }
   label:before {
+    content: "";
     display: block;
-    position: absolute;
-    content: "";
-    border: none;
-    left: 0;
-    z-index: 1;
-    top: 0.4rem;
-    width: 3em;
-    height: 0.2em;
-  }
-  /* > div:before {
-    position: absolute;
-    content: "";
-    top: 0;
-    height: 1.3em;
     width: 1.3em;
-    left: 0.15em;
-    bottom: 0.1em;
-    border: 1px solid red;
-    background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 50%;
-  } */
-
-  /* > div:last-child {
-    position: absolute;
-    cursor: pointer;
-    width: 3em;
-    border: 1px solid blue;
-    background-color: #ccc;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 1.5em;
-  }
-  > div:before {
-    position: absolute;
-    content: "";
     height: 1.3em;
-    width: 1.3em;
-    left: 0.15em;
-    bottom: 0.1em;
-    border: 1px solid red;
-    background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
+    background: #ffffff;
+    position: absolute;
+    top: -0.4em;
+    bottom: 0;
+    right: 1.2em;
     border-radius: 50%;
+    box-shadow: 0 0.1em 0.3em 0px #757575;
+    transition: 0.4s;
   }
-  > input:checked + div {
+  input:checked + label {
+    background-color: #42a5f5;
+  }
+  input:checked + label,
+  input:checked + label:before {
+    border-color: #42a5f5;
+  }
+  input:checked + label {
+    margin-left: 0;
+  }
+  input:checked + label:before {
+    right: 0px;
     background-color: #2196f3;
+    transform: translateX(0.1em);
   }
-  > input:focus + div {
-    box-shadow: 0 0 1px #2196f3;
+
+  /*TODO: Needs change css when disabled*/
+  > input:disabled:not(:checked) {
+    &:before {
+      cursor: default;
+      box-shadow: none;
+      border-color: #bbb;
+      background-color: #ddd;
+    }
   }
-  > input:checked + div:before {
-    -webkit-transform: translateX(1.3em);
-    -ms-transform: translateX(1.3em);
-    transform: translateX(1.3em);
-  } */
+  > input:disabled:checked {
+    &:after {
+      cursor: default;
+      color: #999;
+    }
+  }
+  > input:disabled + label {
+    cursor: default;
+    color: #aaa;
+  }
 `;

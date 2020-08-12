@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
-import Checkbox from "../../../Components/Checkbox/Checkbox";
 
 interface Props {
   show: boolean;
@@ -16,7 +15,6 @@ const Sidebar: FunctionComponent<Props> = (props) => {
   return (
     <StyledSidebar style={toggle}>
       <nav>
-        <Checkbox toggle checked={props.show} />
         <ul>
           Components
           <NavLink to={"/"}>Home</NavLink>

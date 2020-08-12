@@ -5,6 +5,7 @@ import Sidebar from "../Layout/Sidebar/Sidebar";
 import Footer from "../Layout/Footer/Footer";
 import Toggle from "../Layout/Sidebar/Toggle/Toggle";
 import { Wrapper, MainContent } from "./Layout.styled";
+import Checkbox from "../../Components/Checkbox/Checkbox";
 
 interface State {
   showSidebar: boolean;
