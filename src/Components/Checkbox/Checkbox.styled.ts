@@ -11,6 +11,8 @@ export const StyledCheckbox = styled.label`
     position: relative;
     padding-left: 1.95em;
     cursor: pointer;
+    color: ${(props) => props.color || "inherit"};
+
     &:before {
       content: "";
       position: absolute;
@@ -29,7 +31,7 @@ export const StyledCheckbox = styled.label`
       top: 0;
       left: 0.15em;
       font-size: 1.2em;
-      color: #09ad7e;
+      color: ${(props) => props.color || "inherit"};
       transition: all 0.2s;
     }
   }
@@ -78,6 +80,7 @@ export const StyledToggle = styled.label`
   width: 3em;
   height: 1.5em;
   outline: none;
+
   > input {
     opacity: 0;
   }
@@ -107,10 +110,10 @@ export const StyledToggle = styled.label`
     border-radius: 50%;
   }
   > input:checked + div {
-    background-color: #2196f3;
+    background-color: ${(props) => props.color || "grey"};
   }
   > input:focus + div {
-    box-shadow: 0 0 1px #2196f3;
+    box-shadow: 0 0 1px ${(props) => props.color || "grey"};
   }
   > input:checked + div:before {
     -webkit-transform: translateX(1.3em);
@@ -118,14 +121,6 @@ export const StyledToggle = styled.label`
     transform: translateX(1.3em);
   }
 `;
-
-/*
-<div class="onoffswitch">
-    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" tabindex="0">
-    <label class="onoffswitch-label" for="myonoffswitch"></label>
-</div>
-
-*/
 
 export const StyledSlider = styled.div`
   position: relative;
@@ -164,18 +159,18 @@ export const StyledSlider = styled.div`
     transition: 0.4s;
   }
   input:checked + label {
-    background-color: #42a5f5;
+    background-color: ${(props) => props.color || "grey"};
   }
   input:checked + label,
   input:checked + label:before {
-    border-color: #42a5f5;
+    border-color: ${(props) => props.color || "grey"};
   }
   input:checked + label {
     margin-left: 0;
   }
   input:checked + label:before {
     right: 0px;
-    background-color: #2196f3;
+    background-color: ${(props) => props.color || "grey"};
     transform: translateX(0.1em);
   }
 

@@ -1,8 +1,8 @@
 const theme1 = {
   //Colors
-  primaryColor: "rgba(194, 239, 235, 1)",
+  primaryColor: "#5AAA95",
   secondaryColor: "rgba(110, 164, 191, 1)",
-  backgroundColor: "hsla(197, 18%, 50%, 0.9)",
+  backgroundColor: "#095256",
   solidBackground: "rgba(51, 30, 54, 1)",
 
   //Dimensions

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { theme } from "../../shared/Theme";
 import { StyledCheckbox, StyledToggle, StyledSlider } from "./Checkbox.styled";
 
 interface Props {
@@ -38,10 +39,18 @@ class Checkbox extends Component<Props, State> {
   };
 
   render() {
+    let color = "";
+
+    if (this.props.primary) {
+      color = theme.primaryColor;
+    }
+    if (this.props.secondary) {
+      color = theme.secondaryColor;
+    }
     if (this.props.toggle) {
       return (
         <>
-          <StyledToggle>
+          <StyledToggle color={color}>
             <input
               type="checkbox"
               checked={this.state.checked}
@@ -58,7 +67,7 @@ class Checkbox extends Component<Props, State> {
     if (this.props.slider) {
       return (
         <>
-          <StyledSlider onClick={this.handleCheckboxChange}>
+          <StyledSlider onClick={this.handleCheckboxChange} color={color}>
             <input
               type="checkbox"
               checked={this.state.checked}
@@ -67,13 +76,13 @@ class Checkbox extends Component<Props, State> {
             />
             <label />
           </StyledSlider>
-          <label>{this.props.label}</label>
+          <label style={{ color: color }}>{this.props.label}</label>
         </>
       );
     }
     return (
       <>
-        <StyledCheckbox onClick={this.handleCheckboxChange}>
+        <StyledCheckbox onClick={this.handleCheckboxChange} color={color}>
           <input
             type="checkbox"
             checked={this.state.checked}
