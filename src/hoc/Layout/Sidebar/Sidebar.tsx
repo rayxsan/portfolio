@@ -20,6 +20,7 @@ const Sidebar: FunctionComponent<Props> = (props) => {
           <NavLink to={"/"}>Home</NavLink>
           <NavLink to={"/components/buttons"}>Buttons</NavLink>
           <NavLink to={"/components/checkbox"}>Checkboxes</NavLink>
+          <NavLink to={"/components/progress"}>Progress</NavLink>
         </ul>
       </nav>
     </StyledSidebar>

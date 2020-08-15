@@ -3,13 +3,15 @@ import styled from "styled-components";
 export const StyledCheckbox = styled.label`
   display: inline-block;
   > input {
+    position: absolute;
     opacity: 0;
-    height: 0;
-    width: 0;
+    pointer-events: none;
   }
+
   > input + label {
     position: relative;
-    padding-left: 1.95em;
+    padding: 0 0 0 1.6em;
+    margin: 0.2em;
     cursor: pointer;
     color: ${(props) => props.color || "inherit"};
 

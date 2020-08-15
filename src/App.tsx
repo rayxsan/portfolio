@@ -7,6 +7,7 @@ import { theme } from "./shared/Theme";
 import Dummy from "./Components/Dummy/Dummy";
 import ButtonPage from "./Pages/ButtonPage";
 import CheckboxPage from "./Pages/CheckboxPage";
+import ProgressPage from "./Pages/ProgressPage";
 
 interface OwnProps {}
 interface StateProps {}
@@ -20,6 +21,7 @@ class App extends Component<Props, State> {
         <Route path="/" exact component={Dummy} />
         <Route path="/components/buttons" component={ButtonPage} />
         <Route path="/components/checkbox" component={CheckboxPage} />
+        <Route path="/components/progress" component={ProgressPage} />
         <Redirect to="/" />
       </Switch>
     );
