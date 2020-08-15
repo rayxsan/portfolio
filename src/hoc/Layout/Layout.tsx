@@ -5,7 +5,6 @@ import Sidebar from "../Layout/Sidebar/Sidebar";
 import Footer from "../Layout/Footer/Footer";
 import Toggle from "../Layout/Sidebar/Toggle/Toggle";
 import { Wrapper, MainContent } from "./Layout.styled";
-import Checkbox from "../../Components/Checkbox/Checkbox";
 
 interface State {
   showSidebar: boolean;
@@ -17,12 +16,6 @@ class Layout extends Component<Props, State> {
   state = {
     showSidebar: true,
   };
-
-  // componentDidMount() {
-  //   const mainContentHeight = document.getElementById("mainContent")
-  //     ?.clientHeight;
-  //   console.log(mainContentHeight);
-  // }
 
   sidebarToggleHandler = () => {
     this.setState((prevState) => {

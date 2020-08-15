@@ -16,7 +16,7 @@ const Sidebar: FunctionComponent<Props> = (props) => {
     <StyledSidebar style={toggle}>
       <nav>
         <ul>
-          Components
+          <div>Components</div>
           <NavLink to={"/"}>Home</NavLink>
           <NavLink to={"/components/buttons"}>Buttons</NavLink>
           <NavLink to={"/components/checkbox"}>Checkboxes</NavLink>

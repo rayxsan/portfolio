@@ -8,7 +8,7 @@ interface Props {
 }
 
 const Progress: FunctionComponent<Props> = (props) => {
-  let color = "black";
+  let color = "#AAA";
 
   if (props.primary) {
     color = theme.primaryColor;

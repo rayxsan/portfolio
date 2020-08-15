@@ -1,10 +1,10 @@
 const theme1 = {
   //Colors
-  primaryColor: "#5AAA95",
-  secondaryColor: "rgba(110, 164, 191, 1)",
+  primaryColor: "#7467ef",
+  secondaryColor: "#222A45",
   fontColor: "#fff",
-  backgroundColor: "#095256",
-  solidBackground: "rgba(51, 30, 54, 1)",
+  backgroundColor: "#222A45",
+  solidBackground: "#7467ef",
 
   //Dimensions
   footerHeight: "5rem",
