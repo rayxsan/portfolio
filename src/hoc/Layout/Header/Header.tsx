@@ -9,7 +9,7 @@ const StyledHeader = styled.div`
   padding-top: 15px;
   background-color: ${({ theme }) => theme.solidBackground};
   text-align: center;
-  color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }) => theme.fontColor};
   z-index: 5;
 `;
 

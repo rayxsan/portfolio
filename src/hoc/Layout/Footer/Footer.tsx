@@ -6,9 +6,10 @@ const StyledFooter = styled.footer`
   bottom: 0;
   width: 100%;
   text-align: center;
+  padding-top: 2em;
   height: ${({ theme }) => theme.footerHeight};
   background-color: ${({ theme }) => theme.backgroundColor};
-  color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }) => theme.fontColor};
   transition: transform 0.3s ease-out;
 `;
 

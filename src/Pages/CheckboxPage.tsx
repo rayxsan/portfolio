@@ -18,7 +18,7 @@ const CheckboxPage = () => (
       <Checkbox secondary checked />
       <Checkbox />
       <Checkbox toggle primary />
-      <Checkbox slider />
+      <Checkbox slider secondary />
       <Checkbox disabled checked />
     </div>
     <div>

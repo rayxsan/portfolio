@@ -6,7 +6,7 @@ export const StyledSidebar = styled.div`
   width: ${({ theme }) => theme.sidebarWidth};
   height: 100%;
   background-color: ${({ theme }) => theme.backgroundColor};
-  color: ${({ theme }) => theme.primaryColor};
+  color: ${({ theme }) => theme.fontColor};
   padding: 10px;
   box-sizing: border-box;
   border: 2px solid red;

@@ -18,6 +18,6 @@ export const ToggleStyle = styled.div`
   div {
     width: 2rem;
     height: 0.2rem;
-    background: ${({ theme }) => theme.primaryColor};
+    background: ${({ theme }) => theme.fontColor};
   }
 `;
