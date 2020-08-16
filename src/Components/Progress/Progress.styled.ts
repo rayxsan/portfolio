@@ -7,7 +7,6 @@ export const StyledProgress = styled.svg`
   height: 2.5em;
 
   & .path {
-    /* stroke: ${(props) => props.color || "blue"}; */
     stroke-linecap: round;
     animation: dash 2s ease-in-out infinite;
   }
@@ -30,5 +29,32 @@ export const StyledProgress = styled.svg`
       stroke-dasharray: 90, 150;
       stroke-dashoffset: -124;
     }
+  }
+`;
+
+interface Props {
+  completed?: number;
+}
+
+export const StyledLinearProgress = styled.div`
+  height: 1em;
+  width: 70%;
+  background-color: #e0e0de;
+  border-radius: 1em;
+  margin: 1em;
+
+  div {
+    height: 100%;
+    width: ${(props: Props) => props.completed}%;
+    background-color: ${(props) => props.color};
+    transition: width 1s ease-in-out;
+    border-radius: inherit;
+    text-align: right;
+  }
+  span {
+    padding: 1em;
+    color: white;
+    text-align: center;
+    font-weight: bold;
   }
 `;

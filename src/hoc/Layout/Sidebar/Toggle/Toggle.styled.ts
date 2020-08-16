@@ -7,17 +7,21 @@ export const ToggleStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  width: 2rem;
-  height: 1.7rem;
+  height: 2em;
   background: transparent;
   border: none;
   cursor: pointer;
   padding: 0;
+  
   z-index: 999;
-
-  div {
+  
+svg {
+ font-size: 2.5em;
+ color: ${({ theme }) => theme.fontColor};
+}
+  /* div {
     width: 2rem;
     height: 0.2rem;
     background: ${({ theme }) => theme.fontColor};
-  }
+  } */
 `;

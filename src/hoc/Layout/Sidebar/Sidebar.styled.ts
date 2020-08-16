@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface StyledProps {
+  show: boolean;
+}
+
 export const StyledSidebar = styled.div`
   position: fixed;
   width: ${({ theme }) => theme.sidebarWidth};
@@ -11,6 +15,8 @@ export const StyledSidebar = styled.div`
   /* border: 2px solid red; */
   z-index: 5;
   transition: transform 0.3s ease-in-out;
+  transform: ${(props: StyledProps) =>
+    props.show ? "translateX(0)" : "translateX(-100%)"};
 
   ul {
     display: flex;
