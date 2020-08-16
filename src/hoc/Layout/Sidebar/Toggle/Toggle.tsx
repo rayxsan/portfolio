@@ -3,13 +3,13 @@ import { ToggleStyle } from "./Toggle.styled";
 import { FaBars, FaTimes } from "react-icons/fa";
 
 interface Props {
-  //open: boolean;
+  active: boolean;
   clicked: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
 const Toggle: FunctionComponent<Props> = (props) => {
   let tg = <FaBars />;
-  if (false) {
+  if (!props.active) {
     tg = <FaTimes />;
   }
   return <ToggleStyle onClick={props.clicked}>{tg}</ToggleStyle>;

@@ -42,7 +42,10 @@ class Layout extends Component<Props, State> {
 
     return (
       <Wrapper>
-        <Toggle clicked={this.sidebarToggleHandler} />
+        <Toggle
+          clicked={this.sidebarToggleHandler}
+          active={this.state.showSidebar}
+        />
         <Header />
         <Sidebar
           show={this.state.showSidebar}

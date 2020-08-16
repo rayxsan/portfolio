@@ -52,9 +52,29 @@ export const StyledLinearProgress = styled.div`
     text-align: right;
   }
   span {
-    padding: 1em;
+    padding: 0.8em;
     color: white;
     text-align: center;
+    font-weight: bold;
+  }
+`;
+
+export const StyledCircular = styled.svg`
+  display: block;
+  margin: 2em auto;
+  width: 100%;
+
+  .svg-circle-bg {
+    fill: none;
+  }
+
+  .svg-circle {
+    fill: none;
+  }
+  .svg-circle-text {
+    font-size: 1em;
+    text-anchor: middle;
+    fill: #fff;
     font-weight: bold;
   }
 `;

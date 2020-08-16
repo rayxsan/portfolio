@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Checkbox from "../../../Components/Checkbox/Checkbox";
 
 const StyledHeader = styled.div`
   position: sticky;
@@ -14,7 +15,7 @@ const StyledHeader = styled.div`
 `;
 
 const Header = () => {
-  return <StyledHeader>THIS IS THE HEADER</StyledHeader>;
+  return <StyledHeader>HEADER</StyledHeader>;
 };
 
 export default Header;
