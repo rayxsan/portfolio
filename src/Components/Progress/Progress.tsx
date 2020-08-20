@@ -39,24 +39,26 @@ const Progress: FunctionComponent<Props> = (props) => {
   );
 
   if (props.circular) {
-    const size = 50;
-    const strokeWidth = 3;
+    const size = 120;
+    const strokeWidth = 8;
     const center = size / 2;
     const radius = size / 2 - strokeWidth / 2;
     const circumference = 2 * Math.PI * radius;
+    const strokeDashoffset =
+      circumference - (props.completed! / 100) * circumference;
     progressBar = (
       <StyledCircular width={size} height={size}>
         <circle
-          className="svg-circle-bg"
           cx={center}
           cy={center}
           r={radius}
-          strokeWidth={strokeWidth}
           stroke={color}
+          strokeWidth={strokeWidth}
+          strokeDasharray={circumference + " " + circumference}
+          strokeDashoffset={circumference}
+          style={{ strokeDashoffset }}
         />
-        <text className="svg-circle-text" x={center} y={center}>
-          {`${props.completed}%`}
-        </text>
+        <text x={40} y={62}>{`${props.completed}%`}</text>
       </StyledCircular>
     );
   }

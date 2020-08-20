@@ -22,10 +22,13 @@ class ProgressPage extends Component<Props, State> {
 
   componentDidMount = () => {
     const fn = () => {
-      const randomNumber = Math.floor(Math.random() * 20);
-      this.setState({ completed: (this.state.completed + randomNumber) % 100 });
+      const randomNumber =
+        (Math.floor(Math.random() * 20) + this.state.completed) % 100;
+      this.setState({
+        completed: randomNumber,
+      });
     };
-    const interval = 2 * 1000; // 2 seconds
+    const interval = 1000; // 2 seconds
     this.intervalId = setInterval(fn, interval);
   };
 
@@ -55,8 +58,8 @@ class ProgressPage extends Component<Props, State> {
           <div>
             <p>Circular Progress</p>
             <Progress circular primary completed={completed} />
-            <Progress circular secondary completed={30} />
-            <Progress circular completed={50} />
+            {/* <Progress circular secondary completed={30} />
+            <Progress circular completed={100} /> */}
           </div>
         </StyledProgressPage>
       </>

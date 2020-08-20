@@ -61,20 +61,14 @@ export const StyledLinearProgress = styled.div`
 
 export const StyledCircular = styled.svg`
   display: block;
-  margin: 2em auto;
-  width: 100%;
-
-  .svg-circle-bg {
-    fill: none;
+  margin: 1em auto;
+  circle {
+    fill: transparent;
+    transition: stroke-dashoffset 0.35s;
+    transform: rotate(-90deg);
+    transform-origin: 50% 50%;
   }
-
-  .svg-circle {
-    fill: none;
-  }
-  .svg-circle-text {
-    font-size: 1em;
-    text-anchor: middle;
-    fill: #fff;
-    font-weight: bold;
+  text {
+    color: blue;
   }
 `;
