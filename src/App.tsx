@@ -5,9 +5,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
 import { theme } from "./shared/Theme";
 import Dummy from "./Components/Dummy/Dummy";
-import ButtonPage from "./Pages/ButtonPage";
-import CheckboxPage from "./Pages/CheckboxPage";
-import ProgressPage from "./Pages/ProgressPage";
+import { ButtonPage, CheckboxPage, ProgressPage, RadioPage } from "./Pages";
 
 interface OwnProps {}
 interface StateProps {}
@@ -22,6 +20,7 @@ class App extends Component<Props, State> {
         <Route path="/components/buttons" component={ButtonPage} />
         <Route path="/components/checkbox" component={CheckboxPage} />
         <Route path="/components/progress" component={ProgressPage} />
+        <Route path="/components/radio" component={RadioPage} />
         <Redirect to="/" />
       </Switch>
     );

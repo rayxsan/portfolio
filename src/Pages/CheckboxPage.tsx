@@ -10,7 +10,7 @@ import styled from "styled-components";
 
 const StyledCheckboxPage = styled.div``;
 
-const CheckboxPage = () => (
+export const CheckboxPage = () => (
   <StyledCheckboxPage>
     <div>
       <p>Simple Checkbox</p>
@@ -35,5 +35,3 @@ const CheckboxPage = () => (
     </div>
   </StyledCheckboxPage>
 );
-
-export default CheckboxPage;
