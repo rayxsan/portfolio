@@ -4,8 +4,13 @@ import Layout from "./hoc/Layout/Layout";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
 import { theme } from "./shared/Theme";
-import Dummy from "./Components/Dummy/Dummy";
-import { ButtonPage, CheckboxPage, ProgressPage, RadioPage } from "./Pages";
+import {
+  HomePage,
+  ButtonPage,
+  CheckboxPage,
+  ProgressPage,
+  RadioPage,
+} from "./Pages";
 
 interface OwnProps {}
 interface StateProps {}
@@ -16,7 +21,7 @@ class App extends Component<Props, State> {
   render() {
     let routes = (
       <Switch>
-        <Route path="/" exact component={Dummy} />
+        <Route path="/" exact component={HomePage} />
         <Route path="/components/buttons" component={ButtonPage} />
         <Route path="/components/checkbox" component={CheckboxPage} />
         <Route path="/components/progress" component={ProgressPage} />

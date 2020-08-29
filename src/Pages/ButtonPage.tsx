@@ -5,7 +5,7 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
 const StyledButtonPage = styled.div``;
 
-export const ButtonPage = () => {
+const ButtonPage = () => {
   return (
     <StyledButtonPage>
       <div>
@@ -87,3 +87,5 @@ export const ButtonPage = () => {
     </StyledButtonPage>
   );
 };
+
+export default ButtonPage;

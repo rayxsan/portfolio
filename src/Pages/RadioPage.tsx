@@ -4,7 +4,7 @@ import Radio from "../Components/Radio/Radio";
 
 const StyledRadioPage = styled.div``;
 
-export const RadioPage = () => (
+const RadioPage = () => (
   <StyledRadioPage>
     <div>
       <p>Simple Radio Button</p>
@@ -12,3 +12,5 @@ export const RadioPage = () => (
     </div>
   </StyledRadioPage>
 );
+
+export default RadioPage;

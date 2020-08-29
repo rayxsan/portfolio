@@ -6,7 +6,7 @@ const StyledText = styled.div`
   height: 100%;
 `;
 
-const Dummy = () => (
+const HomePage = () => (
   <StyledText>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan
@@ -99,4 +99,4 @@ const Dummy = () => (
   </StyledText>
 );
 
-export default Dummy;
+export default HomePage;

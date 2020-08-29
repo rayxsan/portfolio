@@ -9,7 +9,7 @@ interface State {
   completed: number;
 }
 
-export class ProgressPage extends Component<Props, State> {
+class ProgressPage extends Component<Props, State> {
   private intervalId: number;
 
   constructor(props: Props) {
@@ -66,3 +66,5 @@ export class ProgressPage extends Component<Props, State> {
     );
   }
 }
+
+export default ProgressPage;
