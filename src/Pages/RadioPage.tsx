@@ -8,7 +8,7 @@ const RadioPage = () => (
   <StyledRadioPage>
     <div>
       <p>Simple Radio Button</p>
-      <Radio />
+      <Radio label="Default" />
     </div>
   </StyledRadioPage>
 );

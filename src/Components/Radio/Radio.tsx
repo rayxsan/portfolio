@@ -30,15 +30,15 @@ class Radio extends React.Component<Props, State> {
   render() {
     return (
       <>
-        <StyledRadio className="container" onClick={this.handleCheckboxChange}>
-          {this.props.label}
+        <StyledRadio onClick={this.handleCheckboxChange}>
           <input
             type="radio"
             checked={this.state.checked}
             onChange={this.handleCheckboxChange}
             disabled={this.props.disabled}
           />
-          <span className="checkmark"></span>
+          <span />
+          <label>{this.props.label}</label>
         </StyledRadio>
       </>
     );
