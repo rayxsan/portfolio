@@ -49,7 +49,7 @@ class Radio extends React.Component<Props, State> {
             disabled={this.props.disabled}
           />
           <span />
-          <label style={{ color: color }}>{this.props.label}</label>
+          <label>{this.props.label}</label>
         </StyledRadio>
       </>
     );

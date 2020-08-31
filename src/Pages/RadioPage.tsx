@@ -11,6 +11,7 @@ const RadioPage = () => (
       <Radio label="Default" />
       <Radio primary label="Primary" />
       <Radio secondary label="Secondary" />
+      <Radio disabled checked label="Disabled" />
     </div>
   </StyledRadioPage>
 );

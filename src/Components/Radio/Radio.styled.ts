@@ -21,7 +21,10 @@ export const StyledRadio = styled.div`
     margin: 1.25rem;
   }
 
-  span:hover {
+  label {
+    color: ${(props) => props.color || "grey"};
+  }
+  input:not(:disabled) + span:hover {
     background-color: ${(props) => props.color || "grey"};
   }
 
@@ -43,5 +46,24 @@ export const StyledRadio = styled.div`
 
   input:checked + span:after {
     display: block;
+  }
+
+  input:disabled:not(:checked) + span {
+    &:before {
+      cursor: default;
+      box-shadow: none;
+      border-color: #bbb;
+      background-color: #ddd;
+    }
+  }
+  > input:disabled:checked + span {
+    &:after {
+      cursor: default;
+      color: #999;
+    }
+  }
+  > input:disabled + span {
+    cursor: default;
+    color: #aaa;
   }
 `;
