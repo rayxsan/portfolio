@@ -1,7 +1,10 @@
 import React from "react";
+import { theme } from "../../shared/Theme";
 import { StyledRadio } from "./Radio.styled";
 
 interface Props {
+  primary?: boolean;
+  secondary?: boolean;
   label?: string;
   checked?: boolean;
   disabled?: boolean;
@@ -14,7 +17,7 @@ interface State {
 class Radio extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    this.state = { checked: true };
+    this.state = { checked: false };
   }
 
   componentDidMount = () => {
@@ -28,9 +31,17 @@ class Radio extends React.Component<Props, State> {
     }
   };
   render() {
+    let color = "grey";
+
+    if (this.props.primary) {
+      color = theme.primaryColor;
+    }
+    if (this.props.secondary) {
+      color = theme.secondaryColor;
+    }
     return (
       <>
-        <StyledRadio onClick={this.handleCheckboxChange}>
+        <StyledRadio onClick={this.handleCheckboxChange} color={color}>
           <input
             type="radio"
             checked={this.state.checked}
@@ -38,7 +49,7 @@ class Radio extends React.Component<Props, State> {
             disabled={this.props.disabled}
           />
           <span />
-          <label>{this.props.label}</label>
+          <label style={{ color: color }}>{this.props.label}</label>
         </StyledRadio>
       </>
     );

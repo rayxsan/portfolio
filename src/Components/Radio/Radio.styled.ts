@@ -14,7 +14,7 @@ export const StyledRadio = styled.div`
     height: 1rem;
     border-radius: 50%;
     cursor: pointer;
-    background-color: #eee;
+    background-color: #ccc;
   }
 
   span + label {
@@ -22,11 +22,11 @@ export const StyledRadio = styled.div`
   }
 
   span:hover {
-    background-color: #ccc;
+    background-color: ${(props) => props.color || "grey"};
   }
 
   input:checked + span {
-    background-color: #2196f3;
+    background-color: ${(props) => props.color || "grey"};
   }
 
   span:after {
