@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
 
@@ -7,18 +7,23 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const Sidebar: FunctionComponent<Props> = (props) => {
+const Sidebar: FunctionComponent<Props> = props => {
+  const [open, setOpen] = useState(false);
+
   return (
     <StyledSidebar show={props.show}>
       <nav>
         <NavLink to={"/"}>Home</NavLink>
-        <ul>
-          <div>Components</div>
-          <NavLink to={"/components/buttons"}>Buttons</NavLink>
-          <NavLink to={"/components/checkbox"}>Checkboxes</NavLink>
-          <NavLink to={"/components/progress"}>Progress</NavLink>
-          <NavLink to={"/components/radio"}>Radio</NavLink>
-        </ul>
+        {/* TODO maybe reuse checkbox or another UI component */}
+        <div onClick={() => setOpen(!open)}>Components</div>
+        {open ? (
+          <ul>
+            <NavLink to={"/components/buttons"}>Buttons</NavLink>
+            <NavLink to={"/components/checkbox"}>Checkboxes</NavLink>
+            <NavLink to={"/components/progress"}>Progress</NavLink>
+            <NavLink to={"/components/radio"}>Radio</NavLink>
+          </ul>
+        ) : null}
       </nav>
     </StyledSidebar>
   );

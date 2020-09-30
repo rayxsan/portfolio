@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Checkbox from "../../../Components/Checkbox/Checkbox";
 
 const StyledHeader = styled.div`
   position: sticky;
