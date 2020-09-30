@@ -6,7 +6,8 @@ const StyledFooter = styled.footer`
   bottom: 0;
   width: 100%;
   text-align: center;
-  /* padding-top: 2em; */
+  line-height: ${({ theme }) => theme.footerHeight};
+  margin-top: 3rem;
   height: ${({ theme }) => theme.footerHeight};
   background-color: ${({ theme }) => theme.backgroundColor};
   color: ${({ theme }) => theme.fontColor};
@@ -16,8 +17,8 @@ const StyledFooter = styled.footer`
 interface Props {
   style?: React.CSSProperties | undefined;
 }
-const Footer: FunctionComponent<Props> = (props) => {
-  return <StyledFooter style={props.style}>THIS IS THE FOOTER</StyledFooter>;
+const Footer: FunctionComponent<Props> = props => {
+  return <StyledFooter style={props.style}>FOOTER</StyledFooter>;
 };
 
 export default Footer;

@@ -12,11 +12,9 @@ export const StyledSidebar = styled.div`
   color: ${({ theme }) => theme.fontColor};
   padding: 10px;
   box-sizing: border-box;
-  /* border: 2px solid red; */
   z-index: 5;
   transition: transform 0.3s ease-in-out;
-  transform: ${(props: StyledProps) =>
-    props.show ? "translateX(0)" : "translateX(-100%)"};
+  transform: ${(props: StyledProps) => (props.show ? "translateX(0)" : "translateX(-100%)")};
 
   ul {
     display: flex;

@@ -2,13 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledHeader = styled.div`
+  position: -webkit-sticky;
   position: sticky;
   width: 100%;
-  height: 2rem;
-  top: 0;
-  padding-top: 15px;
-  background-color: ${({ theme }) => theme.solidBackground};
   text-align: center;
+  line-height: ${({ theme }) => theme.headerHeight};
+  top: 0;
+  height: ${({ theme }) => theme.headerHeight};
+  background-color: ${({ theme }) => theme.solidBackground};
   color: ${({ theme }) => theme.fontColor};
   z-index: 5;
 `;

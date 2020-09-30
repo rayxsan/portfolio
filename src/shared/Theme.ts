@@ -7,7 +7,8 @@ const theme1 = {
   solidBackground: "#7467ef",
 
   //Dimensions
-  footerHeight: "5rem",
+  headerHeight: "4rem",
+  footerHeight: "4rem",
   sidebarWidth: "12rem",
 };
 
