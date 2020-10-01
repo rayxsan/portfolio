@@ -6,14 +6,16 @@ interface Props {
   items: { key: number; value: string }[];
 }
 
+//TODO: Add click Handler for each item
+// Missing all CSS
+// Auto-generate ids for each item?
+
 const Menu: FunctionComponent<Props> = (props) => {
   const [open, setOpen] = useState(false);
 
   return (
     <StyledMenu>
-      <div className="NavSection" onClick={() => setOpen(!open)}>
-        {props.title}
-      </div>
+      <div onClick={() => setOpen(!open)}>{props.title}</div>
       {open && (
         <ul>
           {props.items.map((item: { key: number; value: string }) => (
