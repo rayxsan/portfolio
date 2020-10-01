@@ -31,13 +31,13 @@ export const StyledSidebar = styled.div`
     margin-top: 1em;
     width: auto;
   }
-  .NavSection::after {
+  /* .NavSection::after {
     content: ">";
     display: flex;
     float: right;
     position: absolute;
     transform: rotate(90deg);
-  }
+  } */
 
   .NavSection:hover {
     color: ${({ theme }) => theme.primaryColor};

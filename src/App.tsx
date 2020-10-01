@@ -10,6 +10,7 @@ import {
   CheckboxPage,
   ProgressPage,
   RadioPage,
+  MenuPage,
 } from "./Pages";
 
 interface OwnProps {}
@@ -26,6 +27,7 @@ class App extends Component<Props, State> {
         <Route path="/components/checkbox" component={CheckboxPage} />
         <Route path="/components/progress" component={ProgressPage} />
         <Route path="/components/radio" component={RadioPage} />
+        <Route path="/components/menu" component={MenuPage} />
         <Redirect to="/" />
       </Switch>
     );
