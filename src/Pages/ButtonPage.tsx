@@ -8,15 +8,15 @@ const StyledButtonPage = styled.div``;
 const ButtonPage = () => {
   return (
     <StyledButtonPage>
-      <div>
+      <section>
         <p>Contained Buttons</p>
         <Button>Default</Button>
         <Button primary>Primary</Button>
         <Button secondary>Secondary</Button>
         <Button disabled>Disabled</Button>
-      </div>
+      </section>
 
-      <div>
+      <section>
         <p>Text Buttons</p>
         <Button text>Default</Button>
         <Button text primary>
@@ -28,9 +28,9 @@ const ButtonPage = () => {
         <Button text disabled>
           Disabled
         </Button>
-      </div>
+      </section>
 
-      <div>
+      <section>
         <p>Outline Buttons</p>
         <Button outline>Default</Button>
         <Button outline primary>
@@ -42,9 +42,9 @@ const ButtonPage = () => {
         <Button outline disabled>
           Disabled
         </Button>
-      </div>
+      </section>
 
-      <div>
+      <section>
         <p>Icon Buttons</p>
         <Button primary>
           <FaFacebookF />
@@ -61,9 +61,9 @@ const ButtonPage = () => {
         <Button>
           <FaFacebookF />
         </Button>
-      </div>
+      </section>
 
-      <div>
+      <section>
         <p>Circular Buttons</p>
         <Button circular size="small">
           <FaFacebookF />
@@ -74,16 +74,16 @@ const ButtonPage = () => {
         <Button circular secondary size="large">
           <FaFacebookF />
         </Button>
-      </div>
+      </section>
 
-      <div>
+      <section>
         <p>Button of different Sizes</p>
         <Button size="tiny">Tiny</Button>
         <Button size="small">Small</Button>
         <Button size="medium">Medium</Button>
         <Button size="large">Large</Button>
         <Button size="big">Big</Button>
-      </div>
+      </section>
     </StyledButtonPage>
   );
 };

@@ -1,25 +1,33 @@
 import React, { FunctionComponent, useState } from "react";
+import Button from "../Button/Button";
 import { StyledMenu } from "./Menu.styled";
 
 interface Props {
-  title: string;
+  label: string;
   items: { key: number; value: string }[];
 }
 
-//TODO: Add click Handler for each item
-// Missing all CSS
+//TODO:
 // Auto-generate ids for each item?
 
-const Menu: FunctionComponent<Props> = (props) => {
-  const [open, setOpen] = useState(false);
+const Menu: FunctionComponent<Props> = ({ label, items }) => {
+  const [menuOpened, setMenuOpened] = useState(false);
+
+  const handleOptionClick = function (): void {
+    setMenuOpened(false);
+  };
 
   return (
     <StyledMenu>
-      <div onClick={() => setOpen(!open)}>{props.title}</div>
-      {open && (
+      <Button clicked={() => setMenuOpened(!menuOpened)} outline secondary>
+        {label}
+      </Button>
+      {menuOpened && (
         <ul>
-          {props.items.map((item: { key: number; value: string }) => (
-            <li key={item.key}>{item.value}</li>
+          {items.map(item => (
+            <li key={item.key} onClick={() => handleOptionClick()}>
+              <h4>{item.value}</h4>
+            </li>
           ))}
         </ul>
       )}

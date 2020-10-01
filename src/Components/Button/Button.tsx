@@ -1,10 +1,5 @@
 import React, { FunctionComponent } from "react";
-import {
-  StyledButton,
-  TextButton,
-  OutlinedButton,
-  CircularButton,
-} from "./Button.styled";
+import { StyledButton, TextButton, OutlinedButton, CircularButton } from "./Button.styled";
 import { theme } from "../../shared/Theme";
 import { ButtonSizes, ButtonTypes } from "./Button.common";
 
@@ -21,7 +16,7 @@ interface Props {
   clicked?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const Button: FunctionComponent<Props> = (props) => {
+const Button: FunctionComponent<Props> = props => {
   let color = "";
 
   if (props.primary) {
@@ -59,6 +54,7 @@ const Button: FunctionComponent<Props> = (props) => {
     );
   }
 
+  // BUG circular undefined
   if (props.circular) {
     return (
       <CircularButton
