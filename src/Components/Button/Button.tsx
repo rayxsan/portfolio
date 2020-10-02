@@ -16,68 +16,50 @@ interface Props {
   clicked?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
-const Button: FunctionComponent<Props> = props => {
+const Button: FunctionComponent<Props> = ({
+  primary,
+  secondary,
+  text,
+  disabled,
+  size,
+  type,
+  clicked,
+  children,
+  outline,
+  circular,
+}) => {
   let color = "";
+  color = primary ? theme.primaryColor : "";
+  color = secondary ? theme.secondaryColor : "";
 
-  if (props.primary) {
-    color = theme.primaryColor;
-  }
-  if (props.secondary) {
-    color = theme.secondaryColor;
-  }
-
-  if (props.text) {
+  if (text) {
     return (
-      <TextButton
-        disabled={props.disabled}
-        size={props.size}
-        type={props.type}
-        color={color}
-        onClick={props.clicked}
-      >
-        {props.children}
+      <TextButton disabled={disabled} size={size} type={type} color={color} onClick={clicked}>
+        {children}
       </TextButton>
     );
   }
 
-  if (props.outline) {
+  if (outline) {
     return (
-      <OutlinedButton
-        disabled={props.disabled}
-        size={props.size}
-        type={props.type}
-        color={color}
-        onClick={props.clicked}
-      >
-        {props.children}
+      <OutlinedButton disabled={disabled} size={size} type={type} color={color} onClick={clicked}>
+        {children}
       </OutlinedButton>
     );
   }
 
   // BUG circular undefined
-  if (props.circular) {
+  if (circular) {
     return (
-      <CircularButton
-        disabled={props.disabled}
-        size={props.size}
-        type={props.type}
-        color={color}
-        onClick={props.clicked}
-      >
-        {props.children}
+      <CircularButton disabled={disabled} size={size} type={type} color={color} onClick={clicked}>
+        {children}
       </CircularButton>
     );
   }
 
   return (
-    <StyledButton
-      disabled={props.disabled}
-      size={props.size}
-      type={props.type}
-      color={color}
-      onClick={props.clicked}
-    >
-      {props.children}
+    <StyledButton disabled={disabled} size={size} type={type} color={color} onClick={clicked}>
+      {children}
     </StyledButton>
   );
 };
