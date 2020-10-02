@@ -5,7 +5,7 @@ import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
 const StyledButtonPage = styled.div``;
 
-// TODO refactor DRY
+// TODO refactor DRY, outsource values
 const ButtonPage = () => {
   return (
     <StyledButtonPage>

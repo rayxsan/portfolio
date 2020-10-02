@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Menu from "../Components/Menu/Menu";
+import { theme } from "../shared/Theme";
 
 const StyledMenuPage = styled.div`
   .menu-wrapper {
@@ -12,34 +13,13 @@ const StyledMenuPage = styled.div`
   }
 `;
 
-const menus = [
-  {
-    title: "Simple Menu",
-    header: "Open Menu",
-    items: [
-      { key: 1, value: "Profile" },
-      { key: 2, value: "My account" },
-      { key: 3, value: "Logout" },
-    ],
-  },
-  {
-    title: "Selected Menu",
-    header: "Open Menu",
-    items: [
-      { key: 1, value: "Profile" },
-      { key: 2, value: "My account" },
-      { key: 3, value: "Logout" },
-    ],
-  },
-];
-
-//TODO outsource constants and styling
+//TODO outsource styling
 const MenuPage = () => (
   <StyledMenuPage className="menu-page">
-    {menus.map(menu => (
-      <div className="menu-wrapper">
-        <h3 className="menu-title">{menu.title}</h3>
-        <Menu header={menu.header} items={menu.items} />
+    {theme.MENUS.map(({ name, header, items }, index) => (
+      <div key={index} className="menu-wrapper">
+        <h3 className="menu-title">{name}</h3>
+        <Menu header={header} items={items} />
       </div>
     ))}
   </StyledMenuPage>

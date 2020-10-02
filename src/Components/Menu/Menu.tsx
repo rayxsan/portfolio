@@ -4,11 +4,12 @@ import { StyledMenu } from "./Menu.styled";
 
 interface Props {
   header: string;
-  items: { key: number; value: string }[];
+  items: { value: string }[];
 }
 
 //TODO:
 // Auto-generate ids for each item?
+// Handle external click to close
 // Outsource classNames
 
 const Menu: FunctionComponent<Props> = ({ header, items }) => {
@@ -30,11 +31,11 @@ const Menu: FunctionComponent<Props> = ({ header, items }) => {
           </Button>
         </div>
         <ul className={`list ${openedMenu ? "show" : "hide"}`}>
-          {items.map(item => (
-            <li className="list-item">
+          {items.map(({ value }, index) => (
+            <li key={index} className="list-item">
               {/*TODO replace <Button for another component*/}
-              <Button key={item.key} text clicked={() => handleOptionClick()}>
-                <span>{item.value}</span>
+              <Button text clicked={() => handleOptionClick()}>
+                <span>{value}</span>
               </Button>
             </li>
           ))}
