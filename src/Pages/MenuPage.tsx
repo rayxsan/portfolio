@@ -3,39 +3,45 @@ import styled from "styled-components";
 import Menu from "../Components/Menu/Menu";
 
 const StyledMenuPage = styled.div`
-  background-color: red;
-  width: 60%;
-
-  section {
+  .menu-wrapper {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 10px;
-    padding: 20px;
-    background-color: #fff;
-  }
-
-  Button {
-    margin-left: 10px;
+    margin: 1rem 2rem;
+    height: 10rem;
   }
 `;
 
-const items = [
-  { key: 1, value: "test 1" },
-  { key: 2, value: "test 2" },
-  { key: 3, value: "test 3" },
+const menus = [
+  {
+    title: "Simple Menu",
+    header: "Open Menu",
+    items: [
+      { key: 1, value: "Profile" },
+      { key: 2, value: "My account" },
+      { key: 3, value: "Logout" },
+    ],
+  },
+  {
+    title: "Selected Menu",
+    header: "Open Menu",
+    items: [
+      { key: 1, value: "Profile" },
+      { key: 2, value: "My account" },
+      { key: 3, value: "Logout" },
+    ],
+  },
 ];
 
+//TODO outsource constants and styling
 const MenuPage = () => (
-  <StyledMenuPage>
-    <section>
-      <h3>Simple Menu</h3>
-      <Menu label="Open Menu" items={items} />
-    </section>
-    <section>
-      <h3>Selected Menu</h3>
-      <Menu label="Simple-Menu" items={items} />
-    </section>
+  <StyledMenuPage className="menu-page">
+    {menus.map(menu => (
+      <div className="menu-wrapper">
+        <h3 className="menu-title">{menu.title}</h3>
+        <Menu header={menu.header} items={menu.items} />
+      </div>
+    ))}
   </StyledMenuPage>
 );
 
