@@ -24,10 +24,10 @@ const Menu: FunctionComponent<Props> = ({ label, items }) => {
       </Button>
       {menuOpened && (
         <ul>
-          {items.map(item => (
-            <li key={item.key} onClick={() => handleOptionClick()}>
-              <h4>{item.value}</h4>
-            </li>
+          {items.map((item) => (
+            <Button key={item.key} clicked={() => handleOptionClick()}>
+              <span>{item.value}</span>
+            </Button>
           ))}
         </ul>
       )}

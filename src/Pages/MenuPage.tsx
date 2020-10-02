@@ -4,6 +4,7 @@ import Menu from "../Components/Menu/Menu";
 
 const StyledMenuPage = styled.div`
   background-color: red;
+  width: 60%;
 
   section {
     display: flex;
@@ -11,7 +12,7 @@ const StyledMenuPage = styled.div`
     align-items: flex-start;
     margin: 10px;
     padding: 20px;
-    background-color: #7b74c1;
+    background-color: #fff;
   }
 
   Button {
