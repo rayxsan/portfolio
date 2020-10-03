@@ -6,6 +6,10 @@ const StyledLink = styled.div`
   font-weight: bold;
 `;
 
-const Link: FunctionComponent = () => <StyledLink>This is styled</StyledLink>;
+interface Props {
+  title: string;
+}
+
+const Link: FunctionComponent<Props> = title => <StyledLink>{title}</StyledLink>;
 
 export default Link;
