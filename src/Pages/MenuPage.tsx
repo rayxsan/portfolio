@@ -13,7 +13,9 @@ const StyledMenuPage = styled.div`
   }
 `;
 
-//TODO outsource styling
+//TODO
+// outsource styling
+// remove classNames
 const MenuPage = () => (
   <StyledMenuPage className="menu-page">
     {theme.MENUS.map(({ name, header, items }, index) => (

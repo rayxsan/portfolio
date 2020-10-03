@@ -19,6 +19,7 @@ const Menu: FunctionComponent<Props> = ({ header, items }) => {
     setOpenedMenu(false);
   };
 
+  // TODO remove classNames
   return (
     <StyledMenu
       onKeyPress={() => setOpenedMenu(!openedMenu)}
