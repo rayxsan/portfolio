@@ -5,11 +5,11 @@ import { StyledMenu } from "./Menu.styled";
 interface Props {
   header: string;
   items: { value: string }[];
+  primary?: boolean;
+  secondary?: boolean;
 }
 
 //TODO:
-// Auto-generate ids for each item?
-// Handle external click to close
 // Outsource classNames
 
 const Menu: FunctionComponent<Props> = ({ header, items }) => {
@@ -25,23 +25,21 @@ const Menu: FunctionComponent<Props> = ({ header, items }) => {
       onKeyPress={() => setOpenedMenu(!openedMenu)}
       onClick={() => setOpenedMenu(!openedMenu)}
     >
-      <div className="menu-items">
-        <div className={openedMenu ? "hide-header" : "header"}>
-          <Button clicked={() => setOpenedMenu(!openedMenu)} outline secondary>
-            {header}
-          </Button>
-        </div>
-        <ul className={`list ${openedMenu ? "show" : "hide"}`}>
-          {items.map(({ value }, index) => (
-            <li key={index} className="list-item">
-              {/*TODO replace <Button for another component*/}
-              <Button text clicked={() => handleOptionClick()}>
-                <span>{value}</span>
-              </Button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <button
+        className={openedMenu ? "hide" : "header"}
+        onClick={() => setOpenedMenu(!openedMenu)}
+      >
+        {header}
+      </button>
+      <ul className={`list ${openedMenu ? "show" : "hide"}`}>
+        {items.map(({ value }, index) => (
+          <li key={index}>
+            <button onClick={() => handleOptionClick()}>
+              <span>{value}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
     </StyledMenu>
   );
 };

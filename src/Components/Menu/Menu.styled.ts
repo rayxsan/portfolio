@@ -1,50 +1,40 @@
 import styled from "styled-components";
 
-// TODO refarctor negative position if possible
 export const StyledMenu = styled.div`
   .list {
     position: relative;
-    top: -3.9rem;
-    left: -1.5rem;
-    width: 76%;
-    margin: 20px 0 0 43px;
+    width: auto;
     padding-inline-start: 0;
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
   }
 
   .show {
-    background-color: white;
+    background-color: blue;
   }
 
   .hide {
-    visibility: hidden;
+    display: none;
   }
 
-  .hide-header {
-    visibility: hidden;
+  .header {
+    button {
+    }
   }
 
-  li {
-    &:first-of-type {
-      > button {
-        border-top: 1px solid #ccc;
-        border-radius: 6px 6px 0 0;
-      }
-    }
+  button {
+    display: flex;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    justify-content: space-between;
+    background-color: white;
+    padding: 1rem 1.5rem;
+    border: 1px solid #ccc;
+  }
 
-    &:last-of-type > button {
-      border-radius: 0 0 6px 6px;
-    }
-
-    Button {
-      width: 100%;
-      text-align: left;
-
-      &:hover,
-      &:focus {
-        cursor: pointer;
-        background-color: #ccc;
-      }
-    }
+  button:hover,
+  button:focus {
+    cursor: pointer;
+    background-color: #ccc;
   }
 `;

@@ -12,23 +12,6 @@ const theme1 = {
   sidebarWidth: "12rem",
 
   //Menus
-  MENUS: [
-    {
-      name: "Simple Menu",
-      header: "Open Menu",
-      items: [{ value: "Profile" }, { value: "My account" }, { value: "Logout" }],
-    },
-    {
-      name: "Selected Menu",
-      header: "When device is locked",
-      items: [
-        { value: "Fly to the moon" },
-        { value: "Show all notification content" },
-        { value: "Hide sensitive notification content" },
-        { value: "Hide all notification content" },
-      ],
-    },
-  ],
 };
 
 export const theme = theme1;
