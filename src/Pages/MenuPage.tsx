@@ -15,11 +15,13 @@ const StyledMenuPage = styled.div`
 const MENUS = [
   {
     name: "Simple Menu",
+    type: "simple",
     header: "Open Menu",
     items: [{ value: "Profile" }, { value: "My account" }, { value: "Logout" }],
   },
   {
     name: "Selected Menu",
+    type: "selected",
     header: "When device is locked",
     items: [
       { value: "Fly to the moon" },
@@ -35,11 +37,11 @@ const MENUS = [
 // remove classNames
 // Move <Cards to their page
 const MenuPage = () => (
-  <StyledMenuPage className="menu-page">
-    {MENUS.map(({ name, header, items }, index) => (
+  <StyledMenuPage>
+    {MENUS.map(({ name, type, header, items }, index) => (
       <div key={index} className="menu-wrapper">
-        <h3 className="menu-title">{name}</h3>
-        <Menu header={header} items={items} />
+        <h3>{name}</h3>
+        <Menu header={header} type={type} items={items} />
       </div>
     ))}
   </StyledMenuPage>
