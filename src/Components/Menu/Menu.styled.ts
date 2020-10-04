@@ -16,11 +16,6 @@ export const StyledMenu = styled.div`
     display: none;
   }
 
-  .header {
-    button {
-    }
-  }
-
   button {
     display: flex;
     cursor: pointer;
@@ -36,5 +31,24 @@ export const StyledMenu = styled.div`
   button:focus {
     cursor: pointer;
     background-color: #ccc;
+  }
+
+  .selected {
+    display: flex;
+    flex-direction: column;
+    border: 0;
+
+    span:last-child {
+      color: #aaa;
+    }
+  }
+
+  .selected:hover {
+    background-color: #eee;
+  }
+
+  .header {
+    button {
+    }
   }
 `;

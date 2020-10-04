@@ -14,9 +14,14 @@ interface Props {
 
 const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   const [openedMenu, setOpenedMenu] = useState(false);
+  const [selection, setSelection] = useState("");
 
   const handleOptionClick = function (): void {
     setOpenedMenu(false);
+  };
+
+  const handleOnChange = () => {
+    setSelection("items[1].value");
   };
 
   let menu = (
@@ -49,15 +54,19 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
         onClick={() => setOpenedMenu(!openedMenu)}
       >
         <button
-          className={`{"selected " ${openedMenu} ? "hide" : "header"}`}
+          className={openedMenu ? "hide" : "selected"}
           onClick={() => setOpenedMenu(!openedMenu)}
         >
-          {header}
+          <span>{header}</span>
+          <span>{selection}</span>
         </button>
         <ul className={`list ${openedMenu ? "show" : "hide"}`}>
           {items.map(({ value }, index) => (
             <li key={index}>
-              <button onClick={() => handleOptionClick()}>
+              <button
+                onClick={() => handleOptionClick()}
+                onChange={() => handleOnChange()}
+              >
                 <span>{value}</span>
               </button>
             </li>
