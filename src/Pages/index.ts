@@ -4,6 +4,7 @@ import CheckboxPage from "./CheckboxPage";
 import ProgressPage from "./ProgressPage";
 import RadioPage from "./RadioPage";
 import MenuPage from "./MenuPage";
+import CardPage from "./CardPage";
 
 export {
   HomePage,
@@ -12,4 +13,5 @@ export {
   ProgressPage,
   RadioPage,
   MenuPage,
+  CardPage,
 };

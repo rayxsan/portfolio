@@ -11,6 +11,7 @@ import {
   ProgressPage,
   RadioPage,
   MenuPage,
+  CardPage,
 } from "./Pages";
 
 interface OwnProps {}
@@ -28,6 +29,7 @@ class App extends Component<Props, State> {
         <Route path="/components/progress" component={ProgressPage} />
         <Route path="/components/radio" component={RadioPage} />
         <Route path="/components/menu" component={MenuPage} />
+        <Route path="/components/card" component={CardPage} />
         <Redirect to="/" />
       </Switch>
     );
