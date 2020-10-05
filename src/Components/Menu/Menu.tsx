@@ -1,9 +1,10 @@
 import React, { FunctionComponent, useState } from "react";
+import Button from "../Button/Button";
 import { StyledMenu } from "./Menu.styled";
 
 interface Props {
   header: string;
-  items: { value: string }[];
+  items: string[];
   primary?: boolean;
   secondary?: boolean;
   type?: "simple" | "selected" | any;
@@ -11,7 +12,8 @@ interface Props {
 
 //TODO:
 // Outsource classNames
-
+// REMOVE  conditional rendering style
+// Recover <Button /> component style in Menu
 const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   const [openedMenu, setOpenedMenu] = useState(false);
   const [selection, setSelection] = useState("");
@@ -21,7 +23,7 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   };
 
   const handleOnChange = () => {
-    setSelection("items[1].value");
+    setSelection(items[1]);
   };
 
   let menu = (
@@ -29,18 +31,15 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
       onKeyPress={() => setOpenedMenu(!openedMenu)}
       onClick={() => setOpenedMenu(!openedMenu)}
     >
-      <button
-        className={openedMenu ? "hide" : "header"}
-        onClick={() => setOpenedMenu(!openedMenu)}
-      >
+      <Button disabled={openedMenu} clicked={() => setOpenedMenu(!openedMenu)}>
         {header}
-      </button>
+      </Button>
       <ul className={`list ${openedMenu ? "show" : "hide"}`}>
-        {items.map(({ value }, index) => (
+        {items.map((value, index) => (
           <li key={index}>
-            <button onClick={() => handleOptionClick()}>
+            <Button clicked={() => handleOptionClick()}>
               <span>{value}</span>
-            </button>
+            </Button>
           </li>
         ))}
       </ul>
@@ -61,12 +60,9 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
           <span>{selection}</span>
         </button>
         <ul className={`list ${openedMenu ? "show" : "hide"}`}>
-          {items.map(({ value }, index) => (
+          {items.map((value, index) => (
             <li key={index}>
-              <button
-                onClick={() => handleOptionClick()}
-                onChange={() => handleOnChange()}
-              >
+              <button onClick={() => handleOptionClick()} onChange={() => handleOnChange()}>
                 <span>{value}</span>
               </button>
             </li>

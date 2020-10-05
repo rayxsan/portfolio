@@ -46,9 +46,4 @@ export const StyledMenu = styled.div`
   .selected:hover {
     background-color: #eee;
   }
-
-  .header {
-    button {
-    }
-  }
 `;
