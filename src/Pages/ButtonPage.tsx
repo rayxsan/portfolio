@@ -1,90 +1,99 @@
 import React from "react";
 import Button from "../Components/Button/Button";
+import Card from "../Components/UI/Card/Card";
 import styled from "styled-components";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
 const StyledButtonPage = styled.div``;
 
-// TODO refactor DRY, outsource values
+// TODO
+// refactor DRY, outsource values
+// add page header
 const ButtonPage = () => {
   return (
     <StyledButtonPage>
-      <section>
-        <p>Contained Buttons</p>
-        <Button>Default</Button>
-        <Button primary>Primary</Button>
-        <Button secondary>Secondary</Button>
-        <Button disabled>Disabled</Button>
-      </section>
+      <Card title="contained buttons">
+        <div className="btn-container">
+          <Button>Default</Button>
+          <Button primary>Primary</Button>
+          <Button secondary>Secondary</Button>
+          <Button disabled>Disabled</Button>
+        </div>
+      </Card>
 
-      <section>
-        <p>Text Buttons</p>
-        <Button text>Default</Button>
-        <Button text primary>
-          Primary
-        </Button>
-        <Button text secondary>
-          Secondary
-        </Button>
-        <Button text disabled>
-          Disabled
-        </Button>
-      </section>
+      <Card title="text buttons">
+        <div className="btn-container">
+          <Button text>Default</Button>
+          <Button text primary>
+            Primary
+          </Button>
+          <Button text secondary>
+            Secondary
+          </Button>
+          <Button text disabled>
+            Disabled
+          </Button>
+        </div>
+      </Card>
 
-      <section>
-        <p>Outline Buttons</p>
-        <Button outline>Default</Button>
-        <Button outline primary>
-          Primary
-        </Button>
-        <Button outline secondary>
-          Secondary
-        </Button>
-        <Button outline disabled>
-          Disabled
-        </Button>
-      </section>
+      <Card title="outlined buttons">
+        <div className="btn-container">
+          <Button outline>Default</Button>
+          <Button outline primary>
+            Primary
+          </Button>
+          <Button outline secondary>
+            Secondary
+          </Button>
+          <Button outline disabled>
+            Disabled
+          </Button>
+        </div>
+      </Card>
 
-      <section>
-        <p>Icon Buttons</p>
-        <Button primary>
-          <FaFacebookF />
-          Facebook
-        </Button>
+      <Card title="icon buttons">
+        <div className="btn-container">
+          <Button primary>
+            <FaFacebookF />
+            Facebook
+          </Button>
 
-        <Button secondary>
-          <FaGoogle /> Google
-        </Button>
+          <Button secondary>
+            <FaGoogle /> Google
+          </Button>
 
-        <Button>
-          <FaFacebookF />
-        </Button>
-        <Button>
-          <FaFacebookF />
-        </Button>
-      </section>
+          <Button>
+            <FaFacebookF />
+          </Button>
+          <Button>
+            <FaFacebookF />
+          </Button>
+        </div>
+      </Card>
 
-      <section>
-        <p>Circular Buttons</p>
-        <Button circular size="small">
-          <FaFacebookF />
-        </Button>
-        <Button circular primary size="medium">
-          <FaFacebookF />
-        </Button>
-        <Button circular secondary size="large">
-          <FaFacebookF />
-        </Button>
-      </section>
+      <Card title="circular buttons">
+        <div className="btn-container">
+          <Button circular size="small">
+            <FaFacebookF />
+          </Button>
+          <Button circular primary size="medium">
+            <FaFacebookF />
+          </Button>
+          <Button circular secondary size="large">
+            <FaFacebookF />
+          </Button>
+        </div>
+      </Card>
 
-      <section>
-        <p>Button of different Sizes</p>
-        <Button size="tiny">Tiny</Button>
-        <Button size="small">Small</Button>
-        <Button size="medium">Medium</Button>
-        <Button size="large">Large</Button>
-        <Button size="big">Big</Button>
-      </section>
+      <Card title="diferent size buttons">
+        <div className="btn-container">
+          <Button size="tiny">Tiny</Button>
+          <Button size="small">Small</Button>
+          <Button size="medium">Medium</Button>
+          <Button size="large">Large</Button>
+          <Button size="big">Big</Button>
+        </div>
+      </Card>
     </StyledButtonPage>
   );
 };

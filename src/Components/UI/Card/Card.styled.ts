@@ -11,9 +11,11 @@ export const StyledCard = styled.div`
 
   h3 {
     display: flex;
-    padding: 0 1rem;
-    margin: 0;
-    font-size: 1.3rem;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    text-transform: capitalize;
     line-height: 3rem;
     letter-spacing: 0.05em;
     overflow: hidden;
@@ -21,9 +23,13 @@ export const StyledCard = styled.div`
   }
 
   p,
-  div {
+  .btn-container {
     padding: 0 1rem 1rem 1rem;
-    margin: 0.5rem 0;
+    margin: 1rem;
     text-align: left;
+  }
+
+  button {
+    margin: 1rem 0.5rem;
   }
 `;

@@ -16,6 +16,7 @@ interface Props {
   clicked?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+// TODO Add Ripple to btn
 const Button: FunctionComponent<Props> = ({
   primary,
   secondary,
@@ -28,9 +29,10 @@ const Button: FunctionComponent<Props> = ({
   outline,
   circular,
 }) => {
-  let color = "";
-  color = primary ? theme.primaryColor : "";
-  color = secondary ? theme.secondaryColor : "";
+  const { primaryColor, secondaryColor, defaultColor } = theme;
+  let color = defaultColor;
+  if (primary) color = primaryColor;
+  if (secondary) color = secondaryColor;
 
   if (text) {
     return (

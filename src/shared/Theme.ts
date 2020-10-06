@@ -1,7 +1,8 @@
 const theme1 = {
   //Colors
-  primaryColor: "#7467ef",
-  secondaryColor: "#222A45",
+  primaryColor: "#1976d2",
+  secondaryColor: "#FFAF38",
+  defaultColor: "#ccc",
   fontColor: "#fff",
   backgroundColor: "#222A45",
   solidBackground: "#7467ef",

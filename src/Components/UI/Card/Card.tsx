@@ -10,7 +10,7 @@ const Card: FunctionComponent<Props> = ({ title, text, children }) => {
   return (
     <StyledCard>
       <h3>{title}</h3>
-      <p>{text}</p>
+      {text && <p>{text}</p>}
       {children}
     </StyledCard>
   );
