@@ -24,3 +24,5 @@ yarn-error.log*
 
 # local files for DEV
 /src/localConstants
+src/Pages/MenuPage.tsx
+src/Pages/MenuPage.tsx

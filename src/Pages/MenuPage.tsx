@@ -13,9 +13,10 @@ const StyledMenuPage = styled.div`
 
     div {
       position: relative;
-     ul {
-      position: absolute;
-      top: -1rem;
+      ul {
+        position: absolute;
+        top: -1rem;
+      }
     }
   }
 `;
