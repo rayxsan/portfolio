@@ -16,6 +16,7 @@ interface Props {
   clicked?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
+// TODO Add Ripple to btn
 const Button: FunctionComponent<Props> = ({
   primary,
   secondary,
