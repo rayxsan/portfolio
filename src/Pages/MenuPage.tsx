@@ -47,8 +47,8 @@ const MENUS = [
 const MenuPage = () => (
   <StyledMenuPage>
     {MENUS.map(({ name, type, header, items }, index) => (
-      <Card title={name}>
-        <div key={index} className="menu-wrapper">
+      <Card key={index} title={name}>
+        <div className="menu-wrapper">
           <Menu header={header} type={type} items={items} />
         </div>
       </Card>
