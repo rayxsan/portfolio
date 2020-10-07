@@ -3,9 +3,9 @@ const theme1 = {
   primaryColor: "#1976d2",
   secondaryColor: "#FFAF38",
   defaultColor: "#ccc",
-  fontColor: "#fff",
-  backgroundColor: "#222A45",
-  solidBackground: "#7467ef",
+  solidBackground: "#fff",
+  sidebarBGColor: "#222A45",
+  sidebarFontColor: "#fff",
 
   //Dimensions
   headerHeight: "4rem",

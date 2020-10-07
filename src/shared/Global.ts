@@ -13,7 +13,8 @@ html, body {
     height: 100%; 
     text-align: center;
     font-family: 'Roboto', sans-serif; 
-    /* overflow: hidden; */
+    background-color: #f6f6f6;
+    fontColor: "#000",
   }
   ul {
     list-style: none

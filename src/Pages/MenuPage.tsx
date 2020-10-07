@@ -3,23 +3,7 @@ import styled from "styled-components";
 import Card from "../Components/UI/Card/Card";
 import Menu from "../Components/Menu/Menu";
 
-const StyledMenuPage = styled.div`
-  .menu-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 1rem 2rem;
-    position: relative;
-
-    div {
-      position: relative;
-      ul {
-        position: absolute;
-        top: -1rem;
-      }
-    }
-  }
-`;
+const StyledMenuPage = styled.div``;
 
 const MENUS = [
   {
@@ -41,17 +25,11 @@ const MENUS = [
   },
 ];
 
-// TODO
-// outsource styling
-// remove classNames
-
 const MenuPage = () => (
   <StyledMenuPage>
     {MENUS.map(({ name, type, header, items }, index) => (
       <Card key={index} title={name}>
-        <div className="menu-wrapper">
-          <Menu header={header} type={type} items={items} />
-        </div>
+        <Menu header={header} type={type} items={items} />
       </Card>
     ))}
   </StyledMenuPage>
