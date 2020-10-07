@@ -23,18 +23,24 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
     setOpenedMenu(false);
   };
 
+  let menuType;
+  if (type === "selected") {
+    menuType = selectedText;
+  }
+
   let menu = (
     <StyledMenu
       onKeyPress={() => setOpenedMenu(!openedMenu)}
       onClick={() => setOpenedMenu(!openedMenu)}
     >
       <Button disabled={openedMenu} clicked={() => setOpenedMenu(!openedMenu)}>
-        {header}
+        <span>{header}</span>
+        <span>{menuType}</span>
       </Button>
       <ul className={`list ${openedMenu ? "show" : "hide"}`}>
         {items.map((value, index) => (
           <li key={index}>
-            <Button clicked={() => handleOptionClick()}>
+            <Button clicked={() => handleOptionClick(value)}>
               <span>{value}</span>
             </Button>
           </li>
@@ -42,33 +48,6 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
       </ul>
     </StyledMenu>
   );
-
-  if (type === "selected") {
-    menu = (
-      <StyledMenu
-        onKeyPress={() => setOpenedMenu(!openedMenu)}
-        onClick={() => setOpenedMenu(!openedMenu)}
-        // onChange={() => handleOnChange(selection)}
-      >
-        <button
-          className={openedMenu ? "hide" : "selected"}
-          onClick={() => setOpenedMenu(!openedMenu)}
-        >
-          <span>{header}</span>
-          <span>{selectedText}</span>
-        </button>
-        <ul className={`list ${openedMenu ? "show" : "hide"}`}>
-          {items.map((value, index) => (
-            <li key={index}>
-              <button onClick={() => handleOptionClick(value)}>
-                <span>{value}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </StyledMenu>
-    );
-  }
 
   return menu;
 };

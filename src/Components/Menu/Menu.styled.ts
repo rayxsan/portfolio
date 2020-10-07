@@ -16,8 +16,9 @@ export const StyledMenu = styled.div`
     display: none;
   }
 
-  button {
+  Button {
     display: flex;
+    flex-direction: column;
     cursor: pointer;
     width: 100%;
     text-align: left;
@@ -25,6 +26,10 @@ export const StyledMenu = styled.div`
     background-color: inherit;
     padding: 1rem 1.5rem;
     border: 1px solid #ccc;
+
+    span:last-child {
+      color: #aaa;
+    }
   }
 
   button:hover,
