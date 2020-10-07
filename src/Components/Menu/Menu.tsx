@@ -16,14 +16,11 @@ interface Props {
 // Recover <Button /> component style in Menu
 const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   const [openedMenu, setOpenedMenu] = useState(false);
-  const [selection, setSelection] = useState("");
+  const [selectedText, setSelectionText] = useState(items[0]);
 
-  const handleOptionClick = function (): void {
+  const handleOptionClick = function (text?: string): void {
+    if (text) setSelectionText(text);
     setOpenedMenu(false);
-  };
-
-  const handleOnChange = () => {
-    setSelection(items[1]);
   };
 
   let menu = (
@@ -51,18 +48,19 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
       <StyledMenu
         onKeyPress={() => setOpenedMenu(!openedMenu)}
         onClick={() => setOpenedMenu(!openedMenu)}
+        // onChange={() => handleOnChange(selection)}
       >
         <button
           className={openedMenu ? "hide" : "selected"}
           onClick={() => setOpenedMenu(!openedMenu)}
         >
           <span>{header}</span>
-          <span>{selection}</span>
+          <span>{selectedText}</span>
         </button>
         <ul className={`list ${openedMenu ? "show" : "hide"}`}>
           {items.map((value, index) => (
             <li key={index}>
-              <button onClick={() => handleOptionClick()} onChange={() => handleOnChange()}>
+              <button onClick={() => handleOptionClick(value)}>
                 <span>{value}</span>
               </button>
             </li>

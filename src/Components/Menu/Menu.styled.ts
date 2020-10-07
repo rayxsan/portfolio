@@ -22,7 +22,7 @@ export const StyledMenu = styled.div`
     width: 100%;
     text-align: left;
     justify-content: space-between;
-    background-color: white;
+    background-color: inherit;
     padding: 1rem 1.5rem;
     border: 1px solid #ccc;
   }
