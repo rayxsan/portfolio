@@ -1,15 +1,13 @@
 import styled from "styled-components";
 
 export const StyledMenu = styled.div`
-  .list {
-    position: relative;
-    width: auto;
-    padding-inline-start: 0;
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-  }
+  position: relative;
+  background-color: #fff;
 
-  .show {
-    background-color: blue;
+  ul {
+    position: absolute;
+    top: -1.1rem;
+    padding-inline-start: 0;
   }
 
   .hide {
@@ -18,37 +16,29 @@ export const StyledMenu = styled.div`
 
   Button {
     display: flex;
-    flex-direction: column;
-    cursor: pointer;
-    width: 100%;
+    min-width: 9rem;
     text-align: left;
     justify-content: space-between;
-    background-color: inherit;
     padding: 1rem 1.5rem;
-    border: 1px solid #ccc;
-
-    span:last-child {
-      color: #aaa;
-    }
+    color: #000;
+    background-color: #fff;
   }
 
   button:hover,
   button:focus {
-    cursor: pointer;
     background-color: #ccc;
   }
 
-  .selected {
+  .selected-menu {
     display: flex;
     flex-direction: column;
     border: 0;
-
     span:last-child {
       color: #aaa;
     }
   }
 
-  .selected:hover {
+  .selected-menu:hover {
     background-color: #eee;
   }
 `;

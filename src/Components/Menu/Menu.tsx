@@ -10,37 +10,41 @@ interface Props {
   type?: "simple" | "selected" | any;
 }
 
-//TODO:
-// Outsource classNames
-// REMOVE  conditional rendering style
-// Recover <Button /> component style in Menu
+//TODO: Outsource classNames
+
 const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   const [openedMenu, setOpenedMenu] = useState(false);
-  const [selectedText, setSelectionText] = useState(items[0]);
+  const [selectedText, setSelectedText] = useState(items[0]);
 
   const handleOptionClick = function (text?: string): void {
-    if (text) setSelectionText(text);
+    if (text) setSelectedText(text);
     setOpenedMenu(false);
   };
 
-  let menuType;
-  if (type === "selected") {
-    menuType = selectedText;
-  }
-
-  let menu = (
-    <StyledMenu
-      onKeyPress={() => setOpenedMenu(!openedMenu)}
-      onClick={() => setOpenedMenu(!openedMenu)}
-    >
-      <Button disabled={openedMenu} clicked={() => setOpenedMenu(!openedMenu)}>
-        <span>{header}</span>
-        <span>{menuType}</span>
+  const menu =
+    type === "selected" ? (
+      <button className="selected-menu" onClick={() => setOpenedMenu(!openedMenu)}>
+        <div>{header}</div>
+        <p>{selectedText}</p>
+      </button>
+    ) : (
+      <Button
+        outline
+        size="medium"
+        disabled={openedMenu}
+        clicked={() => setOpenedMenu(!openedMenu)}
+      >
+        {header}
       </Button>
+    );
+
+  return (
+    <StyledMenu>
+      {menu}
       <ul className={`list ${openedMenu ? "show" : "hide"}`}>
         {items.map((value, index) => (
           <li key={index}>
-            <Button clicked={() => handleOptionClick(value)}>
+            <Button size="medium" clicked={() => handleOptionClick(value)}>
               <span>{value}</span>
             </Button>
           </li>
@@ -48,8 +52,6 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
       </ul>
     </StyledMenu>
   );
-
-  return menu;
 };
 
 export default Menu;
