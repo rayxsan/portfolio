@@ -1,5 +1,6 @@
 import React from "react";
 import Checkbox from "../Components/Checkbox/Checkbox";
+import Card from "../Components/UI/Card/Card";
 import styled from "styled-components";
 
 // See examples from https://react.semantic-ui.com/modules/checkbox/#types-slider
@@ -12,27 +13,24 @@ const StyledCheckboxPage = styled.div``;
 
 const CheckboxPage = () => (
   <StyledCheckboxPage>
-    <div>
-      <p>Simple Checkbox</p>
+    <Card title="simple checkbox">
       <Checkbox primary checked />
       <Checkbox secondary checked />
       <Checkbox />
       <Checkbox toggle primary />
       <Checkbox slider secondary />
       <Checkbox disabled checked />
-    </div>
-    <div>
-      <p>Checkbox with label</p>
+    </Card>
+    <Card title="checkbox with label">
       <Checkbox primary label="Primary" labelPosition="top" />
       <Checkbox secondary label="Secondary" labelPosition="bottom" />
       <Checkbox label="Default" labelPosition="right" />
-    </div>
-    <div>
-      <p>Other checkbox styles</p>
+    </Card>
+    <Card title="other checkbox styles">
       <Checkbox toggle label="Toggle" />
       <Checkbox slider label="Slider" />
       <Checkbox disabled label="Disabled" />
-    </div>
+    </Card>
   </StyledCheckboxPage>
 );
 

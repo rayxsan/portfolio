@@ -1,18 +1,18 @@
 import React from "react";
-import styled from "styled-components";
 import Radio from "../Components/Radio/Radio";
+import Card from "../Components/UI/Card/Card";
+import styled from "styled-components";
 
 const StyledRadioPage = styled.div``;
 
 const RadioPage = () => (
   <StyledRadioPage>
-    <div>
-      <p>Simple Radio Button</p>
+    <Card title="simple radio button">
       <Radio label="Default" />
       <Radio primary label="Primary" />
       <Radio secondary label="Secondary" />
       <Radio disabled checked label="Disabled" />
-    </div>
+    </Card>
   </StyledRadioPage>
 );
 

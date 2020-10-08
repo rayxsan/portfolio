@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import Progress from "../Components/Progress/Progress";
+import Card from "../Components/UI/Card/Card";
+import styled from "styled-components";
 
 const StyledProgressPage = styled.div``;
 
@@ -22,8 +23,7 @@ class ProgressPage extends Component<Props, State> {
 
   componentDidMount = () => {
     const fn = () => {
-      const randomNumber =
-        (Math.floor(Math.random() * 20) + this.state.completed) % 100;
+      const randomNumber = (Math.floor(Math.random() * 20) + this.state.completed) % 100;
       this.setState({
         completed: randomNumber,
       });
@@ -43,24 +43,21 @@ class ProgressPage extends Component<Props, State> {
     return (
       <>
         <StyledProgressPage>
-          <div>
-            <p>Circular Progress (Indeterminate)</p>
+          <Card title="Circular Progress (Indeterminate)">
             <Progress primary />
             <Progress secondary />
             <Progress />
-          </div>
-          <div>
-            <p>Linear Progress</p>
+          </Card>
+          <Card title="Linear Progress">
             <Progress linear primary completed={completed} />
             <Progress linear secondary completed={completed} />
             <Progress linear completed={50} />
-          </div>
-          <div>
-            <p>Circular Progress</p>
+          </Card>
+          <Card title="Circular Progress">
             <Progress circular primary completed={completed} />
             {/* <Progress circular secondary completed={30} />
             <Progress circular completed={100} /> */}
-          </div>
+          </Card>
         </StyledProgressPage>
       </>
     );
