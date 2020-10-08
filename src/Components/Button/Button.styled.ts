@@ -3,24 +3,29 @@ import { ButtonSizes, ButtonTypes } from "./Button.common";
 
 const sizes = {
   tiny: {
-    fontSize: ".6rem",
-    height: "1rem",
+    fontSize: ".8rem",
+    height: "1.5rem",
+    width: "5rem",
   },
   small: {
-    fontSize: ".8rem",
-    height: "2rem",
+    fontSize: ".9rem",
+    height: "1.7rem",
+    width: "6rem",
   },
   medium: {
     fontSize: "1rem",
-    height: "3rem",
+    height: "1.9rem",
+    width: "7rem",
   },
   large: {
-    fontSize: "1.2rem",
-    height: "4rem",
+    fontSize: "1.1rem",
+    height: "2.1rem",
+    width: "8rem",
   },
   big: {
-    fontSize: "1.4rem",
-    height: "5rem",
+    fontSize: "1.2rem",
+    height: "2.3rem",
+    width: "9rem",
   },
 };
 export interface Props {
@@ -42,10 +47,9 @@ export const StyledButton = styled.button.attrs<Props>(props => ({
   border: none;
 
   /* button size: */
+  margin: 0 0.8rem 0 0;
   height: ${(props: Props) => sizes[props.size!].height};
-  line-height: 1rem;
-  margin: 0 0.25rem 0 0;
-  padding: 0.78rem 1.5rem 0.78rem;
+  width: ${(props: Props) => sizes[props.size!].width};
   font-size: ${(props: Props) => sizes[props.size!].fontSize};
 
   &:hover {
@@ -107,10 +111,10 @@ export const OutlinedButton = styled.button.attrs<OutlinedButtonProps>(props => 
   border: 1px solid ${(props: Props) => props.color};
 
   /* button size: */
-  min-height: 1em;
-  line-height: 1em;
-  margin: 0 0.25em 0 0;
-  padding: 0.78em 1.5em 0.78em;
+  min-height: 1rem;
+  margin: 0 1rem 0 0;
+  height: ${(props: Props) => sizes[props.size!].height};
+  width: ${(props: Props) => sizes[props.size!].width};
   font-size: ${(props: Props) => sizes[props.size!].fontSize};
 
   &:hover {
@@ -141,7 +145,6 @@ export const CircularButton = styled.button.attrs<OutlinedButtonProps>(props => 
   border: none;
 
   /* button size: */
-
   margin: 0.2em;
   padding: 0.6rem;
   font-size: ${(props: Props) => sizes[props.size!].fontSize};

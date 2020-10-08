@@ -4,7 +4,12 @@ import Card from "../Components/UI/Card/Card";
 import styled from "styled-components";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
-const StyledButtonPage = styled.div``;
+const StyledButtonPage = styled.div`
+  .btn-container {
+    display: flex;
+    justify-content: initial;
+  }
+`;
 
 // TODO
 // refactor DRY, outsource values
@@ -57,11 +62,9 @@ const ButtonPage = () => {
             <FaFacebookF />
             Facebook
           </Button>
-
           <Button secondary>
             <FaGoogle /> Google
           </Button>
-
           <Button>
             <FaFacebookF />
           </Button>
