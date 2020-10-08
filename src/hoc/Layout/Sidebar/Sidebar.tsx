@@ -7,7 +7,7 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const Sidebar: FunctionComponent<Props> = (props) => {
+const Sidebar: FunctionComponent<Props> = props => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -28,7 +28,7 @@ const Sidebar: FunctionComponent<Props> = (props) => {
             <NavLink to={"/components/card"}>Cards</NavLink>
           </ul>
         ) : null}
-        <div className="NavSection" onClick={() => setOpen(!open)}>
+        {/* <div className="NavSection" onClick={() => setOpen(!open)}>
           Forms
         </div>
         {open ? (
@@ -38,7 +38,7 @@ const Sidebar: FunctionComponent<Props> = (props) => {
             <NavLink to={""}>Form3</NavLink>
             <NavLink to={""}>Form4</NavLink>
           </ul>
-        ) : null}
+        ) : null} */}
       </nav>
     </StyledSidebar>
   );
