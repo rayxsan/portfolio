@@ -21,12 +21,12 @@ const Sidebar: FunctionComponent<Props> = props => {
         {open ? (
           <ul>
             <NavLink to={"/components/buttons"}>Buttons</NavLink>
+            <NavLink to={"/components/card"}>Cards</NavLink>
             <NavLink to={"/components/checkbox"}>Checkboxes</NavLink>
+            <NavLink to={"/components/dropdown"}>Dropdown</NavLink>
+            <NavLink to={"/components/menu"}>Menu</NavLink>
             <NavLink to={"/components/progress"}>Progress</NavLink>
             <NavLink to={"/components/radio"}>Radio</NavLink>
-            <NavLink to={"/components/menu"}>Menu</NavLink>
-            <NavLink to={"/components/card"}>Cards</NavLink>
-            <NavLink to={"/components/dropdown"}>Dropdown</NavLink>
           </ul>
         ) : null}
         {/* <div className="NavSection" onClick={() => setOpen(!open)}>

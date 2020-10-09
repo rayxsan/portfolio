@@ -14,7 +14,7 @@ interface Props {
 const Dropdown: FunctionComponent<Props> = ({ options, placeholder, inputVal, label }) => {
   return (
     <StyledDropdown>
-      <label htmlFor="chioce">{label}</label>
+      <label htmlFor="choice">{label}</label>
       {/* input's list has to be equal to list's id */}
       {inputVal && <input list="input-list" placeholder={placeholder} />}
       <datalist id="input-list">
