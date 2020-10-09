@@ -26,6 +26,7 @@ const Sidebar: FunctionComponent<Props> = props => {
             <NavLink to={"/components/radio"}>Radio</NavLink>
             <NavLink to={"/components/menu"}>Menu</NavLink>
             <NavLink to={"/components/card"}>Cards</NavLink>
+            <NavLink to={"/components/dropdown"}>Dropdown</NavLink>
           </ul>
         ) : null}
         {/* <div className="NavSection" onClick={() => setOpen(!open)}>

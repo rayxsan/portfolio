@@ -5,6 +5,7 @@ import ProgressPage from "./ProgressPage";
 import RadioPage from "./RadioPage";
 import MenuPage from "./MenuPage";
 import CardPage from "./CardPage";
+import DropdownPage from "./DropdownPage";
 
 export {
   HomePage,
@@ -14,4 +15,5 @@ export {
   RadioPage,
   MenuPage,
   CardPage,
+  DropdownPage,
 };
