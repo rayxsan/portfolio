@@ -5,24 +5,22 @@ export const StyledMenu = styled.div`
   background-color: #fff;
 
   ul {
-    position: fixed;
-    z-index: 999;
-    top: 0;
-    padding-inline-start: 0;
-  }
+    padding: 0;
+    border: 1px solid #ddd;
 
-  .list {
-  }
-  .hide {
-    display: none;
+    li {
+      border: 1px solid red;
+
+      span {
+        width: 10rem;
+      }
+    }
   }
 
   button {
     display: flex;
-    min-width: 9rem;
     text-align: left;
     justify-content: space-between;
-    padding: 1rem 1.5rem;
     color: #000;
     background-color: #fff;
   }
@@ -43,5 +41,10 @@ export const StyledMenu = styled.div`
 
   .selected-menu:hover {
     background-color: #eee;
+  }
+  .show {
+  }
+  .hide {
+    display: none;
   }
 `;

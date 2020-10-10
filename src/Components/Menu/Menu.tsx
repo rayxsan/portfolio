@@ -35,7 +35,7 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   if (type === "selected") {
     menu = (
       <button
-        className={!openedMenu ? "show" : "hide"}
+        className={`selected-menu ${!openedMenu ? "show" : "hide"}`}
         onClick={() => setOpenedMenu(!openedMenu)}
       >
         <div>{header}</div>
@@ -55,7 +55,7 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   return (
     <StyledMenu>
       {menu}
-      <ul className={`list ${openedMenu ? "show" : "hide"}`}>
+      <ul className={openedMenu ? "show" : "hide"}>
         {items.map((value, index) => (
           <li key={index}>
             <Button size="medium" clicked={() => handleOptionClick(value)}>
