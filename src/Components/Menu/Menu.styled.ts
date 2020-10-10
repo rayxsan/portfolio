@@ -5,16 +5,19 @@ export const StyledMenu = styled.div`
   background-color: #fff;
 
   ul {
-    position: absolute;
-    top: -1.1rem;
+    position: fixed;
+    z-index: 999;
+    top: 0;
     padding-inline-start: 0;
   }
 
+  .list {
+  }
   .hide {
     display: none;
   }
 
-  Button {
+  button {
     display: flex;
     min-width: 9rem;
     text-align: left;

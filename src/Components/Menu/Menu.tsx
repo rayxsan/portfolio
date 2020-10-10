@@ -3,11 +3,11 @@ import Button from "../Button/Button";
 import { StyledMenu } from "./Menu.styled";
 
 interface Props {
-  header: string;
+  header?: string;
   items: string[];
   primary?: boolean;
   secondary?: boolean;
-  type?: "simple" | "selected" | any;
+  type?: "Simple" | "selected" | "Max-height" | any;
 }
 
 //TODO: Outsource classNames
@@ -21,22 +21,36 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
     setOpenedMenu(false);
   };
 
-  const menu =
-    type === "selected" ? (
-      <button className="selected-menu" onClick={() => setOpenedMenu(!openedMenu)}>
-        <div>{header}</div>
-        <p>{selectedText}</p>
-      </button>
-    ) : (
-      <Button
-        outline
-        size="medium"
-        disabled={openedMenu}
-        clicked={() => setOpenedMenu(!openedMenu)}
+  let menu = (
+    <Button
+      outline
+      size="medium"
+      disabled={openedMenu}
+      clicked={() => setOpenedMenu(!openedMenu)}
+    >
+      {header}
+    </Button>
+  );
+
+  if (type === "selected") {
+    menu = (
+      <button
+        className={!openedMenu ? "show" : "hide"}
+        onClick={() => setOpenedMenu(!openedMenu)}
       >
-        {header}
+        <div>{header}</div>
+        <span>{selectedText}</span>
+      </button>
+    );
+  }
+
+  if (type === "Max-height") {
+    menu = (
+      <Button circular clicked={() => setOpenedMenu(!openedMenu)}>
+        ...
       </Button>
     );
+  }
 
   return (
     <StyledMenu>

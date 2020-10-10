@@ -23,6 +23,11 @@ const MENUS = [
       "Hide all notification content",
     ],
   },
+  {
+    name: "Max Height Menu",
+    type: "Max-height",
+    items: ["alpha", "beta", "gamma", "delta"],
+  },
 ];
 
 const MenuPage = () => (
