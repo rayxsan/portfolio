@@ -7,11 +7,11 @@ interface Props {
   style?: React.CSSProperties;
 }
 
-const Sidebar: FunctionComponent<Props> = props => {
+const Sidebar: FunctionComponent<Props> = ({show, style}) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <StyledSidebar show={props.show}>
+    <StyledSidebar show={show} style={style} >
       <nav>
         <NavLink to={"/"}>Home</NavLink>
         {/* TODO maybe reuse checkbox or another UI component */}

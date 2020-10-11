@@ -52,7 +52,7 @@ class Layout extends Component<Props, State> {
           style={{ height: mainContentHeight }}
         />
         <MainContent style={toggle}>{this.props.children}</MainContent>
-        <Footer style={toggle} />
+        <Footer className="footer" style={toggle} />
       </Wrapper>
     );
   }

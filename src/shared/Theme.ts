@@ -6,10 +6,12 @@ const theme1 = {
   solidBackground: "#fff",
   sidebarBGColor: "#222A45",
   sidebarFontColor: "#fff",
+  footerBGColor: "#222A45",
+  footerFontColor: "#fff",
 
   //Dimensions
-  headerHeight: "4rem",
-  footerHeight: "4rem",
+  headerHeight: "3rem",
+  footerHeight: "3rem",
   sidebarWidth: "12rem",
 
   //Menus

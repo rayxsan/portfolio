@@ -13,7 +13,7 @@ export const StyledSidebar = styled.div`
   padding: 10px;
   box-sizing: border-box;
   z-index: 5;
-  transition: transform 0.3s ease-in-out;
+  transition: transform 0.8s ease-in-out;
   transform: ${(props: StyledProps) => (props.show ? "translateX(0)" : "translateX(-100%)")};
 
   ul {
