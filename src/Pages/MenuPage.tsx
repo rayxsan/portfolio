@@ -24,9 +24,18 @@ const MENUS = [
     ],
   },
   {
-    name: "Max Height Menu",
-    type: "Max-height",
-    items: ["alpha", "beta", "gamma", "delta"],
+    name: " 3 Dot Menu",
+    type: "dotted",
+    items: [
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+    ],
   },
 ];
 

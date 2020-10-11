@@ -5,21 +5,14 @@ export const StyledMenu = styled.div`
   background-color: #fff;
 
   ul {
+    position: absolute;
+    top: -1em;
     padding: 0;
-    border: 1px solid #ddd;
-
-    li {
-      border: 1px solid red;
-
-      span {
-        width: 10rem;
-      }
-    }
   }
 
   button {
     display: flex;
-    text-align: left;
+    text-align: center;
     justify-content: space-between;
     color: #000;
     background-color: #fff;
@@ -42,8 +35,23 @@ export const StyledMenu = styled.div`
   .selected-menu:hover {
     background-color: #eee;
   }
-  .show {
+
+  .dotted {
+    text-align: center;
+    transform: rotate(90deg);
   }
+
+  .dotted-list {
+    max-height: 5rem;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .show {
+    display: flex;
+    flex-direction: column;
+  }
+
   .hide {
     display: none;
   }

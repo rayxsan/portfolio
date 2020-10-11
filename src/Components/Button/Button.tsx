@@ -19,6 +19,7 @@ interface Props {
   circular?: boolean;
   icon?: string; // TODO: use this as the name of the icon to be rendered. See semantic UI for example. https://react.semantic-ui.com/elements/button/#types-icon
   clicked?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  className?: string;
 }
 
 // TODO -Add Ripple to btn
@@ -35,6 +36,7 @@ const Button: FunctionComponent<Props> = ({
   children,
   outline,
   circular,
+  className,
 }) => {
   const { primaryColor, secondaryColor, defaultColor } = theme;
   let color = defaultColor;
@@ -73,6 +75,7 @@ const Button: FunctionComponent<Props> = ({
   if (circular) {
     return (
       <CircularButton
+        className={className}
         disabled={disabled}
         type={type}
         color={color}

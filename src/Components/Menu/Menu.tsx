@@ -7,7 +7,7 @@ interface Props {
   items: string[];
   primary?: boolean;
   secondary?: boolean;
-  type?: "Simple" | "selected" | "Max-height" | any;
+  type?: "Simple" | "selected" | "dotted" | string;
 }
 
 //TODO: Outsource classNames
@@ -20,6 +20,8 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
     if (text) setSelectedText(text);
     setOpenedMenu(false);
   };
+
+  let addClass = "";
 
   let menu = (
     <Button
@@ -44,18 +46,23 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
     );
   }
 
-  if (type === "Max-height") {
+  if (type === "dotted") {
     menu = (
-      <Button circular clicked={() => setOpenedMenu(!openedMenu)}>
-        ...
+      <Button
+        className={!openedMenu ? "show" : "hide"}
+        circular
+        clicked={() => setOpenedMenu(!openedMenu)}
+      >
+        <span className="dotted">...</span>
       </Button>
     );
+    addClass = "dotted-list";
   }
 
   return (
     <StyledMenu>
       {menu}
-      <ul className={openedMenu ? "show" : "hide"}>
+      <ul className={`${addClass} ${openedMenu ? "show" : "hide"}`}>
         {items.map((value, index) => (
           <li key={index}>
             <Button size="medium" clicked={() => handleOptionClick(value)}>
