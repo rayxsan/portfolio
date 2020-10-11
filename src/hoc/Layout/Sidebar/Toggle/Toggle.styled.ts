@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ToggleStyle = styled.div`
   position: fixed;
-  top: 1%;
+  top: 0.5rem;
   left: 1rem;
   display: flex;
   flex-direction: column;
@@ -19,9 +19,4 @@ svg {
  font-size: 2.5em;
  color: ${({ theme }) => theme.fontColor};
 }
-  /* div {
-    width: 2rem;
-    height: 0.2rem;
-    background: ${({ theme }) => theme.fontColor};
-  } */
 `;

@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import Input from "../UI/Input/Input";
-import styled from "styled-components";
-
-const StyledForm = styled.div``;
+import Button from '../Button/Button';
+import StyledForm from "./Form.styled";
 
 interface Props {
-  name?: "username";
-  placeholder?: "text";
-  value?: "Hello Moto";
+  id?: string;
 }
 
 class Form extends Component<Props> {
+  static defaultProps = {
+    id: 'defaultId'
+  }
   render() {
     return (
       <StyledForm>
@@ -18,18 +18,20 @@ class Form extends Component<Props> {
           {/* <Grid> */}
           <Input
             type="text"
-            name={this.props.name}
-            placeholder={this.props.placeholder}
-            value={this.props.value}
+            placeholder='Username'
           />
           <Input
             type="text"
-            name={this.props.name}
-            placeholder={this.props.placeholder}
-            value={this.props.value}
+            placeholder='First Name'
+          />
+          <Input
+            type="text"
+            // id={this.props.id}
+            // placeholder={this.props.placeholder}
+            // value={this.props.value}
           />
           {/* </Grid> */}
-          {/* <Button submit/> */}
+          <Button/>
         </form>
       </StyledForm>
     );
