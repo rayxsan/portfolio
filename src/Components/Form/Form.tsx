@@ -14,25 +14,25 @@ class Form extends Component<Props> {
   render() {
     return (
       <StyledForm>
-        <form action="" method="get" className="form-example">
-          {/* <Grid> */}
-          <Input
-            type="text"
-            placeholder='Username'
-          />
-          <Input
-            type="text"
-            placeholder='First Name'
-          />
-          <Input
-            type="text"
-            // id={this.props.id}
-            // placeholder={this.props.placeholder}
-            // value={this.props.value}
-          />
-          {/* </Grid> */}
-          <Button/>
-        </form>
+        <div className="form-example">
+          <div className='grid'>
+            <div className='left-col'>
+              <Input type="text" placeholder='Username' />
+              <Input type="text" placeholder='First Name' />
+              <Input type="text" placeholder='Email' />
+              <Input type="text" placeholder='Date' />
+              <Input type="text" placeholder='Credit Card' />
+            </div>
+            <div className='right-col'>
+              <Input type="text" placeholder='Mobile Number'/>
+              <Input type="text" placeholder='Password' />
+              <Input type="text" placeholder='Confirm Password' />
+              <Input type="text" placeholder='Radios' />
+              <Input type="text" placeholder='Circular Btn' />
+            </div>
+          </div>
+          <Button text size='small' type='submit'>Submit</Button>
+        </div>
       </StyledForm>
     );
   }
