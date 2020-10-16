@@ -89,7 +89,7 @@ export const TextButton = styled.button.attrs<TextButtonProps>((props) => ({
     // background-color: ${(props: Props) => props.color};
   }
 
-  &:disabled {
+  :disabled {
     color: #cccc;
     cursor: not-allowed;
   }

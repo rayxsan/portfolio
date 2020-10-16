@@ -1,13 +1,17 @@
 import React, { FunctionComponent, useState } from "react";
 import Button from "../Button/Button";
-import { StyledMenu } from "./Menu.styled";
+import {
+  StyledMenuWrapper,
+  StyledMainButton,
+  StyledMenuList,
+} from "./Menu.styled";
 
-interface Props {
+export interface Props {
   header?: string;
   items: string[];
   primary?: boolean;
   secondary?: boolean;
-  type?: "Simple" | "selected" | "dotted" | string;
+  type?: "simple" | "selected" | "dotted" | any;
 }
 
 //TODO: Outsource classNames
@@ -21,57 +25,48 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
     setOpenedMenu(false);
   };
 
-  let addClass = "";
-
   let menu = (
-    <Button
-      outline
-      size="medium"
-      disabled={openedMenu}
-      clicked={() => setOpenedMenu(!openedMenu)}
+    <StyledMainButton
+      styledType="selected"
+      selectedText={selectedText}
+      show={!openedMenu}
+      onClick={() => setOpenedMenu(!openedMenu)}
     >
       {header}
-    </Button>
+    </StyledMainButton>
   );
 
-  if (type === "selected") {
-    menu = (
-      <button
-        className={`selected-menu ${!openedMenu ? "show" : "hide"}`}
-        onClick={() => setOpenedMenu(!openedMenu)}
-      >
-        <div>{header}</div>
-        <span>{selectedText}</span>
-      </button>
-    );
-  }
+  // if (type === "selected") {
+  //   menu = (
+  //     <StyledMainButton
+  //       selectedText={selectedText}
+  //       show={!openedMenu}
+  //       onClick={() => setOpenedMenu(!openedMenu)}
+  //     >
+  //       <span>{header}</span>
+  //     </StyledMainButton>
+  //   );
+  // }
 
   if (type === "dotted") {
     menu = (
-      <Button
-        className={!openedMenu ? "show" : "hide"}
-        circular
-        clicked={() => setOpenedMenu(!openedMenu)}
-      >
+      <Button circular clicked={() => setOpenedMenu(!openedMenu)}>
         <span className="dotted">...</span>
       </Button>
     );
-    addClass = "dotted-list";
   }
 
   return (
-    <StyledMenu>
+    <StyledMenuWrapper>
       {menu}
-      <ul className={`${addClass} ${openedMenu ? "show" : "hide"}`}>
+      <StyledMenuList show={openedMenu}>
         {items.map((value, index) => (
           <li key={index}>
-            <Button size="medium" clicked={() => handleOptionClick(value)}>
-              <span>{value}</span>
-            </Button>
+            <button onClick={() => handleOptionClick(value)}>{value}</button>
           </li>
         ))}
-      </ul>
-    </StyledMenu>
+      </StyledMenuList>
+    </StyledMenuWrapper>
   );
 };
 

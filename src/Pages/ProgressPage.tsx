@@ -41,7 +41,6 @@ class ProgressPage extends Component<Props, State> {
   render() {
     const { completed } = this.state;
     return (
-      <>
         <StyledProgressPage>
           <Card title="Circular Progress (Indeterminate)">
             <Progress primary />
@@ -59,7 +58,7 @@ class ProgressPage extends Component<Props, State> {
             <Progress circular completed={100} /> */}
           </Card>
         </StyledProgressPage>
-      </>
+     
     );
   }
 }
