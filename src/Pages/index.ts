@@ -6,6 +6,7 @@ import RadioPage from "./RadioPage";
 import MenuPage from "./MenuPage";
 import CardPage from "./CardPage";
 import DropdownPage from "./DropdownPage";
+import FormPage from "./FormPage";
 
 export {
   HomePage,
@@ -16,4 +17,5 @@ export {
   MenuPage,
   CardPage,
   DropdownPage,
+  FormPage,
 };
