@@ -5,12 +5,33 @@ import Menu from "../Components/Menu/Menu";
 
 const StyledMenuPage = styled.div``;
 
-const MENUS = [
+interface MENU {
+  name: string;
+  type: "simple" | "selected" | "dotted";
+  header?: string;
+  items: string[];
+}
+
+const MENUS: MENU[] = [
   {
     name: "Simple Menu",
     type: "simple",
     header: "Open Menu",
     items: ["Profile", "My account", "Logout"],
+  },
+  {
+    name: " 3 Dot Menu",
+    type: "dotted",
+    items: [
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+    ],
   },
   {
     name: "Selected Menu",

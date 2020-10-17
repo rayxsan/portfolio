@@ -11,7 +11,7 @@ const Card: FunctionComponent<Props> = ({ title, text, children }) => {
     <StyledCard>
       <h3>{title}</h3>
       {text && <p>{text}</p>}
-      {children}
+      <div>{children}</div>
     </StyledCard>
   );
 };

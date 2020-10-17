@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
-import Button from "../Button/Button";
+
 import {
   StyledMenuWrapper,
   StyledMainButton,
@@ -11,10 +11,8 @@ export interface Props {
   items: string[];
   primary?: boolean;
   secondary?: boolean;
-  type?: "simple" | "selected" | "dotted" | any;
+  type?: "simple" | "selected" | "dotted";
 }
-
-//TODO: Outsource classNames
 
 const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   const [openedMenu, setOpenedMenu] = useState(false);
@@ -25,41 +23,17 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
     setOpenedMenu(false);
   };
 
-  let menu = (
-    <StyledMainButton
-      styledType="selected"
-      selectedText={selectedText}
-      show={!openedMenu}
-      onClick={() => setOpenedMenu(!openedMenu)}
-    >
-      {header}
-    </StyledMainButton>
-  );
-
-  // if (type === "selected") {
-  //   menu = (
-  //     <StyledMainButton
-  //       selectedText={selectedText}
-  //       show={!openedMenu}
-  //       onClick={() => setOpenedMenu(!openedMenu)}
-  //     >
-  //       <span>{header}</span>
-  //     </StyledMainButton>
-  //   );
-  // }
-
-  if (type === "dotted") {
-    menu = (
-      <Button circular clicked={() => setOpenedMenu(!openedMenu)}>
-        <span className="dotted">...</span>
-      </Button>
-    );
-  }
-
   return (
     <StyledMenuWrapper>
-      {menu}
-      <StyledMenuList show={openedMenu}>
+      <StyledMainButton
+        styledType={type}
+        selectedText={selectedText}
+        show={!openedMenu}
+        onClick={() => setOpenedMenu(!openedMenu)}
+      >
+        <span>{type === "dotted" ? "" : header}</span>
+      </StyledMainButton>
+      <StyledMenuList styledType={type} show={openedMenu}>
         {items.map((value, index) => (
           <li key={index}>
             <button onClick={() => handleOptionClick(value)}>{value}</button>

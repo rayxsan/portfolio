@@ -121,8 +121,8 @@ export const OutlinedButton = styled.button.attrs<OutlinedButtonProps>(
 
   &:hover {
     opacity: 0.7;
-    //TODO Change background opacity on hover
-    // background-color: ${(props: Props) => props.color};
+    /* //TODO Change background opacity on hover */
+    /* // background-color: ${(props: Props) => props.color}; */
   }
 
   &:disabled {
