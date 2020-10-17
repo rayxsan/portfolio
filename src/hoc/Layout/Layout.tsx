@@ -2,8 +2,7 @@ import React, { Component } from "react";
 
 import Header from "../Layout/Header/Header";
 import Sidebar from "../Layout/Sidebar/Sidebar";
-import Footer from "../Layout/Footer/Footer";
-import { Wrapper, MainContent } from "./Layout.styled";
+import { Wrapper, MainContent, StyledFooter } from "./Layout.styled";
 
 interface State {
   showSidebar: boolean;
@@ -34,7 +33,7 @@ class Layout extends Component<Props, State> {
         <MainContent move={this.state.showSidebar}>
           {this.props.children}
         </MainContent>
-        <Footer />
+        <StyledFooter>FOOTER</StyledFooter>
       </Wrapper>
     );
   }

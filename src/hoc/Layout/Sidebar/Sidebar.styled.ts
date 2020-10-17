@@ -14,7 +14,7 @@ export const StyledSidebar = styled.div`
   color: ${({ theme }) => theme.sidebarFontColor};
   padding: 10px;
   box-sizing: border-box;
-  z-index: 5;
+  z-index: 999;
 
   ${(props: StyledProps) =>
     props.show &&
