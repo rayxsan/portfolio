@@ -1,24 +1,35 @@
 import React, { FunctionComponent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
+import { BiArrowFromRight } from "react-icons/bi";
+import { CgComponents } from "react-icons/cg";
 
 interface Props {
   show: boolean;
   style?: React.CSSProperties;
+  clicked: (event: React.MouseEvent<SVGElement, MouseEvent>) => void;
 }
 
-const Sidebar: FunctionComponent<Props> = ({ show, style }) => {
-  const [open, setOpen] = useState(false);
+const Sidebar: FunctionComponent<Props> = ({ show, style, clicked }) => {
+  const [openComponents, setOpenComponents] = useState(false);
 
   return (
-    <StyledSidebar show={show} style={style}>
+    <StyledSidebar show={!show}>
+      <BiArrowFromRight onClick={clicked} />
       <nav>
         <NavLink to={"/"}>Home</NavLink>
-        {/* TODO maybe reuse checkbox or another UI component */}
-        <div className="NavSection" onClick={() => setOpen(!open)}>
-          Components
+      </nav>
+      <nav>
+        <div
+          className="NavSection"
+          onClick={() => setOpenComponents(!openComponents)}
+        >
+          <span>
+            <p>Components</p>
+            <CgComponents />
+          </span>
         </div>
-        {open ? (
+        {openComponents ? (
           <ul>
             <NavLink to={"/components/buttons"}>Buttons</NavLink>
             <NavLink to={"/components/card"}>Cards</NavLink>
@@ -30,17 +41,6 @@ const Sidebar: FunctionComponent<Props> = ({ show, style }) => {
             <NavLink to={"/components/radio"}>Radio</NavLink>
           </ul>
         ) : null}
-        {/* <div className="NavSection" onClick={() => setOpen(!open)}>
-          Forms
-        </div>
-        {open ? (
-          <ul>
-            <NavLink to={""}>Form1</NavLink>
-            <NavLink to={""}>Form2</NavLink>
-            <NavLink to={""}>Form3</NavLink>
-            <NavLink to={""}>Form4</NavLink>
-          </ul>
-        ) : null} */}
       </nav>
     </StyledSidebar>
   );

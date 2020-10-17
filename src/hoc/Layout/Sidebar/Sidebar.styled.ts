@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface StyledProps {
   show: boolean;
@@ -7,19 +7,48 @@ interface StyledProps {
 export const StyledSidebar = styled.div`
   position: fixed;
   width: ${({ theme }) => theme.sidebarWidth};
+  top: 0;
+  margin: 0;
   height: 100%;
   background-color: ${({ theme }) => theme.sidebarBGColor};
   color: ${({ theme }) => theme.sidebarFontColor};
   padding: 10px;
   box-sizing: border-box;
   z-index: 5;
-  transition: transform 0.8s ease-in-out;
-  transform: ${(props: StyledProps) => (props.show ? "translateX(0)" : "translateX(-100%)")};
 
+  ${(props: StyledProps) =>
+    props.show &&
+    css`
+      transition: transform 0.5s ease-in-out;
+      transform: translateX(-82%);
+      svg {
+        transform: rotate(180deg);
+      }
+    `}
+
+  svg {
+    font-size: 1.2rem;
+    float: right;
+  }
+  svg:hover {
+    color: red;
+  }
+
+  span {
+    display: inline-flex;
+    p {
+      margin: 0;
+    }
+    padding: 0;
+
+    svg {
+      margin-left: 4rem;
+    }
+  }
   ul {
     display: flex;
     flex-direction: column;
-    font-color: ${({ theme }) => theme.sidebarFontColor};
+    color: ${({ theme }) => theme.sidebarFontColor};
   }
 
   div {
