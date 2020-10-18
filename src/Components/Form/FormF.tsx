@@ -32,7 +32,6 @@ const validate = (values: Values) => {
     if (values.password.length < 6) errors.password = "Invalid password";
     if (values.confirmPassword !== values.password)
       errors.confirmPassword = "Password doesn't match";
-    if (!values.toggle) errors.toggle = "Required";
     return errors;
   });
 };
@@ -102,7 +101,7 @@ const FormF = () => {
               <Field id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
               <ErrorMessage component="span" name="confirmPassword" />
 
-              <div className="radios" role="group" aria-labelledby="my-radio-group">
+              <div role="group" aria-labelledby="my-radio-group">
                 <label>
                   <Field type="radio" name="picked" value="Male" />
                   Male
@@ -121,7 +120,6 @@ const FormF = () => {
                 <label htmlFor="toggle">
                   <Field type="checkbox" name="toggle" />I have read and agree to the terms of
                   service.
-                  <ErrorMessage component="div" name="toggle" />
                 </label>
               </div>
             </section>

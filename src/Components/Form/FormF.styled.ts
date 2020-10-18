@@ -4,28 +4,38 @@ const StyledFormF = styled.div`
   Section {
     column-count: 2;
   }
-
-  .radios {
-    display: flex;
-    label {
-      margin-left: 1rem;
-    }
-  }
-
   Input {
-    margin: 0.5rem 0;
+    margin: 1.5rem 0 0 0;
     border: 0;
     border-bottom: 0.05rem solid #aaa;
     background-color: #fff;
     width: 100%;
+    font-size: 0.95rem;
+  }
+
+  span {
+    font-size: 0.75rem;
+    display: flex;
+  }
+
+  div[aria-labelledby="my-radio-group"] {
+    display: flex;
+    label {
+      margin-right: 0.5rem;
+      input {
+        width: auto;
+        margin-right: 0.5rem;
+      }
+    }
   }
 
   div[aria-labelledby="checkbox-group"] > label {
     display: flex;
     align-items: center;
+    margin: 1.5rem 0.5rem 0 0;
     input {
       width: fit-content;
-      margin-right: 0.5rem;
+      margin: 0 0.5rem 0 0;
     }
   }
 
