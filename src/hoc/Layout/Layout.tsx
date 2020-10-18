@@ -34,7 +34,7 @@ class Layout extends Component<Props, State> {
           <MainContent move={this.state.showSidebar}>
             {this.props.children}
           </MainContent>
-          <Footer>FOOTER</Footer>
+          <Footer />
         </Wrapper>
       </>
     );
