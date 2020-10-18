@@ -12,7 +12,7 @@ interface Props {}
 
 class Layout extends Component<Props, State> {
   state = {
-    showSidebar: false,
+    showSidebar: true,
   };
 
   sidebarToggleHandler = () => {
@@ -30,7 +30,7 @@ class Layout extends Component<Props, State> {
           // style={{ height: mainContentHeight }}
         />
         <Wrapper>
-          <Header>HEADER</Header>
+          <Header />
           <MainContent move={this.state.showSidebar}>
             {this.props.children}
           </MainContent>

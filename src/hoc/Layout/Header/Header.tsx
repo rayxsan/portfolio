@@ -15,8 +15,8 @@ const StyledHeader = styled.div`
 
 interface Props {}
 
-const Header: FunctionComponent<Props> = ({ children }) => {
-  return <StyledHeader>{children}</StyledHeader>;
+const Header: FunctionComponent<Props> = () => {
+  return <StyledHeader>HEADER</StyledHeader>;
 };
 
 export default Header;

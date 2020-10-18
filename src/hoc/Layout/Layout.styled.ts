@@ -4,19 +4,12 @@ interface Props {
   move: boolean;
 }
 
-export const Wrapper = styled.div`
-  display: grid;
-  min-height: 100%;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 100%;
-`;
+export const Wrapper = styled.div``;
 
 export const MainContent = styled.div`
-  position: absolute;
+  min-height: calc(100vh - ${({ theme }) => theme.mainContentMinHeight});
   width: calc(100% - 2rem);
   margin-left: 2rem;
-  padding-bottom: ${({ theme }) => theme.footerHeight};
-  /* transition: width 0.8s ease-in-out; */
   overflow: scroll;
 
   p {

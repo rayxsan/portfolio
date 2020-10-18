@@ -12,6 +12,8 @@ const theme1 = {
   //Dimensions
   headerHeight: "3rem",
   footerHeight: "3rem",
+  //FooterHeight + headerHeight
+  mainContentMinHeight: "3rem",
   sidebarWidth: "12rem",
 
   //Menus
