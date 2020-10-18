@@ -5,8 +5,10 @@ interface Props {
 }
 
 export const Wrapper = styled.div`
-  min-height: 100vh;
-  flex-direction: column;
+  display: grid;
+  min-height: 100%;
+  grid-template-rows: auto 1fr auto;
+  grid-template-columns: 100%;
 `;
 
 export const MainContent = styled.div`
@@ -35,16 +37,4 @@ export const MainContent = styled.div`
       transition: width 0.5s ease-out;
       overflow: hidden;
     `}
-`;
-
-export const StyledFooter = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  line-height: ${({ theme }) => theme.footerHeight};
-  height: ${({ theme }) => theme.footerHeight};
-  background-color: ${({ theme }) => theme.footerBGColor};
-  color: ${({ theme }) => theme.footerFontColor};
-  /* transition: width 0.8s ease-in-out; */
 `;

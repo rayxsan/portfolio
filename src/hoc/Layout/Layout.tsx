@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-
 import Header from "../Layout/Header/Header";
+import Footer from "./Footer/Footer";
 import Sidebar from "../Layout/Sidebar/Sidebar";
-import { Wrapper, MainContent, StyledFooter } from "./Layout.styled";
+import { Wrapper, MainContent } from "./Layout.styled";
 
 interface State {
   showSidebar: boolean;
@@ -23,18 +23,20 @@ class Layout extends Component<Props, State> {
 
   render() {
     return (
-      <Wrapper>
-        <Header>HEADER</Header>
+      <>
         <Sidebar
           show={this.state.showSidebar}
           clicked={() => this.sidebarToggleHandler()}
           // style={{ height: mainContentHeight }}
         />
-        <MainContent move={this.state.showSidebar}>
-          {this.props.children}
-        </MainContent>
-        <StyledFooter>FOOTER</StyledFooter>
-      </Wrapper>
+        <Wrapper>
+          <Header>HEADER</Header>
+          <MainContent move={this.state.showSidebar}>
+            {this.props.children}
+          </MainContent>
+          <Footer>FOOTER</Footer>
+        </Wrapper>
+      </>
     );
   }
 }
