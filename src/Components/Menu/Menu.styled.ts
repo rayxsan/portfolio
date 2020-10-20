@@ -20,11 +20,7 @@ export const StyledMenuWrapper = styled.div`
   }
 `;
 
-export const StyledMainButton = styled.button.attrs<Props>((props) => ({
-  show: props.show || false,
-  styledType: props.styledType || "simple",
-  selectedText: props.selectedText || "",
-}))`
+export const StyledMainButton = styled.button<Props>`
   visibility: ${(props: Props) => (props.show ? "visible" : "hidden")};
   display: block;
   position: relative;
@@ -71,9 +67,7 @@ export const StyledMainButton = styled.button.attrs<Props>((props) => ({
     `}
 `;
 
-export const StyledMenuList = styled.ul.attrs<Props>((props) => ({
-  show: props.show || false,
-}))`
+export const StyledMenuList = styled.ul<Props>`
   display: ${(props: Props) => (props.show ? "block" : "none")};
   position: absolute;
   padding: 0;
@@ -103,4 +97,14 @@ export const StyledMenuList = styled.ul.attrs<Props>((props) => ({
         bottom: 0;
       }
     `}
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: transparent; /* make scrollbar transparent */
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.defaultColor};
+    border-radius: 3px;
+  }
 `;

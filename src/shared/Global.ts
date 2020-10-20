@@ -5,7 +5,7 @@ type Props = {
   theme: ThemeType;
 };
 
-export const GlobalStyles = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle<Props>`
 
 html, body {
     margin: 0;
@@ -14,9 +14,19 @@ html, body {
     text-align: center;
     font-family: 'Roboto', sans-serif; 
     background-color: #f6f6f6;
-    /* overflow:hidden; */
+   
+ ::-webkit-scrollbar {
+    width: 6px;
+    background: transparent; /* make scrollbar transparent */
   }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.primaryColor};
+    border-radius: 3px;
+  }
+ 
   ul {
     list-style: none
+  }
   }
 `;

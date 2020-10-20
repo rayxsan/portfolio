@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 interface Props {
-  expand?: boolean;
+  expand: boolean;
 }
 
 export const Wrapper = styled.div`
@@ -20,14 +20,5 @@ export const Wrapper = styled.div`
 export const MainContent = styled.div`
   min-height: calc(100vh - ${({ theme }) => theme.mainContentMinHeight});
   width: 100%;
-  overflow-y: scroll;
-
-  p {
-    padding: 0 1rem;
-  }
-
-  ::-webkit-scrollbar {
-    width: 0px;
-    background: transparent; /* make scrollbar transparent */
-  }
+  overflow: hidden;
 `;
