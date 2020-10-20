@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
         transform: translateX(${({ theme }) => theme.sidebarWidth});
         width: calc(100% - ${({ theme }) => theme.sidebarWidth});
         margin-left: 0;
-        overflow: hidden;
       `}
   }
 `;

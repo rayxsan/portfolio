@@ -14,7 +14,7 @@ html, body {
     text-align: center;
     font-family: 'Roboto', sans-serif; 
     background-color: #f6f6f6;
-    overflow-x:hidden;
+    /* overflow:hidden; */
   }
   ul {
     list-style: none

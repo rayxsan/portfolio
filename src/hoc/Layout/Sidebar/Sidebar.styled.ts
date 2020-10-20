@@ -17,15 +17,6 @@ export const StyledSidebar = styled.div`
   text-align: left;
   z-index: 999;
 
-  ${(props: StyledProps) =>
-    props.show &&
-    css`
-      transform: translateX(calc(2rem - 100%));
-      svg {
-        transform: rotate(180deg);
-      }
-    `}
-
   svg {
     font-size: 1.2rem;
     float: right;
@@ -63,8 +54,17 @@ export const StyledSidebar = styled.div`
   a:hover {
     color: ${({ theme }) => theme.primaryColor};
   }
-
+  @media (min-width: 499px) {
+    ${(props: StyledProps) =>
+      props.show &&
+      css`
+        transform: translateX(calc(2rem - 100%));
+        svg {
+          transform: rotate(180deg);
+        }
+      `}
+  }
   @media (max-width: 500px) {
-    display: none;
+    display: ${(props: StyledProps) => (props.show ? "block" : "none")};
   }
 `;
