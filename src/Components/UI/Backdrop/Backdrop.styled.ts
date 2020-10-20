@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface StyledProps {
   show: boolean;
@@ -12,4 +12,14 @@ export const StyledBackdrop = styled.div`
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
+
+  ${(props: StyledProps) =>
+    props.show &&
+    css`
+      display: none;
+    `}
+
+  @media (min-width: 500px) {
+    display: none;
+  }
 `;

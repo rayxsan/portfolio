@@ -7,16 +7,17 @@ import Backdrop from "../../../Components/UI/Backdrop/Backdrop";
 
 interface Props {
   show: boolean;
-  clicked: (event: React.MouseEvent<SVGElement, MouseEvent>) => void;
-  close: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+  clicked: (
+    event: React.MouseEvent<SVGElement | HTMLDivElement, MouseEvent>
+  ) => void;
 }
 
-const Sidebar: FunctionComponent<Props> = ({ show, clicked, close }) => {
+const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
   const [openComponents, setOpenComponents] = useState(false);
 
   return (
     <>
-      <Backdrop show={!show} clicked={close} />
+      <Backdrop show={!show} clicked={clicked} />
       <StyledSidebar show={!show}>
         <BiArrowFromRight onClick={clicked} />
         <nav>
