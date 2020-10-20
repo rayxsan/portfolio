@@ -1,20 +1,21 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { Formik, Field, Form, FormikHelpers, ErrorMessage } from "formik";
 import Button from "../Button/Button";
+import TextInputLiveFeedback from "./LiveFeedback";
 import StyledFormF from "./FormF.styled";
 
 interface Values {
-  username: string;
-  firstName: string;
+  username?: string | any;
+  firstName?: string;
   email?: string;
   date?: string;
   creditCard?: string;
   mobileNumber?: string;
-  password: string;
-  confirmPassword: string;
+  password?: string;
+  confirmPassword?: string;
   gender?: string;
-  checked: boolean;
-  toggle: boolean;
+  checked?: boolean;
+  toggle?: boolean;
 }
 
 // Async Validation
@@ -29,7 +30,7 @@ const validate = (values: Values) => {
     if (!values.username) errors.username = "Required";
     if (!values.firstName) errors.firstName = "Required";
     if (!values.password) errors.password = "Required";
-    if (values.password.length < 6) errors.password = "Invalid password";
+    if (values.password && values.password.length < 6) errors.password = "Invalid password";
     if (values.confirmPassword !== values.password)
       errors.confirmPassword = "Password doesn't match";
     return errors;
@@ -37,7 +38,7 @@ const validate = (values: Values) => {
 };
 
 // TODO Style Validation
-const FormF = () => {
+const FormF: FunctionComponent<Values> = () => {
   return (
     <StyledFormF>
       <Formik
@@ -65,13 +66,11 @@ const FormF = () => {
         {() => (
           <Form>
             <section>
-              <label htmlFor="username" />
-              <Field
+              <TextInputLiveFeedback
                 id="username"
                 name="username"
                 placeholder="Username (Min length 4, Max length 9)"
               />
-              <ErrorMessage component="span" name="username" />
 
               <label htmlFor="firstName" />
               <Field id="firstName" name="firstName" placeholder="First Name" />
@@ -93,9 +92,7 @@ const FormF = () => {
               <Field id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" />
               <ErrorMessage component="span" name="mobileNumber" />
 
-              <label htmlFor="password" />
-              <Field id="password" name="password" placeholder="Password" />
-              <ErrorMessage component="span" name="password" />
+              <TextInputLiveFeedback id="password" name="password" placeholder="Password" />
 
               <label htmlFor="confirmPassword" />
               <Field id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
