@@ -1,16 +1,27 @@
 import styled, { css } from "styled-components";
 
 interface Props {
-  move: boolean;
+  expand?: boolean;
 }
 
-export const Wrapper = styled.div``;
+export const Wrapper = styled.div`
+  @media (min-width: 500px) {
+    margin-left: 2rem;
+    ${(props: Props) =>
+      props.expand &&
+      css`
+        transform: translateX(${({ theme }) => theme.sidebarWidth});
+        width: calc(100% - ${({ theme }) => theme.sidebarWidth});
+        margin-left: 0;
+        overflow: hidden;
+      `}
+  }
+`;
 
 export const MainContent = styled.div`
   min-height: calc(100vh - ${({ theme }) => theme.mainContentMinHeight});
-  width: calc(100% - 2rem);
-  margin-left: 2rem;
-  overflow: scroll;
+  width: 100%;
+  overflow-y: scroll;
 
   p {
     padding: 0 1rem;
@@ -20,14 +31,4 @@ export const MainContent = styled.div`
     width: 0px;
     background: transparent; /* make scrollbar transparent */
   }
-
-  ${(props: Props) =>
-    props.move &&
-    css`
-      transform: translateX(12rem);
-      width: calc(100% - 12rem);
-      margin-left: 0;
-      transition: width 0.5s ease-out;
-      overflow: hidden;
-    `}
 `;

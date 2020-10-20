@@ -12,15 +12,15 @@ export const StyledSidebar = styled.div`
   height: 100%;
   background-color: ${({ theme }) => theme.sidebarBGColor};
   color: ${({ theme }) => theme.sidebarFontColor};
-  padding: 10px;
+  padding: 0.7rem 0.3rem 0.7rem 0.7rem;
   box-sizing: border-box;
+  text-align: left;
   z-index: 999;
 
   ${(props: StyledProps) =>
     props.show &&
     css`
-      transition: transform 0.5s ease-in-out;
-      transform: translateX(-82%);
+      transform: translateX(calc(2rem - 100%));
       svg {
         transform: rotate(180deg);
       }
@@ -31,46 +31,40 @@ export const StyledSidebar = styled.div`
     float: right;
   }
   svg:hover {
-    color: red;
+    color: ${({ theme }) => theme.secondaryColor};
+    cursor: pointer;
   }
 
-  span {
-    display: inline-flex;
-    p {
-      margin: 0;
-    }
-    padding: 0;
-
-    svg {
-      margin-left: 4rem;
-    }
-  }
   ul {
     display: flex;
     flex-direction: column;
     color: ${({ theme }) => theme.sidebarFontColor};
+    margin-top: 0.5rem;
+
+    a {
+      margin-bottom: 0.2rem;
+    }
   }
 
-  div {
-    padding-right: 6em;
-    cursor: default;
-  }
-
-  .NavSection {
+  nav div {
     margin-top: 1em;
     width: auto;
   }
 
-  .NavSection:hover {
+  nav div:hover {
     color: ${({ theme }) => theme.primaryColor};
+    cursor: pointer;
   }
+
   a {
     text-decoration: none;
     color: ${({ theme }) => theme.sidebarFontColor};
-    text-align: left;
-    padding: 0.2em 0 0.2em 1.2em;
   }
   a:hover {
     color: ${({ theme }) => theme.primaryColor};
+  }
+
+  @media (max-width: 500px) {
+    display: none;
   }
 `;

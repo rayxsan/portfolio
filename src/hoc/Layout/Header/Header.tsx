@@ -1,6 +1,10 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
+interface Props {
+  expand?: boolean;
+}
+
 const StyledHeader = styled.div`
   position: sticky;
   width: 100%;
@@ -12,8 +16,6 @@ const StyledHeader = styled.div`
   color: ${({ theme }) => theme.fontColor};
   z-index: 5;
 `;
-
-interface Props {}
 
 const Header: FunctionComponent<Props> = () => {
   return <StyledHeader>HEADER</StyledHeader>;

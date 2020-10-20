@@ -20,14 +20,11 @@ const Sidebar: FunctionComponent<Props> = ({ show, style, clicked }) => {
         <NavLink to={"/"}>Home</NavLink>
       </nav>
       <nav>
-        <div
-          className="NavSection"
-          onClick={() => setOpenComponents(!openComponents)}
-        >
-          <span>
-            <p>Components</p>
-            <CgComponents />
-          </span>
+        <NavLink to={"/components/buttons"}>
+          <CgComponents />
+        </NavLink>
+        <div onClick={() => setOpenComponents(!openComponents)}>
+          <p>Components</p>
         </div>
         {openComponents ? (
           <ul>

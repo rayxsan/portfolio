@@ -1,6 +1,9 @@
 {
   "cSpell.ignoreWords": ["roboto"],
-  "cSpell.words": ["checkmark"],
+  "cSpell.words": [
+    "checkmark",
+    "scrollbar"
+  ],
 
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,

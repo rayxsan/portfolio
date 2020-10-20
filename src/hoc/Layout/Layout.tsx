@@ -27,13 +27,10 @@ class Layout extends Component<Props, State> {
         <Sidebar
           show={this.state.showSidebar}
           clicked={() => this.sidebarToggleHandler()}
-          // style={{ height: mainContentHeight }}
         />
-        <Wrapper>
+        <Wrapper expand={this.state.showSidebar}>
           <Header />
-          <MainContent move={this.state.showSidebar}>
-            {this.props.children}
-          </MainContent>
+          <MainContent>{this.props.children}</MainContent>
           <Footer />
         </Wrapper>
       </>
