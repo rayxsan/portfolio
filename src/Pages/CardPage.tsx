@@ -2,15 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import Card from "../Components/UI/Card/Card";
 
-const StyledCardPage = styled.div`
-  .menu-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 1rem 2rem;
-    height: 10rem;
-  }
-`;
+const StyledCardPage = styled.div``;
+
 const CardPage = () => (
   <StyledCardPage>
     <Card title="Simple Card Title" text="This text is a test. :-)"></Card>

@@ -1,10 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledText = styled.div`
-  font-family: "Roboto";
-  height: 100%;
-`;
+const StyledText = styled.div``;
 
 const HomePage = () => (
   <StyledText>

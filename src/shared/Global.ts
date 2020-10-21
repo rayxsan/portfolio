@@ -16,7 +16,7 @@ html, body {
     background-color: #f6f6f6;
    
  ::-webkit-scrollbar {
-    width: 6px;
+    width: 0px;
     background: transparent; /* make scrollbar transparent */
   }
 

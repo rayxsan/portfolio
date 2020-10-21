@@ -5,9 +5,8 @@ import styled from "styled-components";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 
 const StyledButtonPage = styled.div`
-  .btn-container {
-    display: flex;
-    justify-content: initial;
+  button {
+    margin: 2px;
   }
 `;
 
@@ -18,12 +17,10 @@ const ButtonPage = () => {
   return (
     <StyledButtonPage>
       <Card title="contained buttons">
-        <div className="btn-container">
-          <Button>Default</Button>
-          <Button primary>Primary</Button>
-          <Button secondary>Secondary</Button>
-          <Button disabled>Disabled</Button>
-        </div>
+        <Button>Default</Button>
+        <Button primary>Primary</Button>
+        <Button secondary>Secondary</Button>
+        <Button disabled>Disabled</Button>
       </Card>
 
       <Card title="text buttons">

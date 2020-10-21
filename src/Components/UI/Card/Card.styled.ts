@@ -18,7 +18,7 @@ export const StyledCard = styled.div`
     text-transform: capitalize;
     line-height: 3rem;
     letter-spacing: 0.05em;
-    white-space: nowrap;
+    overflow: hidden;
   }
 
   p {

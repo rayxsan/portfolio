@@ -85,12 +85,11 @@ export const TextButton = styled.button.attrs<TextButtonProps>((props) => ({
 
   &:hover {
     opacity: 0.7;
-    //TODO Change background opacity on hover
-    // background-color: ${(props: Props) => props.color};
+    /* background-color: ${(props: Props) => props.color}; */
   }
 
   :disabled {
-    color: #cccc;
+    color: #ccc;
     cursor: not-allowed;
   }
 `;
