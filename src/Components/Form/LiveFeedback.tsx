@@ -29,12 +29,7 @@ const TextInputLiveFeedback: FunctionComponent<Props> = ({ name, id, placeholder
         aria-describedby={`${id}-feedback ${id}-help`}
         onFocus={handleFocus}
       />
-      {/* {showFeedback ? <ErrorMessage component="span" name={name} /> : null} */}
-      {showFeedback ? (
-        <div id={`${id}-feedback`} aria-live="polite" className="feedback text-sm">
-          {meta.error ? <ErrorMessage component="span" name={name} /> : null}
-        </div>
-      ) : null}
+      {meta.error && showFeedback ? <ErrorMessage component="span" name={name} /> : null}
     </>
   );
 };

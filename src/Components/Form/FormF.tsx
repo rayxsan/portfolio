@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { Formik, Field, Form, FormikHelpers, ErrorMessage } from "formik";
+import { Formik, Field, Form, FormikHelpers } from "formik";
 import Button from "../Button/Button";
 import TextInputLiveFeedback from "./LiveFeedback";
 import StyledFormF from "./FormF.styled";
@@ -24,9 +24,6 @@ const sleep = (ms: any) => new Promise(resolve => setTimeout(resolve, ms));
 const validate = (values: Values) => {
   return sleep(300).then(() => {
     const errors: any = {};
-
-    if (["admin", "null", "god"].includes(values.username)) errors.username = "Nice try";
-
     if (!values.username) errors.username = "Required";
     if (!values.firstName) errors.firstName = "Required";
     if (!values.password) errors.password = "Required";
@@ -71,32 +68,21 @@ const FormF: FunctionComponent<Values> = () => {
                 name="username"
                 placeholder="Username (Min length 4, Max length 9)"
               />
-
-              <label htmlFor="firstName" />
-              <Field id="firstName" name="firstName" placeholder="First Name" />
-              <ErrorMessage component="span" name="firstName" />
-
-              <label htmlFor="email" />
-              <Field id="email" name="email" placeholder="Email" type="email" />
-              <ErrorMessage component="span" name="email" />
-
-              <label htmlFor="date" />
-              <Field id="date" name="date" placeholder="Date" />
-              <ErrorMessage component="span" name="date" />
-
-              <label htmlFor="creditCard" />
-              <Field id="creditCard" name="creditCard" placeholder="Credit Card" />
-              <ErrorMessage component="span" name="creditCard" />
-
-              <label htmlFor="mobileNumber" />
-              <Field id="mobileNumber" name="mobileNumber" placeholder="Mobile Number" />
-              <ErrorMessage component="span" name="mobileNumber" />
-
+              <TextInputLiveFeedback id="firstName" name="firstName" placeholder="First Name" />
+              <TextInputLiveFeedback id="email" name="email" placeholder="Email" />
+              <TextInputLiveFeedback id="date" name="date" placeholder="Date" />
+              <TextInputLiveFeedback id="creditCard" name="creditCard" placeholder="Credit Card" />
+              <TextInputLiveFeedback
+                id="mobileNumber"
+                name="mobileNumber"
+                placeholder="Mobile Number"
+              />
               <TextInputLiveFeedback id="password" name="password" placeholder="Password" />
-
-              <label htmlFor="confirmPassword" />
-              <Field id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" />
-              <ErrorMessage component="span" name="confirmPassword" />
+              <TextInputLiveFeedback
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="confirmPassword"
+              />
 
               <div role="group" aria-labelledby="my-radio-group">
                 <label>
