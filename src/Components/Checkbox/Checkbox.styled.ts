@@ -70,7 +70,7 @@ export const StyledCheckbox = styled.label`
   > input:checked:focus + label,
   input:not(:checked):focus + label {
     &:before {
-      border: 1px dotted blue !important;
+      border: 1px dotted blue;
     }
   }
 `;

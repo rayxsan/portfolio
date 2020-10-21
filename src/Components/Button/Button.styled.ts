@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ButtonSizes, ButtonTypes } from "./Button.common";
 
 const sizes = {
@@ -31,130 +31,103 @@ const sizes = {
 export interface Props {
   size?: ButtonSizes;
   type?: ButtonTypes;
-  color?: string;
+  text?: boolean;
+  outline?: boolean;
+  circular?: boolean;
+  primary?: boolean;
+  secondary?: boolean;
 }
 
 // TODO DRY
 export const StyledButton = styled.button.attrs<Props>((props) => ({
   type: props.type || "button",
   size: props.size || "medium",
-  color: props.color || "#ccc",
 }))`
-  background-color: ${(props: Props) => props.color};
+  background-color: #ccc;
   border-radius: 0.28rem;
   transition: 0.2s;
   cursor: pointer;
   border: none;
 
   /* button size: */
-  margin: 0 0.8rem 0 0;
+  margin: 0.8rem;
   height: ${(props: Props) => sizes[props.size!].height};
   width: ${(props: Props) => sizes[props.size!].width};
   font-size: ${(props: Props) => sizes[props.size!].fontSize};
 
-  &:hover {
+  :hover:enabled {
     opacity: 0.7;
   }
-
-  &:disabled {
-    color: #cccc;
-    cursor: not-allowed;
-  }
-`;
-
-interface TextButtonProps extends Props {}
-
-export const TextButton = styled.button.attrs<TextButtonProps>((props) => ({
-  type: props.type || "button",
-  size: props.size || "medium",
-  color: props.color || "inherit",
-}))`
-  background: none;
-  color: ${(props: Props) => props.color};
-  font-weight: 400;
-  transition: 0.2s;
-  cursor: pointer;
-  border: none;
-
-  /* button size: */
-  min-height: 1em;
-  line-height: 1em;
-  margin: 0 0.25em 0 0;
-  padding: 0.78em 1.5em 0.78em;
-  font-size: ${(props: Props) => sizes[props.size!].fontSize};
-
-  &:hover {
-    opacity: 0.7;
-    /* background-color: ${(props: Props) => props.color}; */
-  }
-
   :disabled {
-    color: #ccc;
     cursor: not-allowed;
   }
-`;
 
-interface OutlinedButtonProps extends Props {}
+  ${(props: Props) =>
+    props.primary &&
+    css`
+      background-color: ${({ theme }) => theme.primaryColor};
+    `}
 
-export const OutlinedButton = styled.button.attrs<OutlinedButtonProps>(
-  (props) => ({
-    type: props.type || "button",
-    size: props.size || "medium",
-    color: props.color || "black",
-  })
-)`
-  background: none;
-  color: ${(props: Props) => props.color};
-  border-radius: 0.28rem;
-  font-weight: 400;
-  transition: 0.2s;
-  cursor: pointer;
-  border: 1px solid ${(props: Props) => props.color};
+  ${(props: Props) =>
+    props.secondary &&
+    css`
+      background-color: ${({ theme }) => theme.secondaryColor};
+    `}
 
-  /* button size: */
-  min-height: 1rem;
-  margin: 0 1rem 0 0;
-  height: ${(props: Props) => sizes[props.size!].height};
-  width: ${(props: Props) => sizes[props.size!].width};
-  font-size: ${(props: Props) => sizes[props.size!].fontSize};
+    ${(props: Props) =>
+    props.text &&
+    css`
+      background: none;
+      :hover:enabled {
+        background-color: ${({ theme }) => theme.defaultColor};
+      }
 
-  &:hover {
-    opacity: 0.7;
-    /* //TODO Change background opacity on hover */
-    /* // background-color: ${(props: Props) => props.color}; */
-  }
+      /* TODO: set primary and secondary transparent colors for hovering */
+      ${(props: Props) =>
+        props.primary &&
+        css`
+          color: ${({ theme }) => theme.primaryColor};
+          :hover:enabled {
+            background-color: #ccc;
+          }
+        `}
 
-  &:disabled {
-    color: #cccc;
-    cursor: not-allowed;
-  }
-`;
+      ${(props: Props) =>
+        props.secondary &&
+        css`
+          color: ${({ theme }) => theme.secondaryColor};
+          :hover:enabled {
+            background-color: #ccc;
+          }
+        `}
+    `}
 
-interface CircularButton extends Props {}
+    ${(props: Props) =>
+    props.outline &&
+    css`
+      background: none;
+      border: 1px solid ${({ theme }) => theme.defaultColor};
 
-// BUG circular btns with long label forms a oval instead of a circle
-export const CircularButton = styled.button`
-  display: inline-flex;
-  position: relative;
-  background: #ccc;
-  min-width: 1rem;
-  min-height: 1rem;
-  border-radius: 50%;
-  cursor: pointer;
-  border: none;
+      ${(props: Props) =>
+        props.primary &&
+        css`
+          color: ${({ theme }) => theme.primaryColor};
+          border-color: ${({ theme }) => theme.primaryColor};
+        `}
 
-  /* button size: */
-  margin: 0.2em;
-  padding: 0.6rem;
-  font-size: 1rem;
+      ${(props: Props) =>
+        props.secondary &&
+        css`
+          color: ${({ theme }) => theme.secondaryColor};
+          border-color: ${({ theme }) => theme.secondaryColor};
+        `}
+    `}
 
-  &:hover {
-    opacity: 0.7;
-    background-color: #ccc;
-  }
-
-  &:disabled {
-    color: #cccc;
-    cursor: not-allowed;
-  }
+/*TODO: Center text */
+    ${(props: Props) =>
+    props.circular &&
+    css`
+      width: ${(props: Props) => sizes[props.size!].height};
+      border-radius: 50%;
+    `}
 `;
