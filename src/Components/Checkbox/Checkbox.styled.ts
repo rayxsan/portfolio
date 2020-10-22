@@ -1,127 +1,95 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const StyledCheckbox = styled.label`
+export interface Props {
+  primary?: boolean;
+  secondary?: boolean;
+  toggle?: boolean;
+  slider?: boolean;
+}
+
+export const StyledCheckbox = styled.div<Props>`
   display: inline-block;
-  > input {
+  box-sizing: border-box;
+  vertical-align: middle;
+
+  input {
     position: absolute;
     opacity: 0;
     pointer-events: none;
   }
 
-  > input + label {
-    position: relative;
-    padding: 0 0 0 1.6em;
-    margin: 0.2em;
-    cursor: pointer;
-    color: ${(props) => props.color || "inherit"};
+  svg {
+    display: inline-flex;
+    align-self: center;
+    color: ${({ theme }) => theme.defaultColor};
+    ${(props: Props) =>
+      props.primary &&
+      css`
+        color: ${({ theme }) => theme.primaryColor};
+      `}
 
-    &:before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 1.15em;
-      height: 1.15em;
-      border: 1px solid #aaa;
-      background: #f8f8f8;
-      border-radius: 3px;
-      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
-    }
-    &:after {
-      content: "\\2713\\0020";
-      position: absolute;
-      top: 0;
-      left: 0.15em;
-      font-size: 1.2em;
-      color: ${(props) => props.color || "inherit"};
-      transition: all 0.2s;
+    ${(props: Props) =>
+      props.secondary &&
+      css`
+        color: ${({ theme }) => theme.secondaryColor};
+      `}
+  }
+
+  label {
+    margin: 0 0.2rem;
+
+    :hover {
+      color: ${({ theme }) => theme.defaultColor};
+      ${(props: Props) =>
+        props.primary &&
+        css`
+          color: ${({ theme }) => theme.primaryColor};
+        `}
+
+      ${(props: Props) =>
+        props.secondary &&
+        css`
+          color: ${({ theme }) => theme.secondaryColor};
+        `}
     }
   }
-  > input:not(:checked) + label {
-    &:after {
-      opacity: 0;
-      transform: scale(0);
-    }
+
+  svg,
+  label {
+    display: inline-block;
+    box-sizing: border-box;
+    vertical-align: middle;
+    cursor: pointer;
   }
-  > input:disabled:not(:checked) + label {
-    &:before {
-      cursor: default;
-      box-shadow: none;
-      border-color: #bbb;
-      background-color: #ddd;
-    }
+
+  input:checked + svg + label {
+    ${(props: Props) =>
+      props.primary &&
+      css`
+        color: ${({ theme }) => theme.primaryColor};
+      `}
+
+    ${(props: Props) =>
+      props.secondary &&
+      css`
+        color: ${({ theme }) => theme.secondaryColor};
+      `}
   }
-  > input:checked + label {
-    &:after {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-  > input:disabled:checked + label {
-    &:after {
-      cursor: default;
-      color: #999;
-    }
-  }
-  > input:disabled + label {
+  input:disabled + svg {
     cursor: default;
-    color: #aaa;
   }
-  > input:checked:focus + label,
-  input:not(:checked):focus + label {
-    &:before {
-      border: 1px dotted blue;
-    }
-  }
-`;
-
-export const StyledToggle = styled.label`
-  position: relative;
-  display: inline-block;
-  margin: 0.5em;
-  width: 3em;
-  height: 1.5em;
-  outline: none;
-
-  > input {
-    opacity: 0;
+  input:disabled + svg + label {
+    color: ${({ theme }) => theme.defaultColor};
+    cursor: default;
   }
 
-  > div {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 1.5em;
-  }
-  > div:before {
-    position: absolute;
-    content: "";
-    height: 1.3em;
-    width: 1.3em;
-    left: 0.15em;
-    bottom: 0.1em;
-    background-color: white;
-    -webkit-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 50%;
-  }
-  > input:checked + div {
-    background-color: ${(props) => props.color || "grey"};
-  }
-  > input:focus + div {
-    box-shadow: 0 0 1px ${(props) => props.color || "grey"};
-  }
-  > input:checked + div:before {
-    -webkit-transform: translateX(1.3em);
-    -ms-transform: translateX(1.3em);
-    transform: translateX(1.3em);
-  }
+  ${(props: Props) =>
+    props.toggle &&
+    css`
+      svg {
+        font-size: 1.4rem;
+      }
+    `}
 `;
 
 export const StyledSlider = styled.div`

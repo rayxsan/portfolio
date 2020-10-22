@@ -1,6 +1,11 @@
 import React, { Component } from "react";
-import { theme } from "../../shared/Theme";
-import { StyledCheckbox, StyledToggle, StyledSlider } from "./Checkbox.styled";
+import { StyledCheckbox, StyledSlider } from "./Checkbox.styled";
+import {
+  FaRegSquare,
+  FaCheckSquare,
+  FaToggleOff,
+  FaToggleOn,
+} from "react-icons/fa";
 
 interface Props {
   primary?: boolean;
@@ -39,35 +44,35 @@ class Checkbox extends Component<Props, State> {
   };
 
   render() {
-    let color = "";
+    // let color = "";
 
-    if (this.props.primary) {
-      color = theme.primaryColor;
-    }
-    if (this.props.secondary) {
-      color = theme.secondaryColor;
-    }
-    if (this.props.toggle) {
-      return (
-        <>
-          <StyledToggle color={color}>
-            <input
-              type="checkbox"
-              checked={this.state.checked}
-              onChange={this.handleCheckboxChange}
-              disabled={this.props.disabled}
-            />
-            <div />
-          </StyledToggle>
-          <label>{this.props.label}</label>
-        </>
-      );
-    }
+    // if (this.props.primary) {
+    //   color = theme.primaryColor;
+    // }
+    // if (this.props.secondary) {
+    //   color = theme.secondaryColor;
+    // }
+    // if (this.props.toggle) {
+    //   return (
+    //     <>
+    //       <StyledToggle color={color}>
+    //         <input
+    //           type="checkbox"
+    //           checked={this.state.checked}
+    //           onChange={this.handleCheckboxChange}
+    //           disabled={this.props.disabled}
+    //         />
+    //         <div />
+    //       </StyledToggle>
+    //       <label>{this.props.label}</label>
+    //     </>
+    //   );
+    // }
 
     if (this.props.slider) {
       return (
         <>
-          <StyledSlider onClick={this.handleCheckboxChange} color={color}>
+          <StyledSlider onClick={this.handleCheckboxChange}>
             <input
               type="checkbox"
               checked={this.state.checked}
@@ -76,22 +81,37 @@ class Checkbox extends Component<Props, State> {
             />
             <label />
           </StyledSlider>
-          <label style={{ color: color }}>{this.props.label}</label>
+          <label>{this.props.label}</label>
         </>
       );
     }
+
+    let svgRender = this.state.checked ? <FaCheckSquare /> : <FaRegSquare />;
+
+    if (this.props.toggle) {
+      svgRender = this.state.checked ? <FaToggleOn /> : <FaToggleOff />;
+    }
+
+    // if (this.props.slider) {
+    //   svgRender = this.state.checked ? <FaToggleOn /> : <FaToggleOff />;
+    // }
+
     return (
-      <>
-        <StyledCheckbox onClick={this.handleCheckboxChange} color={color}>
-          <input
-            type="checkbox"
-            checked={this.state.checked}
-            onChange={this.handleCheckboxChange}
-            disabled={this.props.disabled}
-          />
-          <label>{this.props.label}</label>
-        </StyledCheckbox>
-      </>
+      <StyledCheckbox
+        primary={this.props.primary}
+        secondary={this.props.secondary}
+        toggle={this.props.toggle}
+        onClick={this.handleCheckboxChange}
+      >
+        <input
+          type="checkbox"
+          checked={this.state.checked}
+          onChange={this.handleCheckboxChange}
+          disabled={this.props.disabled}
+        />
+        {svgRender}
+        <label>{this.props.label}</label>
+      </StyledCheckbox>
     );
   }
 }
