@@ -1,9 +1,8 @@
 import styled from "styled-components";
 
 const StyledFormF = styled.div`
-  Section {
-    column-count: 2;
-  }
+  column-count: 2;
+
   Input {
     margin: 1.5rem 0 0 0;
     border: 0;
@@ -47,9 +46,7 @@ const StyledFormF = styled.div`
   @media screen and (max-width: 50rem) {
     flex-direction: column;
     align-items: stretch;
-    section {
-      column-count: 1;
-    }
+    column-count: 1;
   }
 `;
 
