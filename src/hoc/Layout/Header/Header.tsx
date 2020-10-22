@@ -1,6 +1,7 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import { FiMenu } from "react-icons/fi";
+import Menu from "../../../Components/Menu/Menu";
 
 interface Props {
   clicked: (event: React.MouseEvent<SVGElement, MouseEvent>) => void;
@@ -26,8 +27,11 @@ const StyledHeader = styled.div`
       display: none;
     }
   }
-  p {
-    margin: 0;
+
+  div {
+    float: right;
+    margin-right: 0.5rem;
+    margin-top: 0.2rem;
   }
 `;
 
@@ -35,7 +39,13 @@ const Header: FunctionComponent<Props> = ({ clicked }) => {
   return (
     <StyledHeader>
       <FiMenu onClick={clicked} />
-      <p>HEADER</p>
+      <div>
+        <Menu
+          header="Profile"
+          type="simple"
+          items={["Home", "Settings", "Logout"]}
+        />
+      </div>
     </StyledHeader>
   );
 };

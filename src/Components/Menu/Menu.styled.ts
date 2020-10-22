@@ -27,6 +27,7 @@ export const StyledMainButton = styled.button<Props>`
   text-align: left;
   height: 2rem;
   border: 1px solid #ccc;
+  border-radius: 0.25rem;
   background: inherit;
 
   :hover {
@@ -68,39 +69,48 @@ export const StyledMainButton = styled.button<Props>`
 `;
 
 export const StyledMenuList = styled.ul<Props>`
-  display: ${(props: Props) => (props.show ? "block" : "none")};
+  display: ${(props: Props) => (props.show ? "flex" : "none")};
+  flex-direction: column;
   position: absolute;
   padding: 0;
   margin: 0;
 
-  li button {
+  li {
     position: relative;
     bottom: 2rem;
     border: 0;
-    width: 100%;
     height: 2rem;
-    background: #eee;
-    text-align: left;
+    background: transparent;
+
     cursor: pointer;
 
-    :hover {
-      background-color: #ccc;
+    button {
+      width: 100%;
+      height: 2rem;
+      bottom: 0.5rem;
+      text-align: left;
+      border: 0;
+      :hover {
+        background-color: #ccc;
+      }
     }
   }
+
   ${(props: Props) =>
     props.styledType === "dotted" &&
     css`
-      max-height: 6rem;
+      max-height: 6rem; */
+      overflow-y: scroll;
       overflow: hidden;
       overflow-y: scroll;
       li button {
-        bottom: 0;
+        bottom: 0.5rem;
       }
     `}
 
   ::-webkit-scrollbar {
     width: 6px;
-    background: transparent; /* make scrollbar transparent */
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
