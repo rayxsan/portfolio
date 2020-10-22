@@ -18,7 +18,7 @@ const TextInputLiveFeedback: FunctionComponent<Props> = ({ name, id, placeholder
   const showFeedback = (!!didFocus && field.value.trim().length > 2) || meta.touched;
 
   return (
-    <>
+    <div>
       <label htmlFor={id} />
       <Field
         {...props}
@@ -30,7 +30,7 @@ const TextInputLiveFeedback: FunctionComponent<Props> = ({ name, id, placeholder
         onFocus={handleFocus}
       />
       {meta.error && showFeedback ? <ErrorMessage component="span" name={name} /> : null}
-    </>
+    </div>
   );
 };
 
