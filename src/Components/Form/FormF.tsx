@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 import { Formik, Field, Form, FormikHelpers, ErrorMessage, useField } from "formik";
 import Button from "../Button/Button";
-// import TextInputLiveFeedback from "./LiveFeedback";
 import * as Yup from "yup";
 import StyledFormF from "./FormF.styled";
 
@@ -17,6 +16,7 @@ interface Values {
   gender?: string;
   checked?: boolean;
   toggle?: boolean;
+  error?: boolean;
 }
 
 interface LiveFeedback {
@@ -49,23 +49,12 @@ const TextInputLiveFeedback = ({ name, id, placeholder, ...props }: LiveFeedback
         placeholder={placeholder}
         aria-describedby={`${id}-feedback ${id}-help`}
         onFocus={handleFocus}
+        error={meta.error}
       />
       {meta.error && showFeedback ? <ErrorMessage component="span" name={name} /> : null}
     </div>
   );
 };
-// const validate = (values: Values) => {
-//   return sleep(300).then(() => {
-//     const errors: any = {};
-//     if (!values.username) errors.username = "Required";
-//     if (!values.firstName) errors.firstName = "Required";
-//     if (!values.password) errors.password = "Required";
-//     if (values.password && values.password.length < 6) errors.password = "Invalid password";
-//     if (values.confirmPassword !== values.password)
-//       errors.confirmPassword = "Password doesn't match";
-//     return errors;
-//   });
-// };
 
 const SimpleFormValidation = Yup.object().shape({
   username: Yup.string().min(4, "Too Short!").max(9, "Too Long!").required("Required"),
@@ -95,8 +84,8 @@ const FormF: FunctionComponent<Values> = () => {
           gender: "",
           checked: false,
           toggle: false,
+          error: false,
         }}
-        // validate={validate}
         validationSchema={SimpleFormValidation}
         onSubmit={(values, { setSubmitting }: FormikHelpers<Values>) => {
           setTimeout(() => {
@@ -105,50 +94,52 @@ const FormF: FunctionComponent<Values> = () => {
           }, 500);
         }}
       >
-        {() => (
+        {({ errors, touched }) => (
           <Form>
-            <TextInputLiveFeedback
-              id="username"
-              name="username"
-              placeholder="Username (Min length 4, Max length 9)"
-            />
-            <TextInputLiveFeedback id="firstName" name="firstName" placeholder="First Name" />
-            <TextInputLiveFeedback id="email" name="email" placeholder="Email" />
-            <TextInputLiveFeedback id="date" name="date" placeholder="Date" />
-            <TextInputLiveFeedback id="creditCard" name="creditCard" placeholder="Credit Card" />
-            <TextInputLiveFeedback
-              id="mobileNumber"
-              name="mobileNumber"
-              placeholder="Mobile Number"
-            />
-            <TextInputLiveFeedback id="password" name="password" placeholder="Password" />
-            <TextInputLiveFeedback
-              id="confirmPassword"
-              name="confirmPassword"
-              placeholder="Confirm Password"
-            />
+            <section>
+              <TextInputLiveFeedback
+                id="username"
+                name="username"
+                placeholder="Username (Min length 4, Max length 9)"
+              />
+              <TextInputLiveFeedback id="firstName" name="firstName" placeholder="First Name" />
+              <TextInputLiveFeedback id="email" name="email" placeholder="Email" />
+              <TextInputLiveFeedback id="date" name="date" placeholder="Date" />
+              <TextInputLiveFeedback id="creditCard" name="creditCard" placeholder="Credit Card" />
+              <TextInputLiveFeedback
+                id="mobileNumber"
+                name="mobileNumber"
+                placeholder="Mobile Number"
+              />
+              <TextInputLiveFeedback id="password" name="password" placeholder="Password" />
+              <TextInputLiveFeedback
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="Confirm Password"
+              />
 
-            <div role="group" aria-labelledby="my-radio-group">
-              <label>
-                <Field type="radio" name="picked" value="Male" />
-                Male
-              </label>
-              <label>
-                <Field type="radio" name="picked" value="Female" />
-                Female
-              </label>
-              <label>
-                <Field type="radio" name="picked" value="Others" />
-                Others
-              </label>
-            </div>
+              <div role="group" aria-labelledby="my-radio-group">
+                <label>
+                  <Field type="radio" name="picked" value="Male" />
+                  Male
+                </label>
+                <label>
+                  <Field type="radio" name="picked" value="Female" />
+                  Female
+                </label>
+                <label>
+                  <Field type="radio" name="picked" value="Others" />
+                  Others
+                </label>
+              </div>
 
-            <div role="group" aria-labelledby="checkbox-group">
-              <label htmlFor="toggle">
-                <Field type="checkbox" name="toggle" />I have read and agree to the terms of
-                service.
-              </label>
-            </div>
+              <div role="group" aria-labelledby="checkbox-group">
+                <label htmlFor="toggle">
+                  <Field type="checkbox" name="toggle" />I have read and agree to the terms of
+                  service.
+                </label>
+              </div>
+            </section>
 
             <Button outline primary type="submit">
               Submit
