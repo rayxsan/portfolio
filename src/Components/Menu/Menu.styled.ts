@@ -1,11 +1,12 @@
 import styled, { css } from "styled-components";
-
-//TODO Correct position on dotted menu
+import { StyledButton } from "../Button/Button.styled";
 
 interface Props {
   show: boolean;
   styledType?: "simple" | "selected" | "dotted";
   selectedText?: string;
+  primary?: boolean;
+  secondary?: boolean;
 }
 
 export const StyledMenuWrapper = styled.div`
@@ -23,16 +24,29 @@ export const StyledMenuWrapper = styled.div`
 export const StyledMainButton = styled.button<Props>`
   visibility: ${(props: Props) => (props.show ? "visible" : "hidden")};
   display: block;
-  position: relative;
   text-align: left;
   height: 2rem;
-  border: 1px solid #ccc;
+  border: 1px solid ${({ theme }) => theme.defaultColor};
   border-radius: 0.25rem;
   background: inherit;
 
   :hover {
-    background-color: #ccc;
+    opacity: 0.7;
   }
+
+  ${(props: Props) =>
+    props.primary &&
+    css`
+      border-color: ${({ theme }) => theme.primaryColor};
+      color: ${({ theme }) => theme.primaryColor};
+    `}
+
+  ${(props: Props) =>
+    props.secondary &&
+    css`
+      border-color: ${({ theme }) => theme.secondaryColor};
+      color: ${({ theme }) => theme.secondaryColor};
+    `}
 
   ${(props: Props) =>
     props.styledType === "selected" &&
@@ -43,9 +57,6 @@ export const StyledMainButton = styled.button<Props>`
         content: " ${(props: Props) => props.selectedText}";
         display: block;
         position: relative;
-        bottom: 0;
-        left: 0;
-        right: 0;
         color: #aaa;
       }
     `}
@@ -65,31 +76,45 @@ export const StyledMainButton = styled.button<Props>`
         text-align: center;
         margin-left: 0.5em;
       }
+
+      :hover {
+        ${(props: Props) =>
+          props.primary &&
+          css`
+            background-color: ${({ theme }) => theme.primaryColor};
+            color: black;
+          `}
+
+        ${(props: Props) =>
+          props.secondary &&
+          css`
+            background-color: ${({ theme }) => theme.secondaryColor};
+            color: black;
+          `}
+      }
     `}
 `;
 
 export const StyledMenuList = styled.ul<Props>`
   display: ${(props: Props) => (props.show ? "flex" : "none")};
   flex-direction: column;
-  position: absolute;
   padding: 0;
   margin: 0;
+  top: 0;
+  background: inherit;
 
   li {
     position: relative;
-    bottom: 2rem;
     border: 0;
     height: 2rem;
-    background: transparent;
-
     cursor: pointer;
 
     button {
       width: 100%;
       height: 2rem;
-      bottom: 0.5rem;
       text-align: left;
       border: 0;
+      z-index: 999;
       :hover {
         background-color: #ccc;
       }
@@ -103,9 +128,7 @@ export const StyledMenuList = styled.ul<Props>`
       overflow-y: scroll;
       overflow: hidden;
       overflow-y: scroll;
-      li button {
-        bottom: 0.5rem;
-      }
+     
     `}
 
   ::-webkit-scrollbar {
@@ -115,6 +138,5 @@ export const StyledMenuList = styled.ul<Props>`
 
   ::-webkit-scrollbar-thumb {
     background: ${({ theme }) => theme.defaultColor};
-    border-radius: 3px;
   }
 `;

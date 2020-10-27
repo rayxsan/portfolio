@@ -8,6 +8,7 @@ const StyledFooter = styled.div`
   height: ${({ theme }) => theme.footerHeight};
   background-color: ${(props) => props.theme.footerBGColor};
   color: ${({ theme }) => theme.footerFontColor};
+  z-index: 888;
 `;
 
 interface Props {}

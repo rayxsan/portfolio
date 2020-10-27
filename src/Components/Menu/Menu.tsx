@@ -14,7 +14,13 @@ export interface Props {
   type?: "simple" | "selected" | "dotted";
 }
 
-const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
+const Menu: FunctionComponent<Props> = ({
+  header,
+  items,
+  type,
+  primary,
+  secondary,
+}) => {
   const [openedMenu, setOpenedMenu] = useState(false);
   const [selectedText, setSelectedText] = useState(items[0]);
 
@@ -26,6 +32,8 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
   return (
     <StyledMenuWrapper>
       <StyledMainButton
+        primary={primary}
+        secondary={secondary}
         styledType={type}
         selectedText={selectedText}
         show={!openedMenu}

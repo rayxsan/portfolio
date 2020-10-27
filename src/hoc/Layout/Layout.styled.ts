@@ -7,6 +7,7 @@ interface Props {
 export const Wrapper = styled.div`
   @media (min-width: 500px) {
     margin-left: 2rem;
+
     ${(props: Props) =>
       props.expand &&
       css`
@@ -20,5 +21,4 @@ export const Wrapper = styled.div`
 export const MainContent = styled.div`
   min-height: calc(100vh - ${({ theme }) => theme.mainContentMinHeight});
   width: 100%;
-  overflow: hidden;
 `;

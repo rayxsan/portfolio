@@ -64,7 +64,7 @@ const MenuPage = () => (
   <StyledMenuPage>
     {MENUS.map(({ name, type, header, items }, index) => (
       <Card key={index} title={name}>
-        <Menu header={header} type={type} items={items} />
+        <Menu secondary header={header} type={type} items={items} />
       </Card>
     ))}
   </StyledMenuPage>
