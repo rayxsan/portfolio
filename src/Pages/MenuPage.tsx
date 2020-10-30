@@ -44,20 +44,6 @@ const MENUS: MENU[] = [
       "Hide all notification content",
     ],
   },
-  {
-    name: " 3 Dot Menu",
-    type: "dotted",
-    items: [
-      "alpha",
-      "beta",
-      "gamma",
-      "delta",
-      "alpha",
-      "beta",
-      "gamma",
-      "delta",
-    ],
-  },
 ];
 
 const MenuPage = () => (
@@ -67,6 +53,22 @@ const MenuPage = () => (
         <Menu secondary header={header} type={type} items={items} />
       </Card>
     ))}
+    <Card title="Primary Menu">
+      <Menu
+        primary
+        type="dotted"
+        items={[
+          "Mercury",
+          "Mars",
+          "Earth",
+          "Jupiter",
+          "Venus",
+          "Neptune",
+          "Saturn",
+          "Uranus",
+        ]}
+      />
+    </Card>
   </StyledMenuPage>
 );
 

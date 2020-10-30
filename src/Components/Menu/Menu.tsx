@@ -41,7 +41,12 @@ const Menu: FunctionComponent<Props> = ({
       >
         <span>{type === "dotted" ? "" : header}</span>
       </StyledMainButton>
-      <StyledMenuList styledType={type} show={openedMenu}>
+      <StyledMenuList
+        primary={primary}
+        secondary={secondary}
+        styledType={type}
+        show={openedMenu}
+      >
         {items.map((value, index) => (
           <li key={index}>
             <button onClick={() => handleOptionClick(value)}>{value}</button>

@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import { StyledButton } from "../Button/Button.styled";
 
 interface Props {
   show: boolean;
@@ -57,7 +56,7 @@ export const StyledMainButton = styled.button<Props>`
         content: " ${(props: Props) => props.selectedText}";
         display: block;
         position: relative;
-        color: #aaa;
+        color: ${({ theme }) => theme.defaultColor};
       }
     `}
 
@@ -82,15 +81,14 @@ export const StyledMainButton = styled.button<Props>`
           props.primary &&
           css`
             background-color: ${({ theme }) => theme.primaryColor};
-            color: black;
+            color: white;
           `}
-
         ${(props: Props) =>
           props.secondary &&
           css`
             background-color: ${({ theme }) => theme.secondaryColor};
-            color: black;
-          `}
+            color: white;
+          `};
       }
     `}
 `;
@@ -102,6 +100,7 @@ export const StyledMenuList = styled.ul<Props>`
   margin: 0;
   top: 0;
   background: inherit;
+  box-shadow: 1px 1px 3px 0 #ccc;
 
   li {
     position: relative;
@@ -115,8 +114,23 @@ export const StyledMenuList = styled.ul<Props>`
       text-align: left;
       border: 0;
       z-index: 999;
+      background-color: #fff;
+
       :hover {
-        background-color: #ccc;
+        background-color: ${({ theme }) => theme.defaultColor};
+        ${(props: Props) =>
+          props.primary &&
+          css`
+            background-color: ${({ theme }) => theme.primaryColor};
+            color: white;
+          `}
+
+        ${(props: Props) =>
+          props.secondary &&
+          css`
+            background-color: ${({ theme }) => theme.secondaryColor};
+            color: white;
+          `}
       }
     }
   }
@@ -124,16 +138,16 @@ export const StyledMenuList = styled.ul<Props>`
   ${(props: Props) =>
     props.styledType === "dotted" &&
     css`
-      max-height: 6rem; */
+      max-height: 8rem;
+      top: -2rem;
       overflow-y: scroll;
       overflow: hidden;
       overflow-y: scroll;
-     
     `}
 
   ::-webkit-scrollbar {
-    width: 6px;
-    background: transparent;
+    width: 2px;
+    background: #fff;
   }
 
   ::-webkit-scrollbar-thumb {
