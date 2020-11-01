@@ -67,14 +67,11 @@ export const StyledMainButton = styled.button<Props>`
       height: 2rem;
       border-radius: 50%;
       border: 0;
-      :after {
-        content: "...";
-        font-weight: 600;
-        transform: rotate(90deg);
-        display: block;
-        text-align: center;
-        margin-left: 0.5em;
-      }
+      display: block;
+      text-align: center;
+      font-size: 1rem;
+      margin: 0;
+      padding-top: 0.3rem;
 
       :hover {
         ${(props: Props) =>

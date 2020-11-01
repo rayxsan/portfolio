@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 import {
   StyledMenuWrapper,
@@ -7,7 +8,7 @@ import {
 } from "./Menu.styled";
 
 export interface Props {
-  header?: string;
+  header?: string | JSX.Element;
   items: string[];
   primary?: boolean;
   secondary?: boolean;
@@ -29,6 +30,10 @@ const Menu: FunctionComponent<Props> = ({
     setOpenedMenu(false);
   };
 
+  if (type === "dotted") {
+    header = <BsThreeDotsVertical />;
+  }
+
   return (
     <StyledMenuWrapper>
       <StyledMainButton
@@ -39,7 +44,7 @@ const Menu: FunctionComponent<Props> = ({
         show={!openedMenu}
         onClick={() => setOpenedMenu(!openedMenu)}
       >
-        <span>{type === "dotted" ? "" : header}</span>
+        {header}
       </StyledMainButton>
       <StyledMenuList
         primary={primary}
