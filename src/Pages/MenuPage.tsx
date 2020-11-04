@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Card from "../Components/UI/Card/Card";
 import Menu from "../Components/Menu/Menu";
+import { CgProfile } from "react-icons/cg";
 
 const StyledMenuPage = styled.div``;
 
@@ -44,29 +45,31 @@ const MENUS: MENU[] = [
       "Hide all notification content",
     ],
   },
-  {
-    name: " 3 Dot Menu",
-    type: "dotted",
-    items: [
-      "alpha",
-      "beta",
-      "gamma",
-      "delta",
-      "alpha",
-      "beta",
-      "gamma",
-      "delta",
-    ],
-  },
 ];
 
 const MenuPage = () => (
   <StyledMenuPage>
     {MENUS.map(({ name, type, header, items }, index) => (
       <Card key={index} title={name}>
-        <Menu header={header} type={type} items={items} />
+        <Menu secondary header={header} type={type} items={items} />
       </Card>
     ))}
+    <Card title="Primary Menu">
+      <Menu
+        primary
+        type="dotted"
+        items={[
+          "Mercury",
+          "Mars",
+          "Earth",
+          "Jupiter",
+          "Venus",
+          "Neptune",
+          "Saturn",
+          "Uranus",
+        ]}
+      />
+    </Card>
   </StyledMenuPage>
 );
 

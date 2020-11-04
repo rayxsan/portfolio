@@ -1,4 +1,5 @@
 import React, { FunctionComponent, useState } from "react";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 import {
   StyledMenuWrapper,
@@ -7,14 +8,20 @@ import {
 } from "./Menu.styled";
 
 export interface Props {
-  header?: string;
+  header?: string | JSX.Element;
   items: string[];
   primary?: boolean;
   secondary?: boolean;
   type?: "simple" | "selected" | "dotted";
 }
 
-const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
+const Menu: FunctionComponent<Props> = ({
+  header,
+  items,
+  type,
+  primary,
+  secondary,
+}) => {
   const [openedMenu, setOpenedMenu] = useState(false);
   const [selectedText, setSelectedText] = useState(items[0]);
 
@@ -23,17 +30,28 @@ const Menu: FunctionComponent<Props> = ({ header, items, type }) => {
     setOpenedMenu(false);
   };
 
+  if (type === "dotted") {
+    header = <BsThreeDotsVertical />;
+  }
+
   return (
     <StyledMenuWrapper>
       <StyledMainButton
+        primary={primary}
+        secondary={secondary}
         styledType={type}
         selectedText={selectedText}
         show={!openedMenu}
         onClick={() => setOpenedMenu(!openedMenu)}
       >
-        <span>{type === "dotted" ? "" : header}</span>
+        {header}
       </StyledMainButton>
-      <StyledMenuList styledType={type} show={openedMenu}>
+      <StyledMenuList
+        primary={primary}
+        secondary={secondary}
+        styledType={type}
+        show={openedMenu}
+      >
         {items.map((value, index) => (
           <li key={index}>
             <button onClick={() => handleOptionClick(value)}>{value}</button>

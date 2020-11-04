@@ -44,31 +44,6 @@ class Checkbox extends Component<Props, State> {
   };
 
   render() {
-    // let color = "";
-
-    // if (this.props.primary) {
-    //   color = theme.primaryColor;
-    // }
-    // if (this.props.secondary) {
-    //   color = theme.secondaryColor;
-    // }
-    // if (this.props.toggle) {
-    //   return (
-    //     <>
-    //       <StyledToggle color={color}>
-    //         <input
-    //           type="checkbox"
-    //           checked={this.state.checked}
-    //           onChange={this.handleCheckboxChange}
-    //           disabled={this.props.disabled}
-    //         />
-    //         <div />
-    //       </StyledToggle>
-    //       <label>{this.props.label}</label>
-    //     </>
-    //   );
-    // }
-
     if (this.props.slider) {
       return (
         <>
@@ -91,10 +66,6 @@ class Checkbox extends Component<Props, State> {
     if (this.props.toggle) {
       svgRender = this.state.checked ? <FaToggleOn /> : <FaToggleOff />;
     }
-
-    // if (this.props.slider) {
-    //   svgRender = this.state.checked ? <FaToggleOn /> : <FaToggleOff />;
-    // }
 
     return (
       <StyledCheckbox

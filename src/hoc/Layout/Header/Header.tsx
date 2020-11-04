@@ -28,6 +28,10 @@ const StyledHeader = styled.div`
     }
   }
 
+  li {
+    bottom: 0.5rem;
+  }
+
   div {
     float: right;
     margin-right: 0.5rem;
