@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Card from "../Components/UI/Card/Card";
 import Menu from "../Components/Menu/Menu";
-import { CgProfile } from "react-icons/cg";
 
 const StyledMenuPage = styled.div``;
 
@@ -51,12 +50,12 @@ const MenuPage = () => (
   <StyledMenuPage>
     {MENUS.map(({ name, type, header, items }, index) => (
       <Card key={index} title={name}>
-        <Menu secondary header={header} type={type} items={items} />
+        <Menu primary header={header} type={type} items={items} />
       </Card>
     ))}
-    <Card title="Primary Menu">
+    <Card title="Secondary Menu">
       <Menu
-        primary
+        secondary
         type="dotted"
         items={[
           "Mercury",
