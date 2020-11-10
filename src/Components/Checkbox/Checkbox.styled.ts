@@ -144,7 +144,6 @@ export const StyledSlider = styled.div`
     transform: translateX(0.1em);
   }
 
-  /*TODO: Needs change css when disabled*/
   > input:disabled:not(:checked) {
     &:before {
       cursor: default;

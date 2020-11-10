@@ -12,7 +12,20 @@ export const StyledDropdown = styled.div`
   }
 
   select {
-    font-size: 0.9rem;
-    padding: 2px 5px;
+    appearance: none;
+
+    background-color: transparent;
+    border: 1px solid red;
+    padding: 0 1em 0 0;
+    margin: 0;
+    width: 100%;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+
+    :hover {
+      background-color: blue;
+    }
   }
 `;

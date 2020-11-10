@@ -11,14 +11,19 @@ interface Props {
 
 // TODO styling
 // Make the input clearable
-const Dropdown: FunctionComponent<Props> = ({ options, placeholder, inputVal, label }) => {
+const Dropdown: FunctionComponent<Props> = ({
+  options,
+  placeholder,
+  inputVal,
+  label,
+}) => {
   return (
     <StyledDropdown>
       <label htmlFor="choice">{label}</label>
       {/* input's list has to be equal to list's id */}
       {inputVal && <input list="input-list" placeholder={placeholder} />}
       <datalist id="input-list">
-        {options.map(option => {
+        {options.map((option) => {
           return <option value={option}>{option}</option>;
         })}
       </datalist>
