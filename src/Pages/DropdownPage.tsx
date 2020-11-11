@@ -8,7 +8,7 @@ const DropdownPage = () => {
   return (
     <div>
       <Card title="search">
-        <Dropdown inputVal options={pets} label="Favorite Animal" placeholder="type or choose" />
+        <Dropdown options={pets} placeholder="Select Language" />
       </Card>
     </div>
   );
