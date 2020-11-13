@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState, useEffect, useRef, SyntheticEvent } from "react";
+import React, { FunctionComponent, useState, useRef /*, useEffect, SyntheticEvent*/ } from "react";
 import DropdownCard from "./DropdownCard";
 import { StyledDropdown } from "./Dropdown.styled";
 
@@ -18,23 +18,23 @@ const Dropdown: FunctionComponent<Props> = ({ options, placeholder, label }) => 
   // <div> reference type
   const divRef = useRef<HTMLInputElement>(null);
 
-  const useOutsideAlert = (ref: HTMLInputElement): void => {
-    console.log("ref", ref);
+  // const useOutsideAlert = (ref: HTMLInputElement): void => {
+  // console.log("ref", ref);
 
-    // useEffect(() => {
-    //   const handleClickOutside = (event: SyntheticEvent) => {
-    //     if (ref.current && !ref.current.contains(event.target)) {
-    //       setOpen(false);
-    //     }
-    //   };
+  // useEffect(() => {
+  //   const handleClickOutside = (event: SyntheticEvent) => {
+  //     if (ref.current && !ref.current.contains(event.target)) {
+  //       setOpen(false);
+  //     }
+  //   };
 
-    //   document.addEventListener("mousedown", handleClickOutside);
-    //   return () => {
-    //     // Unbind the event listener on clean up
-    //     document.removeEventListener("mousedown", handleClickOutside);
-    //   };
-    // }, [ref]);
-  };
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     // Unbind the event listener on clean up
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [ref]);
+  // };
 
   return (
     <StyledDropdown>
