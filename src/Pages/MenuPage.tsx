@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Card from "../Components/UI/Card/Card";
 import Menu from "../Components/Menu/Menu";
+// import { CgProfile } from "react-icons/cg";
 
 const StyledMenuPage = styled.div``;
 
@@ -22,16 +23,7 @@ const MENUS: MENU[] = [
   {
     name: " 3 Dot Menu",
     type: "dotted",
-    items: [
-      "alpha",
-      "beta",
-      "gamma",
-      "delta",
-      "alpha",
-      "beta",
-      "gamma",
-      "delta",
-    ],
+    items: ["alpha", "beta", "gamma", "delta", "alpha", "beta", "gamma", "delta"],
   },
   {
     name: "Selected Menu",
@@ -57,16 +49,7 @@ const MenuPage = () => (
       <Menu
         secondary
         type="dotted"
-        items={[
-          "Mercury",
-          "Mars",
-          "Earth",
-          "Jupiter",
-          "Venus",
-          "Neptune",
-          "Saturn",
-          "Uranus",
-        ]}
+        items={["Mercury", "Mars", "Earth", "Jupiter", "Venus", "Neptune", "Saturn", "Uranus"]}
       />
     </Card>
   </StyledMenuPage>
