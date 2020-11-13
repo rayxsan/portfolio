@@ -1,6 +1,9 @@
 import React, { FunctionComponent, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+<<<<<<< HEAD
 import Backdrop from "../UI/Backdrop/Backdrop";
+=======
+>>>>>>> b08eb94124e8c6de310e65ffd1a9ca3dd631a4f1
 
 import {
   StyledMenuWrapper,
@@ -26,8 +29,11 @@ const Menu: FunctionComponent<Props> = ({
   type,
   primary,
   secondary,
+<<<<<<< HEAD
   show,
   clicked,
+=======
+>>>>>>> b08eb94124e8c6de310e65ffd1a9ca3dd631a4f1
 }) => {
   const [openedMenu, setOpenedMenu] = useState(false);
   const [selectedText, setSelectedText] = useState(items[0]);
@@ -42,6 +48,7 @@ const Menu: FunctionComponent<Props> = ({
   }
 
   return (
+<<<<<<< HEAD
     <>
       <Backdrop show={openedMenu} clicked={() => setOpenedMenu(openedMenu)} />
       <StyledMenuWrapper>
@@ -69,6 +76,32 @@ const Menu: FunctionComponent<Props> = ({
         </StyledMenuList>
       </StyledMenuWrapper>
     </>
+=======
+    <StyledMenuWrapper>
+      <StyledMainButton
+        primary={primary}
+        secondary={secondary}
+        styledType={type}
+        selectedText={selectedText}
+        show={!openedMenu}
+        onClick={() => setOpenedMenu(!openedMenu)}
+      >
+        {header}
+      </StyledMainButton>
+      <StyledMenuList
+        primary={primary}
+        secondary={secondary}
+        styledType={type}
+        show={openedMenu}
+      >
+        {items.map((value, index) => (
+          <li key={index}>
+            <button onClick={() => handleOptionClick(value)}>{value}</button>
+          </li>
+        ))}
+      </StyledMenuList>
+    </StyledMenuWrapper>
+>>>>>>> b08eb94124e8c6de310e65ffd1a9ca3dd631a4f1
   );
 };
 
