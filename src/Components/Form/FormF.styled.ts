@@ -50,7 +50,7 @@ const StyledFormF = styled.section.attrs<StyledProps>(props => ({
   }
 
   section > div {
-    padding: 0 1rem;
+    padding: 0 1rem 0.2rem;
   }
 
   button {

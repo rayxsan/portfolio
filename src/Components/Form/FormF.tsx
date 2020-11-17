@@ -55,17 +55,25 @@ const TextInputLiveFeedback = ({ name, id, placeholder, ...props }: LiveFeedback
 
 // Yup API: https://github.com/jquense/yup
 const SimpleFormValidation = Yup.object().shape({
-  username: Yup.string().required("Required").min(4, "Too Short!").max(9, "Too Long!"),
-  firstName: Yup.string().required("Required"),
-  email: Yup.string().email("Invalid email").required("Required"),
+  username: Yup.string()
+    .min(4, "too short!")
+    .max(9, "too long!")
+    .required("this field is required"),
+  firstName: Yup.string().required("this field is required"),
+  email: Yup.string().email("Invalid email").required("this field is required"),
   date: Yup.date(),
-  creditCard: Yup.number(),
-  mobileNumber: Yup.number(),
+  creditCard: Yup.string()
+    .required("this field is required")
+    .min(16, "Not a valid number")
+    .max(16, "Not a valid number"),
+  mobileNumber: Yup.string().required("this field is required"),
   password: Yup.string()
-    .required("No password provided.")
+    .required("this field is required")
     .min(8, "Password is too short - should be 8 chars minimum.")
     .matches(/[a-zA-Z]/, "Password can only contain Latin letters."),
-  confirmPassword: Yup.string().oneOf([Yup.ref("password"), undefined], "Passwords must match"),
+  confirmPassword: Yup.string()
+    .oneOf([Yup.ref("password"), undefined], "passwords didn't match")
+    .required("this field is required"),
 });
 
 // TODO Style Validation
