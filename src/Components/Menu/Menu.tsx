@@ -2,7 +2,11 @@ import React, { FunctionComponent, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import Backdrop from "../UI/Backdrop/Backdrop";
 
-import { StyledMenuWrapper, StyledMainButton, StyledMenuList } from "./Menu.styled";
+import {
+  StyledMenuWrapper,
+  StyledMainButton,
+  StyledMenuList,
+} from "./Menu.styled";
 
 export interface Props {
   header?: string | JSX.Element;
@@ -10,10 +14,6 @@ export interface Props {
   primary?: boolean;
   secondary?: boolean;
   type?: "simple" | "selected" | "dotted";
-  // show: boolean;
-  // clicked: (
-  //   event: React.MouseEvent<SVGElement | HTMLDivElement, MouseEvent>
-  // ) => void;
 }
 
 const Menu: FunctionComponent<Props> = ({
@@ -22,8 +22,6 @@ const Menu: FunctionComponent<Props> = ({
   type,
   primary,
   secondary,
-  // show,
-  // clicked,
 }) => {
   const [openedMenu, setOpenedMenu] = useState(false);
   const [selectedText, setSelectedText] = useState(items[0]);
@@ -38,28 +36,30 @@ const Menu: FunctionComponent<Props> = ({
   }
 
   return (
-    <>
-      <Backdrop show={openedMenu} clicked={() => setOpenedMenu(openedMenu)} />
-      <StyledMenuWrapper>
-        <StyledMainButton
-          primary={primary}
-          secondary={secondary}
-          styledType={type}
-          selectedText={selectedText}
-          show={!openedMenu}
-          onClick={() => setOpenedMenu(!openedMenu)}
-        >
-          {header}
-        </StyledMainButton>
-        <StyledMenuList primary={primary} secondary={secondary} styledType={type} show={openedMenu}>
-          {items.map((value, index) => (
-            <li key={index}>
-              <button onClick={() => handleOptionClick(value)}>{value}</button>
-            </li>
-          ))}
-        </StyledMenuList>
-      </StyledMenuWrapper>
-    </>
+    <StyledMenuWrapper>
+      <StyledMainButton
+        primary={primary}
+        secondary={secondary}
+        styledType={type}
+        selectedText={selectedText}
+        show={!openedMenu}
+        onClick={() => setOpenedMenu(!openedMenu)}
+      >
+        {header}
+      </StyledMainButton>
+      <StyledMenuList
+        primary={primary}
+        secondary={secondary}
+        styledType={type}
+        show={openedMenu}
+      >
+        {items.map((value, index) => (
+          <li key={index}>
+            <button onClick={() => handleOptionClick(value)}>{value}</button>
+          </li>
+        ))}
+      </StyledMenuList>
+    </StyledMenuWrapper>
   );
 };
 
