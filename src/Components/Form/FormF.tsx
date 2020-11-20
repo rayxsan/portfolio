@@ -95,6 +95,7 @@ const FormF: FunctionComponent<Values> = () => {
         initialValues={initialValues}
         validationSchema={SimpleFormValidation}
         validateOnChange={true}
+        validateOnBlur={false}
         onSubmit={(values, { setSubmitting }: FormikHelpers<Values>) => {
           setTimeout(() => {
             alert(JSON.stringify(values, null, 2));
