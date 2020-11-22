@@ -1,6 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import Backdrop from "../UI/Backdrop/Backdrop";
 
 import {
   StyledMenuWrapper,
@@ -23,8 +22,24 @@ const Menu: FunctionComponent<Props> = ({
   primary,
   secondary,
 }) => {
+  //TODO: Find type for createRef<any>
+  const container = React.createRef<any>();
+
   const [openedMenu, setOpenedMenu] = useState(false);
   const [selectedText, setSelectedText] = useState(items[0]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (container.current && !container.current.contains(event.target)) {
+        setOpenedMenu(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
 
   const handleOptionClick = function (text?: string): void {
     if (text) setSelectedText(text);
@@ -36,7 +51,7 @@ const Menu: FunctionComponent<Props> = ({
   }
 
   return (
-    <StyledMenuWrapper>
+    <StyledMenuWrapper ref={container}>
       <StyledMainButton
         primary={primary}
         secondary={secondary}
