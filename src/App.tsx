@@ -14,6 +14,7 @@ import {
   CardPage,
   DropdownPage,
   FormPage,
+  TablePage,
 } from "./Pages";
 
 interface OwnProps {}
@@ -34,6 +35,7 @@ class App extends Component<Props, State> {
         <Route path="/components/card" component={CardPage} />
         <Route path="/components/dropdown" component={DropdownPage} />
         <Route path="/components/form" component={FormPage} />
+        <Route path="/components/table" component={TablePage} />
         <Redirect to="/" />
       </Switch>
     );
