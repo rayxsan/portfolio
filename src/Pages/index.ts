@@ -7,6 +7,7 @@ import MenuPage from "./MenuPage";
 import CardPage from "./CardPage";
 import DropdownPage from "./DropdownPage";
 import FormPage from "./FormPage";
+import TablePage from "./TablePage";
 
 export {
   HomePage,
@@ -18,4 +19,5 @@ export {
   CardPage,
   DropdownPage,
   FormPage,
+  TablePage,
 };

@@ -1,5 +1,5 @@
 import styled from "styled-components";
 
-const StyledTable = styled.div``;
+const StyledTable = styled.table``;
 
 export default StyledTable;

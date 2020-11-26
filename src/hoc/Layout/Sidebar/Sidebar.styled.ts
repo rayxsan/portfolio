@@ -30,10 +30,10 @@ export const StyledSidebar = styled.div`
     display: flex;
     flex-direction: column;
     color: ${({ theme }) => theme.sidebarFontColor};
-    margin-top: 0.5rem;
+    margin-top: 0.2rem;
 
     a {
-      margin-bottom: 0.2rem;
+      margin-bottom: 0.5rem;
     }
   }
 
