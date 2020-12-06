@@ -64,7 +64,6 @@ const rows = [
   ],
 ];
 
-const header1 = [1, 2, 3];
 const row1 = [
   ["a", "b", "c"],
   ["a", "b", "c"],
@@ -75,6 +74,9 @@ const TablePage = () => (
   <StyledTablePage>
     <Card title="Basic Table">
       <Table header={headings} rows={rows} />
+    </Card>
+    <Card title="Basic Table without headers">
+      <Table rows={row1} />
     </Card>
   </StyledTablePage>
 );
