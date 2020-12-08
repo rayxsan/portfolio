@@ -65,9 +65,9 @@ const rows = [
 ];
 
 const row1 = [
-  ["a", "b", "c"],
-  ["a", "b", "c"],
-  ["a", "b", "c"],
+  ["a", "beta", "c", "e", 3, "g", ""],
+  ["a", "b", 124, "alpha", "f", "g", "h"],
+  ["a", "Lorem ipsum ", "c", 10, "f", "g", ""],
 ];
 
 const TablePage = () => (

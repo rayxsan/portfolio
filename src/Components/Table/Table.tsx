@@ -4,6 +4,7 @@ import StyledTable from "./Table.styled";
 interface TableProps {
   header?: (string | number)[];
   rows?: (string | number)[][];
+  numberOfRows?: number;
 }
 
 class Table extends Component<TableProps> {
@@ -12,14 +13,14 @@ class Table extends Component<TableProps> {
     if (header) {
       const headings = header.map((head) => <th>{head}</th>);
 
-      return <tr>{headings}</tr>;
+      return headings;
     }
   }
 
   renderTableBody() {
     const rows = this.props.rows;
     if (rows) {
-      const tbody = rows!.map((row) => {
+      const tbody = rows.map((row) => {
         return (
           <tr>
             {row.map((row) => (
@@ -34,8 +35,11 @@ class Table extends Component<TableProps> {
   render() {
     return (
       <StyledTable>
-        <thead>{this.renderTableHeader()}</thead>
-        <tbody>{this.renderTableBody()}</tbody>
+        <table>
+          <thead>{this.renderTableHeader()}</thead>
+          <tbody>{this.renderTableBody()}</tbody>
+        </table>
+        <div>testing</div>
       </StyledTable>
     );
   }
