@@ -9,18 +9,19 @@ interface TableProps {
 }
 
 interface State {
-  subrow: (string | number)[][];
+  subrow: number;
 }
 class Table extends Component<TableProps, State> {
   constructor(props: TableProps) {
     super(props);
-    this.state = { subrow: this.props.rows };
+    this.state = { subrow: this.props.rows.length };
   }
 
   handleRowsIncrease() {
     if (this.props.shrink) {
-      this.setState({ subrow: this.props.rows.slice(5, 10) });
+      this.setState({ subrow: 5 });
     }
+    this.setState({ subrow: this.props.rows.length });
   }
 
   renderTableHeader() {
@@ -33,7 +34,7 @@ class Table extends Component<TableProps, State> {
   }
 
   renderTableBody() {
-    const rows = this.state.subrow;
+    const rows = this.props.rows.slice(0, this.state.subrow);
     if (rows) {
       const tbody = rows.map((row) => {
         return (
