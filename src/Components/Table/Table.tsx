@@ -9,19 +9,17 @@ interface TableProps {
 }
 
 interface State {
-  subrow: number;
+  min: number;
+  max: number;
 }
 class Table extends Component<TableProps, State> {
   constructor(props: TableProps) {
     super(props);
-    this.state = { subrow: this.props.rows.length };
+    this.state = { min: 0, max: this.props.rows.length };
   }
 
   handleRowsIncrease() {
-    if (this.props.shrink) {
-      this.setState({ subrow: 5 });
-    }
-    this.setState({ subrow: this.props.rows.length });
+    this.setState({ min: 0, max: 5 });
   }
 
   renderTableHeader() {
@@ -34,7 +32,7 @@ class Table extends Component<TableProps, State> {
   }
 
   renderTableBody() {
-    const rows = this.props.rows.slice(0, this.state.subrow);
+    const rows = this.props.rows.slice(this.state.min, this.state.max);
     if (rows) {
       const tbody = rows.map((row) => {
         return (
