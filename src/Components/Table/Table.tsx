@@ -1,13 +1,28 @@
 import React, { Component } from "react";
-import StyledTable from "./Table.styled";
+import { StyledTable } from "./Table.styled";
+import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 interface TableProps {
   header?: (string | number)[];
-  rows?: (string | number)[][];
-  numberOfRows?: number;
+  rows: (string | number)[][];
+  shrink?: boolean;
 }
 
-class Table extends Component<TableProps> {
+interface State {
+  subrow: (string | number)[][];
+}
+class Table extends Component<TableProps, State> {
+  constructor(props: TableProps) {
+    super(props);
+    this.state = { subrow: this.props.rows };
+  }
+
+  handleRowsIncrease() {
+    if (this.props.shrink) {
+      this.setState({ subrow: this.props.rows.slice(5, 10) });
+    }
+  }
+
   renderTableHeader() {
     const header = this.props.header;
     if (header) {
@@ -18,7 +33,7 @@ class Table extends Component<TableProps> {
   }
 
   renderTableBody() {
-    const rows = this.props.rows;
+    const rows = this.state.subrow;
     if (rows) {
       const tbody = rows.map((row) => {
         return (
@@ -34,12 +49,22 @@ class Table extends Component<TableProps> {
   }
   render() {
     return (
-      <StyledTable>
+      <StyledTable shrink={this.props.shrink}>
         <table>
           <thead>{this.renderTableHeader()}</thead>
           <tbody>{this.renderTableBody()}</tbody>
         </table>
-        <div>testing</div>
+        <div>
+          <label>Rows per page:</label>
+          <select>
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+          <FaChevronLeft onClick={this.handleRowsIncrease} />
+          <FaChevronRight onClick={this.handleRowsIncrease} />
+        </div>
       </StyledTable>
     );
   }

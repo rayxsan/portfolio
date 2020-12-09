@@ -1,6 +1,10 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
-const StyledTable = styled.div`
+interface styledProps {
+  shrink?: boolean;
+}
+
+export const StyledTable = styled.div<styledProps>`
   table {
     text-align: left;
     cursor: default;
@@ -28,9 +32,21 @@ const StyledTable = styled.div`
   }
 
   div {
-    display: none;
-    text-align: right;
+    display: ${(props: styledProps) => (props.shrink ? "flex" : "none")};
+    padding-top: 3px;
+    float: right;
+    font-size: 0.8rem;
+
+    label {
+      margin-right: 1rem;
+    }
+    svg {
+      padding-top: 3px;
+      margin-left: 1.5rem;
+      cursor: pointer;
+      :last-of-type {
+        margin-right: 1rem;
+      }
+    }
   }
 `;
-
-export default StyledTable;

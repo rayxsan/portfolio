@@ -65,9 +65,16 @@ const rows = [
 ];
 
 const row1 = [
-  ["a", "beta", "c", "e", 3, "g", ""],
-  ["a", "b", 124, "alpha", "f", "g", "h"],
-  ["a", "Lorem ipsum ", "c", 10, "f", "g", ""],
+  ["1", "beta", "c", "e", 3, "g", ""],
+  ["2", "b", 124, "alpha", "f", "g", "h"],
+  ["3", "Lorem ipsum ", "c", 10, "f", "g", ""],
+  ["4", "Lorem ipsum ", "c", 10, "f", "g", ""],
+  ["5", "Lorem ipsum ", "c", 10, "f", "g", ""],
+  ["6", "Lorem ipsum ", "c", 10, "f", "g", ""],
+  ["7", "Lorem ipsum ", "c", 10, "f", "g", ""],
+  ["8", "Lorem ipsum ", "c", 10, "f", "g", ""],
+  ["9", "Lorem ipsum ", "c", 10, "f", "g", ""],
+  ["10", "Lorem ipsum ", "c", 10, "f", "g", ""],
 ];
 
 const TablePage = () => (
@@ -76,7 +83,7 @@ const TablePage = () => (
       <Table header={headings} rows={rows} />
     </Card>
     <Card title="Basic Table without headers">
-      <Table rows={row1} />
+      <Table rows={row1} shrink />
     </Card>
   </StyledTablePage>
 );
