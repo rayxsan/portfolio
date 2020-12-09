@@ -11,6 +11,18 @@ export const StyledDropdown = styled.div`
     outline: none;
   }
 
+  i::before {
+    width: 0;
+    height: 0;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-top: 0.5rem solid;
+  }
+
+  select {
+    display: none;
+  }
+
   datalist {
     background-color: #fff;
   }
@@ -34,9 +46,9 @@ export const StyledDropdown = styled.div`
     }
   }
 
-  .jude {
-    background-color: pink;
-    display: table;
+  .divRef {
+    /* background-color: pink; */
+    /* display: table; */
   }
 
   // option {

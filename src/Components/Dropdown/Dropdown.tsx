@@ -1,55 +1,46 @@
 import React, { FunctionComponent, useState, useRef /*, useEffect, SyntheticEvent*/ } from "react";
-import DropdownCard from "./DropdownCard";
+// import DropdownCard from "./DropdownCard";
 import { StyledDropdown } from "./Dropdown.styled";
 
 interface Props {
   options: string[];
   defaultOption?: string;
-  // inputVal?: boolean;
   label?: string;
   placeholder?: string;
 }
 
 // TODO styling
 // Make the input clearable
-const Dropdown: FunctionComponent<Props> = ({ options, placeholder, label }) => {
-  const [open, setOpen] = useState(false);
+const Dropdown: FunctionComponent<Props> = ({ options, placeholder }) => {
+  const [selection, setSelection] = useState({ open: false, choosen: placeholder });
 
   // <div> reference type
   const divRef = useRef<HTMLInputElement>(null);
 
-  // const useOutsideAlert = (ref: HTMLInputElement): void => {
-  // console.log("ref", ref);
+  const dropdownOptions = options.map((option, idx) => {
+    return (
+      <option key={idx} onClick={() => setSelection({ open: false, choosen: option })}>
+        {option}
+      </option>
+    );
+  });
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event: SyntheticEvent) => {
-  //     if (ref.current && !ref.current.contains(event.target)) {
-  //       setOpen(false);
-  //     }
-  //   };
-
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     // Unbind the event listener on clean up
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [ref]);
-  // };
+  console.log(selection, "sel");
 
   return (
     <StyledDropdown>
-      <div ref={divRef} className="jude">
-        <input list="input-list" placeholder={placeholder} onFocus={() => setOpen(true)} />
-        {open && <DropdownCard data={options}></DropdownCard>}
-
-        {/* <label htmlFor="choice">{label}</label>
-      input's list has to be equal to list's id
-      {inputVal && <input list="input-list" placeholder={placeholder} />}
-      <datalist id="input-list">
-        {options.map((option) => {
-          return <option value={option}>{option}</option>;
-        })}
-      </datalist> */}
+      <div ref={divRef} className="divRef">
+        <select>
+          <option>{placeholder}</option>
+          {dropdownOptions}
+        </select>
+        <i></i>
+        <input
+          placeholder={placeholder}
+          onFocus={() => setSelection({ ...selection, open: true })}
+          value={selection.choosen}
+        ></input>
+        {selection.open && <div>{dropdownOptions}</div>}
       </div>
     </StyledDropdown>
   );
