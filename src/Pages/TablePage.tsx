@@ -83,7 +83,7 @@ const TablePage = () => (
       <Table header={headings} rows={rows} />
     </Card>
     <Card title="Basic Table without headers">
-      <Table rows={row1} shrink />
+      <Table header={headings} rows={row1} shrink />
     </Card>
   </StyledTablePage>
 );

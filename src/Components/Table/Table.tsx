@@ -3,7 +3,7 @@ import { StyledTable } from "./Table.styled";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 
 interface TableProps {
-  header?: (string | number)[];
+  header: (string | number)[];
   rows: (string | number)[][];
   shrink?: boolean;
 }
@@ -19,39 +19,33 @@ class Table extends Component<TableProps, State> {
   }
 
   handleRowsIncrease() {
-    this.setState({ min: 0, max: 5 });
+    if (this.props.shrink) this.setState({ min: 0, max: 5 });
   }
 
-  renderTableHeader() {
-    const header = this.props.header;
-    if (header) {
-      const headings = header.map((head) => <th>{head}</th>);
-
-      return headings;
-    }
-  }
-
-  renderTableBody() {
-    const rows = this.props.rows.slice(this.state.min, this.state.max);
-    if (rows) {
-      const tbody = rows.map((row) => {
-        return (
-          <tr>
-            {row.map((row) => (
-              <td>{row}</td>
-            ))}
-          </tr>
-        );
-      });
-      return tbody;
-    }
-  }
   render() {
+    const tableHeader = this.props.header!.map((head, index) => {
+      return <th key={index}>{head}</th>;
+    });
+
+    const rows = this.props.rows.slice(5, 10);
+
+    const tableBody = rows.map((row, index) => {
+      return (
+        <tr key={index}>
+          {row.map((row, index) => (
+            <td key={index}>{row}</td>
+          ))}
+        </tr>
+      );
+    });
+
     return (
       <StyledTable shrink={this.props.shrink}>
         <table>
-          <thead>{this.renderTableHeader()}</thead>
-          <tbody>{this.renderTableBody()}</tbody>
+          <thead>
+            <tr>{tableHeader}</tr>
+          </thead>
+          <tbody>{tableBody}</tbody>
         </table>
         <div>
           <label>Rows per page:</label>
