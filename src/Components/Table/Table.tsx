@@ -5,28 +5,35 @@ import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 interface TableProps<DataItem> {
   data: DataItem[];
   showPages?: boolean;
+  sort?: boolean;
 }
 
-const Table = <T extends object>({ data, showPages }: TableProps<T>) => {
+const Table = <T extends object>({ data, showPages, sort }: TableProps<T>) => {
   if (data.length === 0) {
     return null;
   }
 
+  const onHeaderClick = (item: string | number) => {
+    if (sort) return console.log(`"cliked":${item}`);
+  };
+
   const tableHeader = Object.keys(data[0]).map((key) => (
-    <th key={key}>{key}</th>
+    <th key={key} onClick={() => onHeaderClick(key)}>
+      {key}
+    </th>
   ));
 
   const tableBody = data.map((row, index) => {
     return (
       <tr key={index}>
-        {Object.values(row).map((row) => (
+        {Object.values(row).map((row: string | number) => (
           <td key={row}>{row}</td>
         ))}
       </tr>
     );
   });
   return (
-    <StyledTable shrink={showPages}>
+    <StyledTable shrink={showPages} sort={sort}>
       <table>
         <thead>
           <tr>{tableHeader}</tr>

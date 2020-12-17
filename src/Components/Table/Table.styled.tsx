@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 interface styledProps {
   shrink?: boolean;
+  sort?: boolean;
 }
 
 export const StyledTable = styled.div<styledProps>`
@@ -27,6 +28,7 @@ export const StyledTable = styled.div<styledProps>`
 
     th {
       background-color: ${({ theme }) => theme.primaryColor};
+      cursor: ${(props: styledProps) => (props.sort ? "pointer" : "default")};
       color: white;
       padding-top: 12px;
       padding-bottom: 12px;

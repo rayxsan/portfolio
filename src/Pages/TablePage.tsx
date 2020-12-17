@@ -9,7 +9,7 @@ const StyledTablePage = styled.div``;
 const TablePage = () => (
   <StyledTablePage>
     <Card title="Basic Table">
-      <Table data={data1} showPages />
+      <Table data={data1} showPages sort />
     </Card>
   </StyledTablePage>
 );
