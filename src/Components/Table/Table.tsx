@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from "react";
+import React from "react";
 import { StyledTable } from "./Table.styled";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 

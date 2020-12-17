@@ -5,16 +5,18 @@ interface styledProps {
 }
 
 export const StyledTable = styled.div<styledProps>`
+  display: table;
+  width: 100%;
   table {
     text-align: left;
     cursor: default;
     border-collapse: collapse;
+    word-break: break-word;
     width: 100%;
-
     td,
     th {
       border: 1px solid #ddd;
-      padding: 8px;
+      padding: 0.5rem;
     }
     tr:nth-child(even) {
       background-color: #f2f2f2;
