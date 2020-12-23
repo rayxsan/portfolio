@@ -26,3 +26,5 @@ yarn-error.log*
 /src/localConstants
 src/Pages/MenuPage.tsx
 src/Pages/MenuPage.tsx
+debug.log
+.vscode/settings.json

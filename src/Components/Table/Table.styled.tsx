@@ -3,6 +3,7 @@ import styled from "styled-components";
 interface styledProps {
   shrink?: boolean;
   sort?: boolean;
+  disabled?: boolean;
 }
 
 export const StyledTable = styled.div<styledProps>`
@@ -43,14 +44,6 @@ export const StyledTable = styled.div<styledProps>`
 
     label {
       margin-right: 1rem;
-    }
-    svg {
-      padding-top: 3px;
-      margin-left: 1.5rem;
-      cursor: pointer;
-      :last-of-type {
-        margin-right: 1rem;
-      }
     }
   }
 `;
