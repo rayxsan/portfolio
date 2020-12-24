@@ -2,22 +2,50 @@ import styled from "styled-components";
 
 export const StyledDropdown = styled.div`
   color: black;
+  > :first-child {
+    border: 0.001rem solid red;
+    position: relative;
+  }
+
+  div {
+    position: relative;
+    width: 7rem;
+    height: 2rem;
+    text-align: left;
+    /* border: 0.001rem solid red; */
+  }
+
+  :last-child {
+    position: absolute;
+    div:hover {
+      background-color: #eee;
+    }
+  }
+
+  /* div :last-child {
+    option {
+      position: absolute;
+      :hover {
+        background-color: #eee;
+      }
+    }
+  } */
 
   // remove picker indicator and focus outline from input
-  input::-webkit-calendar-picker-indicator {
+  /* input::-webkit-calendar-picker-indicator {
     display: none;
-  }
-  *:focus {
+  } */
+  /* *:focus {
     outline: none;
-  }
+  } */
 
-  i::before {
+  /* i::before {
     width: 0;
     height: 0;
     border-left: 0.5rem solid transparent;
     border-right: 0.5rem solid transparent;
     border-top: 0.5rem solid;
-  }
+  } */
 
   select {
     display: none;

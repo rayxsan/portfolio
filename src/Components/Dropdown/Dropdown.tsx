@@ -17,31 +17,41 @@ const Dropdown: FunctionComponent<Props> = ({ options, placeholder }) => {
   // <div> reference type
   const divRef = useRef<HTMLInputElement>(null);
 
-  const dropdownOptions = options.map((option, idx) => {
+  // const dropdownOptions = options.map((option, idx) => {
+  //   return (
+  //     <option
+  //       key={idx}
+  //       value={option}
+  //       onClick={() => setSelection({ open: false, choosen: option })}
+  //     >
+  //       {option}
+  //     </option>
+  //   );
+  // });
+
+  const dropdownDivs = options.map((option, idx) => {
     return (
-      <option key={idx} onClick={() => setSelection({ open: false, choosen: option })}>
+      <div key={idx} onClick={() => setSelection({ open: false, choosen: option })}>
         {option}
-      </option>
+      </div>
     );
   });
 
-  console.log(selection, "sel");
+  const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelection({ ...selection, choosen: event.target.value });
+  };
 
   return (
     <StyledDropdown>
-      <div ref={divRef} className="divRef">
-        <select>
-          <option>{placeholder}</option>
-          {dropdownOptions}
-        </select>
-        <i></i>
-        <input
-          placeholder={placeholder}
-          onFocus={() => setSelection({ ...selection, open: true })}
-          value={selection.choosen}
-        ></input>
-        {selection.open && <div>{dropdownOptions}</div>}
-      </div>
+      {/* <div ref={divRef} className="divRef"> */}
+      {/* <select onChange={onChange} value={selection.choosen}>
+        <option>{placeholder}</option>
+        {dropdownOptions}
+      </select> */}
+
+      <div onClick={() => setSelection({ ...selection, open: true })}>{selection.choosen}</div>
+      {selection.open && <div>{dropdownDivs}</div>}
+      {/* </div> */}
     </StyledDropdown>
   );
 };
