@@ -4,4 +4,7 @@ export const StyledDropdown = styled.div`
   select {
     visibility: visible;
   }
+  p {
+    color: red;
+  }
 `;

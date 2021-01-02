@@ -11,38 +11,27 @@ interface Props {
   defaultOption?: string;
   label?: string;
   placeholder?: string;
-  onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  changed?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   value?: string | number | readonly string[];
 }
 
 // TODO styling
 // Make the input clearable
-const Dropdown: FunctionComponent<Props> = ({
-  options,
-  placeholder,
-  onChange,
-  value,
-}) => {
+const Dropdown: FunctionComponent<Props> = ({ options, placeholder }) => {
   const [selection, setSelection] = useState({
     open: false,
-    choosen: placeholder,
+    choosen: options[0],
   });
 
-  // <div> reference type
-  // const divRef = useRef<HTMLInputElement>(null);
-  // const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setSelection({ ...selection, choosen: event.target.value });
-  // };
+  const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelection({ ...selection, choosen: event.target.value });
+  };
 
   const defaultDropdown = (
-    <select onChange={onChange} value={value}>
+    <select onChange={onChange} value={selection.choosen}>
       {options.map((option, idx) => {
         return (
-          <option
-            key={idx}
-            value={option}
-            onClick={() => setSelection({ open: false, choosen: option })}
-          >
+          <option key={idx} value={option}>
             {option}
           </option>
         );
@@ -50,21 +39,23 @@ const Dropdown: FunctionComponent<Props> = ({
     </select>
   );
 
-  // const dropdownDivs = options.map((option, idx) => {
-  //   return (
-  //     <div key={idx} onClick={() => setSelection({ open: false, choosen: option })}>
-  //       {option}
-  //     </div>
-  //   );
-  // });
+  const dropdownDivs = options.map((option, idx) => {
+    return (
+      <div
+        key={idx}
+        onClick={() => setSelection({ open: false, choosen: option })}
+      >
+        {option}
+      </div>
+    );
+  });
 
   return (
     <StyledDropdown>
-      {/* <div ref={divRef} className="divRef"> */}
       {defaultDropdown}
-      {/* <div onClick={() => setSelection({ ...selection, open: true })}>{selection.choosen}</div>
-      {selection.open && <div>{dropdownDivs}</div>} */}
-      {/* </div> */}
+      <p>{selection.choosen}</p>
+      {dropdownDivs}
+      {console.log(selection.choosen)}
     </StyledDropdown>
   );
 };

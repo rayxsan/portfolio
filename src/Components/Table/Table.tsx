@@ -73,7 +73,7 @@ const Table = <T extends object>({
       </table>
       <div>
         <label>Rows per page:</label>
-        <Dropdown options={["5", "10", "15", "20"]} onChange={onChange} />
+        <Dropdown options={["5", "10", "15", "20"]} changed={onChange} />
         <div>
           <p>
             {offset + 1}-{endIndex} of {data.length}
