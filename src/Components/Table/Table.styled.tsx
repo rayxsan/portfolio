@@ -10,6 +10,9 @@ export const StyledTable = styled.div<styledProps>`
   display: table;
   width: 100%;
   font-size: 65%;
+  padding: 0;
+  margin: 0;
+
   table {
     text-align: left;
 
@@ -32,7 +35,16 @@ export const StyledTable = styled.div<styledProps>`
     float: right;
 
     label {
-      margin-right: 1rem;
+      margin-right: 0.5rem;
+    }
+    p {
+      padding: 0;
+      margin: 0 0 0 0.5rem;
+    }
+    button {
+      padding: 0;
+      margin: 0;
+      height: 0;
     }
   }
 `;

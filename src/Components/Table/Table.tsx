@@ -1,7 +1,8 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { StyledTable } from "./Table.styled";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import Button from "../Button/Button";
+import Dropdown from "../Dropdown/Dropdown";
 
 //TODO : use custom dropdown Menu
 
@@ -61,6 +62,7 @@ const Table = <T extends object>({
       </tr>
     );
   });
+
   return (
     <StyledTable shrink={showPages}>
       <table>
@@ -71,12 +73,7 @@ const Table = <T extends object>({
       </table>
       <div>
         <label>Rows per page:</label>
-        <select onChange={onChange} value={rowLength}>
-          <option value={5}>5</option>
-          <option value={10}>10</option>
-          <option value={15}>15</option>
-          <option value={20}>20</option>
-        </select>
+        <Dropdown options={["5", "10", "15", "20"]} onChange={onChange} />
         <div>
           <p>
             {offset + 1}-{endIndex} of {data.length}
