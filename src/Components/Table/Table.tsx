@@ -62,7 +62,12 @@ const Table = <T extends object>({
       </tr>
     );
   });
-
+  const options = [
+    { key: 5, value: 5, text: 5 },
+    { key: 10, value: 10, text: 10 },
+    { key: 15, value: 15, text: 15 },
+    { key: 20, value: 20, text: 20 },
+  ];
   return (
     <StyledTable shrink={showPages}>
       <table>
@@ -73,7 +78,13 @@ const Table = <T extends object>({
       </table>
       <div>
         <label>Rows per page:</label>
-        <Dropdown options={["5", "10", "15", "20"]} changed={onChange} />
+        {/* <select onChange={onChange}>
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select> */}
+        <Dropdown options={options} />
         <div>
           <p>
             {offset + 1}-{endIndex} of {data.length}

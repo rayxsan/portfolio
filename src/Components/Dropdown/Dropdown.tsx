@@ -1,61 +1,103 @@
 import React, {
   FunctionComponent,
   useState,
+  useEffect,
+  useRef,
   // useRef /*, useEffect, SyntheticEvent*/,
 } from "react";
 // import DropdownCard from "./DropdownCard";
 import { StyledDropdown } from "./Dropdown.styled";
+import { FaChevronDown, FaTimes } from "react-icons/fa";
+
+export interface DropdownOption {
+  key?: string | number;
+  value: string | number;
+  text: string | number;
+}
 
 interface Props {
-  options: Array<string>;
-  defaultOption?: string;
+  options: DropdownOption[];
+  defaultOption?: string | number;
   label?: string;
-  placeholder?: string;
-  changed?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-  value?: string | number | readonly string[];
+  placeholder?: string | number;
+  // changed?: (event: React.ChangeEvent<HTMLDivElement>) => void;
+  changed?: (value: string | number) => void;
+  // value?: string | number | readonly string[];
 }
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+// const selectedSet = new Set();
+// selectedSet.add("dog");
+// selectedSet.add("cat");
+// selectedSet.add("dog");
+// selectedSet.has("cat");
 
 // TODO styling
 // Make the input clearable
-const Dropdown: FunctionComponent<Props> = ({ options, placeholder }) => {
+
+const DropdownClosed: FunctionComponent<Props> = (props) => {
+  return null;
+};
+
+const DropdownOpen: FunctionComponent<Props> = (props) => {
+  return null;
+};
+
+export const Dropdown: FunctionComponent<Props> = (props) => {
+  const { options, changed } = props;
   const [selection, setSelection] = useState({
-    open: false,
-    choosen: options[0],
+    isOpen: false,
+    selected: props.placeholder ? props.placeholder : options[0].value,
   });
 
-  const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelection({ ...selection, choosen: event.target.value });
+  const container = React.createRef<any>();
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (container.current && !container.current.contains(event.target)) {
+        setSelection({ ...selection, isOpen: false });
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+
+  const openlistHandler = () => {
+    setSelection({ ...selection, isOpen: !selection.isOpen });
   };
 
-  const defaultDropdown = (
-    <select onChange={onChange} value={selection.choosen}>
-      {options.map((option, idx) => {
-        return (
-          <option key={idx} value={option}>
-            {option}
-          </option>
-        );
-      })}
-    </select>
+  const placeHolder =
+    props.placeholder && !selection.selected ? (
+      <div>{props.placeholder}</div>
+    ) : (
+      <div>{selection.selected}</div>
+    );
+
+  const expandOptions = selection.isOpen ? (
+    <FaTimes onClick={openlistHandler} />
+  ) : (
+    <FaChevronDown onClick={openlistHandler} />
   );
 
-  const dropdownDivs = options.map((option, idx) => {
+  const dropDownValues = options.map((options) => {
     return (
-      <div
-        key={idx}
-        onClick={() => setSelection({ open: false, choosen: option })}
+      <li
+        key={options.key}
+        onClick={() => setSelection({ isOpen: false, selected: options.value })}
       >
-        {option}
-      </div>
+        {options.text}
+      </li>
     );
   });
 
   return (
-    <StyledDropdown>
-      {defaultDropdown}
-      <p>{selection.choosen}</p>
-      {dropdownDivs}
-      {console.log(selection.choosen)}
+    <StyledDropdown open={selection.isOpen} ref={container}>
+      {placeHolder}
+      {expandOptions}
+      <ul>{dropDownValues}</ul>
     </StyledDropdown>
   );
 };
