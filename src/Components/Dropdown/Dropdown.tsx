@@ -47,7 +47,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   const { options, changed } = props;
   const [selection, setSelection] = useState({
     isOpen: false,
-    selected: props.placeholder ? props.placeholder : options[0].value,
+    selected: -1,
   });
 
   const container = React.createRef<any>();
@@ -70,10 +70,10 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   };
 
   const placeHolder =
-    props.placeholder && !selection.selected ? (
+    props.placeholder && selection.selected === -1 ? (
       <div>{props.placeholder}</div>
     ) : (
-      <div>{selection.selected}</div>
+      <div>{options[selection.selected].text}</div>
     );
 
   const expandOptions = selection.isOpen ? (
@@ -82,13 +82,17 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     <FaChevronDown onClick={openlistHandler} />
   );
 
-  const dropDownValues = options.map((options) => {
+  const dropDownValues = options.map((option, idx) => {
     return (
       <li
-        key={options.key}
-        onClick={() => setSelection({ isOpen: false, selected: options.value })}
+        key={option.key}
+        onClick={() => {
+          const { text, value } = props.options[idx];
+          setSelection({ isOpen: false, selected: idx });
+          if (changed !== undefined) changed(value);
+        }}
       >
-        {options.text}
+        {option.text}
       </li>
     );
   });

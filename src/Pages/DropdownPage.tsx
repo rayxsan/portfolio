@@ -15,7 +15,11 @@ const DropdownPage = () => {
   return (
     <div>
       <Card title="search">
-        <Dropdown options={pets} placeholder="My Pets" />
+        <Dropdown
+          options={pets}
+          placeholder="My Pets"
+          changed={(value) => console.log(value)}
+        />
       </Card>
     </div>
   );
