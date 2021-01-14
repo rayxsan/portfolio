@@ -20,8 +20,8 @@ interface Props {
   defaultOption?: string | number;
   label?: string;
   placeholder?: string | number;
-  // changed?: (event: React.ChangeEvent<HTMLDivElement>) => void;
-  changed?: (value: string | number) => void;
+  //onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange?: (value: string | number) => void;
   // value?: string | number | readonly string[];
 }
 
@@ -35,19 +35,19 @@ interface Props {
 // TODO styling
 // Make the input clearable
 
-const DropdownClosed: FunctionComponent<Props> = (props) => {
-  return null;
-};
+// const DropdownClosed: FunctionComponent<Props> = (props) => {
+//   return null;
+// };
 
-const DropdownOpen: FunctionComponent<Props> = (props) => {
-  return null;
-};
+// const DropdownOpen: FunctionComponent<Props> = (props) => {
+//   return null;
+// };
 
 export const Dropdown: FunctionComponent<Props> = (props) => {
-  const { options, changed } = props;
+  const { options, onChange } = props;
   const [selection, setSelection] = useState({
     isOpen: false,
-    selected: -1,
+    selected: props.placeholder ? -1 : 0,
   });
 
   const container = React.createRef<any>();
@@ -82,14 +82,35 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     <FaChevronDown onClick={openlistHandler} />
   );
 
+  // const myCustomEvent = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   event.preventDefault();
+  //   const value = event.target.value;
+  //   if (onChange !== undefined) onChange(value);
+  // };
+
+  let value = 0;
+  const maxTextWidth = (text: string) => {
+    // if (text.length > value) {
+    //   value = text.length;
+    // }
+    // return value;
+
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    let width = Math.ceil(context!.measureText(text).width / 16);
+    if (width > value) value = width;
+    return value;
+  };
+
   const dropDownValues = options.map((option, idx) => {
+    const { text, value } = props.options[idx];
+    maxTextWidth(text.toString());
     return (
       <li
         key={option.key}
         onClick={() => {
-          const { text, value } = props.options[idx];
           setSelection({ isOpen: false, selected: idx });
-          if (changed !== undefined) changed(value);
+          if (onChange !== undefined) onChange(value);
         }}
       >
         {option.text}
@@ -98,7 +119,8 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   });
 
   return (
-    <StyledDropdown open={selection.isOpen} ref={container}>
+    <StyledDropdown open={selection.isOpen} textWidth={value} ref={container}>
+      {console.log(value)}
       {placeHolder}
       {expandOptions}
       <ul>{dropDownValues}</ul>

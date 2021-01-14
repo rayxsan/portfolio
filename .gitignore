@@ -29,3 +29,4 @@ src/Pages/MenuPage.tsx
 debug.log
 .vscode/settings.json
 .vscode/settings.json
+.vscode/launch.json

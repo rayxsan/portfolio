@@ -84,7 +84,14 @@ const Table = <T extends object>({
           <option value="15">15</option>
           <option value="20">20</option>
         </select> */}
-        <Dropdown options={options} />
+        <Dropdown
+          options={options}
+          onChange={() => onChange}
+          // onChange={(value) => {
+          //   setoffset(0);
+          //   setrowLength(parseInt(value.toString()));
+          // }}
+        />
         <div>
           <p>
             {offset + 1}-{endIndex} of {data.length}

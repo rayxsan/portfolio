@@ -18,7 +18,7 @@ const DropdownPage = () => {
         <Dropdown
           options={pets}
           placeholder="My Pets"
-          changed={(value) => console.log(value)}
+          onChange={(value) => console.log(value)}
         />
       </Card>
     </div>

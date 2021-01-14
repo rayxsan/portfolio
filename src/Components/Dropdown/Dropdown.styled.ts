@@ -2,25 +2,28 @@ import styled from "styled-components";
 
 interface StyledProps {
   open: boolean;
+  textWidth: number;
 }
 
 export const StyledDropdown = styled.div<StyledProps>`
   position: relative;
   text-align: left;
-  display: inline-block;
+  //display: inline-block;
   border: 1px solid #ccc;
   border-radius: 0.25rem;
-  width: max-content;
-
+  //height: 2em;
+  min-width: ${(props: StyledProps) => props.textWidth + "em"};
+  width: ${(props: StyledProps) => props.textWidth + 2 + "em"};
+  padding: 1;
   div {
     display: inline-block;
     opacity: 0.7;
   }
 
   svg {
-    margin-left: 1em;
+    float: right;
     text-align: center;
-    font-size: 70%;
+    font-size: 100%;
   }
   ul {
     display: ${(props: StyledProps) => (props.open ? "block" : "none")};
