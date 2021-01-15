@@ -90,13 +90,12 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   let value = 0;
   const maxTextWidth = (text: string) => {
-    // if (text.length > value) {
-    //   value = text.length;
-    // }
-    // return value;
+    //const font = "16px times new roman";
+    // context.font = font;
 
     const canvas = document.createElement("canvas");
     const context = canvas.getContext("2d");
+    //if (context) context.font = font;
     let width = Math.ceil(context!.measureText(text).width / 16);
     if (width > value) value = width;
     return value;
