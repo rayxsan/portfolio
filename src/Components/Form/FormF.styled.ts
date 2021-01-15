@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 interface StyledProps {
   error?: boolean;
@@ -8,24 +8,18 @@ const StyledFormF = styled.section.attrs<StyledProps>(props => ({
   error: props.error,
 }))`
   section {
-    column-count: 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-auto-flow: column;
 
     input {
       margin: 1.5rem 0 0 0;
       border: 0;
-
-      border-bottom: 0.05rem solid #aaa;
+      border-bottom: 0.05rem solid ${(props: StyledProps) => (props.error ? "red" : "#aaa")};
       width: 100%;
       font-size: 0.95rem;
     }
-
-    ${(props: StyledProps) =>
-      props.error &&
-      css`
-        section + input {
-          border-bottom: 0.05rem solid red;
-        }
-      `}
 
     div[aria-labelledby="my-radio-group"] {
       display: flex;
@@ -49,8 +43,8 @@ const StyledFormF = styled.section.attrs<StyledProps>(props => ({
     }
   }
 
-  section > div {
-    padding: 0 1rem;
+  div {
+    padding: 0 1rem 0.2rem;
   }
 
   button {
@@ -69,10 +63,8 @@ const StyledFormF = styled.section.attrs<StyledProps>(props => ({
   }
 
   @media screen and (max-width: 67rem) {
-    flex-direction: column;
-    align-items: stretch;
     section {
-      column-count: 1;
+      display: block;
     }
   }
 `;

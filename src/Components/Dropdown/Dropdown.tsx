@@ -1,56 +1,128 @@
-import React, { FunctionComponent, useState, useRef /*, useEffect, SyntheticEvent*/ } from "react";
-import DropdownCard from "./DropdownCard";
+import React, {
+  FunctionComponent,
+  useState,
+  useEffect,
+  useRef,
+  // useRef /*, useEffect, SyntheticEvent*/,
+} from "react";
+// import DropdownCard from "./DropdownCard";
 import { StyledDropdown } from "./Dropdown.styled";
+import { FaChevronDown, FaTimes } from "react-icons/fa";
+
+export interface DropdownOption {
+  key?: string | number;
+  value: string | number;
+  text: string | number;
+}
 
 interface Props {
-  options: string[];
-  defaultOption?: string;
-  // inputVal?: boolean;
+  options: DropdownOption[];
+  defaultOption?: string | number;
   label?: string;
-  placeholder?: string;
+  placeholder?: string | number;
+  //onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange?: (value: string | number) => void;
+  // value?: string | number | readonly string[];
 }
+
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
+// const selectedSet = new Set();
+// selectedSet.add("dog");
+// selectedSet.add("cat");
+// selectedSet.add("dog");
+// selectedSet.has("cat");
 
 // TODO styling
 // Make the input clearable
-const Dropdown: FunctionComponent<Props> = ({ options, placeholder, label }) => {
-  const [open, setOpen] = useState(false);
 
-  // <div> reference type
-  const divRef = useRef<HTMLInputElement>(null);
+// const DropdownClosed: FunctionComponent<Props> = (props) => {
+//   return null;
+// };
 
-  // const useOutsideAlert = (ref: HTMLInputElement): void => {
-  // console.log("ref", ref);
+// const DropdownOpen: FunctionComponent<Props> = (props) => {
+//   return null;
+// };
 
-  // useEffect(() => {
-  //   const handleClickOutside = (event: SyntheticEvent) => {
-  //     if (ref.current && !ref.current.contains(event.target)) {
-  //       setOpen(false);
-  //     }
-  //   };
+export const Dropdown: FunctionComponent<Props> = (props) => {
+  const { options, onChange } = props;
+  const [selection, setSelection] = useState({
+    isOpen: false,
+    selected: props.placeholder ? -1 : 0,
+  });
 
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     // Unbind the event listener on clean up
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, [ref]);
+  const container = React.createRef<any>();
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (container.current && !container.current.contains(event.target)) {
+        setSelection({ ...selection, isOpen: false });
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
+
+  const openlistHandler = () => {
+    setSelection({ ...selection, isOpen: !selection.isOpen });
+  };
+
+  const placeHolder =
+    props.placeholder && selection.selected === -1 ? (
+      <div>{props.placeholder}</div>
+    ) : (
+      <div>{options[selection.selected].text}</div>
+    );
+
+  const expandOptions = selection.isOpen ? (
+    <FaTimes onClick={openlistHandler} />
+  ) : (
+    <FaChevronDown onClick={openlistHandler} />
+  );
+
+  // const myCustomEvent = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   event.preventDefault();
+  //   const value = event.target.value;
+  //   if (onChange !== undefined) onChange(value);
   // };
 
-  return (
-    <StyledDropdown>
-      <div ref={divRef} className="jude">
-        <input list="input-list" placeholder={placeholder} onFocus={() => setOpen(true)} />
-        {open && <DropdownCard data={options}></DropdownCard>}
+  let value = 0;
+  const maxTextWidth = (text: string) => {
+    //const font = "16px times new roman";
+    // context.font = font;
 
-        {/* <label htmlFor="choice">{label}</label>
-      input's list has to be equal to list's id
-      {inputVal && <input list="input-list" placeholder={placeholder} />}
-      <datalist id="input-list">
-        {options.map((option) => {
-          return <option value={option}>{option}</option>;
-        })}
-      </datalist> */}
-      </div>
+    const canvas = document.createElement("canvas");
+    const context = canvas.getContext("2d");
+    //if (context) context.font = font;
+    let width = Math.ceil(context!.measureText(text).width / 16);
+    if (width > value) value = width;
+    return value;
+  };
+
+  const dropDownValues = options.map((option, idx) => {
+    const { text, value } = props.options[idx];
+    maxTextWidth(text.toString());
+    return (
+      <li
+        key={option.key}
+        onClick={() => {
+          setSelection({ isOpen: false, selected: idx });
+          if (onChange !== undefined) onChange(value);
+        }}
+      >
+        {option.text}
+      </li>
+    );
+  });
+
+  return (
+    <StyledDropdown open={selection.isOpen} textWidth={value} ref={container}>
+      {console.log(value)}
+      {placeHolder}
+      {expandOptions}
+      <ul>{dropDownValues}</ul>
     </StyledDropdown>
   );
 };

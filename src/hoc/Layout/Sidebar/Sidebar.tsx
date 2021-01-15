@@ -40,6 +40,7 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               <NavLink to={"/components/menu"}>Menu</NavLink>
               <NavLink to={"/components/progress"}>Progress</NavLink>
               <NavLink to={"/components/radio"}>Radio</NavLink>
+              <NavLink to={"/components/table"}>Table</NavLink>
             </ul>
           ) : null}
         </nav>

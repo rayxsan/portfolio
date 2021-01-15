@@ -50,7 +50,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   border: none;
 
   /* button size: */
-  margin: 0.8rem;
+
   height: ${(props: Props) => sizes[props.size!].height};
   width: ${(props: Props) => sizes[props.size!].width};
   font-size: ${(props: Props) => sizes[props.size!].fontSize};
@@ -129,5 +129,11 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
     css`
       width: ${(props: Props) => sizes[props.size!].height};
       border-radius: 50%;
+
+      svg {
+        padding-top: 0.3em;
+        padding-left: 0.1em;
+        padding-right: 0.4em;
+      }
     `}
 `;

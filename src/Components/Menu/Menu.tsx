@@ -1,8 +1,11 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import Backdrop from "../UI/Backdrop/Backdrop";
 
-import { StyledMenuWrapper, StyledMainButton, StyledMenuList } from "./Menu.styled";
+import {
+  StyledMenuWrapper,
+  StyledMainButton,
+  StyledMenuList,
+} from "./Menu.styled";
 
 export interface Props {
   header?: string | JSX.Element;
@@ -10,10 +13,6 @@ export interface Props {
   primary?: boolean;
   secondary?: boolean;
   type?: "simple" | "selected" | "dotted";
-  // show: boolean;
-  // clicked: (
-  //   event: React.MouseEvent<SVGElement | HTMLDivElement, MouseEvent>
-  // ) => void;
 }
 
 const Menu: FunctionComponent<Props> = ({
@@ -22,11 +21,25 @@ const Menu: FunctionComponent<Props> = ({
   type,
   primary,
   secondary,
-  // show,
-  // clicked,
 }) => {
+  //TODO: Find type for createRef<any>
+  const container = React.createRef<any>();
+
   const [openedMenu, setOpenedMenu] = useState(false);
   const [selectedText, setSelectedText] = useState(items[0]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (container.current && !container.current.contains(event.target)) {
+        setOpenedMenu(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  });
 
   const handleOptionClick = function (text?: string): void {
     if (text) setSelectedText(text);
@@ -38,28 +51,30 @@ const Menu: FunctionComponent<Props> = ({
   }
 
   return (
-    <>
-      <Backdrop show={openedMenu} clicked={() => setOpenedMenu(openedMenu)} />
-      <StyledMenuWrapper>
-        <StyledMainButton
-          primary={primary}
-          secondary={secondary}
-          styledType={type}
-          selectedText={selectedText}
-          show={!openedMenu}
-          onClick={() => setOpenedMenu(!openedMenu)}
-        >
-          {header}
-        </StyledMainButton>
-        <StyledMenuList primary={primary} secondary={secondary} styledType={type} show={openedMenu}>
-          {items.map((value, index) => (
-            <li key={index}>
-              <button onClick={() => handleOptionClick(value)}>{value}</button>
-            </li>
-          ))}
-        </StyledMenuList>
-      </StyledMenuWrapper>
-    </>
+    <StyledMenuWrapper ref={container}>
+      <StyledMainButton
+        primary={primary}
+        secondary={secondary}
+        styledType={type}
+        selectedText={selectedText}
+        show={!openedMenu}
+        onClick={() => setOpenedMenu(!openedMenu)}
+      >
+        {header}
+      </StyledMainButton>
+      <StyledMenuList
+        primary={primary}
+        secondary={secondary}
+        styledType={type}
+        show={openedMenu}
+      >
+        {items.map((value, index) => (
+          <li key={index}>
+            <button onClick={() => handleOptionClick(value)}>{value}</button>
+          </li>
+        ))}
+      </StyledMenuList>
+    </StyledMenuWrapper>
   );
 };
 

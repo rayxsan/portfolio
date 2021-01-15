@@ -2,6 +2,8 @@ import React, { FunctionComponent } from "react";
 import { StyledButton } from "./Button.styled";
 import { ButtonSizes, ButtonTypes } from "./Button.common";
 
+//TODO: center svg in circular buttons
+
 interface Props {
   disabled?: boolean;
   primary?: boolean;

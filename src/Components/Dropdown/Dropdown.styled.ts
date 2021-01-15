@@ -1,46 +1,55 @@
 import styled from "styled-components";
 
-export const StyledDropdown = styled.div`
-  color: black;
+interface StyledProps {
+  open: boolean;
+  textWidth: number;
+}
 
-  // remove picker indicator and focus outline from input
-  input::-webkit-calendar-picker-indicator {
-    display: none;
-  }
-  *:focus {
-    outline: none;
+export const StyledDropdown = styled.div<StyledProps>`
+  position: relative;
+  text-align: left;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  height: 2em;
+  width: ${(props: StyledProps) => props.textWidth + 3.5 + "em"};
+  :hover {
+    border-color: black;
   }
 
-  datalist {
-    background-color: #fff;
+  div {
+    padding: 0.5em 0.25em 0.5em 0.5em;
+    display: inline-block;
+    //opacity: 0.7;
   }
 
-  input {
-    height: 2rem;
-    width: fit-content;
-    border: 0;
-    border-radius: 0.4rem;
-    background-color: #bfbfbf;
-    opacity: 0.7;
+  svg {
+    float: right;
     text-align: center;
-    :hover,
-    :focus {
+    font-size: 100%;
+    padding: 0.5em 0.5em 0.5em 0.25em;
+    opacity: 0.5;
+    :hover {
       opacity: 1;
     }
-    ::placeholder {
-      /* Chrome, Firefox, Opera, Safari 10.1+ */
-      color: #000;
-      opacity: 1; /* Firefox */
+  }
+  ul {
+    display: ${(props: StyledProps) => (props.open ? "block" : "none")};
+    position: absolute;
+    border: 1px solid #ccc;
+    border-radius: 0.25rem;
+    margin: 0;
+    padding: 0;
+    width: inherit;
+    z-index: 10;
+    background-color: #fff;
+    li {
+      padding: 0.5em;
+      text-align: left;
+      cursor: default;
+      :hover {
+        background-color: #eee;
+      }
     }
   }
-
-  .jude {
-    background-color: pink;
-    display: table;
-  }
-
-  // option {
-  //   font-size: 0.9rem;
-  //   padding: 2px 5px;
-  // }
 `;
