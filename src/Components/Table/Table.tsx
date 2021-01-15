@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { StyledTable } from "./Table.styled";
+import { StyledTable, StyledPagination } from "./Table.styled";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
 import Button from "../Button/Button";
 import Dropdown from "../Dropdown/Dropdown";
@@ -63,52 +63,50 @@ const Table = <T extends object>({
     );
   });
   const options = [
-    { key: 5, value: 5, text: 5 },
-    { key: 10, value: 10, text: 10 },
-    { key: 15, value: 15, text: 15 },
-    { key: 20, value: 20, text: 20 },
+    { key: 5, value: 5, text: "5" },
+    { key: 10, value: 10, text: "10" },
+    { key: 15, value: 15, text: "15" },
+    { key: 20, value: 20, text: "20" },
   ];
+
+  const pagination = (
+    <StyledPagination shrink={showPages}>
+      <p>Rows per page:</p>
+      <Dropdown
+        options={options}
+        onChange={(value) => {
+          setoffset(0);
+          setrowLength(parseInt(value.toString()));
+        }}
+      />
+      <div>
+        <p>
+          {offset + 1}-{endIndex} of {data.length}
+        </p>
+      </div>
+      <Button disabled={offset === 0} clicked={goPrevPage} text circular>
+        <FaChevronLeft />
+      </Button>
+      <Button
+        disabled={endIndex >= data.length}
+        clicked={goNextPage}
+        text
+        circular
+      >
+        <FaChevronRight />
+      </Button>
+    </StyledPagination>
+  );
+
   return (
-    <StyledTable shrink={showPages}>
+    <StyledTable>
       <table>
         <thead>
           <tr>{tableHeader}</tr>
         </thead>
         <tbody>{tableBody}</tbody>
       </table>
-      <div>
-        <label>Rows per page:</label>
-        {/* <select onChange={onChange}>
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-          <option value="20">20</option>
-        </select> */}
-        <Dropdown
-          options={options}
-          onChange={() => onChange}
-          // onChange={(value) => {
-          //   setoffset(0);
-          //   setrowLength(parseInt(value.toString()));
-          // }}
-        />
-        <div>
-          <p>
-            {offset + 1}-{endIndex} of {data.length}
-          </p>
-        </div>
-        <Button disabled={offset === 0} clicked={goPrevPage} text circular>
-          <FaChevronLeft />
-        </Button>
-        <Button
-          disabled={endIndex >= data.length}
-          clicked={goNextPage}
-          text
-          circular
-        >
-          <FaChevronRight />
-        </Button>
-      </div>
+      {pagination}
     </StyledTable>
   );
 };

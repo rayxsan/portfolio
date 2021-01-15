@@ -28,23 +28,17 @@ export const StyledTable = styled.div<styledProps>`
       border-bottom: 1px solid #ddd;
     }
   }
+`;
 
-  div {
-    display: ${(props: styledProps) => (props.shrink ? "flex" : "none")};
-    /* padding-top: 3px; */
-    float: right;
-
-    label {
-      margin-right: 0.5rem;
-    }
-    p {
-      padding: 0;
-      margin: 0 0 0 0.5rem;
-    }
-    button {
-      padding: 0;
-      margin: 0;
-      height: 0;
-    }
+export const StyledPagination = styled.div<styledProps>`
+  display: ${(props: styledProps) => (props.shrink ? "flex" : "none")};
+  float: right;
+  margin-top: 0.5rem;
+  label {
+    margin: 0.5rem;
+  }
+  p {
+    padding: 0;
+    margin: 0.5rem;
   }
 `;
