@@ -2,7 +2,7 @@ import React, {
   FunctionComponent,
   useState,
   useEffect,
-  useRef,
+  //useRef,
   // useRef /*, useEffect, SyntheticEvent*/,
 } from "react";
 // import DropdownCard from "./DropdownCard";
@@ -71,9 +71,9 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   const placeHolder =
     props.placeholder && selection.selected === -1 ? (
-      <div>{props.placeholder}</div>
+      <div onClick={openlistHandler}>{props.placeholder}</div>
     ) : (
-      <div>{options[selection.selected].text}</div>
+      <div onClick={openlistHandler}>{options[selection.selected].text}</div>
     );
 
   const expandOptions = selection.isOpen ? (
@@ -119,7 +119,6 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   return (
     <StyledDropdown open={selection.isOpen} textWidth={value} ref={container}>
-      {console.log(value)}
       {placeHolder}
       {expandOptions}
       <ul>{dropDownValues}</ul>
