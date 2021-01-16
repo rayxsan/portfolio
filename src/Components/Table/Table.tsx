@@ -27,10 +27,10 @@ const Table = <T extends object>({
     return null;
   }
 
-  const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setoffset(0);
-    setrowLength(parseInt(event.target.value));
-  };
+  // const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  //   setoffset(0);
+  //   setrowLength(parseInt(event.target.value));
+  // };
 
   // const onHeaderClick = (item: string | number) => {
   //   if (sort) return console.log(`"cliked":${item}`);
