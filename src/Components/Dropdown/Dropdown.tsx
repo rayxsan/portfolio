@@ -118,7 +118,12 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   });
 
   return (
-    <StyledDropdown open={selection.isOpen} textWidth={value} ref={container}>
+    <StyledDropdown
+      open={selection.isOpen}
+      ref={container}
+      textWidth={value}
+      numberOfElements={options.length}
+    >
       {placeHolder}
       {expandOptions}
       <ul>{dropDownValues}</ul>

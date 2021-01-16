@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface StyledProps {
   open: boolean;
   textWidth: number;
+  numberOfElements: number;
 }
 
 export const StyledDropdown = styled.div<StyledProps>`
@@ -50,6 +51,22 @@ export const StyledDropdown = styled.div<StyledProps>`
     width: inherit;
     z-index: 10;
     background-color: #fff;
+
+    ${(props: StyledProps) =>
+      props.numberOfElements > 4 &&
+      css`
+        max-height: 8rem;
+        overflow-y: scroll;
+        ::-webkit-scrollbar {
+          width: 2px;
+          background: #fff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+          background: ${({ theme }) => theme.defaultColor};
+        }
+      `};
+
     li {
       padding: 0.5em;
       text-align: left;
