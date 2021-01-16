@@ -8,6 +8,7 @@ import React, {
 // import DropdownCard from "./DropdownCard";
 import { StyledDropdown } from "./Dropdown.styled";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
+import { string } from "yup";
 
 export interface DropdownOption {
   key?: string | number;
@@ -19,7 +20,8 @@ interface Props {
   options: DropdownOption[];
   defaultOption?: string | number;
   label?: string;
-  placeholder?: string | number;
+  placeholder?: string;
+  search?: boolean;
   //onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onChange?: (value: string | number) => void;
   // value?: string | number | readonly string[];
@@ -44,11 +46,16 @@ interface Props {
 // };
 
 export const Dropdown: FunctionComponent<Props> = (props) => {
-  const { options, onChange } = props;
+  const { options, onChange, search } = props;
   const [selection, setSelection] = useState({
     isOpen: false,
     selected: props.placeholder ? -1 : 0,
   });
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
 
   const container = React.createRef<any>();
 
@@ -69,7 +76,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     setSelection({ ...selection, isOpen: !selection.isOpen });
   };
 
-  const placeHolder =
+  let placeHolder =
     props.placeholder && selection.selected === -1 ? (
       <div onClick={openlistHandler}>{props.placeholder}</div>
     ) : (
@@ -88,6 +95,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   //   if (onChange !== undefined) onChange(value);
   // };
 
+  //This calculate the width of a given text and returned as rem (1rem === 16px)
   let value = 0;
   const maxTextWidth = (text: string) => {
     //const font = "16px times new roman";
@@ -101,7 +109,27 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     return value;
   };
 
-  const dropDownValues = options.map((option, idx) => {
+  let selectionList = options;
+  if (search) {
+    placeHolder = (
+      <input
+        type="text"
+        placeholder={
+          props.placeholder && selection.selected === -1
+            ? props.placeholder
+            : options[selection.selected].text.toString()
+        }
+        value={searchTerm}
+        onChange={handleSearchChange}
+        onClick={openlistHandler}
+      />
+    );
+    selectionList = options.filter((option) => {
+      return option.text.toString().toLowerCase().includes(searchTerm);
+    });
+  }
+
+  let dropDownValues = selectionList.map((option, idx) => {
     const { text, value } = props.options[idx];
     maxTextWidth(text.toString());
     return (
