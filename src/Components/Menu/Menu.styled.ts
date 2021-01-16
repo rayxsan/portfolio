@@ -138,8 +138,6 @@ export const StyledMenuList = styled.ul<Props>`
       max-height: 8rem;
       top: -2rem;
       overflow-y: scroll;
-      overflow: hidden;
-      overflow-y: scroll;
     `}
 
   ::-webkit-scrollbar {
