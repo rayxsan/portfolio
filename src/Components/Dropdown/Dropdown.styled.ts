@@ -8,7 +8,7 @@ interface StyledProps {
 export const StyledDropdown = styled.div<StyledProps>`
   position: relative;
   cursor: pointer;
-  text-align: center;
+  text-align: left;
   display: inline-block;
   margin: 0;
   border: 1px solid;
@@ -17,6 +17,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     props.open ? "none" : "1px solid #ccc"};
   border-radius: ${(props: StyledProps) =>
     props.open ? "0.25em 0.25em 0 0" : "0.25em"};
+
   height: 2em;
   width: ${(props: StyledProps) => props.textWidth + 3.5 + "em"};
   :hover {
