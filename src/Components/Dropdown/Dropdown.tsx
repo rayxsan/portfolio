@@ -8,7 +8,7 @@ import React, {
 // import DropdownCard from "./DropdownCard";
 import { StyledDropdown } from "./Dropdown.styled";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
-import { string } from "yup";
+import { convertToRem } from "../../shared/utils";
 
 export interface DropdownOption {
   key?: string | number;
@@ -37,14 +37,6 @@ interface Props {
 // TODO styling
 // Make the input clearable
 
-// const DropdownClosed: FunctionComponent<Props> = (props) => {
-//   return null;
-// };
-
-// const DropdownOpen: FunctionComponent<Props> = (props) => {
-//   return null;
-// };
-
 export const Dropdown: FunctionComponent<Props> = (props) => {
   const { options, onChange, search } = props;
   const [selection, setSelection] = useState({
@@ -52,7 +44,12 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     selected: props.placeholder ? -1 : 0,
   });
 
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(
+    props.placeholder
+      ? props.placeholder
+      : options[selection.selected].text.toString()
+  );
+
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
@@ -62,7 +59,11 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (container.current && !container.current.contains(event.target)) {
-        setSelection({ ...selection, isOpen: false });
+        setSelection({
+          ...selection,
+          isOpen: false,
+        });
+        //if (selectionList) setSearchTerm(selectionList[0].text.toString());
       }
     }
 
@@ -74,6 +75,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   const openlistHandler = () => {
     setSelection({ ...selection, isOpen: !selection.isOpen });
+    if (search) setSearchTerm("");
   };
 
   let placeHolder =
@@ -95,19 +97,9 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   //   if (onChange !== undefined) onChange(value);
   // };
 
-  //This calculate the width of a given text and returned as rem (1rem === 16px)
-  let value = 0;
-  const maxTextWidth = (text: string) => {
-    //const font = "16px times new roman";
-    // context.font = font;
-
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
-    //if (context) context.font = font;
-    let width = Math.ceil(context!.measureText(text).width / 16);
-    if (width > value) value = width;
-    return value;
-  };
+  const value = options.reduce((acc, curr) => {
+    return Math.max(acc, convertToRem(curr.text.toString()));
+  }, 0);
 
   let selectionList = options;
   if (search) {
@@ -131,13 +123,13 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   let dropDownValues = selectionList.map((option, idx) => {
     const { text, value } = props.options[idx];
-    maxTextWidth(text.toString());
     return (
       <li
         key={option.key}
         onClick={() => {
           setSelection({ isOpen: false, selected: idx });
           if (onChange !== undefined) onChange(value);
+          if (search) setSearchTerm(option.text.toString());
         }}
       >
         {option.text}
@@ -150,7 +142,8 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
       open={selection.isOpen}
       ref={container}
       textWidth={value}
-      numberOfElements={options.length}
+      selectionList={selectionList.length}
+      search={search}
     >
       {placeHolder}
       {expandOptions}

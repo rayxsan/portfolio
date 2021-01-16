@@ -2,8 +2,9 @@ import styled, { css } from "styled-components";
 
 interface StyledProps {
   open: boolean;
+  search?: boolean;
   textWidth: number;
-  numberOfElements: number;
+  selectionList: number;
 }
 
 export const StyledDropdown = styled.div<StyledProps>`
@@ -53,7 +54,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     background-color: #fff;
 
     ${(props: StyledProps) =>
-      props.numberOfElements > 4 &&
+      props.selectionList > 4 &&
       css`
         max-height: 8rem;
         overflow-y: scroll;
@@ -79,4 +80,18 @@ export const StyledDropdown = styled.div<StyledProps>`
       }
     }
   }
+
+  ${(props: StyledProps) =>
+    props.search &&
+    css`
+      input {
+        border: none;
+        padding: 0;
+        margin-left: 0.5em;
+        height: 2rem;
+        width: 65%;
+        outline: 0;
+        box-shadow: none;
+      }
+    `}
 `;

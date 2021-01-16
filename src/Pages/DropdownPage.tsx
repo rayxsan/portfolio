@@ -33,7 +33,7 @@ const DropdownPage = () => {
   return (
     <StyledDropdownPAge>
       <Card title="Basic Dropdown">
-        <Dropdown options={pets} />
+        <Dropdown options={pets} placeholder="My Pets" />
         <Dropdown options={options} />
       </Card>
       <Card title="Search Dropdown">
