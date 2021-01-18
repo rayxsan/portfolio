@@ -78,6 +78,10 @@ export const StyledDropdown = styled.div<StyledProps>`
           border-radius: 0 0 0.25rem 0.25rem;
         }
       }
+      label {
+        font-size: 70%;
+        opacity: 0.6;
+      }
     }
   }
 

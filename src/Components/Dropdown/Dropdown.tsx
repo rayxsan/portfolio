@@ -58,12 +58,57 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (container.current && !container.current.contains(event.target)) {
-        setSelection({
-          ...selection,
-          isOpen: false,
-        });
-        //if (selectionList) setSearchTerm(selectionList[0].text.toString());
+      if (selection.isOpen) {
+        if (container.current && !container.current.contains(event.target)) {
+          if (search) {
+            if (selectionList.length === 0 && selection.selected === -1) {
+              console.log("No results found.");
+              setSelection({
+                ...selection,
+                isOpen: false,
+              });
+            }
+            if (selectionList.length === 0 && selection.selected !== -1) {
+              setSearchTerm(options[selection.selected].text.toString());
+              console.log("No results found.");
+              setSelection({
+                ...selection,
+                isOpen: false,
+              });
+            }
+            if (selectionList.length > 0) {
+              let value = 0;
+              if (selectionList.length === options.length) {
+                value = options.length;
+              }
+              for (let i = 0; i < options.length; i++) {
+                if (options[i].key === selectionList[0].key) {
+                  value = i;
+                }
+                setSearchTerm(options[value].text.toString());
+                setSelection({
+                  selected: value,
+                  isOpen: false,
+                });
+              }
+            }
+            if (
+              selectionList.length === options.length &&
+              selection.selected !== -1
+            ) {
+              setSearchTerm(options[selection.selected].text.toString());
+              setSelection({
+                ...selection,
+                isOpen: false,
+              });
+            }
+          } else {
+            setSelection({
+              ...selection,
+              isOpen: false,
+            });
+          }
+        }
       }
     }
 
@@ -147,7 +192,18 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     >
       {placeHolder}
       {expandOptions}
-      <ul>{dropDownValues}</ul>
+      <ul>
+        {selectionList.length === 0 ? (
+          <li>
+            <label>No results found.</label>
+          </li>
+        ) : (
+          dropDownValues
+        )}
+      </ul>
+      {console.log(
+        `"searchTerm: "${searchTerm} "selection: " ${selection.selected} "selectionList: "${selectionList}`
+      )}
     </StyledDropdown>
   );
 };
