@@ -24,7 +24,7 @@
     }
   },
   "javascript.format.enable": false,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 2,
   "editor.tabSize": 2,
   "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyParenthesis": true,
   "editor.formatOnSave": true
