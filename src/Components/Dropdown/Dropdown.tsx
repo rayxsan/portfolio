@@ -22,6 +22,7 @@ interface Props {
   label?: string;
   placeholder?: string;
   search?: boolean;
+  multiple?: boolean;
   //onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onChange?: (value: string | number) => void;
   // value?: string | number | readonly string[];
@@ -38,7 +39,7 @@ interface Props {
 // Make the input clearable
 
 export const Dropdown: FunctionComponent<Props> = (props) => {
-  const { options, onChange, search } = props;
+  const { options, onChange, search, multiple } = props;
   const [selection, setSelection] = useState({
     isOpen: false,
     selected: props.placeholder ? -1 : 0,
@@ -49,6 +50,8 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
       ? props.placeholder
       : options[selection.selected].text.toString()
   );
+
+  const [multipleOptions, setMultipleOptions] = useState<string[]>([]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -62,7 +65,6 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
         if (container.current && !container.current.contains(event.target)) {
           if (search) {
             if (selectionList.length === 0 && selection.selected === -1) {
-              console.log("No results found.");
               setSelection({
                 ...selection,
                 isOpen: false,
@@ -70,7 +72,6 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
             }
             if (selectionList.length === 0 && selection.selected !== -1) {
               setSearchTerm(options[selection.selected].text.toString());
-              console.log("No results found.");
               setSelection({
                 ...selection,
                 isOpen: false,
@@ -166,6 +167,22 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     });
   }
 
+  //Multiple Search Dropdown
+
+  let placeHolderM =
+    props.placeholder && selection.selected === -1 ? (
+      <div onClick={openlistHandler}>{props.placeholder}</div>
+    ) : (
+      multipleOptions.map((option, idx) => {
+        return (
+          <div key={idx} onClick={openlistHandler}>
+            {option}
+          </div>
+        );
+      })
+    );
+
+  //Dropdown list renderer
   let dropDownValues = selectionList.map((option, idx) => {
     const { text, value } = props.options[idx];
     return (
@@ -175,6 +192,8 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
           setSelection({ isOpen: false, selected: idx });
           if (onChange !== undefined) onChange(value);
           if (search) setSearchTerm(option.text.toString());
+          if (multiple)
+            setMultipleOptions([...multipleOptions, option.text.toString()]);
         }}
       >
         {option.text}
@@ -190,7 +209,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
       selectionList={selectionList.length}
       search={search}
     >
-      {placeHolder}
+      {multiple ? placeHolderM : placeHolder}
       {expandOptions}
       <ul>
         {selectionList.length === 0 ? (
@@ -204,6 +223,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
       {console.log(
         `"searchTerm: "${searchTerm} "selection: " ${selection.selected} "selectionList: "${selectionList}`
       )}
+      {console.log(multipleOptions)}
     </StyledDropdown>
   );
 };
