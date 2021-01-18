@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 interface StyledProps {
   open: boolean;
   search?: boolean;
+  multiple?: boolean;
   textWidth: number;
   selectionList: number;
 }
@@ -98,4 +99,5 @@ export const StyledDropdown = styled.div<StyledProps>`
         box-shadow: none;
       }
     `}
+  ${(props: StyledProps) => props.multiple && css``}
 `;

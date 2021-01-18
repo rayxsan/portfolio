@@ -109,6 +109,11 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
               isOpen: false,
             });
           }
+          if (multiple)
+            setMultipleOptions([
+              ...multipleOptions,
+              options[selection.selected].text.toString(),
+            ]);
         }
       }
     }
@@ -208,6 +213,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
       textWidth={value}
       selectionList={selectionList.length}
       search={search}
+      multiple={multiple}
     >
       {multiple ? placeHolderM : placeHolder}
       {expandOptions}
