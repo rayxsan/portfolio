@@ -32,8 +32,11 @@ class TablePage extends Component<Props, State<any>> {
 
   componentDidMount() {
     axios
-      .get("https://jsonplaceholder.typicode.com/albums")
-      .then((response) => this.setState({ data: response.data }));
+      .get("https://portfolio-083-default-rtdb.firebaseio.com/userData.json")
+      .then((response) => {
+        console.log(response);
+        this.setState({ data: response.data });
+      });
   }
 
   render() {
