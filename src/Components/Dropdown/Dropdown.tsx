@@ -189,7 +189,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   //Dropdown list renderer
   let dropDownValues = selectionList.map((option, idx) => {
-    const { text, value } = props.options[idx];
+    const value = props.options[idx].value;
     return (
       <li
         key={option.key}
@@ -226,10 +226,10 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
           dropDownValues
         )}
       </ul>
-      {console.log(
+      {/* {console.log(
         `"searchTerm: "${searchTerm} "selection: " ${selection.selected} "selectionList: "${selectionList}`
       )}
-      {console.log(multipleOptions)}
+      {console.log(multipleOptions)} */}
     </StyledDropdown>
   );
 };
