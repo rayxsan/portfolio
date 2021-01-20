@@ -21,22 +21,35 @@ const headers = {
 interface Props {}
 interface State<DataItem> {
   data: DataItem[];
+  errMsg: string;
 }
 class TablePage extends Component<Props, State<any>> {
   constructor(props: Props) {
     super(props);
     this.state = {
       data: [],
+      errMsg: "",
     };
   }
 
-  componentDidMount() {
-    axios
-      .get("https://portfolio-083-default-rtdb.firebaseio.com/userData.json")
-      .then((response) => {
-        console.log(response);
-        this.setState({ data: response.data });
+  async getData() {
+    try {
+      // fetch data from a url endpoint
+      const response = await axios.get(
+        "https://portfolio-083-default-rtdb.firebaseio.com/userData.json"
+      );
+      const data = await response.data;
+      this.setState({ ...this.state, data: data });
+    } catch (error) {
+      this.setState({
+        ...this.state,
+        errMsg: "Error fetching table from backend.",
       });
+    }
+  }
+
+  componentDidMount() {
+    this.getData();
   }
 
   render() {
@@ -50,6 +63,9 @@ class TablePage extends Component<Props, State<any>> {
         </Card>
         <Card title="Table fetching from backend">
           <Table data={this.state.data} showPages />
+          {this.state.errMsg && (
+            <div style={{ color: "red" }}> {this.state.errMsg} </div>
+          )}
         </Card>
       </StyledTablePage>
     );
