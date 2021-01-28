@@ -1,7 +1,27 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { theme } from "../../shared/Theme";
 
-export const StyledRadio = styled.div`
+interface styledProps {
+  primary?: boolean;
+  secondary?: boolean;
+}
+
+export const StyledRadio = styled.div<styledProps>`
   display: inline-block;
+
+  ${(props: styledProps) =>
+    props.primary &&
+    css`
+      //border-color: ${({ theme }) => theme.primaryColor};
+      color: ${({ theme }) => theme.primaryColor};
+    `}
+
+  ${(props: styledProps) =>
+    props.secondary &&
+    css`
+      //border-color: ${({ theme }) => theme.secondaryColor};
+      color: ${({ theme }) => theme.secondaryColor};
+    `}
 
   input {
     position: absolute;
