@@ -13,6 +13,7 @@ export interface Props {
   primary?: boolean;
   secondary?: boolean;
   type?: "simple" | "selected" | "dotted";
+  onClick?: (value: string) => void;
 }
 
 const Menu: FunctionComponent<Props> = ({
@@ -21,6 +22,7 @@ const Menu: FunctionComponent<Props> = ({
   type,
   primary,
   secondary,
+  onClick,
 }) => {
   //TODO: Find type for createRef<any>
   const container = React.createRef<any>();
@@ -70,7 +72,14 @@ const Menu: FunctionComponent<Props> = ({
       >
         {items.map((value, index) => (
           <li key={index}>
-            <button onClick={() => handleOptionClick(value)}>{value}</button>
+            <button
+              onClick={() => {
+                handleOptionClick(value);
+                if (onClick) onClick(value);
+              }}
+            >
+              {value}
+            </button>
           </li>
         ))}
       </StyledMenuList>
