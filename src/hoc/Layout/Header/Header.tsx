@@ -17,6 +17,7 @@ const StyledHeader = styled.div`
   background-color: ${({ theme }) => theme.solidBackground};
   color: ${({ theme }) => theme.fontColor};
   z-index: 5;
+  box-shadow: 0 2px 2px -2px #ccc;
 
   svg {
     float: left;
