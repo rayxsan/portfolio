@@ -8,7 +8,7 @@ const StyledRadioPage = styled.div`
 `;
 
 const RadioPage = () => {
-  const [checkedValue, setCheckedValue] = useState("primary");
+  const [checkedValue, setCheckedValue] = useState("prmary");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
