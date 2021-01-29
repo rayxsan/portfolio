@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { theme } from "../../shared/Theme";
+//import { theme } from "../../shared/Theme";
 
 interface styledProps {
   primary?: boolean;
