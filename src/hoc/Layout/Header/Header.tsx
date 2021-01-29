@@ -2,6 +2,7 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 import { FiMenu } from "react-icons/fi";
 import Menu from "../../../Components/Menu/Menu";
+import { useHistory } from "react-router-dom";
 
 interface Props {
   clicked: (event: React.MouseEvent<SVGElement, MouseEvent>) => void;
@@ -17,6 +18,7 @@ const StyledHeader = styled.div`
   background-color: ${({ theme }) => theme.solidBackground};
   color: ${({ theme }) => theme.fontColor};
   z-index: 5;
+  box-shadow: 0 2px 2px -2px #ccc;
 
   svg {
     float: left;
@@ -40,6 +42,20 @@ const StyledHeader = styled.div`
 `;
 
 const Header: FunctionComponent<Props> = ({ clicked }) => {
+  let history = useHistory();
+
+  const onClickHandler = (value: string) => {
+    if (value === "Home") {
+      history.push("/");
+    }
+    if (value === "Settings") {
+      history.push("*");
+    }
+    if (value === "Logout") {
+      history.push("*");
+    }
+  };
+
   return (
     <StyledHeader>
       <FiMenu onClick={clicked} />
@@ -48,6 +64,7 @@ const Header: FunctionComponent<Props> = ({ clicked }) => {
           header="Profile"
           type="simple"
           items={["Home", "Settings", "Logout"]}
+          onClick={(value) => onClickHandler(value)}
         />
       </div>
     </StyledHeader>

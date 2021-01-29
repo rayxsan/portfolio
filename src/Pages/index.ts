@@ -8,6 +8,7 @@ import CardPage from "./CardPage";
 import DropdownPage from "./DropdownPage";
 import FormPage from "./FormPage";
 import TablePage from "./TablePage";
+import NotFoundPage from "./NotFoundPage";
 
 export {
   HomePage,
@@ -20,4 +21,5 @@ export {
   DropdownPage,
   FormPage,
   TablePage,
+  NotFoundPage,
 };

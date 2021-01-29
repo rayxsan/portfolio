@@ -2,12 +2,13 @@ import React, {
   FunctionComponent,
   useState,
   useEffect,
-  useRef,
+  //useRef,
   // useRef /*, useEffect, SyntheticEvent*/,
 } from "react";
 // import DropdownCard from "./DropdownCard";
 import { StyledDropdown } from "./Dropdown.styled";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
+import { convertToRem } from "../../shared/utils";
 
 export interface DropdownOption {
   key?: string | number;
@@ -19,7 +20,9 @@ interface Props {
   options: DropdownOption[];
   defaultOption?: string | number;
   label?: string;
-  placeholder?: string | number;
+  placeholder?: string;
+  search?: boolean;
+  multiple?: boolean;
   //onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onChange?: (value: string | number) => void;
   // value?: string | number | readonly string[];
@@ -35,27 +38,83 @@ interface Props {
 // TODO styling
 // Make the input clearable
 
-// const DropdownClosed: FunctionComponent<Props> = (props) => {
-//   return null;
-// };
-
-// const DropdownOpen: FunctionComponent<Props> = (props) => {
-//   return null;
-// };
-
 export const Dropdown: FunctionComponent<Props> = (props) => {
-  const { options, onChange } = props;
+  const { options, onChange, search, multiple } = props;
   const [selection, setSelection] = useState({
     isOpen: false,
     selected: props.placeholder ? -1 : 0,
   });
 
+  const [searchTerm, setSearchTerm] = useState(
+    props.placeholder
+      ? props.placeholder
+      : options[selection.selected].text.toString()
+  );
+
+  const [multipleOptions, setMultipleOptions] = useState<string[]>([]);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
   const container = React.createRef<any>();
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
-      if (container.current && !container.current.contains(event.target)) {
-        setSelection({ ...selection, isOpen: false });
+      if (selection.isOpen) {
+        if (container.current && !container.current.contains(event.target)) {
+          if (search) {
+            if (selectionList.length === 0 && selection.selected === -1) {
+              setSelection({
+                ...selection,
+                isOpen: false,
+              });
+            }
+            if (selectionList.length === 0 && selection.selected !== -1) {
+              setSearchTerm(options[selection.selected].text.toString());
+              setSelection({
+                ...selection,
+                isOpen: false,
+              });
+            }
+            if (selectionList.length > 0) {
+              let value = 0;
+              if (selectionList.length === options.length) {
+                value = options.length;
+              }
+              for (let i = 0; i < options.length; i++) {
+                if (options[i].key === selectionList[0].key) {
+                  value = i;
+                }
+                setSearchTerm(options[value].text.toString());
+                setSelection({
+                  selected: value,
+                  isOpen: false,
+                });
+              }
+            }
+            if (
+              selectionList.length === options.length &&
+              selection.selected !== -1
+            ) {
+              setSearchTerm(options[selection.selected].text.toString());
+              setSelection({
+                ...selection,
+                isOpen: false,
+              });
+            }
+          } else {
+            setSelection({
+              ...selection,
+              isOpen: false,
+            });
+          }
+          if (multiple)
+            setMultipleOptions([
+              ...multipleOptions,
+              options[selection.selected].text.toString(),
+            ]);
+        }
       }
     }
 
@@ -67,13 +126,14 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   const openlistHandler = () => {
     setSelection({ ...selection, isOpen: !selection.isOpen });
+    if (search) setSearchTerm("");
   };
 
-  const placeHolder =
+  let placeHolder =
     props.placeholder && selection.selected === -1 ? (
-      <div>{props.placeholder}</div>
+      <div onClick={openlistHandler}>{props.placeholder}</div>
     ) : (
-      <div>{options[selection.selected].text}</div>
+      <div onClick={openlistHandler}>{options[selection.selected].text}</div>
     );
 
   const expandOptions = selection.isOpen ? (
@@ -88,28 +148,57 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   //   if (onChange !== undefined) onChange(value);
   // };
 
-  let value = 0;
-  const maxTextWidth = (text: string) => {
-    //const font = "16px times new roman";
-    // context.font = font;
+  const value = options.reduce((acc, curr) => {
+    return Math.max(acc, convertToRem(curr.text.toString()));
+  }, 0);
 
-    const canvas = document.createElement("canvas");
-    const context = canvas.getContext("2d");
-    //if (context) context.font = font;
-    let width = Math.ceil(context!.measureText(text).width / 16);
-    if (width > value) value = width;
-    return value;
-  };
+  let selectionList = options;
+  if (search) {
+    placeHolder = (
+      <input
+        type="text"
+        placeholder={
+          props.placeholder && selection.selected === -1
+            ? props.placeholder
+            : options[selection.selected].text.toString()
+        }
+        value={searchTerm}
+        onChange={handleSearchChange}
+        onClick={openlistHandler}
+      />
+    );
+    selectionList = options.filter((option) => {
+      return option.text.toString().toLowerCase().includes(searchTerm);
+    });
+  }
 
-  const dropDownValues = options.map((option, idx) => {
-    const { text, value } = props.options[idx];
-    maxTextWidth(text.toString());
+  //Multiple Search Dropdown
+
+  let placeHolderM =
+    props.placeholder && selection.selected === -1 ? (
+      <div onClick={openlistHandler}>{props.placeholder}</div>
+    ) : (
+      multipleOptions.map((option, idx) => {
+        return (
+          <div key={idx} onClick={openlistHandler}>
+            {option}
+          </div>
+        );
+      })
+    );
+
+  //Dropdown list renderer
+  let dropDownValues = selectionList.map((option, idx) => {
+    const value = props.options[idx].value;
     return (
       <li
         key={option.key}
         onClick={() => {
           setSelection({ isOpen: false, selected: idx });
           if (onChange !== undefined) onChange(value);
+          if (search) setSearchTerm(option.text.toString());
+          if (multiple)
+            setMultipleOptions([...multipleOptions, option.text.toString()]);
         }}
       >
         {option.text}
@@ -118,11 +207,29 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
   });
 
   return (
-    <StyledDropdown open={selection.isOpen} textWidth={value} ref={container}>
-      {console.log(value)}
-      {placeHolder}
+    <StyledDropdown
+      open={selection.isOpen}
+      ref={container}
+      textWidth={value}
+      selectionList={selectionList.length}
+      search={search}
+      multiple={multiple}
+    >
+      {multiple ? placeHolderM : placeHolder}
       {expandOptions}
-      <ul>{dropDownValues}</ul>
+      <ul>
+        {selectionList.length === 0 ? (
+          <li>
+            <label>No results found.</label>
+          </li>
+        ) : (
+          dropDownValues
+        )}
+      </ul>
+      {/* {console.log(
+        `"searchTerm: "${searchTerm} "selection: " ${selection.selected} "selectionList: "${selectionList}`
+      )}
+      {console.log(multipleOptions)} */}
     </StyledDropdown>
   );
 };

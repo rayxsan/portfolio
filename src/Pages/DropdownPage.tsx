@@ -32,13 +32,15 @@ const options = [
 const DropdownPage = () => {
   return (
     <StyledDropdownPAge>
-      <Card title="search">
-        <Dropdown
-          options={pets}
-          placeholder="My Pets"
-          onChange={(value) => console.log(value)}
-        />
+      <Card title="Basic Dropdown">
+        <Dropdown options={pets} placeholder="My Pets" />
         <Dropdown options={options} />
+      </Card>
+      <Card title="Search Dropdown">
+        <Dropdown search options={pets} placeholder="My Pets" />
+      </Card>
+      <Card title="Multiple Search Dropdown">
+        <Dropdown search multiple options={pets} placeholder="My Pets" />
       </Card>
     </StyledDropdownPAge>
   );

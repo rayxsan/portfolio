@@ -28,6 +28,42 @@ export const StyledTable = styled.div<styledProps>`
       border-bottom: 1px solid #ddd;
     }
   }
+
+  /*
+  Ref: https://css-tricks.com/responsive-data-tables/
+	Max width before this PARTICULAR table gets nasty. This query will take effect for any screen 
+  smaller than 760px and also iPads specifically.
+	*/
+  @media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px) {
+    font-size: 100%;
+    /* Force table to not be like tables anymore */
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+      display: block;
+    }
+
+    thead tr {
+      box-sizing: border-box;
+      border: 1px solid black;
+    }
+
+    tr {
+      margin: 0 0 1rem 0;
+      border: 1px solid #ddd;
+    }
+
+    td {
+      /* Behave  like a "row" */
+      border: none;
+      position: relative;
+      padding-left: 50%;
+    }
+  }
 `;
 
 export const StyledPagination = styled.div<styledProps>`
