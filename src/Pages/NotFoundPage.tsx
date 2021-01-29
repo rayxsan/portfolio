@@ -14,6 +14,7 @@ const StyledNFPage = styled.div`
 const NotFoundPage = () => (
   <StyledNFPage>
     <p>PAGE NOT FOUND</p>
+    <p>Site under development...</p>
     <p>
       <Link to="/">Go to Home </Link>
     </p>
