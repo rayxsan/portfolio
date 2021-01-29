@@ -23,13 +23,14 @@ class ProgressPage extends Component<Props, State> {
 
   componentDidMount = () => {
     const fn = () => {
-      const randomNumber = (Math.floor(Math.random() * 20) + this.state.completed) % 100;
+      const randomNumber =
+        (Math.floor(Math.random() * 20) + this.state.completed) % 100;
       this.setState({
         completed: randomNumber,
       });
     };
     const interval = 1000; // 2 seconds
-    this.intervalId = setInterval(fn, interval);
+    this.intervalId = window.setInterval(fn, interval);
   };
 
   componentWillUnmount = () => {
@@ -41,24 +42,23 @@ class ProgressPage extends Component<Props, State> {
   render() {
     const { completed } = this.state;
     return (
-        <StyledProgressPage>
-          <Card title="Circular Progress (Indeterminate)">
-            <Progress primary />
-            <Progress secondary />
-            <Progress />
-          </Card>
-          <Card title="Linear Progress">
-            <Progress linear primary completed={completed} />
-            <Progress linear secondary completed={completed} />
-            <Progress linear completed={50} />
-          </Card>
-          <Card title="Circular Progress">
-            <Progress circular primary completed={completed} />
-            {/* <Progress circular secondary completed={30} />
+      <StyledProgressPage>
+        <Card title="Circular Progress (Indeterminate)">
+          <Progress primary />
+          <Progress secondary />
+          <Progress />
+        </Card>
+        <Card title="Linear Progress">
+          <Progress linear primary completed={completed} />
+          <Progress linear secondary completed={completed} />
+          <Progress linear completed={50} />
+        </Card>
+        <Card title="Circular Progress">
+          <Progress circular primary completed={completed} />
+          {/* <Progress circular secondary completed={30} />
             <Progress circular completed={100} /> */}
-          </Card>
-        </StyledProgressPage>
-     
+        </Card>
+      </StyledProgressPage>
     );
   }
 }
