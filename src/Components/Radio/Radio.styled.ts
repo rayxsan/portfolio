@@ -1,32 +1,24 @@
 import styled, { css } from "styled-components";
-//import { theme } from "../../shared/Theme";
 
 interface styledProps {
   primary?: boolean;
   secondary?: boolean;
+  disabled?: boolean;
 }
 
 export const StyledRadio = styled.div<styledProps>`
   display: inline-block;
-
-  ${(props: styledProps) =>
-    props.primary &&
-    css`
-      //border-color: ${({ theme }) => theme.primaryColor};
-      color: ${({ theme }) => theme.primaryColor};
-    `}
-
-  ${(props: styledProps) =>
-    props.secondary &&
-    css`
-      //border-color: ${({ theme }) => theme.secondaryColor};
-      color: ${({ theme }) => theme.secondaryColor};
-    `}
+  position: relative;
 
   input {
     position: absolute;
     opacity: 0;
-    pointer-events: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    z-index: 3;
+    top: 0.1rem;
+    left: 0.1rem;
   }
   span {
     position: absolute;
@@ -34,22 +26,12 @@ export const StyledRadio = styled.div<styledProps>`
     height: 1rem;
     border-radius: 50%;
     cursor: pointer;
-    background-color: #ccc;
-  }
-
-  span + label {
-    margin: 1.25rem;
+    border: 1px solid;
+    z-index: 1;
   }
 
   label {
-    color: ${(props) => props.color || "grey"};
-  }
-  input:not(:disabled) + span:hover {
-    background-color: ${(props) => props.color || "grey"};
-  }
-
-  input:checked + span {
-    background-color: ${(props) => props.color || "grey"};
+    padding: 1.25rem;
   }
 
   span:after {
@@ -61,29 +43,74 @@ export const StyledRadio = styled.div<styledProps>`
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 50%;
-    background: white;
+    background: ${({ theme }) => theme.defaultColor};
   }
 
   input:checked + span:after {
     display: block;
   }
 
-  input:disabled:not(:checked) + span {
-    &:before {
-      cursor: default;
-      box-shadow: none;
-      border-color: #bbb;
-      background-color: #ddd;
+  ${(props: styledProps) =>
+    props.primary &&
+    css`
+      color: ${({ theme }) => theme.disabledColor};
+
+      input:hover + span {
+        color: ${({ theme }) => theme.primaryColor};
+      }
+      input:checked + span {
+        color: ${({ theme }) => theme.primaryColor};
+      }
+
+      span:after {
+        background: ${({ theme }) => theme.primaryColor};
+      }
+
+      label {
+        color: ${({ theme }) => theme.defaultColor};
+      }
+    `}
+
+  ${(props: styledProps) =>
+    props.secondary &&
+    css`
+      color: ${({ theme }) => theme.disabledColor};
+
+      input:hover + span {
+        color: ${({ theme }) => theme.secondaryColor};
+      }
+      input:checked + span {
+        color: ${({ theme }) => theme.secondaryColor};
+      }
+
+      span:after {
+        background: ${({ theme }) => theme.secondaryColor};
+      }
+
+      label {
+        color: ${({ theme }) => theme.defaultColor};
+      }
+    `}
+
+    ${(props: styledProps) =>
+    props.disabled &&
+    css`
+      input,
+      span {
+        cursor: default;
+      }
+      color: ${({ theme }) => theme.disabledColor};
+      span:after {
+        background: ${({ theme }) => theme.disabledColor};
+      }
+    `} /* @media only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px) {
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 3;
+      bottom: 0;
     }
-  }
-  > input:disabled:checked + span {
-    &:after {
-      cursor: default;
-      color: #999;
-    }
-  }
-  > input:disabled + span {
-    cursor: default;
-    color: #aaa;
-  }
+  } */
 `;

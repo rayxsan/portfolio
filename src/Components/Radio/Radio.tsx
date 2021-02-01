@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FunctionComponent } from "react";
 import { StyledRadio } from "./Radio.styled";
 
 interface Props {
@@ -16,44 +16,32 @@ interface State {
   checked: boolean;
 }
 
-class Radio extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { checked: false };
-  }
+const Radio: FunctionComponent<Props> = (props) => {
+  const {
+    primary,
+    secondary,
+    label,
+    name,
+    checked,
+    disabled,
+    value,
+    onChange,
+  } = props;
 
-  componentDidMount = () => {
-    if (this.props.checked) {
-      this.setState({ checked: true });
-    }
-  };
-  handleCheckboxChange = () => {
-    if (!this.props.disabled) {
-      this.setState({ checked: !this.state.checked });
-    }
-  };
-  render() {
-    return (
-      <StyledRadio
-        onClick={this.handleCheckboxChange}
-        onChange={this.props.onChange}
-        primary={this.props.primary}
-        secondary={this.props.secondary}
-      >
-        <input
-          type="radio"
-          checked={this.state.checked || this.props.checked}
-          onChange={this.props.onChange}
-          onClick={() => this.handleCheckboxChange()}
-          disabled={this.props.disabled}
-          value={this.props.value}
-          name={this.props.name}
-        />
-        <span />
-        <label>{this.props.label}</label>
-      </StyledRadio>
-    );
-  }
-}
+  return (
+    <StyledRadio primary={primary} secondary={secondary} disabled={disabled}>
+      <input
+        type="radio"
+        disabled={disabled}
+        value={value}
+        name={name}
+        onChange={onChange}
+        checked={checked}
+      />
+      <span />
+      <label>{label}</label>
+    </StyledRadio>
+  );
+};
 
 export default Radio;

@@ -2,12 +2,14 @@ const theme1 = {
   //Colors
   primaryColor: "#1976d2",
   secondaryColor: "#FFAF38",
-  defaultColor: "#ccc",
+  defaultColor: "#000",
+  disabledColor: "#bbb",
   solidBackground: "#fff",
   sidebarBGColor: "#222A45",
   sidebarFontColor: "#fff",
   footerBGColor: "#222A45",
   footerFontColor: "#fff",
+  fontColor: "black",
 
   //Dimensions
   headerHeight: "3rem",

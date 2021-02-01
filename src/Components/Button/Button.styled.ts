@@ -60,6 +60,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   }
   :disabled {
     cursor: not-allowed;
+    border-color: #bbb;
   }
 
   ${(props: Props) =>
@@ -79,7 +80,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
     css`
       background: none;
       :hover:enabled {
-        background-color: ${({ theme }) => theme.defaultColor};
+        background-color: ${({ theme }) => theme.disabledColor};
       }
 
       /* TODO: set primary and secondary transparent colors for hovering */
@@ -106,7 +107,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
     props.outline &&
     css`
       background: none;
-      border: 1px solid ${({ theme }) => theme.defaultColor};
+      border: 1px solid ${({ theme }) => theme.disabledColor};
 
       ${(props: Props) =>
         props.primary &&

@@ -8,12 +8,10 @@ const StyledRadioPage = styled.div`
 `;
 
 const RadioPage = () => {
-  const [checkedValue, setCheckedValue] = useState("prmary");
+  const [checkedValue, setCheckedValue] = useState("");
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    setCheckedValue(event.target.name);
-    console.log(event.target.name);
+    setCheckedValue(event.target.value);
   };
 
   return (
@@ -22,7 +20,8 @@ const RadioPage = () => {
         <Radio label="Radio button" />
       </Card>
       <Card title="Disabled radio button">
-        <Radio disabled checked label="Disabled" />
+        <Radio disabled checked label="Disabled checked" />
+        <Radio disabled label="Disabled not checked" />
       </Card>
       <Card title="Radio Group">
         <div>
@@ -43,7 +42,7 @@ const RadioPage = () => {
             onChange={handleChange}
           />
         </div>
-        <p>{checkedValue}</p>
+        <p>Selected value: {checkedValue}</p>
       </Card>
     </StyledRadioPage>
   );
