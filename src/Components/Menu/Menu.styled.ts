@@ -25,7 +25,7 @@ export const StyledMainButton = styled.button<Props>`
   display: block;
   text-align: left;
   height: 2rem;
-  border: 1px solid ${({ theme }) => theme.defaultColor};
+  border: 1px solid ${({ theme }) => theme.disabledColor};
   border-radius: 0.25rem;
   background: inherit;
 
@@ -56,7 +56,7 @@ export const StyledMainButton = styled.button<Props>`
         content: " ${(props: Props) => props.selectedText}";
         display: block;
         position: relative;
-        color: ${({ theme }) => theme.defaultColor};
+        color: ${({ theme }) => theme.disabledColor};
       }
     `}
 
@@ -114,7 +114,7 @@ export const StyledMenuList = styled.ul<Props>`
       background-color: #fff;
 
       :hover {
-        background-color: ${({ theme }) => theme.defaultColor};
+        background-color: ${({ theme }) => theme.disabledColor};
         ${(props: Props) =>
           props.primary &&
           css`
@@ -146,6 +146,6 @@ export const StyledMenuList = styled.ul<Props>`
   }
 
   ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.defaultColor};
+    background: ${({ theme }) => theme.disabledColor};
   }
 `;
