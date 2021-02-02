@@ -40,6 +40,7 @@ interface Props {
 
 export const Dropdown: FunctionComponent<Props> = (props) => {
   const { options, onChange, search, multiple } = props;
+
   const [selection, setSelection] = useState({
     isOpen: false,
     selected: props.placeholder ? -1 : 0,
@@ -110,10 +111,15 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
             });
           }
           if (multiple)
-            setMultipleOptions([
-              ...multipleOptions,
-              options[selection.selected].text.toString(),
-            ]);
+            if (
+              selectionList.length === options.length &&
+              selection.selected !== -1
+            ) {
+              setMultipleOptions([
+                ...multipleOptions,
+                options[selection.selected].text.toString(),
+              ]);
+            }
         }
       }
     }
@@ -174,6 +180,10 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   //Multiple Search Dropdown
 
+  if (multiple) {
+    let multipleOptionsArray = options;
+  }
+
   let placeHolderM =
     props.placeholder && selection.selected === -1 ? (
       <div onClick={openlistHandler}>{props.placeholder}</div>
@@ -212,6 +222,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
       ref={container}
       textWidth={value}
       selectionList={selectionList.length}
+      selectedOption={selection.selected + 1}
       search={search}
       multiple={multiple}
     >

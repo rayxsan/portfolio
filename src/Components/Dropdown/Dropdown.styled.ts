@@ -6,6 +6,7 @@ interface StyledProps {
   multiple?: boolean;
   textWidth: number;
   selectionList: number;
+  selectedOption: number;
 }
 
 export const StyledDropdown = styled.div<StyledProps>`
@@ -21,8 +22,10 @@ export const StyledDropdown = styled.div<StyledProps>`
   border-radius: ${(props: StyledProps) =>
     props.open ? "0.25em 0.25em 0 0" : "0.25em"};
 
-  height: 2em;
-  width: ${(props: StyledProps) => props.textWidth + 3.5 + "em"};
+  height: auto;
+  width: auto;
+  min-width: ${(props: StyledProps) => props.textWidth + 3.5 + "em"};
+  user-select: none;
   :hover {
     border-color: black;
   }
@@ -30,6 +33,7 @@ export const StyledDropdown = styled.div<StyledProps>`
   div {
     padding: 0.5em 0.25em 0.5em 0.5em;
     display: inline-block;
+    user-select: none;
     //opacity: 0.7;
   }
 
@@ -50,7 +54,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     margin-top: -3px;
     margin-left: -1px;
     padding: 0;
-    width: inherit;
+    width: 100%;
     z-index: 10;
     background-color: #fff;
 
@@ -83,6 +87,9 @@ export const StyledDropdown = styled.div<StyledProps>`
         font-size: 70%;
         opacity: 0.6;
       }
+      :nth-child(${(props: StyledProps) => props.selectedOption}) {
+        background-color: lightgray;
+      }
     }
   }
 
@@ -99,5 +106,33 @@ export const StyledDropdown = styled.div<StyledProps>`
         box-shadow: none;
       }
     `}
-  ${(props: StyledProps) => props.multiple && css``}
+  ${(props: StyledProps) =>
+    props.multiple &&
+    css`
+      display: block;
+      //width: auto;
+      max-width: 100%;
+      padding: 0.25em 2.25em 0.25em 0.25em;
+      div {
+        display: inline-block;
+        border: 1px solid lightgray;
+        height: 0.8rem;
+        margin: 0.25em 0.25em 0.25em 0;
+        padding: 0.5em;
+        border-radius: 0.25em;
+        background-color: lightgray;
+        text-align: center;
+      }
+      svg {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding-top: 1em;
+      }
+
+      ul {
+        width: 100%;
+        left: 0;
+      }
+    `}
 `;
