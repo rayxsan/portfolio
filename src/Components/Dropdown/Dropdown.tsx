@@ -52,7 +52,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
       : options[selection.selected].text.toString()
   );
 
-  const [multipleOptions, setMultipleOptions] = useState<string[]>([]);
+  const [multipleOptions, setMultipleOptions] = useState<DropdownOption[]>([]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
@@ -117,7 +117,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
             ) {
               setMultipleOptions([
                 ...multipleOptions,
-                options[selection.selected].text.toString(),
+                options[selection.selected],
               ]);
             }
         }
@@ -148,17 +148,13 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     <FaChevronDown onClick={openlistHandler} />
   );
 
-  // const myCustomEvent = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   event.preventDefault();
-  //   const value = event.target.value;
-  //   if (onChange !== undefined) onChange(value);
-  // };
-
   const value = options.reduce((acc, curr) => {
     return Math.max(acc, convertToRem(curr.text.toString()));
   }, 0);
 
   let selectionList = options;
+
+  //Search Dropdown
   if (search) {
     placeHolder = (
       <input
@@ -180,9 +176,9 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
 
   //Multiple Search Dropdown
 
-  if (multiple) {
-    let multipleOptionsArray = options;
-  }
+  const removeMultipleOption = (option: DropdownOption) => {
+    selectionList.push(option);
+  };
 
   let placeHolderM =
     props.placeholder && selection.selected === -1 ? (
@@ -190,15 +186,33 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     ) : (
       multipleOptions.map((option, idx) => {
         return (
-          <div key={idx} onClick={openlistHandler}>
-            {option}
+          <div
+            key={idx}
+            onClick={() => {
+              setSelection({ ...selection, selected: idx });
+              console.log(selection.selected);
+            }}
+          >
+            {option.text}
+            <FaTimes onClick={() => removeMultipleOption(option)} />
           </div>
         );
       })
     );
+  if (multiple) {
+    selectionList = options.filter((option) => {
+      for (let i = 0; i < options.length; i++) {
+        if (multipleOptions[i])
+          if (multipleOptions[i].key === option.key) return null;
+      }
+      console.log(multipleOptions.length, selectionList.length);
+      return option;
+    });
+  }
 
   //Dropdown list renderer
-  let dropDownValues = selectionList.map((option, idx) => {
+  let dropDownValues: JSX.Element[] | JSX.Element;
+  dropDownValues = selectionList.map((option, idx) => {
     const value = props.options[idx].value;
     return (
       <li
@@ -207,14 +221,23 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
           setSelection({ isOpen: false, selected: idx });
           if (onChange !== undefined) onChange(value);
           if (search) setSearchTerm(option.text.toString());
-          if (multiple)
-            setMultipleOptions([...multipleOptions, option.text.toString()]);
+          if (multiple) setMultipleOptions([...multipleOptions, option]);
         }}
       >
         {option.text}
       </li>
     );
   });
+
+  if (selectionList.length === 0) {
+    if (search) {
+      dropDownValues = <li>No results founds.</li>;
+    }
+    if (multiple) {
+      //TODO: if I try to change isOpen with setSelection it gives an error.
+      selection.isOpen = false;
+    }
+  }
 
   return (
     <StyledDropdown
@@ -228,19 +251,7 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     >
       {multiple ? placeHolderM : placeHolder}
       {expandOptions}
-      <ul>
-        {selectionList.length === 0 ? (
-          <li>
-            <label>No results found.</label>
-          </li>
-        ) : (
-          dropDownValues
-        )}
-      </ul>
-      {/* {console.log(
-        `"searchTerm: "${searchTerm} "selection: " ${selection.selected} "selectionList: "${selectionList}`
-      )}
-      {console.log(multipleOptions)} */}
+      <ul>{dropDownValues}</ul>
     </StyledDropdown>
   );
 };

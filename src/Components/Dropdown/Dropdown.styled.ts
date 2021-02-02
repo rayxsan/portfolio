@@ -29,12 +29,10 @@ export const StyledDropdown = styled.div<StyledProps>`
   :hover {
     border-color: black;
   }
-
   div {
     padding: 0.5em 0.25em 0.5em 0.5em;
     display: inline-block;
     user-select: none;
-    //opacity: 0.7;
   }
 
   svg {
@@ -122,6 +120,20 @@ export const StyledDropdown = styled.div<StyledProps>`
         border-radius: 0.25em;
         background-color: lightgray;
         text-align: center;
+        font-weight: bold;
+        opacity: 0.7;
+        :hover {
+          opacity: 1;
+        }
+        svg {
+          position: relative;
+          padding: 0;
+          padding-left: 0.3em;
+          opacity: 0.5;
+          :hover {
+            opacity: 1;
+          }
+        }
       }
       svg {
         position: absolute;
