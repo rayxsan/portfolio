@@ -16,6 +16,7 @@ export const StyledSidebar = styled.div`
   box-sizing: border-box;
   text-align: left;
   z-index: 999;
+  user-select: none;
 
   svg {
     font-size: 1.2rem;
