@@ -1,14 +1,12 @@
 import React, {
-  FunctionComponent,
   useState,
-  useEffect,
   //useRef,
   // useRef /*, useEffect, SyntheticEvent*/,
 } from "react";
 // import DropdownCard from "./DropdownCard";
 import { StyledDropdown } from "./Dropdown.styled";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
-import { convertToRem } from "../../shared/utils";
+import { convertToRem, useClickOutsideListenerRef } from "../../shared/utils";
 
 export interface DropdownOption {
   key?: string | number;
@@ -23,6 +21,7 @@ interface Props {
   placeholder?: string;
   search?: boolean;
   multiple?: boolean;
+  //onClose: () => void;
   //onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onChange?: (value: string | number) => void;
   // value?: string | number | readonly string[];
@@ -35,21 +34,15 @@ interface Props {
 // selectedSet.add("dog");
 // selectedSet.has("cat");
 
-// TODO styling
-// Make the input clearable
+export const Dropdown: React.FC<Props> = (props) => {
+  const { options, onChange, search, multiple, children } = props;
 
-export const Dropdown: FunctionComponent<Props> = (props) => {
-  const { options, onChange, search, multiple } = props;
+  const [open, setOpen] = useState(false);
 
-  const [selection, setSelection] = useState({
-    isOpen: false,
-    selected: props.placeholder ? -1 : 0,
-  });
+  const [selected, setSelected] = useState(props.placeholder ? -1 : 0);
 
   const [searchTerm, setSearchTerm] = useState(
-    props.placeholder
-      ? props.placeholder
-      : options[selection.selected].text.toString()
+    props.placeholder ? props.placeholder : options[selected].text.toString()
   );
 
   const [multipleOptions, setMultipleOptions] = useState<DropdownOption[]>([]);
@@ -58,101 +51,39 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     setSearchTerm(event.target.value);
   };
 
-  const container = React.createRef<any>();
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (selection.isOpen) {
-        if (container.current && !container.current.contains(event.target)) {
-          if (search) {
-            if (selectionList.length === 0 && selection.selected === -1) {
-              setSelection({
-                ...selection,
-                isOpen: false,
-              });
-            }
-            if (selectionList.length === 0 && selection.selected !== -1) {
-              setSearchTerm(options[selection.selected].text.toString());
-              setSelection({
-                ...selection,
-                isOpen: false,
-              });
-            }
-            if (selectionList.length > 0) {
-              let value = 0;
-              if (selectionList.length === options.length) {
-                value = options.length;
-              }
-              for (let i = 0; i < options.length; i++) {
-                if (options[i].key === selectionList[0].key) {
-                  value = i;
-                }
-                setSearchTerm(options[value].text.toString());
-                setSelection({
-                  selected: value,
-                  isOpen: false,
-                });
-              }
-            }
-            if (
-              selectionList.length === options.length &&
-              selection.selected !== -1
-            ) {
-              setSearchTerm(options[selection.selected].text.toString());
-              setSelection({
-                ...selection,
-                isOpen: false,
-              });
-            }
-          } else {
-            setSelection({
-              ...selection,
-              isOpen: false,
-            });
-          }
-          if (multiple)
-            if (
-              selectionList.length === options.length &&
-              selection.selected !== -1
-            ) {
-              setMultipleOptions([
-                ...multipleOptions,
-                options[selection.selected],
-              ]);
-            }
-        }
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+  const ref = useClickOutsideListenerRef(() => {
+    if (!multiple) setOpen(false);
   });
 
-  const openlistHandler = () => {
-    setSelection({ ...selection, isOpen: !selection.isOpen });
-    if (search) setSearchTerm("");
+  const openHandler = () => {
+    setOpen(!open);
+    if (multiple) {
+      setOpen(true);
+      if (selectedList.length < 1) {
+        setOpen(false);
+      }
+    }
   };
 
-  let placeHolder =
-    props.placeholder && selection.selected === -1 ? (
-      <div onClick={openlistHandler}>{props.placeholder}</div>
-    ) : (
-      <div onClick={openlistHandler}>{options[selection.selected].text}</div>
-    );
+  const closehandler = (event: any) => {
+    event.stopPropagation();
+    setOpen(false);
+  };
 
-  const expandOptions = selection.isOpen ? (
-    <FaTimes onClick={openlistHandler} />
-  ) : (
-    <FaChevronDown onClick={openlistHandler} />
-  );
+  let placeHolder;
+  placeHolder =
+    props.placeholder && selected === -1 ? (
+      <div>{props.placeholder}</div>
+    ) : (
+      <div>{options[selected].text}</div>
+    );
 
   const value = options.reduce((acc, curr) => {
     return Math.max(acc, convertToRem(curr.text.toString()));
   }, 0);
 
-  let selectionList = options;
+  let selectedList = options;
+  let dropDownValues: JSX.Element[] | JSX.Element;
 
   //Search Dropdown
   if (search) {
@@ -160,65 +91,61 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
       <input
         type="text"
         placeholder={
-          props.placeholder && selection.selected === -1
+          props.placeholder && selected === -1
             ? props.placeholder
-            : options[selection.selected].text.toString()
+            : options[selected].text.toString()
         }
         value={searchTerm}
         onChange={handleSearchChange}
-        onClick={openlistHandler}
+        onClick={() => {
+          setSearchTerm("");
+        }}
       />
     );
-    selectionList = options.filter((option) => {
+    selectedList = options.filter((option) => {
       return option.text.toString().toLowerCase().includes(searchTerm);
     });
   }
 
   //Multiple Search Dropdown
 
-  const removeMultipleOption = (option: DropdownOption) => {
-    selectionList.push(option);
-  };
-
-  let placeHolderM =
-    props.placeholder && selection.selected === -1 ? (
-      <div onClick={openlistHandler}>{props.placeholder}</div>
-    ) : (
-      multipleOptions.map((option, idx) => {
-        return (
-          <div
-            key={idx}
-            onClick={() => {
-              setSelection({ ...selection, selected: idx });
-              console.log(selection.selected);
-            }}
-          >
-            {option.text}
-            <FaTimes onClick={() => removeMultipleOption(option)} />
-          </div>
-        );
-      })
-    );
   if (multiple) {
-    selectionList = options.filter((option) => {
+    selectedList = options.filter((option) => {
       for (let i = 0; i < options.length; i++) {
         if (multipleOptions[i])
           if (multipleOptions[i].key === option.key) return null;
       }
-      console.log(multipleOptions.length, selectionList.length);
       return option;
     });
-  }
 
+    const removeMultipleOption = (event: any) => {
+      event.stopPropagation();
+      console.log("TODO: Return to list");
+    };
+
+    placeHolder =
+      props.placeholder && selected === -1 ? (
+        <div>{props.placeholder}</div>
+      ) : (
+        multipleOptions.map((option, idx) => {
+          return (
+            <div key={idx}>
+              {option.text}
+              <FaTimes onClick={(e) => removeMultipleOption(e)} />
+            </div>
+          );
+        })
+      );
+  }
   //Dropdown list renderer
-  let dropDownValues: JSX.Element[] | JSX.Element;
-  dropDownValues = selectionList.map((option, idx) => {
+
+  dropDownValues = selectedList.map((option, idx) => {
     const value = props.options[idx].value;
     return (
       <li
         key={option.key}
         onClick={() => {
-          setSelection({ isOpen: false, selected: idx });
+          setSelected(idx);
           if (onChange !== undefined) onChange(value);
           if (search) setSearchTerm(option.text.toString());
           if (multiple) setMultipleOptions([...multipleOptions, option]);
@@ -229,30 +156,34 @@ export const Dropdown: FunctionComponent<Props> = (props) => {
     );
   });
 
-  if (selectionList.length === 0) {
-    if (search) {
-      dropDownValues = <li>No results founds.</li>;
-    }
-    if (multiple) {
-      //TODO: if I try to change isOpen with setSelection it gives an error.
-      selection.isOpen = false;
-    }
+  if (search && selectedList.length === 0) {
+    dropDownValues = <li>No results founds.</li>;
   }
 
+  const expandOptions = open ? (
+    <FaTimes onClick={(e) => closehandler(e)} />
+  ) : (
+    <FaChevronDown />
+  );
+
   return (
-    <StyledDropdown
-      open={selection.isOpen}
-      ref={container}
-      textWidth={value}
-      selectionList={selectionList.length}
-      selectedOption={selection.selected + 1}
-      search={search}
-      multiple={multiple}
-    >
-      {multiple ? placeHolderM : placeHolder}
-      {expandOptions}
-      <ul>{dropDownValues}</ul>
-    </StyledDropdown>
+    <>
+      <StyledDropdown
+        ref={ref}
+        open={open}
+        textWidth={value}
+        selectedList={selectedList.length}
+        selectedOption={selected + 1}
+        search={search}
+        multiple={multiple}
+        onClick={openHandler}
+      >
+        {expandOptions}
+        {placeHolder}
+        <ul>{dropDownValues}</ul>
+        {children}
+      </StyledDropdown>
+    </>
   );
 };
 

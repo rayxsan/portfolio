@@ -8,7 +8,7 @@ import styled from "styled-components";
 const StyledDropdownPAge = styled.div`
   ${StyledCard} {
     ${StyledDropdown} {
-      margin: 12px;
+      margin-left: 12px;
     }
   }
 `;

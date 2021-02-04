@@ -5,7 +5,7 @@ interface StyledProps {
   search?: boolean;
   multiple?: boolean;
   textWidth: number;
-  selectionList: number;
+  selectedList: number;
   selectedOption: number;
 }
 
@@ -40,6 +40,10 @@ export const StyledDropdown = styled.div<StyledProps>`
     text-align: center;
     font-size: 100%;
     padding: 0.5em 0.5em 0.5em 0.25em;
+    opacity: 0.5;
+    :hover {
+      opacity: 1;
+    }
   }
   ul {
     display: ${(props: StyledProps) => (props.open ? "block" : "none")};
@@ -57,7 +61,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     background-color: #fff;
 
     ${(props: StyledProps) =>
-      props.selectionList > 4 &&
+      props.selectedList > 4 &&
       css`
         max-height: 8rem;
         overflow-y: scroll;
@@ -74,7 +78,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     li {
       padding: 0.5em;
       text-align: left;
-      cursor: default;
+      cursor: pointer;
       :hover {
         background-color: #eee;
         :last-child {
@@ -96,27 +100,25 @@ export const StyledDropdown = styled.div<StyledProps>`
     css`
       input {
         border: none;
-        padding: 0;
-        margin-left: 0.5em;
-        height: 2rem;
-        width: 65%;
+        padding: 0.5em 0.3em 0.5em 0.5em;
+        margin-left: 0.2em;
+        font-size: 100%;
         outline: 0;
-        box-shadow: none;
       }
     `}
   ${(props: StyledProps) =>
     props.multiple &&
     css`
       display: block;
-      //width: auto;
       max-width: 100%;
       padding: 0.25em 2.25em 0.25em 0.25em;
       div {
         display: inline-block;
         border: 1px solid lightgray;
-        height: 0.8rem;
+        height: 0.8em;
         margin: 0.25em 0.25em 0.25em 0;
-        padding: 0.5em;
+        padding-top: 0.2em;
+        padding-bottom: 0.5em;
         border-radius: 0.25em;
         background-color: lightgray;
         text-align: center;
