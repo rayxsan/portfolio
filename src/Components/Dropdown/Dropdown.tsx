@@ -27,13 +27,6 @@ interface Props {
   // value?: string | number | readonly string[];
 }
 
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set
-// const selectedSet = new Set();
-// selectedSet.add("dog");
-// selectedSet.add("cat");
-// selectedSet.add("dog");
-// selectedSet.has("cat");
-
 export const Dropdown: React.FC<Props> = (props) => {
   const { options, onChange, search, multiple, children } = props;
 
@@ -57,45 +50,16 @@ export const Dropdown: React.FC<Props> = (props) => {
     setOpen(false);
   });
 
-  const toggleHandler = () => {
-    setOpen(!open);
-    if (multiple) {
-      setOpen(true);
-      if (selectedList.length < 1) {
-        setOpen(false);
-      }
-    }
-  };
-
-  const openHandler = (event: any) => {
-    event.stopPropagation();
-    if (search) setSearchTerm("");
-    setOpen(true);
-  };
-
-  const closeHandler = (event: any) => {
-    event.stopPropagation();
-    setOpen(false);
-  };
-
   let placeHolder;
   if (props.placeholder && selected === -1) {
     placeHolder = <div>{props.placeholder}</div>;
   }
 
-  let selectedValues: JSX.Element | JSX.Element[] | undefined | any;
+  let selectedValues: JSX.Element | (JSX.Element | null)[] | undefined;
 
   if (selected !== -1) {
     selectedValues = <div>{options[selected].text}</div>;
   }
-
-  //let placeHolder;
-  // placeHolder =
-  //   props.placeholder && selected === -1 ? (
-  //     <div>{props.placeholder}</div>
-  //   ) : (
-  //     <div>{options[selected].text}</div>
-  //   );
 
   const value = options.reduce((acc, curr) => {
     return Math.max(acc, convertToRem(curr.text.toString()));
@@ -130,7 +94,10 @@ export const Dropdown: React.FC<Props> = (props) => {
   //Multiple Search Dropdown
 
   if (multiple) {
-    const removeMultipleOption = (option: DropdownOption, event: any) => {
+    const removeMultipleOption = (
+      option: DropdownOption,
+      event: React.MouseEvent
+    ) => {
       event.stopPropagation();
       const tempSet = new Set(multipleOptions);
       tempSet.delete(option);
@@ -165,7 +132,10 @@ export const Dropdown: React.FC<Props> = (props) => {
       );
   }
   //Dropdown list renderer
-  const addMultipleOption = (option: DropdownOption, event: any) => {
+  const addMultipleOption = (
+    option: DropdownOption,
+    event: React.MouseEvent
+  ) => {
     event.stopPropagation();
     const tempSet = new Set(multipleOptions);
     tempSet.add(option);
@@ -194,6 +164,27 @@ export const Dropdown: React.FC<Props> = (props) => {
     dropDownValues = <li>No results founds.</li>;
   }
 
+  const toggleHandler = () => {
+    setOpen(!open);
+    if (multiple) {
+      setOpen(true);
+      if (selectedList.length < 1) {
+        setOpen(false);
+      }
+    }
+  };
+
+  const openHandler = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setOpen(true);
+    if (search) setSearchTerm("");
+    if (multipleOptions.size === options.length) setOpen(false);
+  };
+
+  const closeHandler = (event: React.MouseEvent) => {
+    event.stopPropagation();
+    setOpen(false);
+  };
   const expandOptions = open ? (
     <FaTimes onClick={(e) => closeHandler(e)} />
   ) : (
