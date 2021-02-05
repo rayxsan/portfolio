@@ -134,7 +134,7 @@ export const Dropdown: React.FC<Props> = (props) => {
       event.stopPropagation();
       const tempSet = new Set(multipleOptions);
       tempSet.delete(option);
-      if (tempSet.size === 0) setOpen(false);
+      if (tempSet.size < 1) setOpen(open);
       setMultipleOptions(tempSet);
     };
 
@@ -182,11 +182,7 @@ export const Dropdown: React.FC<Props> = (props) => {
           setSelected(idx);
           if (onChange !== undefined) onChange(value);
           if (search) setSearchTerm(option.text.toString());
-          if (multiple) {
-            addMultipleOption(option, e);
-            //setMultipleOptions(new Set(multipleOptions.add(option)));
-            console.log("Set size:" + multipleOptions.size);
-          }
+          if (multiple) addMultipleOption(option, e);
         }}
       >
         {option.text}
