@@ -7,6 +7,7 @@ interface StyledProps {
   textWidth: number;
   selectedList: number;
   selectedOption: number;
+  placeHolder: boolean;
 }
 
 export const StyledDropdown = styled.div<StyledProps>`
@@ -21,8 +22,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     props.open ? "none" : "1px solid #ccc"};
   border-radius: ${(props: StyledProps) =>
     props.open ? "0.25em 0.25em 0 0" : "0.25em"};
-
-  height: auto;
+  height: fit-content;
   width: auto;
   min-width: ${(props: StyledProps) => props.textWidth + 3.5 + "em"};
   user-select: none;
@@ -30,7 +30,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     border-color: black;
   }
   div {
-    padding: 0.5em 0.25em 0.5em 0.5em;
+    padding: 0.3em 0.25em 0.3em 0.5em;
     display: inline-block;
     user-select: none;
   }
@@ -39,7 +39,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     float: right;
     text-align: center;
     font-size: 100%;
-    padding: 0.5em 0.5em 0.5em 0.25em;
+    padding: 0.3em 0.5em 0.3em 0.25em;
     opacity: 0.5;
     :hover {
       opacity: 1;
@@ -105,6 +105,10 @@ export const StyledDropdown = styled.div<StyledProps>`
         font-size: 100%;
         outline: 0;
       }
+
+      svg {
+        padding-top: 0.5em;
+      }
     `}
   ${(props: StyledProps) =>
     props.multiple &&
@@ -149,4 +153,8 @@ export const StyledDropdown = styled.div<StyledProps>`
         left: 0;
       }
     `}
+`;
+
+export const StyledPlaceHolder = styled.div`
+  color: blue;
 `;

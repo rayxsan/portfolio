@@ -4,7 +4,7 @@ import React, {
   // useRef /*, useEffect, SyntheticEvent*/,
 } from "react";
 // import DropdownCard from "./DropdownCard";
-import { StyledDropdown } from "./Dropdown.styled";
+import { StyledDropdown, StyledPlaceHolder } from "./Dropdown.styled";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
 import { convertToRem, useClickOutsideListenerRef } from "../../shared/utils";
 
@@ -45,17 +45,19 @@ export const Dropdown: React.FC<Props> = (props) => {
     props.placeholder ? props.placeholder : options[selected].text.toString()
   );
 
-  const [multipleOptions, setMultipleOptions] = useState<DropdownOption[]>([]);
+  const [multipleOptions, setMultipleOptions] = useState(
+    new Set<DropdownOption>()
+  );
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value);
   };
 
   const ref = useClickOutsideListenerRef(() => {
-    if (!multiple) setOpen(false);
+    setOpen(false);
   });
 
-  const openHandler = () => {
+  const toggleHandler = () => {
     setOpen(!open);
     if (multiple) {
       setOpen(true);
@@ -65,18 +67,35 @@ export const Dropdown: React.FC<Props> = (props) => {
     }
   };
 
-  const closehandler = (event: any) => {
+  const openHandler = (event: any) => {
+    event.stopPropagation();
+    if (search) setSearchTerm("");
+    setOpen(true);
+  };
+
+  const closeHandler = (event: any) => {
     event.stopPropagation();
     setOpen(false);
   };
 
   let placeHolder;
-  placeHolder =
-    props.placeholder && selected === -1 ? (
-      <div>{props.placeholder}</div>
-    ) : (
-      <div>{options[selected].text}</div>
-    );
+  if (props.placeholder && selected === -1) {
+    placeHolder = <div>{props.placeholder}</div>;
+  }
+
+  let selectedValues: JSX.Element | JSX.Element[] | undefined | any;
+
+  if (selected !== -1) {
+    selectedValues = <div>{options[selected].text}</div>;
+  }
+
+  //let placeHolder;
+  // placeHolder =
+  //   props.placeholder && selected === -1 ? (
+  //     <div>{props.placeholder}</div>
+  //   ) : (
+  //     <div>{options[selected].text}</div>
+  //   );
 
   const value = options.reduce((acc, curr) => {
     return Math.max(acc, convertToRem(curr.text.toString()));
@@ -87,7 +106,8 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   //Search Dropdown
   if (search) {
-    placeHolder = (
+    placeHolder = undefined;
+    selectedValues = (
       <input
         type="text"
         placeholder={
@@ -110,45 +130,63 @@ export const Dropdown: React.FC<Props> = (props) => {
   //Multiple Search Dropdown
 
   if (multiple) {
+    const removeMultipleOption = (option: DropdownOption, event: any) => {
+      event.stopPropagation();
+      const tempSet = new Set(multipleOptions);
+      tempSet.delete(option);
+      if (tempSet.size === 0) setOpen(false);
+      setMultipleOptions(tempSet);
+    };
+
     selectedList = options.filter((option) => {
-      for (let i = 0; i < options.length; i++) {
-        if (multipleOptions[i])
-          if (multipleOptions[i].key === option.key) return null;
-      }
+      if (multipleOptions.has(option)) return null;
       return option;
     });
 
-    const removeMultipleOption = (event: any) => {
-      event.stopPropagation();
-      console.log("TODO: Return to list");
-    };
-
-    placeHolder =
-      props.placeholder && selected === -1 ? (
+    selectedValues =
+      multipleOptions.size === 0 ? (
         <div>{props.placeholder}</div>
       ) : (
-        multipleOptions.map((option, idx) => {
-          return (
-            <div key={idx}>
-              {option.text}
-              <FaTimes onClick={(e) => removeMultipleOption(e)} />
-            </div>
-          );
+        options.map((option) => {
+          if (multipleOptions.has(option)) {
+            return (
+              <div
+                key={option.key}
+                onClick={() => console.log("selected: " + option.key)}
+              >
+                {option.text}
+                <FaTimes onClick={(e) => removeMultipleOption(option, e)} />
+              </div>
+            );
+          }
+
+          return null;
         })
       );
   }
   //Dropdown list renderer
+  const addMultipleOption = (option: DropdownOption, event: any) => {
+    event.stopPropagation();
+    const tempSet = new Set(multipleOptions);
+    tempSet.add(option);
+    if (tempSet.size === options.length) setOpen(false);
+    setMultipleOptions(tempSet);
+  };
 
   dropDownValues = selectedList.map((option, idx) => {
     const value = props.options[idx].value;
     return (
       <li
         key={option.key}
-        onClick={() => {
+        onClick={(e) => {
           setSelected(idx);
           if (onChange !== undefined) onChange(value);
           if (search) setSearchTerm(option.text.toString());
-          if (multiple) setMultipleOptions([...multipleOptions, option]);
+          if (multiple) {
+            addMultipleOption(option, e);
+            //setMultipleOptions(new Set(multipleOptions.add(option)));
+            console.log("Set size:" + multipleOptions.size);
+          }
         }}
       >
         {option.text}
@@ -161,9 +199,9 @@ export const Dropdown: React.FC<Props> = (props) => {
   }
 
   const expandOptions = open ? (
-    <FaTimes onClick={(e) => closehandler(e)} />
+    <FaTimes onClick={(e) => closeHandler(e)} />
   ) : (
-    <FaChevronDown />
+    <FaChevronDown onClick={(e) => openHandler(e)} />
   );
 
   return (
@@ -176,10 +214,11 @@ export const Dropdown: React.FC<Props> = (props) => {
         selectedOption={selected + 1}
         search={search}
         multiple={multiple}
-        onClick={openHandler}
+        placeHolder={props.placeholder !== undefined}
+        onClick={toggleHandler}
       >
         {expandOptions}
-        {placeHolder}
+        {placeHolder || selectedValues}
         <ul>{dropDownValues}</ul>
         {children}
       </StyledDropdown>
