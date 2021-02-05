@@ -10,6 +10,13 @@ interface StyledProps {
   placeHolder: boolean;
 }
 
+export const StyledPlaceHolder = styled.div`
+  border: none !important;
+  background-color: white !important;
+  font-weight: 300 !important;
+  opacity: 0.7;
+`;
+
 export const StyledDropdown = styled.div<StyledProps>`
   position: relative;
   cursor: pointer;
@@ -153,8 +160,4 @@ export const StyledDropdown = styled.div<StyledProps>`
         left: 0;
       }
     `}
-`;
-
-export const StyledPlaceHolder = styled.div`
-  color: blue;
 `;

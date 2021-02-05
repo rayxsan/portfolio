@@ -35,7 +35,7 @@ export const Dropdown: React.FC<Props> = (props) => {
   const [selected, setSelected] = useState(props.placeholder ? -1 : 0);
 
   const [searchTerm, setSearchTerm] = useState(
-    props.placeholder ? props.placeholder : options[selected].text.toString()
+    props.placeholder ? "" : options[selected].text.toString()
   );
 
   const [multipleOptions, setMultipleOptions] = useState(
@@ -48,11 +48,12 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   const ref = useClickOutsideListenerRef(() => {
     setOpen(false);
+    if (selected !== -1) setSearchTerm(options[selected].text.toString());
   });
 
   let placeHolder;
   if (props.placeholder && selected === -1) {
-    placeHolder = <div>{props.placeholder}</div>;
+    placeHolder = <StyledPlaceHolder>{props.placeholder}</StyledPlaceHolder>;
   }
 
   let selectedValues: JSX.Element | (JSX.Element | null)[] | undefined;
@@ -110,17 +111,18 @@ export const Dropdown: React.FC<Props> = (props) => {
       return option;
     });
 
+    const clickedOption = (event: React.MouseEvent, option: DropdownOption) => {
+      event.stopPropagation();
+      console.log("Clicked: " + option.value);
+    };
     selectedValues =
       multipleOptions.size === 0 ? (
-        <div>{props.placeholder}</div>
+        <StyledPlaceHolder>{props.placeholder}</StyledPlaceHolder>
       ) : (
         options.map((option) => {
           if (multipleOptions.has(option)) {
             return (
-              <div
-                key={option.key}
-                onClick={() => console.log("selected: " + option.key)}
-              >
+              <div key={option.key} onClick={(e) => clickedOption(e, option)}>
                 {option.text}
                 <FaTimes onClick={(e) => removeMultipleOption(option, e)} />
               </div>
@@ -183,6 +185,7 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   const closeHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
+    if (selected !== -1) setSearchTerm(options[selected].text.toString());
     setOpen(false);
   };
   const expandOptions = open ? (
