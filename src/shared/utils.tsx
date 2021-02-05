@@ -23,21 +23,35 @@ export const useClickOutsideListenerRef = (onClose: () => void) => {
     },
     [onClose]
   );
-  const clickListener = useCallback(
-    (e: MouseEvent) => {
-      if (!(ref.current! as any).contains(e.target)) {
-        onClose?.();
-      }
-    },
-    [onClose]
-  );
+
+  // const clickListener = useCallback(
+  //   (e: MouseEvent) => {
+  //     if ((ref.current as any).contains(e.target)) {
+  //       // inside click
+  //       return;
+  //     }
+  //     // outside click
+  //     onClose();
+  //   },
+  //   [onClose]
+  // );
+
   useEffect(() => {
-    document.addEventListener("click", clickListener);
+    const handleClick = (e: MouseEvent) => {
+      if ((ref.current as any).contains(e.target)) {
+        // inside click
+        return;
+      }
+      // outside click
+      onClose();
+    };
+
+    document.addEventListener("mousedown", handleClick);
     document.addEventListener("keyup", escapeListener);
     return () => {
-      document.removeEventListener("click", clickListener);
+      document.removeEventListener("mousedown", handleClick);
       document.removeEventListener("keyup", escapeListener);
     };
-  }, [clickListener, escapeListener]);
+  }, [escapeListener, onClose]);
   return ref;
 };
