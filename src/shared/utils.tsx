@@ -24,18 +24,6 @@ export const useClickOutsideListenerRef = (onClose: () => void) => {
     [onClose]
   );
 
-  // const clickListener = useCallback(
-  //   (e: MouseEvent) => {
-  //     if ((ref.current as any).contains(e.target)) {
-  //       // inside click
-  //       return;
-  //     }
-  //     // outside click
-  //     onClose();
-  //   },
-  //   [onClose]
-  // );
-
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if ((ref.current as any).contains(e.target)) {
