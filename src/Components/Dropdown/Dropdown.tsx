@@ -43,13 +43,9 @@ export const Dropdown: React.FC<Props> = (props) => {
   );
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setOpen(true);
     setSearchTerm(event.target.value);
   };
-
-  const ref = useClickOutsideListenerRef(() => {
-    setOpen(false);
-    if (selected !== -1) setSearchTerm(options[selected].text.toString());
-  });
 
   let placeHolder;
   if (props.placeholder && selected === -1) {
@@ -108,6 +104,9 @@ export const Dropdown: React.FC<Props> = (props) => {
 
     selectedList = options.filter((option) => {
       if (multipleOptions.has(option)) return null;
+      if (search) {
+        return option.text.toString().toLowerCase().includes(searchTerm);
+      }
       return option;
     });
 
@@ -132,6 +131,40 @@ export const Dropdown: React.FC<Props> = (props) => {
           return null;
         })
       );
+    if (search) {
+      selectedValues = (
+        <>
+          {options.map((option) => {
+            if (multipleOptions.has(option)) {
+              return (
+                <div key={option.key} onClick={(e) => clickedOption(e, option)}>
+                  {option.text}
+                  <FaTimes onClick={(e) => removeMultipleOption(option, e)} />
+                </div>
+              );
+            }
+
+            return null;
+          })}
+
+          <input
+            type="text"
+            autoComplete="off"
+            placeholder={
+              props.placeholder && selected === -1
+                ? props.placeholder
+                : undefined
+            }
+            value={searchTerm}
+            onChange={handleSearchChange}
+            onClick={() => {
+              setOpen(true);
+              setSearchTerm("");
+            }}
+          />
+        </>
+      );
+    }
   }
   //Dropdown list renderer
   const addMultipleOption = (
@@ -142,6 +175,7 @@ export const Dropdown: React.FC<Props> = (props) => {
     const tempSet = new Set(multipleOptions);
     tempSet.add(option);
     if (tempSet.size === options.length) setOpen(false);
+    if (search) setSearchTerm("");
     setMultipleOptions(tempSet);
   };
 
@@ -153,8 +187,11 @@ export const Dropdown: React.FC<Props> = (props) => {
         onClick={(e) => {
           setSelected(idx);
           if (onChange !== undefined) onChange(value);
-          if (search) setSearchTerm(option.text.toString());
-          if (multiple) addMultipleOption(option, e);
+          if (search && !multiple) setSearchTerm(option.text.toString());
+          if (multiple) {
+            addMultipleOption(option, e);
+            if (search) setSearchTerm("");
+          }
         }}
       >
         {option.text}
@@ -166,8 +203,17 @@ export const Dropdown: React.FC<Props> = (props) => {
     dropDownValues = <li>No results founds.</li>;
   }
 
+  //Handlers for open and close.
+  const ref = useClickOutsideListenerRef(() => {
+    if (search && !multiple)
+      if (selected !== -1) setSearchTerm(options[selected].text.toString());
+    setOpen(false);
+  });
+
   const toggleHandler = () => {
     setOpen(!open);
+    if (search) {
+    }
     if (multiple) {
       setOpen(true);
       if (selectedList.length < 1) {
@@ -185,7 +231,8 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   const closeHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
-    if (selected !== -1) setSearchTerm(options[selected].text.toString());
+    if (search && !multiple)
+      if (selected !== -1) setSearchTerm(options[selected].text.toString());
     setOpen(false);
   };
   const expandOptions = open ? (

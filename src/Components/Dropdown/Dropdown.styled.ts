@@ -154,7 +154,6 @@ export const StyledDropdown = styled.div<StyledProps>`
         top: 0;
         padding-top: 1em;
       }
-
       ul {
         width: 100%;
         left: 0;

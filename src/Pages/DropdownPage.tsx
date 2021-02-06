@@ -39,8 +39,11 @@ const DropdownPage = () => {
       <Card title="Search Dropdown">
         <Dropdown search options={pets} placeholder="My Pets" />
       </Card>
-      <Card title="Multiple Search Dropdown">
+      <Card title="Multiple Dropdown">
         <Dropdown multiple options={pets} placeholder="My Pets" />
+      </Card>
+      <Card title="Multiple Search Dropdown">
+        <Dropdown search multiple options={pets} placeholder="My Pets" />
       </Card>
     </StyledDropdownPAge>
   );
