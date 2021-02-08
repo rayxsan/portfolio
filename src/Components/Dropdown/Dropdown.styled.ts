@@ -125,7 +125,7 @@ export const StyledDropdown = styled.div<StyledProps>`
       padding: 0.25em 2.25em 0.25em 0.25em;
       div {
         display: inline-block;
-        border: 1px solid lightgray;
+        border: 1px solid darkgray;
         height: 0.8em;
         margin: 0.25em 0.25em 0.25em 0;
         padding-top: 0.2em;

@@ -99,7 +99,7 @@ export const Dropdown: React.FC<Props> = (props) => {
         value={searchTerm}
         onChange={handleSearchChange}
         onClick={() => {
-          setSearchTerm("");
+          if (!open) setSearchTerm("");
         }}
       />
     );
@@ -221,15 +221,25 @@ export const Dropdown: React.FC<Props> = (props) => {
   //Handlers for open and close.
   const ref = useClickOutsideListenerRef(() => {
     if (search && !multiple) {
-      if (keyToNumber() !== -1)
+      if (selectedList.length > 0 && selectedList.length < options.length) {
+        setSelected(selectedList[0].key);
+        setSearchTerm(selectedList[0].text.toString());
+      } else {
+        setSearchTerm("");
+      }
+      if (keyToNumber() !== -1) {
         setSearchTerm(options[keyToNumber()].text.toString());
+      }
+    }
+    if (search && multiple) {
+      setSearchTerm("");
     }
     setOpen(false);
   });
 
   const toggleHandler = () => {
     setOpen(!open);
-    if (multiple) {
+    if (multiple || search) {
       setOpen(true);
       if (selectedList.length < 1) {
         setOpen(false);
@@ -249,9 +259,20 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   const closeHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
-    if (search && !multiple)
-      if (keyToNumber() !== -1)
+    if (search && !multiple) {
+      if (selectedList.length > 0 && selectedList.length < options.length) {
+        setSelected(selectedList[0].key);
+        setSearchTerm(selectedList[0].text.toString());
+      } else {
+        setSearchTerm("");
+      }
+      if (keyToNumber() !== -1) {
         setSearchTerm(options[keyToNumber()].text.toString());
+      }
+    }
+    if (search && multiple) {
+      setSearchTerm("");
+    }
     setOpen(false);
   };
   const expandOptions = open ? (
