@@ -1,6 +1,8 @@
 import React, {
   useState,
-  //useRef,
+  useRef,
+  useEffect,
+  //useEffect,
   // useRef /*, useEffect, SyntheticEvent*/,
 } from "react";
 // import DropdownCard from "./DropdownCard";
@@ -32,10 +34,12 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   const [open, setOpen] = useState(false);
 
-  const [selected, setSelected] = useState(props.placeholder ? -1 : 0);
+  const [selected, setSelected] = useState<number | string | undefined>(
+    props.placeholder ? undefined : options[0].key
+  );
 
   const [searchTerm, setSearchTerm] = useState(
-    props.placeholder ? "" : options[selected].text.toString()
+    props.placeholder ? "" : options[0].text.toString()
   );
 
   const [multipleOptions, setMultipleOptions] = useState(
@@ -47,15 +51,24 @@ export const Dropdown: React.FC<Props> = (props) => {
     setSearchTerm(event.target.value);
   };
 
+  const keyToNumber = () => {
+    if (selected) {
+      for (let i = 0; i < options.length; i++) {
+        if (options[i].key === selected) return i;
+      }
+    }
+    return -1;
+  };
+
   let placeHolder;
-  if (props.placeholder && selected === -1) {
+  if (props.placeholder && keyToNumber() === -1) {
     placeHolder = <StyledPlaceHolder>{props.placeholder}</StyledPlaceHolder>;
   }
 
   let selectedValues: JSX.Element | (JSX.Element | null)[] | undefined;
 
-  if (selected !== -1) {
-    selectedValues = <div>{options[selected].text}</div>;
+  if (keyToNumber() !== -1) {
+    selectedValues = <div>{options[keyToNumber()].text}</div>;
   }
 
   const value = options.reduce((acc, curr) => {
@@ -65,16 +78,23 @@ export const Dropdown: React.FC<Props> = (props) => {
   let selectedList = options;
   let dropDownValues: JSX.Element[] | JSX.Element;
 
+  const searchInputRef = useRef(null);
+
+  function handleFocus() {
+    (searchInputRef.current as any).focus();
+  }
+
   //Search Dropdown
   if (search) {
     placeHolder = undefined;
     selectedValues = (
       <input
         type="text"
+        ref={searchInputRef}
         placeholder={
-          props.placeholder && selected === -1
+          props.placeholder && keyToNumber() === -1
             ? props.placeholder
-            : options[selected].text.toString()
+            : options[keyToNumber()].text.toString()
         }
         value={searchTerm}
         onChange={handleSearchChange}
@@ -83,6 +103,7 @@ export const Dropdown: React.FC<Props> = (props) => {
         }}
       />
     );
+    // let temOptions = options;
     selectedList = options.filter((option) => {
       return option.text.toString().toLowerCase().includes(searchTerm);
     });
@@ -149,9 +170,10 @@ export const Dropdown: React.FC<Props> = (props) => {
 
           <input
             type="text"
+            ref={searchInputRef}
             autoComplete="off"
             placeholder={
-              props.placeholder && selected === -1
+              props.placeholder && keyToNumber() === -1
                 ? props.placeholder
                 : undefined
             }
@@ -185,9 +207,11 @@ export const Dropdown: React.FC<Props> = (props) => {
       <li
         key={option.key}
         onClick={(e) => {
-          setSelected(idx);
+          setSelected(option.key);
           if (onChange !== undefined) onChange(value);
-          if (search && !multiple) setSearchTerm(option.text.toString());
+          if (search && !multiple) {
+            setSearchTerm(option.text.toString());
+          }
           if (multiple) {
             addMultipleOption(option, e);
             if (search) setSearchTerm("");
@@ -205,15 +229,15 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   //Handlers for open and close.
   const ref = useClickOutsideListenerRef(() => {
-    if (search && !multiple)
-      if (selected !== -1) setSearchTerm(options[selected].text.toString());
+    if (search && !multiple) {
+      if (keyToNumber() !== -1)
+        setSearchTerm(options[keyToNumber()].text.toString());
+    }
     setOpen(false);
   });
 
   const toggleHandler = () => {
     setOpen(!open);
-    if (search) {
-    }
     if (multiple) {
       setOpen(true);
       if (selectedList.length < 1) {
@@ -225,14 +249,18 @@ export const Dropdown: React.FC<Props> = (props) => {
   const openHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
     setOpen(true);
-    if (search) setSearchTerm("");
-    if (multipleOptions.size === options.length) setOpen(false);
+    if (search) {
+      setSearchTerm("");
+      handleFocus();
+    }
+    if (multiple) if (multipleOptions.size === options.length) setOpen(false);
   };
 
   const closeHandler = (event: React.MouseEvent) => {
     event.stopPropagation();
     if (search && !multiple)
-      if (selected !== -1) setSearchTerm(options[selected].text.toString());
+      if (keyToNumber() !== -1)
+        setSearchTerm(options[keyToNumber()].text.toString());
     setOpen(false);
   };
   const expandOptions = open ? (
@@ -248,11 +276,14 @@ export const Dropdown: React.FC<Props> = (props) => {
         open={open}
         textWidth={value}
         selectedList={selectedList.length}
-        selectedOption={selected + 1}
+        selectedOption={keyToNumber() + 1}
         search={search}
         multiple={multiple}
-        placeHolder={props.placeholder !== undefined}
-        onClick={toggleHandler}
+        onClick={(e) => {
+          if (search && multiple) {
+            openHandler(e);
+          } else toggleHandler();
+        }}
       >
         {expandOptions}
         {placeHolder || selectedValues}

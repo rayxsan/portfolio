@@ -7,7 +7,7 @@ interface StyledProps {
   textWidth: number;
   selectedList: number;
   selectedOption: number;
-  placeHolder: boolean;
+  //placeHolder: boolean;
 }
 
 export const StyledPlaceHolder = styled.div`
