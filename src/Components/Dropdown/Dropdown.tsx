@@ -121,6 +121,7 @@ export const Dropdown: React.FC<Props> = (props) => {
       tempSet.delete(option);
       if (tempSet.size < 1) setOpen(open);
       setMultipleOptions(tempSet);
+      if (search) handleFocus();
     };
 
     selectedList = options.filter((option) => {
@@ -135,58 +136,45 @@ export const Dropdown: React.FC<Props> = (props) => {
       event.stopPropagation();
       console.log("Clicked: " + option.value);
     };
+
+    let setArray = Array.from(multipleOptions);
+    let multipleSearchInput: JSX.Element | undefined;
+    if (search) {
+      multipleSearchInput = (
+        <input
+          type="text"
+          ref={searchInputRef}
+          autoComplete="off"
+          placeholder={
+            props.placeholder && keyToNumber() === -1
+              ? props.placeholder
+              : undefined
+          }
+          value={searchTerm}
+          onChange={handleSearchChange}
+          onClick={() => {
+            setOpen(true);
+            setSearchTerm("");
+          }}
+        />
+      );
+    }
     selectedValues =
-      multipleOptions.size === 0 ? (
+      !search && multipleOptions.size === 0 ? (
         <StyledPlaceHolder>{props.placeholder}</StyledPlaceHolder>
       ) : (
-        options.map((option) => {
-          if (multipleOptions.has(option)) {
+        <>
+          {setArray.map((option) => {
             return (
               <div key={option.key} onClick={(e) => clickedOption(e, option)}>
                 {option.text}
                 <FaTimes onClick={(e) => removeMultipleOption(option, e)} />
               </div>
             );
-          }
-
-          return null;
-        })
-      );
-    if (search) {
-      selectedValues = (
-        <>
-          {options.map((option) => {
-            if (multipleOptions.has(option)) {
-              return (
-                <div key={option.key} onClick={(e) => clickedOption(e, option)}>
-                  {option.text}
-                  <FaTimes onClick={(e) => removeMultipleOption(option, e)} />
-                </div>
-              );
-            }
-
-            return null;
           })}
-
-          <input
-            type="text"
-            ref={searchInputRef}
-            autoComplete="off"
-            placeholder={
-              props.placeholder && keyToNumber() === -1
-                ? props.placeholder
-                : undefined
-            }
-            value={searchTerm}
-            onChange={handleSearchChange}
-            onClick={() => {
-              setOpen(true);
-              setSearchTerm("");
-            }}
-          />
+          {multipleSearchInput}
         </>
       );
-    }
   }
   //Dropdown list renderer
   const addMultipleOption = (
@@ -197,8 +185,11 @@ export const Dropdown: React.FC<Props> = (props) => {
     const tempSet = new Set(multipleOptions);
     tempSet.add(option);
     if (tempSet.size === options.length) setOpen(false);
-    if (search) setSearchTerm("");
     setMultipleOptions(tempSet);
+    if (search) {
+      setSearchTerm("");
+      handleFocus();
+    }
   };
 
   dropDownValues = selectedList.map((option, idx) => {
