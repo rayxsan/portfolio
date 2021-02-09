@@ -5,10 +5,11 @@ const theme1 = {
   defaultColor: "#000",
   disabledColor: "#bbb",
   solidBackground: "#fff",
-  sidebarBGColor: "#222A45",
+  sidebarBGColor: "rgba(0,0,0,.85)",
+  headerBGColor: "#fff",
+  footerBGColor: "rgba(0,0,0,.85)",
   sidebarFontColor: "#fff",
-  footerBGColor: "#222A45",
-  footerFontColor: "#fff",
+  footerFontColor: "#ccc",
   fontColor: "black",
 
   //Dimensions

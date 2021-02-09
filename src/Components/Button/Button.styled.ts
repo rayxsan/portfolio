@@ -48,6 +48,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   transition: 0.2s;
   cursor: pointer;
   border: none;
+  outline: 0;
 
   /* button size: */
 

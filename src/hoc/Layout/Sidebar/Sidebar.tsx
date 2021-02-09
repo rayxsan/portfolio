@@ -2,7 +2,6 @@ import React, { FunctionComponent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
 import { BiArrowFromRight } from "react-icons/bi";
-import { CgComponents } from "react-icons/cg";
 import Backdrop from "../../../Components/UI/Backdrop/Backdrop";
 
 interface Props {
@@ -17,24 +16,23 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
 
   return (
     <>
-      <Backdrop show={!show} clicked={clicked} />
-      <StyledSidebar show={!show}>
+      <Backdrop show={show} clicked={clicked} />
+      <StyledSidebar show={show}>
         <BiArrowFromRight onClick={clicked} />
         <nav>
-          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/"} exact>
+            Home
+          </NavLink>
         </nav>
         <nav>
-          <NavLink to={"/components/buttons"}>
-            <CgComponents />
-          </NavLink>
           <div onClick={() => setOpenComponents(!openComponents)}>
             <p>Components</p>
           </div>
           {openComponents ? (
             <ul>
-              <NavLink to={"/components/buttons"}>Buttons</NavLink>
-              <NavLink to={"/components/card"}>Cards</NavLink>
-              <NavLink to={"/components/checkbox"}>Checkboxes</NavLink>
+              <NavLink to={"/components/button"}>Button</NavLink>
+              <NavLink to={"/components/card"}>Card</NavLink>
+              <NavLink to={"/components/checkbox"}>Checkbox</NavLink>
               <NavLink to={"/components/dropdown"}>Dropdown</NavLink>
               <NavLink to={"/components/form"}>Form</NavLink>
               <NavLink to={"/components/menu"}>Menu</NavLink>

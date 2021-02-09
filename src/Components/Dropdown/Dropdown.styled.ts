@@ -5,8 +5,17 @@ interface StyledProps {
   search?: boolean;
   multiple?: boolean;
   textWidth: number;
-  selectionList: number;
+  selectedList: number;
+  selectedOption: number;
+  //placeHolder: boolean;
 }
+
+export const StyledPlaceHolder = styled.div`
+  border: none !important;
+  background-color: white !important;
+  font-weight: 300 !important;
+  opacity: 0.7;
+`;
 
 export const StyledDropdown = styled.div<StyledProps>`
   position: relative;
@@ -20,24 +29,28 @@ export const StyledDropdown = styled.div<StyledProps>`
     props.open ? "none" : "1px solid #ccc"};
   border-radius: ${(props: StyledProps) =>
     props.open ? "0.25em 0.25em 0 0" : "0.25em"};
-
-  height: 2em;
-  width: ${(props: StyledProps) => props.textWidth + 3.5 + "em"};
+  height: fit-content;
+  width: auto;
+  min-width: ${(props: StyledProps) => props.textWidth + 3.5 + "em"};
+  user-select: none;
   :hover {
     border-color: black;
   }
-
   div {
-    padding: 0.5em 0.25em 0.5em 0.5em;
+    padding: 0.3em 0.25em 0.3em 0.5em;
     display: inline-block;
-    //opacity: 0.7;
+    user-select: none;
   }
 
   svg {
     float: right;
     text-align: center;
     font-size: 100%;
-    padding: 0.5em 0.5em 0.5em 0.25em;
+    padding: 0.3em 0.5em 0.3em 0.25em;
+    opacity: 0.5;
+    :hover {
+      opacity: 1;
+    }
   }
   ul {
     display: ${(props: StyledProps) => (props.open ? "block" : "none")};
@@ -50,12 +63,12 @@ export const StyledDropdown = styled.div<StyledProps>`
     margin-top: -3px;
     margin-left: -1px;
     padding: 0;
-    width: inherit;
+    width: 100%;
     z-index: 10;
     background-color: #fff;
 
     ${(props: StyledProps) =>
-      props.selectionList > 4 &&
+      props.selectedList > 4 &&
       css`
         max-height: 8rem;
         overflow-y: scroll;
@@ -72,7 +85,7 @@ export const StyledDropdown = styled.div<StyledProps>`
     li {
       padding: 0.5em;
       text-align: left;
-      cursor: default;
+      cursor: pointer;
       :hover {
         background-color: #eee;
         :last-child {
@@ -83,6 +96,9 @@ export const StyledDropdown = styled.div<StyledProps>`
         font-size: 70%;
         opacity: 0.6;
       }
+      :nth-child(${(props: StyledProps) => props.selectedOption}) {
+        background-color: lightgray;
+      }
     }
   }
 
@@ -91,13 +107,56 @@ export const StyledDropdown = styled.div<StyledProps>`
     css`
       input {
         border: none;
-        padding: 0;
-        margin-left: 0.5em;
-        height: 2rem;
-        width: 65%;
+        padding: 0.5em 0.3em 0.5em 0.5em;
+        margin-left: 0.2em;
+        font-size: 100%;
         outline: 0;
-        box-shadow: none;
+      }
+
+      svg {
+        padding-top: 0.5em;
       }
     `}
-  ${(props: StyledProps) => props.multiple && css``}
+  ${(props: StyledProps) =>
+    props.multiple &&
+    css`
+      display: block;
+      max-width: 100%;
+      padding: 0.25em 2.25em 0.25em 0.25em;
+      div {
+        display: inline-block;
+        border: 1px solid darkgray;
+        height: 0.8em;
+        margin: 0.25em 0.25em 0.25em 0;
+        padding-top: 0.2em;
+        padding-bottom: 0.5em;
+        border-radius: 0.25em;
+        background-color: lightgray;
+        text-align: center;
+        font-weight: bold;
+        opacity: 0.7;
+        :hover {
+          opacity: 1;
+        }
+        svg {
+          position: relative;
+          padding: 0;
+          padding-left: 0.3em;
+          opacity: 0.5;
+          :hover {
+            opacity: 1;
+          }
+        }
+      }
+      svg {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding-top: 1em;
+      }
+      ul {
+        width: 100%;
+        left: 0;
+      }
+    `}
 `;

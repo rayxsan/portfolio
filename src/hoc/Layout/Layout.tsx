@@ -12,7 +12,7 @@ interface Props {}
 
 class Layout extends Component<Props, State> {
   state = {
-    showSidebar: true,
+    showSidebar: false,
   };
 
   sidebarToggleHandler = () => {
@@ -28,8 +28,11 @@ class Layout extends Component<Props, State> {
           show={this.state.showSidebar}
           clicked={() => this.sidebarToggleHandler()}
         />
-        <Wrapper expand={this.state.showSidebar}>
-          <Header clicked={() => this.sidebarToggleHandler()} />
+        <Wrapper expand={!this.state.showSidebar}>
+          <Header
+            clicked={() => this.sidebarToggleHandler()}
+            expand={this.state.showSidebar}
+          />
           <MainContent>{this.props.children}</MainContent>
           <Footer />
         </Wrapper>

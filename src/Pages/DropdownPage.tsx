@@ -8,7 +8,7 @@ import styled from "styled-components";
 const StyledDropdownPAge = styled.div`
   ${StyledCard} {
     ${StyledDropdown} {
-      margin: 12px;
+      margin-left: 12px;
     }
   }
 `;
@@ -38,6 +38,9 @@ const DropdownPage = () => {
       </Card>
       <Card title="Search Dropdown">
         <Dropdown search options={pets} placeholder="My Pets" />
+      </Card>
+      <Card title="Multiple Dropdown">
+        <Dropdown multiple options={pets} placeholder="My Pets" />
       </Card>
       <Card title="Multiple Search Dropdown">
         <Dropdown search multiple options={pets} placeholder="My Pets" />

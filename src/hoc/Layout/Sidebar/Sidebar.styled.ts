@@ -16,6 +16,7 @@ export const StyledSidebar = styled.div`
   box-sizing: border-box;
   text-align: left;
   z-index: 999;
+  user-select: none;
 
   svg {
     font-size: 1.2rem;
@@ -51,8 +52,14 @@ export const StyledSidebar = styled.div`
     text-decoration: none;
     color: ${({ theme }) => theme.sidebarFontColor};
   }
+
   a:hover {
     color: ${({ theme }) => theme.primaryColor};
+    //border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
+  }
+  .active {
+    color: ${({ theme }) => theme.primaryColor};
+    //border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
   }
   @media (min-width: 499px) {
     ${(props: StyledProps) =>

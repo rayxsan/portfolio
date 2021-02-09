@@ -1,5 +1,6 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import React, { FunctionComponent, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { useClickOutsideListenerRef } from "../../shared/utils";
 
 import {
   StyledMenuWrapper,
@@ -24,23 +25,11 @@ const Menu: FunctionComponent<Props> = ({
   secondary,
   onClick,
 }) => {
-  //TODO: Find type for createRef<any>
-  const container = React.createRef<any>();
-
   const [openedMenu, setOpenedMenu] = useState(false);
   const [selectedText, setSelectedText] = useState(items[0]);
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (container.current && !container.current.contains(event.target)) {
-        setOpenedMenu(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+  const ref = useClickOutsideListenerRef(() => {
+    setOpenedMenu(false);
   });
 
   const handleOptionClick = function (text?: string): void {
@@ -53,7 +42,7 @@ const Menu: FunctionComponent<Props> = ({
   }
 
   return (
-    <StyledMenuWrapper ref={container}>
+    <StyledMenuWrapper ref={ref}>
       <StyledMainButton
         primary={primary}
         secondary={secondary}

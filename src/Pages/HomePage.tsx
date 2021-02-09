@@ -1,98 +1,41 @@
 import React from "react";
 import styled from "styled-components";
+import Card from "../Components/UI/Card/Card";
+import { FaGithub } from "react-icons/fa";
 
-const StyledText = styled.div``;
+const StyledText = styled.div`
+  padding-left: 2rem;
+  text-align: left;
+  svg {
+    padding-right: 0.2em;
+  }
+  a {
+    text-decoration: none;
+
+    color: ${({ theme }) => theme.fontColor};
+
+    :hover {
+      color: ${({ theme }) => theme.primaryColor};
+      border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
+    }
+  }
+`;
 
 const HomePage = () => (
   <StyledText>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan
-      condimentum libero, eget tristique enim accumsan mollis. Duis tempus massa
-      leo, in condimentum nunc gravida ut. Integer fermentum odio eget porttitor
-      consequat. Vestibulum vestibulum nisi vitae consequat egestas. Sed
-      elementum tristique laoreet. Sandri estibulum dictum metus quis elit
-      hendrerit, vel tincidunt turpis luctus. Herrerus nullam semper fermentum
-      libero ut convallis. Aenean eget risus velit. Donec maximus lacus eros,
-      nec lobortis ipsum egestas vitae. Aliquam at dapibus odio. Amoris praesent
-      mattis ut nisi id porttitor.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan
-      condimentum libero, eget tristique enim accumsan mollis. Duis tempus massa
-      leo, in condimentum nunc gravida ut. Integer fermentum odio eget porttitor
-      consequat. Vestibulum vestibulum nisi vitae consequat egestas. Sed
-      elementum tristique laoreet. Vestibulum dictum metus quis elit hendrerit,
-      vel tincidunt turpis luctus. Nullam semper fermentum libero ut convallis.
-      Aenean eget risus velit. Donec maximus lacus eros, nec lobortis ipsum
-      egestas vitae. Aliquam at dapibus odio. Praesent mattis ut nisi id
-      porttitor.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan
-      condimentum libero, eget tristique enim accumsan mollis. Duis tempus massa
-      leo, in condimentum nunc gravida ut. Integer fermentum odio eget porttitor
-      consequat. Vestibulum vestibulum nisi vitae consequat egestas. Sed
-      elementum tristique laoreet. Vestibulum dictum metus quis elit hendrerit,
-      vel tincidunt turpis luctus. Nullam semper fermentum libero ut convallis.
-      Aenean eget risus velit. Donec maximus lacus eros, nec lobortis ipsum
-      egestas vitae. Aliquam at dapibus odio. Praesent mattis ut nisi id
-      porttitor.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan
-      condimentum libero, eget tristique enim accumsan mollis. Duis tempus massa
-      leo, in condimentum nunc gravida ut. Integer fermentum odio eget porttitor
-      consequat. Vestibulum vestibulum nisi vitae consequat egestas. Sed
-      elementum tristique laoreet. Vestibulum dictum metus quis elit hendrerit,
-      vel tincidunt turpis luctus. Nullam semper fermentum libero ut convallis.
-      Aenean eget risus velit. Donec maximus lacus eros, nec lobortis ipsum
-      egestas vitae. Aliquam at dapibus odio. Praesent mattis ut nisi id
-      porttitor.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan
-      condimentum libero, eget tristique enim accumsan mollis. Duis tempus massa
-      leo, in condimentum nunc gravida ut. Integer fermentum odio eget porttitor
-      consequat. Vestibulum vestibulum nisi vitae consequat egestas. Sed
-      elementum tristique laoreet. Vestibulum dictum metus quis elit hendrerit,
-      vel tincidunt turpis luctus. Nullam semper fermentum libero ut convallis.
-      Aenean eget risus velit. Donec maximus lacus eros, nec lobortis ipsum
-      egestas vitae. Aliquam at dapibus odio. Praesent mattis ut nisi id
-      porttitor.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan
-      condimentum libero, eget tristique enim accumsan mollis. Duis tempus massa
-      leo, in condimentum nunc gravida ut. Integer fermentum odio eget porttitor
-      consequat. Vestibulum vestibulum nisi vitae consequat egestas. Sed
-      elementum tristique laoreet. Vestibulum dictum metus quis elit hendrerit,
-      vel tincidunt turpis luctus. Nullam semper fermentum libero ut convallis.
-      Aenean eget risus velit. Donec maximus lacus eros, nec lobortis ipsum
-      egestas vitae. Aliquam at dapibus odio. Praesent mattis ut nisi id
-      porttitor.
-    </p>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan
-      condimentum libero, eget tristique enim accumsan mollis. Duis tempus massa
-      leo, in condimentum nunc gravida ut. Integer fermentum odio eget porttitor
-      consequat. Vestibulum vestibulum nisi vitae consequat egestas. Sed
-      elementum tristique laoreet. Vestibulum dictum metus quis elit hendrerit,
-      vel tincidunt turpis luctus. Nullam semper fermentum libero ut convallis.
-      Aenean eget risus velit. Donec maximus lacus eros, nec lobortis ipsum
-      egestas vitae. Aliquam at dapibus odio. Praesent mattis ut nisi id
-      porttitor.
-    </p>
-    <p>
-      123 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce
-      accumsan condimentum libero, eget tristique enim accumsan mollis. Duis
-      tempus massa leo, in condimentum nunc gravida ut. Integer fermentum odio
-      eget porttitor consequat. Vestibulum vestibulum nisi vitae consequat
-      egestas. Sed elementum tristique laoreet. Vestibulum dictum metus quis
-      elit hendrerit, vel tincidunt turpis luctus. Nullam semper fermentum
-      libero ut convallis. Aenean eget risus velit. Donec maximus lacus eros,
-      nec lobortis ipsum egestas vitae. Aliquam at dapibus odio. Praesent mattis
-      ut nisi id porttitor.
-    </p>
+    <Card title="Introduction:">
+      <p>Brief description...</p>
+    </Card>
+    <Card title="Useful links:">
+      <a
+        href="https://github.com/rayxsan/portfolio"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <FaGithub />
+        Github
+      </a>
+    </Card>
   </StyledText>
 );
 
