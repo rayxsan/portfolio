@@ -1,11 +1,4 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  //useEffect,
-  // useRef /*, useEffect, SyntheticEvent*/,
-} from "react";
-// import DropdownCard from "./DropdownCard";
+import React, { useState, useRef } from "react";
 import { StyledDropdown, StyledPlaceHolder } from "./Dropdown.styled";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
 import { convertToRem, useClickOutsideListenerRef } from "../../shared/utils";
@@ -23,10 +16,7 @@ interface Props {
   placeholder?: string;
   search?: boolean;
   multiple?: boolean;
-  //onClose: () => void;
-  //onChange?: (event: React.ChangeEvent<HTMLSelectElement>) => void;
   onChange?: (value: string | number) => void;
-  // value?: string | number | readonly string[];
 }
 
 export const Dropdown: React.FC<Props> = (props) => {
