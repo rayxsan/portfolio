@@ -27,7 +27,8 @@ export const StyledMainButton = styled.button<Props>`
   height: 2rem;
   border: 1px solid ${({ theme }) => theme.disabledColor};
   border-radius: 0.25rem;
-  // background: inherit;
+  background: ${({ theme }) => theme.solidBackground};
+  color: ${({ theme }) => theme.fontColor};
 
   :hover {
     opacity: 0.7;

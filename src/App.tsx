@@ -27,8 +27,8 @@ class App extends Component<Props, State> {
   render() {
     let routes = (
       <Switch>
-        <Route path="/" exact component={HomePage} />
-        <Route path="/components/buttons" component={ButtonPage} />
+        <Route name="Home" path="/" exact component={HomePage} />
+        <Route path="/components/button" component={ButtonPage} />
         <Route path="/components/checkbox" component={CheckboxPage} />
         <Route path="/components/progress" component={ProgressPage} />
         <Route path="/components/radio" component={RadioPage} />

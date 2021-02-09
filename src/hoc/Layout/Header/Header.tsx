@@ -2,14 +2,16 @@ import React, { FunctionComponent } from "react";
 import { StyledHeader } from "./Header.styled";
 import { FiMenu } from "react-icons/fi";
 import Menu from "../../../Components/Menu/Menu";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 
 interface Props {
+  expand: boolean;
   clicked: (event: React.MouseEvent<SVGElement, MouseEvent>) => void;
 }
 
-const Header: FunctionComponent<Props> = ({ clicked }) => {
+const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
   let history = useHistory();
+  const location = useLocation();
 
   const onClickHandler = (value: string) => {
     if (value === "Home") {
@@ -24,8 +26,9 @@ const Header: FunctionComponent<Props> = ({ clicked }) => {
   };
 
   return (
-    <StyledHeader>
+    <StyledHeader expand={!expand}>
       <FiMenu onClick={clicked} />
+      <p>{location.pathname}</p>
       <div>
         <Menu
           header="Profile"
