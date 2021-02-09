@@ -47,7 +47,11 @@ class Checkbox extends Component<Props, State> {
     if (this.props.slider) {
       return (
         <>
-          <StyledSlider onClick={this.handleCheckboxChange}>
+          <StyledSlider
+            onClick={this.handleCheckboxChange}
+            primary={this.props.primary}
+            secondary={this.props.secondary}
+          >
             <input
               type="checkbox"
               checked={this.state.checked}
