@@ -52,8 +52,14 @@ export const StyledSidebar = styled.div`
     text-decoration: none;
     color: ${({ theme }) => theme.sidebarFontColor};
   }
+
   a:hover {
     color: ${({ theme }) => theme.primaryColor};
+    //border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
+  }
+  .active {
+    color: ${({ theme }) => theme.primaryColor};
+    //border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
   }
   @media (min-width: 499px) {
     ${(props: StyledProps) =>

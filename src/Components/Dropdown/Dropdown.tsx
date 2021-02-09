@@ -230,7 +230,6 @@ export const Dropdown: React.FC<Props> = (props) => {
   const toggleHandler = () => {
     if (multiple || search) {
       setOpen(true);
-      console.log(selectedList.length);
       if (selectedList.length < 1) {
         setOpen(false);
       }

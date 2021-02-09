@@ -21,7 +21,9 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
       <StyledSidebar show={!show}>
         <BiArrowFromRight onClick={clicked} />
         <nav>
-          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/"} exact>
+            Home
+          </NavLink>
         </nav>
         <nav>
           <NavLink to={"/components/buttons"}>
