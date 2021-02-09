@@ -4,7 +4,14 @@ import Card from "../Components/UI/Card/Card";
 import Menu from "../Components/Menu/Menu";
 // import { CgProfile } from "react-icons/cg";
 
-const StyledMenuPage = styled.div``;
+const StyledMenuPage = styled.div`
+  text-align: left;
+  div {
+    div {
+      display: inline-block;
+    }
+  }
+`;
 
 interface MENU {
   name: string;
@@ -23,7 +30,16 @@ const MENUS: MENU[] = [
   {
     name: " 3 Dot Menu",
     type: "dotted",
-    items: ["alpha", "beta", "gamma", "delta", "alpha", "beta", "gamma", "delta"],
+    items: [
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+      "alpha",
+      "beta",
+      "gamma",
+      "delta",
+    ],
   },
   {
     name: "Selected Menu",
@@ -46,11 +62,22 @@ const MenuPage = () => (
       </Card>
     ))}
     <Card title="Secondary Menu">
-      <Menu
-        secondary
-        type="dotted"
-        items={["Mercury", "Mars", "Earth", "Jupiter", "Venus", "Neptune", "Saturn", "Uranus"]}
-      />
+      <div>
+        <Menu
+          secondary
+          type="dotted"
+          items={[
+            "Mercury",
+            "Mars",
+            "Earth",
+            "Jupiter",
+            "Venus",
+            "Neptune",
+            "Saturn",
+            "Uranus",
+          ]}
+        />
+      </div>
     </Card>
   </StyledMenuPage>
 );
