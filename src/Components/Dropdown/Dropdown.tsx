@@ -88,7 +88,8 @@ export const Dropdown: React.FC<Props> = (props) => {
         }
         value={searchTerm}
         onChange={handleSearchChange}
-        onClick={() => {
+        onClick={(e) => {
+          e?.preventDefault();
           if (!open) setSearchTerm("");
         }}
       />
@@ -191,6 +192,7 @@ export const Dropdown: React.FC<Props> = (props) => {
           setSelected(option.key);
           if (onChange !== undefined) onChange(value);
           if (search && !multiple) {
+            closeHandler(e);
             setSearchTerm(option.text.toString());
           }
           if (multiple) {
@@ -210,31 +212,29 @@ export const Dropdown: React.FC<Props> = (props) => {
 
   //Handlers for open and close.
   const ref = useClickOutsideListenerRef(() => {
-    if (search && !multiple) {
+    setOpen(false);
+    if (search) {
       if (selectedList.length > 0 && selectedList.length < options.length) {
-        setSelected(selectedList[0].key);
+        if (selected !== undefined) setSelected(selectedList[0].key);
         setSearchTerm(selectedList[0].text.toString());
-      } else {
-        setSearchTerm("");
       }
       if (keyToNumber() !== -1) {
         setSearchTerm(options[keyToNumber()].text.toString());
       }
     }
-    if (search && multiple) {
+    if (multiple) {
       setSearchTerm("");
     }
-    setOpen(false);
   });
 
   const toggleHandler = () => {
-    setOpen(!open);
     if (multiple || search) {
       setOpen(true);
+      console.log(selectedList.length);
       if (selectedList.length < 1) {
         setOpen(false);
       }
-    }
+    } else setOpen(!open);
   };
 
   const openHandler = (event: React.MouseEvent) => {
@@ -256,7 +256,7 @@ export const Dropdown: React.FC<Props> = (props) => {
       } else {
         setSearchTerm("");
       }
-      if (keyToNumber() !== -1) {
+      if (selected) {
         setSearchTerm(options[keyToNumber()].text.toString());
       }
     }
@@ -282,7 +282,7 @@ export const Dropdown: React.FC<Props> = (props) => {
         search={search}
         multiple={multiple}
         onClick={(e) => {
-          if (search && multiple) {
+          if (search || multiple) {
             openHandler(e);
           } else toggleHandler();
         }}
