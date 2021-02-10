@@ -14,11 +14,12 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
   const location = useLocation();
 
   const displayCurrentPage = (string: string) => {
+    if (string.includes("/*")) return "404";
     if (string.includes("/components/")) {
       const tempString = string.slice(12);
       return tempString.charAt(0).toUpperCase() + tempString.slice(1);
     }
-    if (string.includes("/*")) return "404";
+
     return "Home";
   };
 
