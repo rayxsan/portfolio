@@ -4,7 +4,6 @@ import Card from "../Components/UI/Card/Card";
 import { FaGithub } from "react-icons/fa";
 
 const StyledText = styled.div`
-  padding-left: 2rem;
   text-align: left;
   svg {
     padding-right: 0.2em;

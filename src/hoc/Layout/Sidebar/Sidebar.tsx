@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
 import { BiArrowFromRight } from "react-icons/bi";
 import Backdrop from "../../../Components/UI/Backdrop/Backdrop";
+import * as path from "../../../shared/Routes";
 
 interface Props {
   show: boolean;
@@ -30,15 +31,15 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
           </div>
           {openComponents ? (
             <ul>
-              <NavLink to={"/components/button"}>Button</NavLink>
-              <NavLink to={"/components/card"}>Card</NavLink>
-              <NavLink to={"/components/checkbox"}>Checkbox</NavLink>
-              <NavLink to={"/components/dropdown"}>Dropdown</NavLink>
-              <NavLink to={"/components/form"}>Form</NavLink>
-              <NavLink to={"/components/menu"}>Menu</NavLink>
-              <NavLink to={"/components/progress"}>Progress</NavLink>
-              <NavLink to={"/components/radio"}>Radio</NavLink>
-              <NavLink to={"/components/table"}>Table</NavLink>
+              <NavLink to={path.buttonPath}>Button</NavLink>
+              <NavLink to={path.cardPath}>Card</NavLink>
+              <NavLink to={path.checkboxPath}>Checkbox</NavLink>
+              <NavLink to={path.dropdownPath}>Dropdown</NavLink>
+              <NavLink to={path.formPath}>Form</NavLink>
+              <NavLink to={path.menuPath}>Menu</NavLink>
+              <NavLink to={path.progressPath}>Progress</NavLink>
+              <NavLink to={path.radioPath}>Radio</NavLink>
+              <NavLink to={path.tablePath}>Table</NavLink>
             </ul>
           ) : null}
         </nav>
