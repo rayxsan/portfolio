@@ -175,18 +175,6 @@ export const StyledSlider = styled.div<Props>`
     background-color: #fff;
     right: 0px;
     transform: translateX(0.1em);
-
-    /* ${(props: Props) =>
-      props.primary &&
-      css`
-        background-color: ${({ theme }) => theme.primaryColor};
-      `}
-
-    ${(props: Props) =>
-      props.secondary &&
-      css`
-        background-color: ${({ theme }) => theme.secondaryColor};
-      `} */
   }
 
   > input:disabled:not(:checked) {

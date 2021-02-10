@@ -1,7 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-// TODO truncate Card Title if it doesn't fit in 1 line
-export const StyledCard = styled.div`
+interface StyledCardProps {
+  img?: boolean;
+  src?: string;
+}
+
+export const StyledCard = styled.div<StyledCardProps>`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.solidBackground};
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
@@ -27,4 +31,34 @@ export const StyledCard = styled.div`
     margin: 1rem;
     text-align: left;
   }
+
+  ${(props: StyledCardProps) =>
+    props.img &&
+    css`
+      padding: 0;
+      padding-bottom: 1.5rem;
+      div:first-child {
+        height: 10rem;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        background-image: url(${(props: StyledCardProps) => props.src});
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        cursor: pointer;
+      }
+
+      h3,
+      p {
+        padding-left: 2rem;
+      }
+
+      img {
+        width: 100%;
+      }
+      img:hover {
+        transform: scale(-2.5);
+        overflow: hidden;
+      }
+    `}
 `;
