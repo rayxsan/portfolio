@@ -1,6 +1,6 @@
 import React from "react";
 import Checkbox from "../Components/Checkbox/Checkbox";
-import Card from "../Components/UI/Card/Card";
+import Card from "../Components/Card/Card";
 import styled from "styled-components";
 
 // See examples from https://react.semantic-ui.com/modules/checkbox/#types-slider

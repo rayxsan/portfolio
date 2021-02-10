@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "../Components/UI/Card/Card";
+import Card from "../Components/Card/Card";
 import { FaGithub } from "react-icons/fa";
 
 const StyledText = styled.div`

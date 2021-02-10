@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "../Components/UI/Card/Card";
+import Card from "../Components/Card/Card";
 import Menu from "../Components/Menu/Menu";
 // import { CgProfile } from "react-icons/cg";
 
