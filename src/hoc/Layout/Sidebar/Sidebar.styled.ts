@@ -27,6 +27,19 @@ export const StyledSidebar = styled.div`
     cursor: pointer;
   }
 
+  p {
+    display: inline-block;
+    margin: 0;
+    padding-bottom: 0.5rem;
+    svg {
+      padding-left: 1rem;
+      :hover {
+        color: ${({ theme }) => theme.primaryColor};
+        cursor: pointer;
+      }
+    }
+  }
+
   ul {
     display: flex;
     flex-direction: column;

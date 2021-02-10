@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
-import { BiArrowFromRight } from "react-icons/bi";
+import { BiArrowFromRight, BiChevronDown, BiChevronUp } from "react-icons/bi";
 import Backdrop from "../../../Components/UI/Backdrop/Backdrop";
 import * as path from "../../../shared/Routes";
 
@@ -27,7 +27,10 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
         </nav>
         <nav>
           <div onClick={() => setOpenComponents(!openComponents)}>
-            <p>Components</p>
+            <p>
+              Components
+              {openComponents ? <BiChevronUp /> : <BiChevronDown />}
+            </p>
           </div>
           {openComponents ? (
             <ul>
