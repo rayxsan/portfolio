@@ -12,11 +12,45 @@ export const StyledSidebar = styled.div`
   height: 100%;
   background-color: ${({ theme }) => theme.sidebarBGColor};
   color: ${({ theme }) => theme.sidebarFontColor};
-  padding: 0.7rem 0.3rem 0.7rem 0.7rem;
+  padding: 0;
   box-sizing: border-box;
   text-align: left;
   z-index: 999;
   user-select: none;
+
+  p {
+    margin: 0;
+    padding: 0.7rem 0.3rem 0.7rem 0.7rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  nav {
+    padding: 0.7rem 0.3rem 0.7rem 0.7rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    :first-child:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    p {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 0.5rem;
+      border: none;
+      svg {
+        padding-left: 1rem;
+        :hover {
+          color: ${({ theme }) => theme.primaryColor};
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .sidebarHome {
+    :hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
 
   svg {
     font-size: 1.2rem;
@@ -27,19 +61,6 @@ export const StyledSidebar = styled.div`
     cursor: pointer;
   }
 
-  p {
-    display: inline-block;
-    margin: 0;
-    padding-bottom: 0.5rem;
-    svg {
-      padding-left: 1rem;
-      :hover {
-        color: ${({ theme }) => theme.primaryColor};
-        cursor: pointer;
-      }
-    }
-  }
-
   ul {
     display: flex;
     flex-direction: column;
@@ -47,13 +68,8 @@ export const StyledSidebar = styled.div`
     margin-top: 0.2rem;
 
     a {
-      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
     }
-  }
-
-  nav div {
-    margin-top: 1em;
-    width: auto;
   }
 
   nav div:hover {
@@ -68,12 +84,20 @@ export const StyledSidebar = styled.div`
 
   a:hover {
     color: ${({ theme }) => theme.primaryColor};
-    //border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
   }
   .active {
     color: ${({ theme }) => theme.primaryColor};
-    //border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
   }
+
+  ${(props: StyledProps) =>
+    props.show &&
+    css`
+      p,
+      nav {
+        border: none;
+      }
+    `}
+
   @media (min-width: 499px) {
     ${(props: StyledProps) =>
       props.show &&

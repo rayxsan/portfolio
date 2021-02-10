@@ -19,13 +19,17 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
     <>
       <Backdrop show={show} clicked={clicked} />
       <StyledSidebar show={show}>
-        <BiArrowFromRight onClick={clicked} />
+        <p>
+          Portfolio
+          <BiArrowFromRight onClick={clicked} />
+        </p>
+
+        <NavLink to={"/"} exact>
+          <p className="sidebarHome"> Home</p>
+        </NavLink>
+
         <nav>
-          <NavLink to={"/"} exact>
-            Home
-          </NavLink>
-        </nav>
-        <nav>
+          <p>Elements</p>
           <div onClick={() => setOpenComponents(!openComponents)}>
             <p>
               Components
