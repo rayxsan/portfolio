@@ -14,6 +14,7 @@ interface Props {
 
 const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
   const [openComponents, setOpenComponents] = useState(false);
+  const [openAuth, setOpenAuth] = useState(false);
 
   return (
     <>
@@ -36,7 +37,7 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               {openComponents ? <BiChevronUp /> : <BiChevronDown />}
             </p>
           </div>
-          {openComponents ? (
+          {openComponents && (
             <ul>
               <NavLink to={path.buttonPath}>Button</NavLink>
               <NavLink to={path.cardPath}>Card</NavLink>
@@ -48,7 +49,24 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               <NavLink to={path.radioPath}>Radio</NavLink>
               <NavLink to={path.tablePath}>Table</NavLink>
             </ul>
-          ) : null}
+          )}
+        </nav>
+
+        <nav>
+          <p>Pages</p>
+          <div onClick={() => setOpenAuth(!openAuth)}>
+            <p>
+              Auth
+              {openAuth ? <BiChevronUp /> : <BiChevronDown />}
+            </p>
+          </div>
+          {openAuth && (
+            <ul>
+              <NavLink to={path.notFoundPath}>Sign in</NavLink>
+              <NavLink to={path.notFoundPath}>Sign up</NavLink>
+              <NavLink to={path.notFoundPath}>404 Page</NavLink>
+            </ul>
+          )}
         </nav>
       </StyledSidebar>
     </>

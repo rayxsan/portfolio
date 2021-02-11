@@ -8,6 +8,7 @@ const cardPath = "/components/card";
 const dropdownPath = "/components/dropdown";
 const formPath = "/components/form";
 const tablePath = "/components/table";
+const notFoundPath = "*";
 
 export {
   homePath,
@@ -20,4 +21,5 @@ export {
   dropdownPath,
   formPath,
   tablePath,
+  notFoundPath,
 };
