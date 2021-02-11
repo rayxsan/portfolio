@@ -113,6 +113,6 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
       `}
   }
   @media (max-width: 500px) {
-    display: ${(props: StyledSidebarProps) => (props.show ? "block" : "none")};
+    display: ${(props: StyledSidebarProps) => (props.show ? "none" : "block")};
   }
 `;
