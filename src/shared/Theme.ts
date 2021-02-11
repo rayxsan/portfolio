@@ -8,7 +8,7 @@ const theme1 = {
   sidebarBGColor: "rgba(0,0,0,.85)",
   headerBGColor: "#fff",
   footerBGColor: "rgba(0,0,0,.85)",
-  sidebarFontColor: "#fff",
+  sidebarFontColor: "rgba(255, 255, 255, 0.95)",
   footerFontColor: "#ccc",
   fontColor: "black",
 

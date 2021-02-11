@@ -17,6 +17,7 @@ export const StyledSidebar = styled.div`
   text-align: left;
   z-index: 999;
   user-select: none;
+  font-weight: lighter;
 
   p {
     margin: 0;
