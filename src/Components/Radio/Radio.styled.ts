@@ -22,8 +22,8 @@ export const StyledRadio = styled.div<styledProps>`
   }
   span {
     position: absolute;
-    width: 1em;
-    height: 1rem;
+    width: 0.8em;
+    height: 0.8rem;
     border-radius: 50%;
     cursor: pointer;
     border: 1px solid;
@@ -38,10 +38,10 @@ export const StyledRadio = styled.div<styledProps>`
     content: "";
     position: absolute;
     display: none;
-    top: 0.25rem;
-    left: 0.25rem;
-    width: 0.5rem;
-    height: 0.5rem;
+    top: 0.125em;
+    left: 0.125em;
+    width: 0.55em;
+    height: 0.55em;
     border-radius: 50%;
     background: ${({ theme }) => theme.defaultColor};
   }

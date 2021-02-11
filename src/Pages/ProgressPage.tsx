@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Progress from "../Components/Progress/Progress";
-import Card from "../Components/UI/Card/Card";
+import Card from "../Components/Card/Card";
 import styled from "styled-components";
 
 const StyledProgressPage = styled.div``;

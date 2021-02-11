@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "../Components/Button/Button";
-import Card from "../Components/UI/Card/Card";
+import Card from "../Components/Card/Card";
 import styled from "styled-components";
 import { FaFacebookF, FaGoogle } from "react-icons/fa";
 

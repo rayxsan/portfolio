@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Card from "../Components/UI/Card/Card";
+import Card from "../Components/Card/Card";
 import Table from "../Components/Table/Table";
 import { data1, data2 } from "../shared/tableData";
 import axios from "axios";

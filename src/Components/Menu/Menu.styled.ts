@@ -25,6 +25,7 @@ export const StyledMainButton = styled.button<Props>`
   display: block;
   text-align: left;
   height: 2rem;
+
   border: 1px solid ${({ theme }) => theme.disabledColor};
   border-radius: 0.25rem;
   background: ${({ theme }) => theme.solidBackground};
@@ -99,6 +100,8 @@ export const StyledMenuList = styled.ul<Props>`
   top: 0;
   background: inherit;
   box-shadow: 1px 1px 3px 0 #ccc;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
 
   li {
     position: relative;

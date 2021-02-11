@@ -12,7 +12,7 @@ interface Props {}
 
 class Layout extends Component<Props, State> {
   state = {
-    showSidebar: false,
+    showSidebar: true,
   };
 
   sidebarToggleHandler = () => {

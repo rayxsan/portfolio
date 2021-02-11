@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 
-interface StyledProps {
+interface StyledSidebarProps {
   show: boolean;
 }
 
-export const StyledSidebar = styled.div`
+export const StyledSidebar = styled.div<StyledSidebarProps>`
   position: fixed;
   width: ${({ theme }) => theme.sidebarWidth};
   top: 0;
@@ -12,11 +12,47 @@ export const StyledSidebar = styled.div`
   height: 100%;
   background-color: ${({ theme }) => theme.sidebarBGColor};
   color: ${({ theme }) => theme.sidebarFontColor};
-  padding: 0.7rem 0.3rem 0.7rem 0.7rem;
+  padding: 0;
   box-sizing: border-box;
   text-align: left;
   z-index: 999;
   user-select: none;
+  font-weight: lighter;
+
+  p {
+    margin: 0;
+    padding: 0.7rem 0.3rem 0.7rem 0.7rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  nav {
+    padding: 0.7rem 0.3rem 0rem 0.7rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    :first-child:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    p {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      padding-bottom: 0.5rem;
+      border: none;
+      svg {
+        padding-left: 1rem;
+        :hover {
+          color: ${({ theme }) => theme.primaryColor};
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  .sidebarHome {
+    :hover {
+      background-color: ${(props: StyledSidebarProps) =>
+        props.show ? "none" : "rgba(255, 255, 255, 0.1)"};
+    }
+  }
 
   svg {
     font-size: 1.2rem;
@@ -32,19 +68,15 @@ export const StyledSidebar = styled.div`
     flex-direction: column;
     color: ${({ theme }) => theme.sidebarFontColor};
     margin-top: 0.2rem;
+    margin-bottom: 0;
 
     a {
-      margin-bottom: 0.5rem;
+      padding-bottom: 0.5rem;
     }
   }
 
-  nav div {
-    margin-top: 1em;
-    width: auto;
-  }
-
   nav div:hover {
-    color: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.sidebarFontActiveColor};
     cursor: pointer;
   }
 
@@ -54,24 +86,33 @@ export const StyledSidebar = styled.div`
   }
 
   a:hover {
-    color: ${({ theme }) => theme.primaryColor};
-    //border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.sidebarFontActiveColor};
   }
   .active {
-    color: ${({ theme }) => theme.primaryColor};
-    //border-bottom: 1px solid ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.sidebarFontActiveColor};
   }
+
+  ${(props: StyledSidebarProps) =>
+    props.show &&
+    css`
+      p,
+      nav {
+        border: none;
+      }
+      nav {
+        padding-top: 0;
+        position: relative;
+      }
+    `}
+
   @media (min-width: 499px) {
-    ${(props: StyledProps) =>
+    ${(props: StyledSidebarProps) =>
       props.show &&
       css`
         transform: translateX(calc(2rem - 100%));
-        svg {
-          transform: rotate(180deg);
-        }
       `}
   }
   @media (max-width: 500px) {
-    display: ${(props: StyledProps) => (props.show ? "block" : "none")};
+    display: ${(props: StyledSidebarProps) => (props.show ? "none" : "block")};
   }
 `;

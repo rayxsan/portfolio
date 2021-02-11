@@ -1,8 +1,8 @@
 import React from "react";
 import Dropdown from "../Components/Dropdown/Dropdown";
 import { StyledDropdown } from "../Components/Dropdown/Dropdown.styled";
-import Card from "../Components/UI/Card/Card";
-import { StyledCard } from "../Components/UI/Card/Card.styled";
+import Card from "../Components/Card/Card";
+import { StyledCard } from "../Components/Card/Card.styled";
 import styled from "styled-components";
 
 const StyledDropdownPAge = styled.div`

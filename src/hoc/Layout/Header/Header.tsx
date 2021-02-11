@@ -13,6 +13,16 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
   let history = useHistory();
   const location = useLocation();
 
+  const displayCurrentPage = (string: string) => {
+    if (string.includes("/*")) return "404";
+    if (string.includes("/components/")) {
+      const tempString = string.slice(12);
+      return tempString.charAt(0).toUpperCase() + tempString.slice(1);
+    }
+
+    return "Home";
+  };
+
   const onClickHandler = (value: string) => {
     if (value === "Home") {
       history.push("/");
@@ -28,7 +38,7 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
   return (
     <StyledHeader expand={!expand}>
       <FiMenu onClick={clicked} />
-      <p>{location.pathname}</p>
+      <p>{displayCurrentPage(location.pathname)}</p>
       <div>
         <Menu
           header="Profile"

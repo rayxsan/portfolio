@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Radio from "../Components/Radio/Radio";
-import Card from "../Components/UI/Card/Card";
+import Card from "../Components/Card/Card";
 import styled from "styled-components";
 
 const StyledRadioPage = styled.div`

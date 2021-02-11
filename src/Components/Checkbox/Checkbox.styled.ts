@@ -11,6 +11,7 @@ export const StyledCheckbox = styled.div<Props>`
   display: inline-block;
   box-sizing: border-box;
   vertical-align: middle;
+  user-select: none;
 
   input {
     position: absolute;
@@ -21,7 +22,10 @@ export const StyledCheckbox = styled.div<Props>`
   svg {
     display: inline-flex;
     align-self: center;
+    font-size: 125%;
     color: ${({ theme }) => theme.defaultColor};
+    opacity: 0.75;
+
     ${(props: Props) =>
       props.primary &&
       css`
@@ -37,21 +41,19 @@ export const StyledCheckbox = styled.div<Props>`
 
   label {
     margin: 0 0.2rem;
+    opacity: 0.85;
 
-    :hover {
-      color: ${({ theme }) => theme.defaultColor};
-      ${(props: Props) =>
-        props.primary &&
-        css`
-          color: ${({ theme }) => theme.primaryColor};
-        `}
+    ${(props: Props) =>
+      props.primary &&
+      css`
+        color: ${({ theme }) => theme.primaryColor};
+      `}
 
-      ${(props: Props) =>
-        props.secondary &&
-        css`
-          color: ${({ theme }) => theme.secondaryColor};
-        `}
-    }
+    ${(props: Props) =>
+      props.secondary &&
+      css`
+        color: ${({ theme }) => theme.secondaryColor};
+      `}
   }
 
   svg,
@@ -62,7 +64,22 @@ export const StyledCheckbox = styled.div<Props>`
     cursor: pointer;
   }
 
+  input:not(:disabled) + svg + label {
+    :hover {
+      opacity: 1;
+    }
+  }
+
+  input:not(:disabled) + svg {
+    :hover {
+      opacity: 1;
+    }
+  }
+  input:checked + svg {
+    opacity: 1;
+  }
   input:checked + svg + label {
+    opacity: 1;
     ${(props: Props) =>
       props.primary &&
       css`
@@ -77,9 +94,10 @@ export const StyledCheckbox = styled.div<Props>`
   }
   input:disabled + svg {
     cursor: default;
+    color: ${({ theme }) => theme.disabledColor};
   }
   input:disabled + svg + label {
-    color: ${({ theme }) => theme.defaultColor};
+    color: ${({ theme }) => theme.disabledColor};
     cursor: default;
   }
 
@@ -87,16 +105,19 @@ export const StyledCheckbox = styled.div<Props>`
     props.toggle &&
     css`
       svg {
-        font-size: 1.4rem;
+        font-size: 150%;
+        width: 2rem;
       }
     `}
 `;
 
-export const StyledSlider = styled.div`
+export const StyledSlider = styled.div<Props>`
   position: relative;
-  width: 2.5em;
+  width: 2.3em;
   display: inline-block;
   margin: 0.5em;
+  user-select: none;
+
   > input {
     position: absolute;
     opacity: 0;
@@ -110,9 +131,10 @@ export const StyledSlider = styled.div`
     height: 0.5em;
     padding: 0;
     line-height: 0.5em;
-    border: 0px solid #ffffff;
+    border: 0px solid ${({ theme }) => theme.disabledColor};
     border-radius: 0.25em;
-    background-color: #9e9e9e;
+    background-color: ${({ theme }) => theme.disabledColor};
+    color: blue;
   }
   label:before {
     content: "";
@@ -129,18 +151,29 @@ export const StyledSlider = styled.div`
     transition: 0.4s;
   }
   input:checked + label {
-    background-color: ${(props) => props.color || "grey"};
+    //background-color: red;
+    ${(props: Props) =>
+      props.primary &&
+      css`
+        background-color: ${({ theme }) => theme.primaryColor};
+      `}
+
+    ${(props: Props) =>
+      props.secondary &&
+      css`
+        background-color: ${({ theme }) => theme.secondaryColor};
+      `}
   }
   input:checked + label,
   input:checked + label:before {
-    border-color: ${(props) => props.color || "grey"};
+    border-color: grey;
   }
   input:checked + label {
     margin-left: 0;
   }
   input:checked + label:before {
+    background-color: #fff;
     right: 0px;
-    background-color: ${(props) => props.color || "grey"};
     transform: translateX(0.1em);
   }
 
@@ -149,7 +182,7 @@ export const StyledSlider = styled.div`
       cursor: default;
       box-shadow: none;
       border-color: #bbb;
-      background-color: #ddd;
+      background-color: #ccc;
     }
   }
   > input:disabled:checked {

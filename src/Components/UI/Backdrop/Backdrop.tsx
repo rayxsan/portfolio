@@ -7,7 +7,7 @@ interface Props {
   show: boolean;
 }
 const Backdrop: FunctionComponent<Props> = ({ show, clicked }) => (
-  <StyledBackdrop show={!show} onClick={clicked}></StyledBackdrop>
+  <StyledBackdrop show={show} onClick={clicked}></StyledBackdrop>
 );
 
 export default Backdrop;

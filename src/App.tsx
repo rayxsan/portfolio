@@ -4,19 +4,8 @@ import Layout from "./hoc/Layout/Layout";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
 import { theme } from "./shared/Theme";
-import {
-  HomePage,
-  ButtonPage,
-  CheckboxPage,
-  ProgressPage,
-  RadioPage,
-  MenuPage,
-  CardPage,
-  DropdownPage,
-  FormPage,
-  TablePage,
-  NotFoundPage,
-} from "./Pages";
+import * as path from "./shared/Routes";
+import * as page from "./Pages";
 
 interface OwnProps {}
 interface StateProps {}
@@ -27,17 +16,22 @@ class App extends Component<Props, State> {
   render() {
     let routes = (
       <Switch>
-        <Route name="Home" path="/" exact component={HomePage} />
-        <Route path="/components/button" component={ButtonPage} />
-        <Route path="/components/checkbox" component={CheckboxPage} />
-        <Route path="/components/progress" component={ProgressPage} />
-        <Route path="/components/radio" component={RadioPage} />
-        <Route path="/components/menu" component={MenuPage} />
-        <Route path="/components/card" component={CardPage} />
-        <Route path="/components/dropdown" component={DropdownPage} />
-        <Route path="/components/form" component={FormPage} />
-        <Route path="/components/table" component={TablePage} />
-        <Route path="*" component={NotFoundPage} />
+        <Route
+          name="Home"
+          path={path.homePath}
+          exact
+          component={page.HomePage}
+        />
+        <Route path={path.buttonPath} component={page.ButtonPage} />
+        <Route path={path.checkboxPath} component={page.CheckboxPage} />
+        <Route path={path.progressPath} component={page.ProgressPage} />
+        <Route path={path.radioPath} component={page.RadioPage} />
+        <Route path={path.menuPath} component={page.MenuPage} />
+        <Route path={path.cardPath} component={page.CardPage} />
+        <Route path={path.dropdownPath} component={page.DropdownPage} />
+        <Route path={path.formPath} component={page.FormPage} />
+        <Route path={path.tablePath} component={page.TablePage} />
+        <Route path="*" exact component={page.NotFoundPage} />
         <Redirect to="/" />
       </Switch>
     );

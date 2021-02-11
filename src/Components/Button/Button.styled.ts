@@ -48,7 +48,10 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   transition: 0.2s;
   cursor: pointer;
   border: none;
+  width: fit-content;
   outline: 0;
+
+  overflow: hidden;
 
   /* button size: */
 
@@ -80,6 +83,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
     props.text &&
     css`
       background: none;
+      width: fit-content;
       :hover:enabled {
         background-color: ${({ theme }) => theme.disabledColor};
       }
@@ -108,6 +112,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
     props.outline &&
     css`
       background: none;
+      width: fit-content;
       border: 1px solid ${({ theme }) => theme.disabledColor};
 
       ${(props: Props) =>
@@ -125,17 +130,15 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
         `}
     `}
 
-/*TODO: Center text */
+
     ${(props: Props) =>
     props.circular &&
     css`
+      display: inline-block;
       width: ${(props: Props) => sizes[props.size!].height};
       border-radius: 50%;
-
-      svg {
-        padding-top: 0.3em;
-        padding-left: 0.1em;
-        padding-right: 0.4em;
-      }
+      padding: 0;
+      margin: 0;
+      text-align: center;
     `}
 `;
