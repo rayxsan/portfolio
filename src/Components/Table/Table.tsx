@@ -84,7 +84,13 @@ const Table = <T extends object>({
           {offset + 1}-{endIndex} of {data.length}
         </p>
       </div>
-      <Button disabled={offset === 0} clicked={goPrevPage} text circular>
+      <Button
+        disabled={offset === 0}
+        clicked={goPrevPage}
+        text
+        circular
+        size="small"
+      >
         <FaChevronLeft />
       </Button>
       <Button
@@ -92,6 +98,7 @@ const Table = <T extends object>({
         clicked={goNextPage}
         text
         circular
+        size="small"
       >
         <FaChevronRight />
       </Button>
