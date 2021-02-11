@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 
-interface StyledProps {
+interface StyledSidebarProps {
   show: boolean;
 }
 
-export const StyledSidebar = styled.div`
+export const StyledSidebar = styled.div<StyledSidebarProps>`
   position: fixed;
   width: ${({ theme }) => theme.sidebarWidth};
   top: 0;
@@ -26,7 +26,7 @@ export const StyledSidebar = styled.div`
   }
 
   nav {
-    padding: 0.7rem 0.3rem 0.7rem 0.7rem;
+    padding: 0.7rem 0.3rem 0rem 0.7rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     :first-child:hover {
       background-color: rgba(255, 255, 255, 0.2);
@@ -49,7 +49,8 @@ export const StyledSidebar = styled.div`
 
   .sidebarHome {
     :hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: ${(props: StyledSidebarProps) =>
+        props.show ? "none" : "rgba(255, 255, 255, 0.1)"};
     }
   }
 
@@ -67,6 +68,7 @@ export const StyledSidebar = styled.div`
     flex-direction: column;
     color: ${({ theme }) => theme.sidebarFontColor};
     margin-top: 0.2rem;
+    margin-bottom: 0;
 
     a {
       padding-bottom: 0.5rem;
@@ -74,7 +76,7 @@ export const StyledSidebar = styled.div`
   }
 
   nav div:hover {
-    color: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.sidebarFontActiveColor};
     cursor: pointer;
   }
 
@@ -84,32 +86,33 @@ export const StyledSidebar = styled.div`
   }
 
   a:hover {
-    color: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.sidebarFontActiveColor};
   }
   .active {
-    color: ${({ theme }) => theme.primaryColor};
+    color: ${({ theme }) => theme.sidebarFontActiveColor};
   }
 
-  ${(props: StyledProps) =>
+  ${(props: StyledSidebarProps) =>
     props.show &&
     css`
       p,
       nav {
         border: none;
       }
+      nav {
+        padding-top: 0;
+        position: relative;
+      }
     `}
 
   @media (min-width: 499px) {
-    ${(props: StyledProps) =>
+    ${(props: StyledSidebarProps) =>
       props.show &&
       css`
         transform: translateX(calc(2rem - 100%));
-        svg {
-          transform: rotate(180deg);
-        }
       `}
   }
   @media (max-width: 500px) {
-    display: ${(props: StyledProps) => (props.show ? "block" : "none")};
+    display: ${(props: StyledSidebarProps) => (props.show ? "block" : "none")};
   }
 `;
