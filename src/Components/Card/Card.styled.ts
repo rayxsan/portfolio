@@ -38,6 +38,7 @@ export const StyledCard = styled.div<StyledCardProps>`
       padding: 0;
       padding-bottom: 1.5rem;
       div:first-child {
+        position: relative;
         height: 10rem;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
@@ -46,6 +47,11 @@ export const StyledCard = styled.div<StyledCardProps>`
         background-position: center;
         background-size: cover;
         cursor: pointer;
+     
+        :hover {
+          opacity: 0.95;
+          }
+        }
       }
 
       h3,

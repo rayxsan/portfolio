@@ -88,7 +88,11 @@ const CardPage = () => {
 
   const ref = useClickOutsideListenerRef(() => setShowText(false));
   const onClickHandler = () => {
-    alert("It's a spider!");
+    window.open(
+      "https://en.wikipedia.org/wiki/Spiny_orb-weaver",
+      "_blank",
+      "noopener noreferrer"
+    );
   };
 
   const showTextHandler = () => {
@@ -101,7 +105,7 @@ const CardPage = () => {
         className="spiderCard"
         title="A card can show an image."
         text={spiderText}
-        img={{ src: spider }}
+        img={{ src: spider, tooltip: "Gasteracanthar" }}
         onClick={onClickHandler}
       >
         <a

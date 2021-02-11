@@ -6,6 +6,7 @@ interface Props {
   text?: string;
   img?: {
     src: string;
+    tooltip?: string;
   };
   className?: string;
   ref?:
@@ -25,7 +26,7 @@ const Card: FunctionComponent<Props> = ({
   ref,
   onClick,
 }) => {
-  const imagen = <div onClick={onClick} />;
+  const imagen = <div onClick={onClick} title={img?.tooltip} />;
 
   return (
     <StyledCard
