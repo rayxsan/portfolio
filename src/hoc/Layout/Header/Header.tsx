@@ -1,7 +1,7 @@
 import React, { FunctionComponent } from "react";
 import { StyledHeader } from "./Header.styled";
 import { FiMenu } from "react-icons/fi";
-import Menu from "../../../Components/Menu/Menu";
+import Menu from "../../../Components/Elements/Menu/Menu";
 import { useHistory, useLocation } from "react-router-dom";
 
 interface Props {

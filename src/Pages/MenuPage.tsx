@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "../Components/Card/Card";
-import Menu from "../Components/Menu/Menu";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
+import Menu from "../Components/Elements/Menu/Menu";
 // import { CgProfile } from "react-icons/cg";
 
 const StyledMenuPage = styled.div`
@@ -57,11 +57,11 @@ const MENUS: MENU[] = [
 const MenuPage = () => (
   <StyledMenuPage>
     {MENUS.map(({ name, type, header, items }, index) => (
-      <Card key={index} title={name}>
+      <ContentBox key={index} title={name}>
         <Menu primary header={header} type={type} items={items} />
-      </Card>
+      </ContentBox>
     ))}
-    <Card title="Secondary Menu">
+    <ContentBox title="Secondary Menu">
       <div>
         <Menu
           secondary
@@ -78,7 +78,7 @@ const MenuPage = () => (
           ]}
         />
       </div>
-    </Card>
+    </ContentBox>
   </StyledMenuPage>
 );
 

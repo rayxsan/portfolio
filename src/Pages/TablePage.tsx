@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Card from "../Components/Card/Card";
-import Table from "../Components/Table/Table";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
+import Table from "../Components/Elements/Table/Table";
 import { data1, data2 } from "../shared/tableData";
 import axios from "axios";
 
@@ -55,18 +55,18 @@ class TablePage extends Component<Props, State<any>> {
   render() {
     return (
       <StyledTablePage>
-        <Card title="Basic Table">
+        <ContentBox title="Basic Table">
           <Table data={data2} headers={headers} />
-        </Card>
-        <Card title="Pagination Table">
+        </ContentBox>
+        <ContentBox title="Pagination Table">
           <Table data={data1} showPages headers={headers} />
-        </Card>
-        <Card title="Table fetching from backend">
+        </ContentBox>
+        <ContentBox title="Table fetching from backend">
           <Table data={this.state.data} showPages />
           {this.state.errMsg && (
             <div style={{ color: "red" }}> {this.state.errMsg} </div>
           )}
-        </Card>
+        </ContentBox>
       </StyledTablePage>
     );
   }

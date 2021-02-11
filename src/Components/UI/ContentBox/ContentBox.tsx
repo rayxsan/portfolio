@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from "react";
-import { StyledCard } from "./Card.styled";
+import { StyledContentBox } from "./ContentBox.styled";
 
 interface Props {
   title: string;
@@ -29,7 +29,7 @@ const Card: FunctionComponent<Props> = ({
   const imagen = <div onClick={onClick} title={img?.tooltip} />;
 
   return (
-    <StyledCard
+    <StyledContentBox
       img={img !== undefined}
       src={img?.src}
       className={className}
@@ -39,7 +39,7 @@ const Card: FunctionComponent<Props> = ({
       <h3>{title}</h3>
       {text && <p>{text}</p>}
       <div>{children}</div>
-    </StyledCard>
+    </StyledContentBox>
   );
 };
 

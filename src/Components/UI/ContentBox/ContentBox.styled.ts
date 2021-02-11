@@ -1,11 +1,11 @@
 import styled, { css } from "styled-components";
 
-interface StyledCardProps {
+interface StyledContentBoxProps {
   img?: boolean;
   src?: string;
 }
 
-export const StyledCard = styled.div<StyledCardProps>`
+export const StyledContentBox = styled.div<StyledContentBoxProps>`
   border-radius: 4px;
   background-color: ${({ theme }) => theme.solidBackground};
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
@@ -32,7 +32,7 @@ export const StyledCard = styled.div<StyledCardProps>`
     text-align: left;
   }
 
-  ${(props: StyledCardProps) =>
+  ${(props: StyledContentBoxProps) =>
     props.img &&
     css`
       padding: 0;
@@ -42,7 +42,7 @@ export const StyledCard = styled.div<StyledCardProps>`
         height: 10rem;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
-        background-image: url(${(props: StyledCardProps) => props.src});
+        background-image: url(${(props: StyledContentBoxProps) => props.src});
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;

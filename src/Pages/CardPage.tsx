@@ -1,42 +1,42 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Card from "../Components/Card/Card";
-import Button from "../Components/Button/Button";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
+import Button from "../Components/Elements/Button/Button";
 import spider from "../Images/Spider.jpg";
 import { useClickOutsideListenerRef } from "../shared/utils";
 import { FaTimes } from "react-icons/fa";
 
-interface StyledCardPageProps {
+interface StyledContentBoxPageProps {
   showText?: boolean;
 }
 
-const StyledCardPage = styled.div<StyledCardPageProps>`
+const StyledContentBoxPage = styled.div<StyledContentBoxPageProps>`
   display: grid;
   grid-template-rows: 10rem 15rem 10rem;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: left;
 
-  .emptyCard {
+  .emptyContentBox {
     grid-column-start: 1;
     grid-column-end: 4;
   }
 
-  .spiderCard {
+  .spiderContentBox {
     grid-row-start: 2;
     grid-row-end: 4;
     grid-column-start: 1;
     grid-column-end: 3;
   }
 
-  .wordCard {
+  .wordContentBox {
     grid-row-start: 2;
     grid-row-end: 2;
     grid-column-start: 3;
     grid-column-end: 4;
   }
 
-  .showTextCard {
-    display: ${(props: StyledCardPageProps) =>
+  .showTextContentBox {
+    display: ${(props: StyledContentBoxPageProps) =>
       props.showText ? "block" : "none"};
     position: absolute;
     background-color: ${({ theme }) => theme.disabledColor};
@@ -83,7 +83,7 @@ const StyledCardPage = styled.div<StyledCardPageProps>`
 const spiderText =
   "Spiders (order Araneae) are air-breathing arthropods that have eight legs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude silk.";
 
-const CardPage = () => {
+const ContentBoxPage = () => {
   const [showText, setShowText] = useState(false);
 
   const ref = useClickOutsideListenerRef(() => setShowText(false));
@@ -99,11 +99,15 @@ const CardPage = () => {
     setShowText(!showText);
   };
   return (
-    <StyledCardPage showText={showText} ref={ref}>
-      <Card className="emptyCard" title="Empty Card." text="Empty card." />
-      <Card
-        className="spiderCard"
-        title="A card can show an image."
+    <StyledContentBoxPage showText={showText} ref={ref}>
+      <ContentBox
+        className="emptyContentBox"
+        title="Empty ContentBox."
+        text="Empty ContentBox."
+      />
+      <ContentBox
+        className="spiderContentBox"
+        title="A ContentBox can show an image."
         text={spiderText}
         img={{ src: spider, tooltip: "Gasteracanthar" }}
         onClick={onClickHandler}
@@ -117,11 +121,11 @@ const CardPage = () => {
             Learn more
           </Button>
         </a>
-      </Card>
-      <Card className="wordCard" title="" text="Word of the day.">
+      </ContentBox>
+      <ContentBox className="wordContentBox" title="" text="Word of the day.">
         <p style={{ fontWeight: "bold" }}>Caveat</p>
         <p>noun | KAV-ee-aht</p>
-        <Card className="showTextCard" title="Definition">
+        <ContentBox className="showTextContentBox" title="Definition">
           <FaTimes onClick={showTextHandler}>
             <p>Close</p>
           </FaTimes>
@@ -135,13 +139,13 @@ const CardPage = () => {
             2 : a legal warning to a judicial officer to suspend a proceeding
             until the opposition has a hearing.
           </p>
-        </Card>
+        </ContentBox>
         <Button text primary clicked={showTextHandler}>
           Learn More
         </Button>
-      </Card>
-    </StyledCardPage>
+      </ContentBox>
+    </StyledContentBoxPage>
   );
 };
 
-export default CardPage;
+export default ContentBoxPage;

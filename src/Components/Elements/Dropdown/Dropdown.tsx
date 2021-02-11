@@ -1,7 +1,10 @@
 import React, { useState, useRef } from "react";
 import { StyledDropdown, StyledPlaceHolder } from "./Dropdown.styled";
 import { FaChevronDown, FaTimes } from "react-icons/fa";
-import { convertToRem, useClickOutsideListenerRef } from "../../shared/utils";
+import {
+  convertToRem,
+  useClickOutsideListenerRef,
+} from "../../../shared/utils";
 
 export interface DropdownOption {
   key?: string | number;

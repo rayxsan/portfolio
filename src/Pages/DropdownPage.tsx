@@ -1,12 +1,12 @@
 import React from "react";
-import Dropdown from "../Components/Dropdown/Dropdown";
-import { StyledDropdown } from "../Components/Dropdown/Dropdown.styled";
-import Card from "../Components/Card/Card";
-import { StyledCard } from "../Components/Card/Card.styled";
+import Dropdown from "../Components/Elements/Dropdown/Dropdown";
+import { StyledDropdown } from "../Components/Elements/Dropdown/Dropdown.styled";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
+import { StyledContentBox } from "../Components/UI/ContentBox/ContentBox.styled";
 import styled from "styled-components";
 
 const StyledDropdownPAge = styled.div`
-  ${StyledCard} {
+  ${StyledContentBox} {
     ${StyledDropdown} {
       margin-left: 12px;
     }
@@ -32,19 +32,19 @@ const options = [
 const DropdownPage = () => {
   return (
     <StyledDropdownPAge>
-      <Card title="Basic Dropdown">
+      <ContentBox title="Basic Dropdown">
         <Dropdown options={pets} placeholder="My Pets" />
         <Dropdown options={options} />
-      </Card>
-      <Card title="Search Dropdown">
+      </ContentBox>
+      <ContentBox title="Search Dropdown">
         <Dropdown search options={pets} placeholder="My Pets" />
-      </Card>
-      <Card title="Multiple Dropdown">
+      </ContentBox>
+      <ContentBox title="Multiple Dropdown">
         <Dropdown multiple options={pets} placeholder="My Pets" />
-      </Card>
-      <Card title="Multiple Search Dropdown">
+      </ContentBox>
+      <ContentBox title="Multiple Search Dropdown">
         <Dropdown search multiple options={pets} placeholder="My Pets" />
-      </Card>
+      </ContentBox>
     </StyledDropdownPAge>
   );
 };

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Progress from "../Components/Progress/Progress";
-import Card from "../Components/Card/Card";
+import Progress from "../Components/Elements/Progress/Progress";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
 import styled from "styled-components";
 
 const StyledProgressPage = styled.div``;
@@ -43,21 +43,21 @@ class ProgressPage extends Component<Props, State> {
     const { completed } = this.state;
     return (
       <StyledProgressPage>
-        <Card title="Circular Progress (Indeterminate)">
+        <ContentBox title="Circular Progress (Indeterminate)">
           <Progress primary />
           <Progress secondary />
           <Progress />
-        </Card>
-        <Card title="Linear Progress">
+        </ContentBox>
+        <ContentBox title="Linear Progress">
           <Progress linear primary completed={completed} />
           <Progress linear secondary completed={completed} />
           <Progress linear completed={50} />
-        </Card>
-        <Card title="Circular Progress">
+        </ContentBox>
+        <ContentBox title="Circular Progress">
           <Progress circular primary completed={completed} />
           {/* <Progress circular secondary completed={30} />
             <Progress circular completed={100} /> */}
-        </Card>
+        </ContentBox>
       </StyledProgressPage>
     );
   }
