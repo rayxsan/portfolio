@@ -16,7 +16,7 @@ export const StyledCard = styled.div<styledCardProps>`
   margin-right: 1rem;
   min-width: 18rem;
   max-width: 18rem;
-  max-height: 24rem;
+  //max-height: 24rem;
   overflow: hidden;
   border: none;
   border-radius: 0.3rem;
@@ -34,7 +34,7 @@ export const StyledCard = styled.div<styledCardProps>`
       flex-direction: row;
       align-items: left;
       max-width: 100%;
-      max-height: 48rem;
+      //max-height: 48rem;
       padding: 0.1rem;
       flex-wrap: wrap;
       border-radius: none;

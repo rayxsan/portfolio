@@ -13,7 +13,7 @@ interface props {
   header?: string;
   content?: React.ReactNode | JSX.Element;
   description?: string;
-  footer?: React.ReactNode;
+  footer?: React.ReactNode | JSX.Element;
 }
 
 const Card: React.FC<props> = (props) => {

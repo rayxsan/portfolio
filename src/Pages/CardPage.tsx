@@ -44,8 +44,8 @@ const CardPage = () => {
           <Card
             animate
             header="My card"
-            description="Description"
-            footer="footer"
+            content="Lorem ipsum"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Card
             animate
