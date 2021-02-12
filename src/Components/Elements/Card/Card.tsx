@@ -11,7 +11,7 @@ interface props {
   group?: boolean;
   animate?: boolean;
   header?: string;
-  content?: React.ReactNode;
+  content?: React.ReactNode | JSX.Element;
   description?: string;
   footer?: React.ReactNode;
 }
@@ -33,10 +33,20 @@ const Card: React.FC<props> = (props) => {
   let Footer;
 
   if (!group) {
-    Header = <StyledHeader>{header}</StyledHeader>;
-    Content = <StyledContent>{content}</StyledContent>;
-    Description = <StyledDescription>{description}</StyledDescription>;
-    Footer = <StyledFooter>{footer}</StyledFooter>;
+    Header = (
+      <StyledHeader header={header !== undefined}>{header}</StyledHeader>
+    );
+    Content = (
+      <StyledContent content={content !== undefined}>{content}</StyledContent>
+    );
+    Description = (
+      <StyledDescription description={description !== undefined}>
+        {description}
+      </StyledDescription>
+    );
+    Footer = (
+      <StyledFooter footer={footer !== undefined}>{footer}</StyledFooter>
+    );
   }
 
   return (

@@ -43,7 +43,7 @@ export const StyledRadio = styled.div<styledProps>`
     width: 0.55em;
     height: 0.55em;
     border-radius: 50%;
-    background: ${({ theme }) => theme.defaultColor};
+    background: ${({ theme }) => theme.fontColor};
   }
 
   input:checked + span:after {
@@ -53,7 +53,7 @@ export const StyledRadio = styled.div<styledProps>`
   ${(props: styledProps) =>
     props.primary &&
     css`
-      color: ${({ theme }) => theme.disabledColor};
+      color: ${({ theme }) => theme.fontColor};
 
       input:hover + span {
         color: ${({ theme }) => theme.primaryColor};
@@ -67,14 +67,14 @@ export const StyledRadio = styled.div<styledProps>`
       }
 
       label {
-        color: ${({ theme }) => theme.defaultColor};
+        color: ${({ theme }) => theme.fontColor};
       }
     `}
 
   ${(props: styledProps) =>
     props.secondary &&
     css`
-      color: ${({ theme }) => theme.disabledColor};
+      color: ${({ theme }) => theme.fontColor};
 
       input:hover + span {
         color: ${({ theme }) => theme.secondaryColor};
@@ -88,7 +88,7 @@ export const StyledRadio = styled.div<styledProps>`
       }
 
       label {
-        color: ${({ theme }) => theme.defaultColor};
+        color: ${({ theme }) => theme.fontColor};
       }
     `}
 
@@ -99,9 +99,9 @@ export const StyledRadio = styled.div<styledProps>`
       span {
         cursor: default;
       }
-      color: ${({ theme }) => theme.disabledColor};
+      color: ${({ theme }) => theme.defaultColor};
       span:after {
-        background: ${({ theme }) => theme.disabledColor};
+        background: ${({ theme }) => theme.defaultColor};
       }
     `} /* @media only screen and (max-width: 760px),
     (min-device-width: 768px) and (max-device-width: 1024px) {

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import ContentBox from "../Components/UI/ContentBox/ContentBox";
 import Card from "../Components/Elements/Card/Card";
 import spider from "../Images/Spider.jpg";
+import Button from "../Components/Elements/Button/Button";
 
 interface CardPageProps {}
 
@@ -14,16 +15,25 @@ const StyledCardPage = styled.div<CardPageProps>`
 `;
 
 const CardPage = () => {
-  const imgContent = <img src={spider} alt="spider" />;
+  const imgContent = (
+    <div>
+      <img src={spider} alt="spider" title="Gasteracanthar" />
+      <span>Gasteracanthar</span>
+    </div>
+  );
+  const spiderDescription =
+    "Spiders (order Araneae) are air-breathing arthropods that have eight legs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude silk.";
   return (
     <StyledCardPage>
       <ContentBox title="A card">
         <Card
-          animate
-          header="My card"
-          content="Some content"
-          description="Description"
-          footer="footer"
+          content={imgContent}
+          description={spiderDescription}
+          footer={
+            <Button primary text>
+              Learn more
+            </Button>
+          }
         />
       </ContentBox>
       <ContentBox
@@ -31,8 +41,14 @@ const CardPage = () => {
         text="Cards are designed to contain a group of cards and be flexible to it."
       >
         <Card group>
-          <Card animate header="My card" content={imgContent} footer="footer" />
           <Card
+            animate
+            header="My card"
+            description="Description"
+            footer="footer"
+          />
+          <Card
+            animate
             header="My card"
             content="Some content"
             description="Description"

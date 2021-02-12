@@ -10,7 +10,7 @@ export const StyledCard = styled.div<styledCardProps>`
   flex-direction: column;
   box-sizing: inherit;
   position: relative;
-  padding: 0.5em;
+  padding: 0;
   margin: 0;
   margin-top: 1rem;
   margin-right: 1rem;
@@ -45,23 +45,72 @@ export const StyledCard = styled.div<styledCardProps>`
     `}
 `;
 
-export const StyledHeader = styled.div`
-  font-size: 90%;
-  font-weight: bold;
-  margin: 0;
-  text-align: left;
-  flex-grow: 1;
+interface StyledHeaderProps {
+  header: boolean;
+}
+
+export const StyledHeader = styled.div<StyledHeaderProps>`
+  ${(props: StyledHeaderProps) =>
+    props.header &&
+    css`
+      font-size: 90%;
+      font-weight: bold;
+      margin: 0;
+      padding: 0.5em;
+      text-align: left;
+      flex-grow: 1;
+    `}
 `;
 
-export const StyledContent = styled.div`
-  flex-grow: 1;
+interface StyledContentProps {
+  content: boolean;
+}
+
+export const StyledContent = styled.div<StyledContentProps>`
+  ${(props: StyledContentProps) =>
+    props.content &&
+    css`
+      flex-grow: 1;
+      align-items: left;
+      text-align: center;
+      font-size: 0.95em;
+      img {
+        padding: 0;
+        width: 100%;
+        overflow: hidden;
+      }
+    `}
 `;
-export const StyledDescription = styled.div`
-  flex-grow: 1;
+interface StyledDescriptionProps {
+  description: boolean;
+}
+export const StyledDescription = styled.div<StyledDescriptionProps>`
+  ${(props: StyledDescriptionProps) =>
+    props.description &&
+    css`
+      flex-grow: 1;
+      padding: 0.5em;
+      text-align: justify;
+      font-weight: lighter;
+      font-size: 0.8em;
+      color: rgba(0, 0, 0, 0.7);
+    `}
 `;
-export const StyledFooter = styled.div`
-  padding: 0;
-  flex-basis: 0;
-  flex-grow: 0;
-  text-align: left;
+
+interface StyledFooterProps {
+  footer: boolean;
+}
+export const StyledFooter = styled.div<StyledFooterProps>`
+  ${(props: StyledFooterProps) =>
+    props.footer &&
+    css`
+      padding: 0.5em;
+      flex-basis: 0;
+      flex-grow: 0;
+      text-align: left;
+      background-color: ${({ theme }) => theme.disabledColor};
+      :hover {
+        background-color: ${({ theme }) => theme.defaultColor};
+      }
+    `}
 `;
