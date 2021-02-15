@@ -12,11 +12,6 @@ import {
 interface props {
   group?: boolean;
   animate?: boolean;
-  // miniImg?: string;
-  // header?: string | undefined;
-  // meta?: string | undefined;
-  // content?: React.ReactNode | JSX.Element;
-  // description?: string | undefined;
   content?: {
     miniImg?: string;
     header?: string | undefined;
