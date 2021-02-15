@@ -1,20 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ContentBox from "../Components/UI/ContentBox/ContentBox";
 import Card from "../Components/Elements/Card/Card";
 import spider from "../Images/Spider.jpg";
+import nina from "../Images/Nina.jpeg";
+import logo from "../Images/logo192.png";
 import Button from "../Components/Elements/Button/Button";
+import { FcLike } from "react-icons/fc";
 
 interface CardPageProps {}
 
-const StyledCardPage = styled.div<CardPageProps>`
-  .test {
-    display: flex;
-    flex-wrap: wrap;
-  }
-`;
+const StyledCardPage = styled.div<CardPageProps>``;
 
 const CardPage = () => {
+  const [count, setCount] = useState(5);
+  const likeHandler = () => {
+    setCount(count + 1);
+  };
+
   const imgContent = (
     <div>
       <img src={spider} alt="spider" title="Gasteracanthar" />
@@ -27,8 +30,10 @@ const CardPage = () => {
     <StyledCardPage>
       <ContentBox title="A card">
         <Card
-          content={imgContent}
-          description={spiderDescription}
+          content={{
+            innerContent: imgContent,
+            description: spiderDescription,
+          }}
           footer={
             <Button primary text>
               Learn more
@@ -43,22 +48,44 @@ const CardPage = () => {
         <Card group>
           <Card
             animate
-            header="My card"
-            content="Lorem ipsum"
-            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+            content={{
+              header: "Lorem ipsum",
+              meta: "Lorem ipsum",
+              description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            }}
           />
           <Card
             animate
-            header="My card"
-            content="Some content"
-            description="Description"
-            footer={<button>Button</button>}
+            content={{
+              header: "Nina",
+              meta: "Bite, eat, play",
+              miniImg: nina,
+              innerContent: `${count} likes`,
+            }}
+            footer={
+              <Button secondary clicked={() => likeHandler()}>
+                <FcLike />
+                Like
+              </Button>
+            }
           />
           <Card
             animate
-            header="My card"
-            content="Some content"
-            footer="footer"
+            content={{
+              header: "Learning React",
+              miniImg: logo,
+              description: "A JavaScript library for building user interfaces",
+            }}
+            footer={
+              <a
+                href="https://reactjs.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Documentation
+              </a>
+            }
           />
         </Card>
       </ContentBox>

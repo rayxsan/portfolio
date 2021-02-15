@@ -1,8 +1,10 @@
 import React from "react";
 import {
   StyledCard,
-  StyledHeader,
   StyledContent,
+  StyledMiniImg,
+  StyledHeader,
+  StyledInnerContent,
   StyledDescription,
   StyledFooter,
 } from "./Card.styled";
@@ -10,40 +12,44 @@ import {
 interface props {
   group?: boolean;
   animate?: boolean;
-  header?: string;
-  content?: React.ReactNode | JSX.Element;
-  description?: string;
+  // miniImg?: string;
+  // header?: string | undefined;
+  // meta?: string | undefined;
+  // content?: React.ReactNode | JSX.Element;
+  // description?: string | undefined;
+  content?: {
+    miniImg?: string;
+    header?: string | undefined;
+    meta?: string | undefined;
+    innerContent?: React.ReactNode | JSX.Element;
+    description?: string | undefined;
+  };
   footer?: React.ReactNode | JSX.Element;
 }
 
 const Card: React.FC<props> = (props) => {
-  const {
-    group,
-    children,
-    animate,
-    header,
-    content,
-    description,
-    footer,
-  } = props;
+  const { group, children, animate, content, footer } = props;
 
-  let Header;
   let Content;
-  let Description;
   let Footer;
 
   if (!group) {
-    Header = (
-      <StyledHeader header={header !== undefined}>{header}</StyledHeader>
-    );
-    Content = (
-      <StyledContent content={content !== undefined}>{content}</StyledContent>
-    );
-    Description = (
-      <StyledDescription description={description !== undefined}>
-        {description}
-      </StyledDescription>
-    );
+    if (content)
+      Content = (
+        <StyledContent>
+          {content.miniImg && <StyledMiniImg src={content.miniImg} alt="" />}
+          <StyledHeader header={content.header}>
+            {content.header}
+            <span>{content.meta}</span>
+          </StyledHeader>
+          <StyledInnerContent innerContent={content.innerContent}>
+            {content.innerContent}
+          </StyledInnerContent>
+          <StyledDescription description={content.description}>
+            {content.description}
+          </StyledDescription>
+        </StyledContent>
+      );
     Footer = (
       <StyledFooter footer={footer !== undefined}>{footer}</StyledFooter>
     );
@@ -52,9 +58,7 @@ const Card: React.FC<props> = (props) => {
   return (
     <StyledCard group={group} animate={animate}>
       {group && children}
-      {Header}
       {Content}
-      {Description}
       {Footer}
     </StyledCard>
   );

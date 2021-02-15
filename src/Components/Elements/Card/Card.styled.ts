@@ -16,7 +16,6 @@ export const StyledCard = styled.div<styledCardProps>`
   margin-right: 1rem;
   min-width: 18rem;
   max-width: 18rem;
-  //max-height: 24rem;
   overflow: hidden;
   border: none;
   border-radius: 0.3rem;
@@ -27,7 +26,6 @@ export const StyledCard = styled.div<styledCardProps>`
       props.animate && "translateY(-2px)"};
   }
 
-  //TODO: align left cards when they are in a group.
   ${(props: styledCardProps) =>
     props.group &&
     css`
@@ -45,32 +43,61 @@ export const StyledCard = styled.div<styledCardProps>`
     `}
 `;
 
+interface StyledContentProps {
+  content?: {
+    miniImg?: string;
+    header?: string | undefined;
+    meta?: string | undefined;
+    innerContent?: React.ReactNode | JSX.Element;
+    description?: string | undefined;
+  };
+}
+
+export const StyledContent = styled.div<StyledContentProps>`
+  flex-grow: 1;
+  padding-bottom: 0.5em;
+`;
+
 interface StyledHeaderProps {
-  header: boolean;
+  header: string | undefined;
 }
 
 export const StyledHeader = styled.div<StyledHeaderProps>`
   ${(props: StyledHeaderProps) =>
     props.header &&
     css`
+      display: flex;
+      flex-direction: column;
       font-size: 90%;
       font-weight: bold;
       margin: 0;
       padding: 0.5em;
       text-align: left;
-      flex-grow: 1;
+
+      span {
+        font-size: 80%;
+        font-weight: lighter;
+        color: ${({ theme }) => theme.defaultColor};
+      }
     `}
 `;
 
-interface StyledContentProps {
-  content: boolean;
+interface StyledMiniImgProps {}
+
+export const StyledMiniImg = styled.img<StyledMiniImgProps>`
+  float: right;
+  margin: 0.5em;
+  width: 2.5rem;
+  height: 2.5rem;
+`;
+interface StyledInnerContentProps {
+  innerContent: React.ReactNode | JSX.Element;
 }
 
-export const StyledContent = styled.div<StyledContentProps>`
-  ${(props: StyledContentProps) =>
-    props.content &&
+export const StyledInnerContent = styled.div<StyledInnerContentProps>`
+  ${(props: StyledInnerContentProps) =>
+    props.innerContent &&
     css`
-      flex-grow: 1;
       align-items: left;
       text-align: center;
       font-size: 0.95em;
@@ -82,13 +109,12 @@ export const StyledContent = styled.div<StyledContentProps>`
     `}
 `;
 interface StyledDescriptionProps {
-  description: boolean;
+  description: string | undefined;
 }
 export const StyledDescription = styled.div<StyledDescriptionProps>`
   ${(props: StyledDescriptionProps) =>
     props.description &&
     css`
-      flex-grow: 1;
       padding: 0.5em;
       text-align: justify;
       font-weight: lighter;
