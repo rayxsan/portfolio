@@ -1,145 +1,94 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Card from "../Components/Card/Card";
-import Button from "../Components/Button/Button";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
+import Card from "../Components/Elements/Card/Card";
 import spider from "../Images/Spider.jpg";
-import { useClickOutsideListenerRef } from "../shared/utils";
-import { FaTimes } from "react-icons/fa";
+import nina from "../Images/Nina.jpeg";
+import logo from "../Images/logo192.png";
+import Button from "../Components/Elements/Button/Button";
+import { FcLike } from "react-icons/fc";
 
-interface StyledCardPageProps {
-  showText?: boolean;
-}
+interface CardPageProps {}
 
-const StyledCardPage = styled.div<StyledCardPageProps>`
-  display: grid;
-  grid-template-rows: 10rem 15rem 10rem;
-  grid-template-columns: 1fr 1fr 1fr;
-  text-align: left;
-
-  .emptyCard {
-    grid-column-start: 1;
-    grid-column-end: 4;
-  }
-
-  .spiderCard {
-    grid-row-start: 2;
-    grid-row-end: 4;
-    grid-column-start: 1;
-    grid-column-end: 3;
-  }
-
-  .wordCard {
-    grid-row-start: 2;
-    grid-row-end: 2;
-    grid-column-start: 3;
-    grid-column-end: 4;
-  }
-
-  .showTextCard {
-    display: ${(props: StyledCardPageProps) =>
-      props.showText ? "block" : "none"};
-    position: absolute;
-    background-color: ${({ theme }) => theme.disabledColor};
-    padding: 0.5rem;
-    overflow: hidden;
-    left: 5rem;
-    bottom: 5rem;
-    font-size: 80%;
-    z-index: 3;
-
-    svg {
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 0.5em;
-      opacity: 0.7;
-      :hover {
-        opacity: 1;
-      }
-    }
-    h3 {
-      margin-bottom: 0;
-    }
-
-    p {
-      padding-bottom: 0.5rem;
-    }
-  }
-
-  a {
-    margin-left: 1rem;
-  }
-
-  p {
-    font-weight: lighter;
-    margin: 0;
-  }
-  @media only screen and (max-width: 760px),
-    (min-device-width: 768px) and (max-device-width: 1024px) {
-    display: block;
-  }
-`;
-
-const spiderText =
-  "Spiders (order Araneae) are air-breathing arthropods that have eight legs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude silk.";
+const StyledCardPage = styled.div<CardPageProps>``;
 
 const CardPage = () => {
-  const [showText, setShowText] = useState(false);
-
-  const ref = useClickOutsideListenerRef(() => setShowText(false));
-  const onClickHandler = () => {
-    window.open(
-      "https://en.wikipedia.org/wiki/Spiny_orb-weaver",
-      "_blank",
-      "noopener noreferrer"
-    );
+  const [count, setCount] = useState(5);
+  const likeHandler = () => {
+    setCount(count + 1);
   };
 
-  const showTextHandler = () => {
-    setShowText(!showText);
-  };
+  const imgContent = (
+    <div>
+      <img src={spider} alt="spider" title="Gasteracanthar" />
+      <span>Gasteracanthar</span>
+    </div>
+  );
+  const spiderDescription =
+    "Spiders (order Araneae) are air-breathing arthropods that have eight legs, chelicerae with fangs generally able to inject venom, and spinnerets that extrude silk.";
   return (
-    <StyledCardPage showText={showText} ref={ref}>
-      <Card className="emptyCard" title="Empty Card." text="Empty card." />
-      <Card
-        className="spiderCard"
-        title="A card can show an image."
-        text={spiderText}
-        img={{ src: spider, tooltip: "Gasteracanthar" }}
-        onClick={onClickHandler}
+    <StyledCardPage>
+      <ContentBox title="A card">
+        <Card
+          content={{
+            innerContent: imgContent,
+            description: spiderDescription,
+          }}
+          footer={
+            <Button primary text>
+              Learn more
+            </Button>
+          }
+        />
+      </ContentBox>
+      <ContentBox
+        title="A group of cards"
+        text="Cards are designed to contain a group of cards and be flexible to it."
       >
-        <a
-          href="https://en.wikipedia.org/wiki/Spider"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Button text primary>
-            Learn more
-          </Button>
-        </a>
-      </Card>
-      <Card className="wordCard" title="" text="Word of the day.">
-        <p style={{ fontWeight: "bold" }}>Caveat</p>
-        <p>noun | KAV-ee-aht</p>
-        <Card className="showTextCard" title="Definition">
-          <FaTimes onClick={showTextHandler}>
-            <p>Close</p>
-          </FaTimes>
-          <p>
-            1 a : a warning enjoining one from certain acts or practices b : an
-            explanation to prevent misinterpretation c : a modifying or
-            cautionary detail to be considered when evaluating, interpreting, or
-            doing something.
-          </p>
-          <p>
-            2 : a legal warning to a judicial officer to suspend a proceeding
-            until the opposition has a hearing.
-          </p>
+        <Card group>
+          <Card
+            animate
+            content={{
+              header: "Lorem ipsum",
+              meta: "Lorem ipsum",
+              description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            }}
+          />
+          <Card
+            animate
+            content={{
+              header: "Nina",
+              meta: "Bite, eat, play",
+              miniImg: nina,
+              innerContent: `${count} likes`,
+            }}
+            footer={
+              <Button secondary clicked={() => likeHandler()}>
+                <FcLike />
+                Like
+              </Button>
+            }
+          />
+          <Card
+            animate
+            content={{
+              header: "Learning React",
+              miniImg: logo,
+              description: "A JavaScript library for building user interfaces",
+            }}
+            footer={
+              <a
+                href="https://reactjs.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Documentation
+              </a>
+            }
+          />
         </Card>
-        <Button text primary clicked={showTextHandler}>
-          Learn More
-        </Button>
-      </Card>
+      </ContentBox>
     </StyledCardPage>
   );
 };

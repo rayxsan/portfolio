@@ -4,7 +4,7 @@ import {
   StyledLinearProgress,
   StyledCircular,
 } from "./Progress.styled";
-import { theme } from "../../shared/Theme";
+import { theme } from "../../../shared/Theme";
 
 interface Props {
   primary?: boolean;

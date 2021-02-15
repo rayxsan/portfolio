@@ -1,13 +1,13 @@
 import React from "react";
-import FormF from "../Components/Form/FormF";
-import Card from "../Components/Card/Card";
+import FormF from "../Components/Elements/Form/FormF";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
 
 const FormPage = () => {
   return (
     <div>
-      <Card title="simple form">
+      <ContentBox title="simple form">
         <FormF />
-      </Card>
+      </ContentBox>
     </div>
   );
 };

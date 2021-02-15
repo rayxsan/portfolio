@@ -94,7 +94,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
         css`
           color: ${({ theme }) => theme.primaryColor};
           :hover:enabled {
-            background-color: #ccc;
+            background-color: inherit;
           }
         `}
 

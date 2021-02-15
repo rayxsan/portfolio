@@ -23,7 +23,7 @@ export const StyledCheckbox = styled.div<Props>`
     display: inline-flex;
     align-self: center;
     font-size: 125%;
-    color: ${({ theme }) => theme.defaultColor};
+    color: ${({ theme }) => theme.fontColor};
     opacity: 0.75;
 
     ${(props: Props) =>

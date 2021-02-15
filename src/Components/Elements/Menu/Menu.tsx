@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { useClickOutsideListenerRef } from "../../shared/utils";
+import { useClickOutsideListenerRef } from "../../../shared/utils";
 
 import {
   StyledMenuWrapper,

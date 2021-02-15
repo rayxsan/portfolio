@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Card from "../Components/Card/Card";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
 import { FaGithub } from "react-icons/fa";
 
 const StyledText = styled.div`
@@ -22,10 +22,10 @@ const StyledText = styled.div`
 
 const HomePage = () => (
   <StyledText>
-    <Card title="Introduction:">
+    <ContentBox title="Introduction:">
       <p>Brief description...</p>
-    </Card>
-    <Card title="Useful links:">
+    </ContentBox>
+    <ContentBox title="Useful links:">
       <a
         href="https://github.com/rayxsan/portfolio"
         target="_blank"
@@ -34,7 +34,7 @@ const HomePage = () => (
         <FaGithub />
         Github
       </a>
-    </Card>
+    </ContentBox>
   </StyledText>
 );
 

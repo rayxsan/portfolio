@@ -2,8 +2,8 @@ const theme1 = {
   //Colors
   primaryColor: "#1976d2",
   secondaryColor: "#FFAF38",
-  defaultColor: "#000",
-  disabledColor: "#bbb",
+  defaultColor: "#bbb",
+  disabledColor: "#ddd",
   solidBackground: "#fff",
   sidebarBGColor: "rgba(0,0,0,.85)",
   sidebarFontColor: "rgba(255, 255, 255, 0.65)",

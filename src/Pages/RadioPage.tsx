@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Radio from "../Components/Radio/Radio";
-import Card from "../Components/Card/Card";
+import Radio from "../Components/Elements/Radio/Radio";
+import ContentBox from "../Components/UI/ContentBox/ContentBox";
 import styled from "styled-components";
 
 const StyledRadioPage = styled.div`
@@ -16,14 +16,14 @@ const RadioPage = () => {
 
   return (
     <StyledRadioPage>
-      <Card title="A radio button">
+      <ContentBox title="A radio button">
         <Radio label="Radio button" />
-      </Card>
-      <Card title="Disabled radio button">
+      </ContentBox>
+      <ContentBox title="Disabled radio button">
         <Radio disabled checked label="Disabled checked" />
         <Radio disabled label="Disabled not checked" />
-      </Card>
-      <Card title="Radio Group">
+      </ContentBox>
+      <ContentBox title="Radio Group">
         <div>
           <Radio
             primary
@@ -43,7 +43,7 @@ const RadioPage = () => {
           />
         </div>
         <p>Selected value: {checkedValue}</p>
-      </Card>
+      </ContentBox>
     </StyledRadioPage>
   );
 };
