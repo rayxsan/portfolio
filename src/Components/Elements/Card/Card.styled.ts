@@ -32,7 +32,6 @@ export const StyledCard = styled.div<styledCardProps>`
       flex-direction: row;
       align-items: left;
       max-width: 100%;
-      //max-height: 48rem;
       padding: 0.1rem;
       flex-wrap: wrap;
       border-radius: none;
