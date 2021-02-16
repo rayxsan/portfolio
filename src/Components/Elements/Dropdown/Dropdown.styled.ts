@@ -23,7 +23,7 @@ export const StyledDropdown = styled.div<StyledProps>`
   cursor: pointer;
   text-align: left;
   display: inline-block;
-  margin: 0;
+  margin: 0.3rem;
   border: 1px solid;
   border-color: ${(props: StyledProps) => (props.open ? "black" : "#ccc")};
   border-bottom: ${(props: StyledProps) =>
