@@ -19,11 +19,12 @@ interface Props {
   placeholder?: string;
   search?: boolean;
   multiple?: boolean;
+  fluid?: boolean;
   onChange?: (value: string | number) => void;
 }
 
 export const Dropdown: React.FC<Props> = (props) => {
-  const { options, onChange, search, multiple, children } = props;
+  const { options, onChange, search, multiple, fluid, children } = props;
 
   const [open, setOpen] = useState(false);
 
@@ -283,6 +284,7 @@ export const Dropdown: React.FC<Props> = (props) => {
         selectedOption={keyToNumber() + 1}
         search={search}
         multiple={multiple}
+        fluid={fluid}
         onClick={(e) => {
           if (search || multiple) {
             openHandler(e);

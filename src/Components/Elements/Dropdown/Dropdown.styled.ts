@@ -4,6 +4,7 @@ interface StyledProps {
   open: boolean;
   search?: boolean;
   multiple?: boolean;
+  fluid?: boolean;
   textWidth: number;
   selectedList: number;
   selectedOption: number;
@@ -120,7 +121,8 @@ export const StyledDropdown = styled.div<StyledProps>`
   ${(props: StyledProps) =>
     props.multiple &&
     css`
-      display: block;
+      display: ${(props: StyledProps) =>
+        props.fluid ? "inline-block" : "block"};
       max-width: 100%;
       padding: 0.25em 2.25em 0.25em 0.25em;
       div {
