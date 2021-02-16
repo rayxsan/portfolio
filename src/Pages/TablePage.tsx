@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import ContentBox from "../Components/UI/ContentBox/ContentBox";
 import Table from "../Components/Elements/Table/Table";
-import { data1, data2 } from "../shared/tableData";
+import { data2 } from "../shared/tableData";
 import axios from "axios";
 
 const StyledTablePage = styled.div``;
@@ -58,11 +58,8 @@ class TablePage extends Component<Props, State<any>> {
         <ContentBox title="Basic Table">
           <Table data={data2} headers={headers} />
         </ContentBox>
-        <ContentBox title="Pagination Table">
-          <Table data={data1} showPages headers={headers} />
-        </ContentBox>
         <ContentBox title="Table fetching from backend">
-          <Table data={this.state.data} showPages />
+          <Table data={this.state.data} headers={headers} showPages />
           {this.state.errMsg && (
             <div style={{ color: "red" }}> {this.state.errMsg} </div>
           )}
