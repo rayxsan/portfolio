@@ -69,9 +69,7 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
                   <svg.FaRegCaretSquareDown title="Dropdown" />
                 )}
               </NavLink>
-              <NavLink to={path.formPath}>
-                {!show ? "Form" : <svg.FaWpforms title="Form" />}
-              </NavLink>
+
               <NavLink to={path.menuPath}>
                 {!show ? "Menu" : <svg.CgMenu title="Menu" />}
               </NavLink>
@@ -86,6 +84,14 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               </NavLink>
             </ul>
           )}
+          <div>
+            <NavLink to={path.formPath}>
+              {!show ? "Form" : <svg.FaWpforms title="Form" />}
+            </NavLink>
+          </div>
+          <div>
+            <NavLink to="/">Charts</NavLink>
+          </div>
         </nav>
 
         <nav>

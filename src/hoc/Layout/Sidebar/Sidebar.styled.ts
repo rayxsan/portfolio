@@ -18,6 +18,7 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
   z-index: 999;
   user-select: none;
   font-weight: lighter;
+  white-space: nowrap;
 
   p {
     margin: 0;
