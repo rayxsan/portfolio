@@ -1,5 +1,6 @@
 const homePath = "/";
 const buttonPath = "/components/button";
+const chartPath = "/components/chart";
 const checkboxPath = "/components/checkbox";
 const progressPath = "/components/progress";
 const radioPath = "/components/radio";
@@ -13,6 +14,7 @@ const notFoundPath = "*";
 export {
   homePath,
   buttonPath,
+  chartPath,
   checkboxPath,
   progressPath,
   radioPath,

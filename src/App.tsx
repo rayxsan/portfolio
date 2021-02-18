@@ -23,6 +23,7 @@ class App extends Component<Props, State> {
           component={page.HomePage}
         />
         <Route path={path.buttonPath} component={page.ButtonPage} />
+        <Route path={path.chartPath} component={page.ChartPage} />
         <Route path={path.checkboxPath} component={page.CheckboxPage} />
         <Route path={path.progressPath} component={page.ProgressPage} />
         <Route path={path.radioPath} component={page.RadioPage} />

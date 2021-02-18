@@ -9,6 +9,7 @@ import DropdownPage from "./DropdownPage";
 import FormPage from "./FormPage";
 import TablePage from "./TablePage";
 import NotFoundPage from "./NotFoundPage";
+import ChartPage from "./ChartPage";
 
 export {
   HomePage,
@@ -22,4 +23,5 @@ export {
   FormPage,
   TablePage,
   NotFoundPage,
+  ChartPage,
 };

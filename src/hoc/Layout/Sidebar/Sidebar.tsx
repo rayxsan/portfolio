@@ -38,18 +38,16 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
         <nav>
           <p>Elements</p>
           <div onClick={() => setOpenComponents(!openComponents)}>
-            <div>
-              <p>Components</p>
-              {!show ? (
-                openComponents ? (
-                  <svg.BiChevronUp />
-                ) : (
-                  <svg.BiChevronDown />
-                )
+            <p>Components</p>
+            {!show ? (
+              openComponents ? (
+                <svg.BiChevronUp />
               ) : (
-                <svg.CgComponents title="Components" />
-              )}
-            </div>
+                <svg.BiChevronDown />
+              )
+            ) : (
+              <svg.CgComponents title="Components" />
+            )}
           </div>
           {openComponents && (
             <ul>
@@ -69,7 +67,9 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
                   <svg.FaRegCaretSquareDown title="Dropdown" />
                 )}
               </NavLink>
-
+              <NavLink to={path.formPath}>
+                {!show ? "Form" : <svg.FaWpforms title="Form" />}
+              </NavLink>
               <NavLink to={path.menuPath}>
                 {!show ? "Menu" : <svg.CgMenu title="Menu" />}
               </NavLink>
@@ -84,14 +84,11 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               </NavLink>
             </ul>
           )}
-          <div>
-            <NavLink to={path.formPath}>
-              {!show ? "Form" : <svg.FaWpforms title="Form" />}
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/">Charts</NavLink>
-          </div>
+        </nav>
+        <nav>
+          <NavLink to={path.chartPath}>
+            {!show ? "Charts" : <svg.BsGraphUp title="Charts" />}
+          </NavLink>
         </nav>
 
         <nav>

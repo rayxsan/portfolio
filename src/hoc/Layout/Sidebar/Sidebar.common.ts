@@ -16,7 +16,7 @@ import {
 } from "react-icons/fa";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { GiPlayButton } from "react-icons/gi";
-import { BsCardImage } from "react-icons/bs";
+import { BsCardImage, BsGraphUp } from "react-icons/bs";
 import { FiPercent } from "react-icons/fi";
 
 export {
@@ -37,4 +37,5 @@ export {
   CgMenu,
   FiPercent,
   BiErrorAlt,
+  BsGraphUp,
 };
