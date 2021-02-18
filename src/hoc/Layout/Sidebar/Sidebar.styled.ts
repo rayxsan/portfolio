@@ -38,13 +38,6 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
       padding: 0;
       padding-bottom: 0.5rem;
       border: none;
-      svg {
-        padding-left: 1rem;
-        :hover {
-          color: ${({ theme }) => theme.primaryColor};
-          cursor: pointer;
-        }
-      }
     }
   }
 
@@ -102,7 +95,7 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
       }
       nav {
         padding-top: 0;
-        position: relative;
+        padding-left: 0.2rem;
       }
     `}
 

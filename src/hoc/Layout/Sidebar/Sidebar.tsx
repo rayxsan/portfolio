@@ -84,13 +84,10 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               </NavLink>
             </ul>
           )}
-        </nav>
-        <nav>
           <NavLink to={path.chartPath}>
-            {!show ? "Charts" : <svg.BsGraphUp title="Charts" />}
+            {!show ? "Chart" : <svg.BsGraphUp title="Chart" />}
           </NavLink>
         </nav>
-
         <nav>
           <p>Pages</p>
           <div onClick={() => setOpenAuth(!openAuth)}>
@@ -109,8 +106,6 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
           </div>
           {openAuth && (
             <ul>
-              {/* <NavLink to={path.notFoundPath}>Sign in</NavLink>
-              <NavLink to={path.notFoundPath}>Sign up</NavLink> */}
               <NavLink to={path.notFoundPath}>
                 {!show ? "404 Page" : <svg.BiErrorAlt title="404 Page" />}
               </NavLink>
