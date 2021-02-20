@@ -93,7 +93,7 @@ export const Dropdown: React.FC<Props> = (props) => {
         value={searchTerm}
         onChange={handleSearchChange}
         onClick={(e) => {
-          e?.preventDefault();
+          e.preventDefault();
           if (!open) setSearchTerm("");
         }}
       />

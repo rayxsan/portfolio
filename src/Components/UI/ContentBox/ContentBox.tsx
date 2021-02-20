@@ -4,10 +4,10 @@ import { StyledContentBox } from "./ContentBox.styled";
 interface Props {
   title: string;
   text?: string;
-  img?: {
-    src: string;
-    tooltip?: string;
-  };
+  // img?: {
+  //   src: string;
+  //   tooltip?: string;
+  // };
   className?: string;
   ref?:
     | ((instance: HTMLDivElement | null) => void)
@@ -21,21 +21,21 @@ const Card: FunctionComponent<Props> = ({
   title,
   text,
   children,
-  img,
+  //img,
   className,
   ref,
   onClick,
 }) => {
-  const imagen = <div onClick={onClick} title={img?.tooltip} />;
+  //const imagen = <div onClick={onClick} title={img?.tooltip} />;
 
   return (
     <StyledContentBox
-      img={img !== undefined}
-      src={img?.src}
+      // img={img !== undefined}
+      // src={img?.src}
       className={className}
       ref={ref}
     >
-      {img && imagen}
+      {/* {img && imagen} */}
       <h3>{title}</h3>
       {text && <p>{text}</p>}
       <div>{children}</div>
