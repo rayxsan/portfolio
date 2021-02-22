@@ -20,6 +20,11 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
       return tempString.charAt(0).toUpperCase() + tempString.slice(1);
     }
 
+    if (string.includes("/auth/")) {
+      const tempString = string.slice(6);
+      return tempString.charAt(0).toUpperCase() + tempString.slice(1);
+    }
+
     return "Home";
   };
 

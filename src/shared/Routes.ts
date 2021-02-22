@@ -9,8 +9,8 @@ const cardPath = "/components/card";
 const dropdownPath = "/components/dropdown";
 const formPath = "/components/form";
 const tablePath = "/components/table";
-const signinPath = "/pages/signin";
-const signupPath = "/pages/signup";
+const signinPath = "/auth/signin";
+const signupPath = "/auth/signup";
 const notFoundPath = "*";
 
 export {
