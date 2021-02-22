@@ -10,6 +10,8 @@ import FormPage from "./FormPage";
 import TablePage from "./TablePage";
 import NotFoundPage from "./NotFoundPage";
 import ChartPage from "./ChartPage";
+import SigninPage from "./SigninPage";
+import SignupPage from "./SignupPage";
 
 export {
   HomePage,
@@ -24,4 +26,6 @@ export {
   TablePage,
   NotFoundPage,
   ChartPage,
+  SigninPage,
+  SignupPage,
 };
