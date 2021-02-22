@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Layout from "./hoc/Layout/Layout";
+import AuthLayout from "./hoc/AuthLayout/AuthLayout";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
 import { theme } from "./shared/Theme";
@@ -38,7 +39,7 @@ class App extends Component<Props, State> {
         <Redirect to="/" />
       </Switch>
     );
-
+    //TODO: Change Layout when user us authenticated
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyles />
