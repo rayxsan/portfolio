@@ -1,9 +1,10 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
-import { StyledSingin } from "./Signin.styled";
+import { StyledSignin } from "./Signin.styled";
 import Button from "../../Elements/Button/Button";
 import Checkbox from "../../Elements/Checkbox/Checkbox";
 import * as Yup from "yup";
+import * as path from "../../../shared/Routes";
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -20,7 +21,7 @@ interface Values {
 
 const Signin = () => {
   return (
-    <StyledSingin>
+    <StyledSignin>
       <p>Welcome, please Sign In</p>
       <Formik
         initialValues={{
@@ -68,11 +69,13 @@ const Signin = () => {
             <Button primary type="submit">
               Sign in
             </Button>
-            <a href="*">Forgot Password</a>
+            <a href="*">Forgot Password?</a>
+            <span>Don't have an account?</span>
+            <a href={path.signupPath}>Sign up here</a>
           </Form>
         )}
       </Formik>
-    </StyledSingin>
+    </StyledSignin>
   );
 };
 

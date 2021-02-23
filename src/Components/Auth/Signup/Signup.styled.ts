@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
-interface StyledSigninProps {}
+interface StyledSignupProps {}
 
-export const StyledSignin = styled.div<StyledSigninProps>`
+export const StyledSignup = styled.div<StyledSignupProps>`
   display: block;
   margin: auto;
   width: 20rem;
