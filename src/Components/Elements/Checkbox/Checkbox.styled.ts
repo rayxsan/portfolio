@@ -8,7 +8,7 @@ export interface Props {
 }
 
 export const StyledCheckbox = styled.div<Props>`
-  display: inline-block;
+  display: inline-flex;
   box-sizing: border-box;
   vertical-align: middle;
   user-select: none;
@@ -41,6 +41,7 @@ export const StyledCheckbox = styled.div<Props>`
 
   label {
     margin: 0 0.2rem;
+    padding: 0.2rem;
     opacity: 0.85;
 
     ${(props: Props) =>
