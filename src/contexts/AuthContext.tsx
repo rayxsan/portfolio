@@ -1,29 +1,41 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { auth } from "../firebase";
 
-const AuthContext = React.createContext({
-  currentUser: null,
-});
-
-export function useAuth() {
-  return useContext(AuthContext);
+interface ContextProps {
+  currentUser: firebase.default.User | null;
+  authenticated: boolean;
+  setUser: any;
+  loadingAuthState: boolean;
 }
+export const AuthContext = React.createContext<Partial<ContextProps>>({});
+
+// export function useAuth() {
+//   return useContext(AuthContext);
+// }
 
 interface Props {}
 
 export const AuthProvider: React.FC<Props> = (props) => {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [user, setUser] = useState(null as firebase.default.User | null);
+  const [loadingAuthState, setLoadingAuthState] = useState(true);
 
-  function signup(email: string, password: string) {
-    return auth.createUserWithEmailAndPassword(email, password);
-  }
+  // function signup(email: string, password: string) {
+  //   return auth.createUserWithEmailAndPassword(email, password);
+  // }
 
   useEffect(() => {
-    auth.onAuthStateChanged((user: any) => setCurrentUser(user));
+    const unsubscribe = auth.onAuthStateChanged((user: any) => {
+      setUser(user);
+      setLoadingAuthState(false);
+    });
+    return unsubscribe;
   }, []);
 
   const value = {
-    currentUser,
+    user,
+    authenticated: user !== null,
+    setUser,
+    loadingAuthState,
   };
   return (
     <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>

@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { StyledSignin } from "./Signin.styled";
 import Button from "../../Elements/Button/Button";
 import Checkbox from "../../Elements/Checkbox/Checkbox";
 import * as Yup from "yup";
 import * as path from "../../../shared/Routes";
+import { auth } from "../../../firebase";
+import "firebase/auth";
+import "firebase/firestore";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -14,12 +19,35 @@ const SignInSchema = Yup.object().shape({
     .required("Required"),
 });
 
-interface Values {
+interface UserData {
   email: string;
   password: string;
 }
 
 const Signin = () => {
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+  } as UserData);
+
+  const authContext = useContext(AuthContext);
+
+  const history = useHistory();
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    auth
+      .signInWithEmailAndPassword(values.email, values.password)
+      .then((res) => {
+        authContext.setUser(res);
+        console.log(res, "res");
+        history.push("/home");
+      })
+      .catch((error) => {
+        console.log(error.message);
+        alert(error.message);
+      });
+  };
   return (
     <StyledSignin>
       <p>Welcome, please Sign In</p>
@@ -29,9 +57,7 @@ const Signin = () => {
           password: "",
         }}
         validationSchema={SignInSchema}
-        onSubmit={(values: Values) => {
-          console.log(values);
-        }}
+        onSubmit={handleSubmit}
       >
         {({ errors, touched }) => (
           <Form>

@@ -7,6 +7,7 @@ import { GlobalStyles } from "./shared/Global";
 import { theme } from "./shared/Theme";
 import * as path from "./shared/Routes";
 import * as page from "./Pages";
+import { AuthProvider } from "./contexts/AuthContext";
 
 interface OwnProps {}
 interface StateProps {}
@@ -41,10 +42,12 @@ class App extends Component<Props, State> {
     );
     //TODO: Change Layout when user us authenticated
     return (
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Layout>{routes}</Layout>
-      </ThemeProvider>
+      <AuthProvider>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <Layout>{routes}</Layout>
+        </ThemeProvider>
+      </AuthProvider>
     );
   }
 }

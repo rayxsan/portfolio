@@ -2,9 +2,10 @@ import React from "react";
 import { Formik, Form, Field } from "formik";
 import { StyledSignup } from "./Signup.styled";
 import Button from "../../Elements/Button/Button";
-import Checkbox from "../../Elements/Checkbox/Checkbox";
 import * as Yup from "yup";
 import * as path from "../../../shared/Routes";
+import { AuthContext } from "../../../contexts/AuthContext";
+import { auth } from "../../../firebase";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -20,7 +21,14 @@ interface Values {
   confirmPassword: string;
 }
 
-const Signup = () => {
+const Signup: React.FC = () => {
+  //const { signup } = useAuth();
+
+  // const handleSubmit = (event: any) => {
+  //   event.preventDefault();
+  //   //signup(values.email, values.password);
+  // };
+
   return (
     <StyledSignup>
       <p>Welcome, please Sign Up</p>
