@@ -50,7 +50,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   border: none;
   width: fit-content;
   outline: 0;
-
+  opacity: 0.85;
   overflow: hidden;
 
   /* button size: */
@@ -60,7 +60,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   font-size: ${(props: Props) => sizes[props.size!].fontSize};
 
   :hover:enabled {
-    opacity: 0.7;
+    opacity: 1;
   }
   :disabled {
     cursor: not-allowed;
@@ -70,12 +70,14 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   ${(props: Props) =>
     props.primary &&
     css`
+      color: white;
       background-color: ${({ theme }) => theme.primaryColor};
     `}
 
   ${(props: Props) =>
     props.secondary &&
     css`
+      color: white;
       background-color: ${({ theme }) => theme.secondaryColor};
     `}
 
