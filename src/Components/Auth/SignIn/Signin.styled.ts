@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import { StyledCheckbox } from "../../Elements/Checkbox/Checkbox.styled";
 
 interface StyledSinginProps {}
 
 export const StyledSingin = styled.div<StyledSinginProps>`
+  display: block;
   margin: auto;
-  width: 30rem;
-  height: 30rem;
+  width: 20rem;
+  //height: 30rem;
   background-color: white;
   padding: 1rem;
+  overflow: hidden;
 
   form {
     display: flex;
@@ -17,15 +18,18 @@ export const StyledSingin = styled.div<StyledSinginProps>`
     margin: 0.2rem;
     //width: 30rem;
     label {
-      width: 100%;
+      width: 20rem;
       text-align: left;
       opacity: 0.7;
       font-weight: lighter;
       font-size: 70%;
     }
+    .errorClass {
+      color: red;
+    }
 
     input {
-      width: 100%;
+      width: 20rem;
       height: 1.2rem;
       margin-bottom: 0.5rem;
       border: none;
@@ -39,7 +43,7 @@ export const StyledSingin = styled.div<StyledSinginProps>`
     }
 
     button {
-      width: 100%;
+      width: 20rem;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
     }

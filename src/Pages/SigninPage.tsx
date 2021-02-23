@@ -6,6 +6,7 @@ const StyledSigninPage = styled.div`
   /* display: block;
   align-items: center;
   margin: auto; */
+  overflow: hidden;
 `;
 
 const SigninPage = () => {
