@@ -4,6 +4,7 @@ import { FiMenu } from "react-icons/fi";
 import Menu from "../../../Components/Elements/Menu/Menu";
 import { useHistory, useLocation } from "react-router-dom";
 import * as path from "../../../shared/Paths";
+import { auth } from "../../../firebase";
 
 interface Props {
   expand: boolean;
@@ -37,6 +38,7 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
       history.push("*");
     }
     if (value === "Logout") {
+      auth.signOut();
       history.push(path.signinPath);
     }
   };

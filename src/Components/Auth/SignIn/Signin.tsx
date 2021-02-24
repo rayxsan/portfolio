@@ -25,6 +25,7 @@ interface UserData {
 }
 
 const Signin = () => {
+  const [error, setError] = useState("");
   const authContext = useContext(AuthContext);
 
   const history = useHistory();
@@ -38,6 +39,7 @@ const Signin = () => {
         history.push("/");
       })
       .catch((error) => {
+        setError("Invalid email or password");
         console.log(error.message, values.email);
       });
   };
@@ -54,7 +56,10 @@ const Signin = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <p>User, password</p>
+            {error !== "" && <p>{error}</p>}
+            <span>
+              Use <b>test01@test.com</b> and <b>password</b> to sign in
+            </span>
             <label
               htmlFor="email"
               className={

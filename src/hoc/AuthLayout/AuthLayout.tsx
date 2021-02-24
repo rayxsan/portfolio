@@ -4,7 +4,7 @@ interface props {}
 
 const AuthLayout: React.FC<props> = (props) => (
   <div>
-    <h1>Auth</h1>
+    <h1>Auth Layout</h1>
     {props.children}
   </div>
 );

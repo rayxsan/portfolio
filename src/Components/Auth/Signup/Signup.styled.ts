@@ -17,6 +17,11 @@ export const StyledSignup = styled.div<StyledSignupProps>`
     align-items: left;
     margin: 0.2rem;
     //width: 30rem;
+
+    p {
+      color: red;
+    }
+
     label {
       width: 20rem;
       text-align: left;

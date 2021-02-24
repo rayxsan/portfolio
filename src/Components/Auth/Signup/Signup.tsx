@@ -27,6 +27,7 @@ interface FormItems {
 
 const Signup = () => {
   // const authContext = useContext(AuthContext);
+  const [error, setError] = useState("");
 
   const history = useHistory();
 
@@ -38,6 +39,7 @@ const Signup = () => {
         history.push("/");
       })
       .catch((error: any) => {
+        setError(error.message);
         console.log(error.message);
       });
   };
@@ -56,7 +58,7 @@ const Signup = () => {
       >
         {({ isSubmitting, dirty, isValid, errors, touched }) => (
           <Form>
-            <p>User, password</p>
+            {error !== "" && <p>{error}</p>}
             <label
               htmlFor="email"
               className={

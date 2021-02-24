@@ -5,8 +5,8 @@ interface StyledSigninProps {}
 export const StyledSignin = styled.div<StyledSigninProps>`
   display: block;
   margin: auto;
-  width: 20rem;
-  //height: 30rem;
+  max-width: 20rem;
+  //min-height: 20rem;
   background-color: white;
   padding: 1rem;
   overflow: hidden;
@@ -17,6 +17,19 @@ export const StyledSignin = styled.div<StyledSigninProps>`
     align-items: left;
     margin: 0.2rem;
     //width: 30rem;
+
+    p {
+      color: red;
+    }
+    span:first-child {
+      padding: 0.5rem;
+      font-size: 80%;
+      font-weight: lighter;
+      margin-bottom: 0.5rem;
+      background-color: lightblue;
+      border: 1px solid lightblue;
+      border-radius: 0.2rem;
+    }
     label {
       width: 20rem;
       text-align: left;
