@@ -30,6 +30,7 @@ const App = () => {
         <PrivateRoute path={path.dropdownPath} component={page.DropdownPage} />
         <PrivateRoute path={path.formPath} component={page.FormPage} />
         <PrivateRoute path={path.tablePath} component={page.TablePage} />
+        {/* <PrivateRoute path="*" exact component={page.NotFoundPage} /> */}
         <AuthLayout>
           <Route path={path.signinPath} component={page.SigninPage} />
           <Route path={path.signupPath} component={page.SignupPage} />

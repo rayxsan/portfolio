@@ -1,10 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { StyledHeader } from "./Header.styled";
 import { FiMenu } from "react-icons/fi";
 import Menu from "../../../Components/Elements/Menu/Menu";
 import { useHistory, useLocation } from "react-router-dom";
 import * as path from "../../../shared/Paths";
 import { auth } from "../../../firebase";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 interface Props {
   expand: boolean;
@@ -14,6 +15,7 @@ interface Props {
 const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
   let history = useHistory();
   const location = useLocation();
+  const user = useContext(AuthContext);
 
   const displayCurrentPage = (string: string) => {
     if (string.includes("/*")) return "404";
@@ -35,7 +37,7 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
       history.push("/");
     }
     if (value === "Settings") {
-      history.push("*");
+      history.push("/");
     }
     if (value === "Logout") {
       auth.signOut();
@@ -48,6 +50,7 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
       <FiMenu onClick={clicked} />
       <p>{displayCurrentPage(location.pathname)}</p>
       <div>
+        <span>{user.currentUser && user.currentUser.email}</span>
         <Menu
           header="Profile"
           type="simple"

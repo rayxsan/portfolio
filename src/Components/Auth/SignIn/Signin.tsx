@@ -35,7 +35,7 @@ const Signin = () => {
       .signInWithEmailAndPassword(values.email, values.password)
       .then((res) => {
         authContext.setUser(res);
-        //console.log(res, "res");
+        // console.log(res, "res");
         history.push("/");
       })
       .catch((error) => {

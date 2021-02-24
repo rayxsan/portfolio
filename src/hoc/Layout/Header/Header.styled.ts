@@ -38,9 +38,20 @@ export const StyledHeader = styled.div<StyledHeaderProps>`
   }
   div {
     float: right;
-    margin-right: 0.5rem;
-    margin-top: 0.2rem;
+    span {
+      margin: auto;
+      padding: 0.5em;
+      font-size: 90%;
+      vertical-align: center;
+    }
+    button {
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
   }
+  /* div {
+    float: right;
+  } */
   @media (min-width: 500px) {
     svg {
       display: none;

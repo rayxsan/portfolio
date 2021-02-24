@@ -1,12 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { StyledSignup } from "./Signup.styled";
 import Button from "../../Elements/Button/Button";
 import * as Yup from "yup";
 import * as path from "../../../shared/Paths";
-import { AuthContext } from "../../../contexts/AuthContext";
-import app, { auth } from "../../../firebase";
+import { auth } from "../../../firebase";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),

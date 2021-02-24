@@ -16,7 +16,7 @@ export const AuthContext = React.createContext<Partial<ContextProps>>({});
 interface Props {}
 
 export const AuthProvider: React.FC<Props> = (props) => {
-  const [user, setUser] = useState(null as firebase.default.User | null);
+  const [currentUser, setUser] = useState(null as firebase.default.User | null);
   const [loadingAuthState, setLoadingAuthState] = useState(true);
 
   useEffect(() => {
@@ -28,8 +28,8 @@ export const AuthProvider: React.FC<Props> = (props) => {
   }, []);
 
   const value = {
-    user,
-    authenticated: user !== null,
+    currentUser,
+    authenticated: currentUser !== null,
     setUser,
     loadingAuthState,
   };
