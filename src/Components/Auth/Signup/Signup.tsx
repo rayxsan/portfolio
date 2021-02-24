@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { StyledSignup } from "./Signup.styled";
 import Button from "../../Elements/Button/Button";
 import * as Yup from "yup";
 import * as path from "../../../shared/Routes";
 import { AuthContext } from "../../../contexts/AuthContext";
-import { auth } from "../../../firebase";
+import app, { auth } from "../../../firebase";
 
 const SignUpSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -15,19 +16,43 @@ const SignUpSchema = Yup.object().shape({
     .required("Required"),
 });
 
-interface Values {
+interface FormItems {
   email: string;
   password: string;
-  confirmPassword: string;
 }
 
-const Signup: React.FC = () => {
-  //const { signup } = useAuth();
+const Signup = () => {
+  const authContext = useContext(AuthContext);
 
-  // const handleSubmit = (event: any) => {
-  //   event.preventDefault();
-  //   //signup(values.email, values.password);
-  // };
+  // const [values, setValues] = useState({
+  //   email: "",
+  //   password: "",
+  // } as FormItems);
+
+  const history = useHistory();
+
+  const handleSubmit = (values: FormItems) => {
+    auth
+      .createUserWithEmailAndPassword(values.email, values.password)
+      .then((userCredential: firebase.default.auth.UserCredential) => {
+        authContext.setUser(userCredential);
+        const db = app.firestore();
+        db.collection("Users")
+          .doc(userCredential.user!.uid)
+          .set({
+            email: values.email,
+            password: values.password,
+          })
+          .then(() => {
+            console.log("ok");
+            history.push("/");
+          })
+          .catch((error) => {
+            console.log(error.message);
+            alert(error.message);
+          });
+      });
+  };
 
   return (
     <StyledSignup>
@@ -36,12 +61,10 @@ const Signup: React.FC = () => {
         initialValues={{
           email: "",
           password: "",
-          confirmPassword: "",
+          verifyPassword: "",
         }}
         validationSchema={SignUpSchema}
-        onSubmit={(values: Values) => {
-          console.log(values);
-        }}
+        onSubmit={(values) => handleSubmit(values)}
       >
         {({ errors, touched }) => (
           <Form>
@@ -84,10 +107,10 @@ const Signup: React.FC = () => {
               Confirm Password
             </label>
             <Field
-              id="password"
-              name="password"
+              id="verifyPassword"
+              name="verifyPassword"
               type="password"
-              placeholder="Confirm Password"
+              placeholder="Verify Password"
             />
             <Button primary type="submit">
               Sign Up

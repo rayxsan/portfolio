@@ -14,7 +14,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 const SignInSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   password: Yup.string()
-    .min(3, "Too Short!")
+    .min(5, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
 });
@@ -25,27 +25,20 @@ interface UserData {
 }
 
 const Signin = () => {
-  const [values, setValues] = useState({
-    email: "",
-    password: "",
-  } as UserData);
-
   const authContext = useContext(AuthContext);
 
   const history = useHistory();
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
+  const handleSubmit = (values: UserData) => {
     auth
       .signInWithEmailAndPassword(values.email, values.password)
       .then((res) => {
         authContext.setUser(res);
-        console.log(res, "res");
-        history.push("/home");
+        //console.log(res, "res");
+        history.push("/");
       })
       .catch((error) => {
-        console.log(error.message);
-        alert(error.message);
+        console.log(error.message, values.email);
       });
   };
   return (
@@ -53,11 +46,11 @@ const Signin = () => {
       <p>Welcome, please Sign In</p>
       <Formik
         initialValues={{
-          email: "",
-          password: "",
+          email: "test01@test.com",
+          password: "password",
         }}
         validationSchema={SignInSchema}
-        onSubmit={handleSubmit}
+        onSubmit={(values) => handleSubmit(values)}
       >
         {({ errors, touched }) => (
           <Form>
@@ -74,6 +67,7 @@ const Signin = () => {
               id="email"
               name="email"
               type="email"
+              //value={values.email}
               placeholder="Email Address"
             />
 
@@ -89,6 +83,7 @@ const Signin = () => {
               id="password"
               name="password"
               type="password"
+              //value={values.password}
               placeholder="Password"
             />
             <Checkbox primary label="Remember me" />

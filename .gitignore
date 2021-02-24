@@ -34,3 +34,4 @@ debug.log
 .vscode/settings.json
 .vscode/settings.json
 src/.env
+.env
