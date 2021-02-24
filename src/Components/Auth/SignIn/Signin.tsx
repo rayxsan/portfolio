@@ -5,7 +5,7 @@ import { StyledSignin } from "./Signin.styled";
 import Button from "../../Elements/Button/Button";
 import Checkbox from "../../Elements/Checkbox/Checkbox";
 import * as Yup from "yup";
-import * as path from "../../../shared/Routes";
+import * as path from "../../../shared/Paths";
 import { auth } from "../../../firebase";
 import "firebase/auth";
 import "firebase/firestore";

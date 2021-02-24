@@ -5,7 +5,7 @@ import AuthLayout from "./hoc/AuthLayout/AuthLayout";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
 import { theme } from "./shared/Theme";
-import * as path from "./shared/Routes";
+import * as path from "./shared/Paths";
 import * as page from "./Pages";
 import { AuthProvider } from "./contexts/AuthContext";
 

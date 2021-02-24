@@ -4,7 +4,7 @@ import { Formik, Form, Field } from "formik";
 import { StyledSignup } from "./Signup.styled";
 import Button from "../../Elements/Button/Button";
 import * as Yup from "yup";
-import * as path from "../../../shared/Routes";
+import * as path from "../../../shared/Paths";
 import { AuthContext } from "../../../contexts/AuthContext";
 import app, { auth } from "../../../firebase";
 
@@ -14,43 +14,31 @@ const SignUpSchema = Yup.object().shape({
     .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
+  verifyPassword: Yup.string()
+    .oneOf([Yup.ref("password"), undefined], "Passwords don't match!")
+    .required("Required"),
 });
 
 interface FormItems {
   email: string;
   password: string;
+  verifyPassword: string;
 }
 
 const Signup = () => {
-  const authContext = useContext(AuthContext);
-
-  // const [values, setValues] = useState({
-  //   email: "",
-  //   password: "",
-  // } as FormItems);
+  // const authContext = useContext(AuthContext);
 
   const history = useHistory();
 
-  const handleSubmit = (values: FormItems) => {
-    auth
+  const handleSubmit = async (values: FormItems) => {
+    await auth
       .createUserWithEmailAndPassword(values.email, values.password)
-      .then((userCredential: firebase.default.auth.UserCredential) => {
-        authContext.setUser(userCredential);
-        const db = app.firestore();
-        db.collection("Users")
-          .doc(userCredential.user!.uid)
-          .set({
-            email: values.email,
-            password: values.password,
-          })
-          .then(() => {
-            console.log("ok");
-            history.push("/");
-          })
-          .catch((error) => {
-            console.log(error.message);
-            alert(error.message);
-          });
+      .then(() => {
+        console.log("ok");
+        history.push("/");
+      })
+      .catch((error: any) => {
+        console.log(error.message);
       });
   };
 
@@ -66,7 +54,7 @@ const Signup = () => {
         validationSchema={SignUpSchema}
         onSubmit={(values) => handleSubmit(values)}
       >
-        {({ errors, touched }) => (
+        {({ isSubmitting, dirty, isValid, errors, touched }) => (
           <Form>
             <p>User, password</p>
             <label
@@ -99,12 +87,14 @@ const Signup = () => {
               placeholder="Password"
             />
             <label
-              htmlFor="Confirm password"
+              htmlFor=" verifyPassword"
               className={
-                errors.password && touched.password ? "errorClass" : "isValid"
+                errors.verifyPassword && touched.verifyPassword
+                  ? "errorClass"
+                  : "isValid"
               }
             >
-              Confirm Password
+              Verify Password
             </label>
             <Field
               id="verifyPassword"
@@ -112,7 +102,11 @@ const Signup = () => {
               type="password"
               placeholder="Verify Password"
             />
-            <Button primary type="submit">
+            <Button
+              type="submit"
+              primary
+              disabled={isSubmitting || !dirty || !isValid}
+            >
               Sign Up
             </Button>
             <span>Already have an accouont?</span>

@@ -3,6 +3,7 @@ import { StyledHeader } from "./Header.styled";
 import { FiMenu } from "react-icons/fi";
 import Menu from "../../../Components/Elements/Menu/Menu";
 import { useHistory, useLocation } from "react-router-dom";
+import * as path from "../../../shared/Paths";
 
 interface Props {
   expand: boolean;
@@ -36,7 +37,7 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
       history.push("*");
     }
     if (value === "Logout") {
-      history.push("*");
+      history.push(path.signinPath);
     }
   };
 

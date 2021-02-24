@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
 import * as svg from "./Sidebar.common";
 import Backdrop from "../../../Components/UI/Backdrop/Backdrop";
-import * as path from "../../../shared/Routes";
+import * as path from "../../../shared/Paths";
 
 interface Props {
   show: boolean;

@@ -19,10 +19,6 @@ export const AuthProvider: React.FC<Props> = (props) => {
   const [user, setUser] = useState(null as firebase.default.User | null);
   const [loadingAuthState, setLoadingAuthState] = useState(true);
 
-  // function signup(email: string, password: string) {
-  //   return auth.createUserWithEmailAndPassword(email, password);
-  // }
-
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user: any) => {
       setUser(user);
@@ -38,6 +34,8 @@ export const AuthProvider: React.FC<Props> = (props) => {
     loadingAuthState,
   };
   return (
-    <AuthContext.Provider value={value}>{props.children}</AuthContext.Provider>
+    <AuthContext.Provider value={value}>
+      {!loadingAuthState && props.children}
+    </AuthContext.Provider>
   );
 };

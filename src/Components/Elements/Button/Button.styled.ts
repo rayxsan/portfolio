@@ -72,6 +72,9 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
     css`
       color: white;
       background-color: ${({ theme }) => theme.primaryColor};
+      :disabled {
+        background-color: ${({ theme }) => theme.disabledColor};
+      }
     `}
 
   ${(props: Props) =>
