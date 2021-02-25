@@ -85,7 +85,7 @@ const Signin = () => {
               name="email"
               type="email"
               //value={values.email}
-              placeholder="Email Address"
+              placeholder=""
             />
 
             <label
@@ -101,7 +101,7 @@ const Signin = () => {
               name="password"
               type="password"
               //value={values.password}
-              placeholder="Password"
+              placeholder=""
             />
             <Checkbox
               primary

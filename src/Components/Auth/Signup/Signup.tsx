@@ -68,12 +68,7 @@ const Signup = () => {
             >
               Email Address
             </label>
-            <Field
-              id="email"
-              name="email"
-              type="email"
-              placeholder="Email Address"
-            />
+            <Field id="email" name="email" type="email" placeholder="" />
 
             <label
               htmlFor="password"
@@ -87,7 +82,7 @@ const Signup = () => {
               id="password"
               name="password"
               type="password"
-              placeholder="Password"
+              placeholder=""
             />
             <label
               htmlFor=" verifyPassword"
@@ -103,7 +98,7 @@ const Signup = () => {
               id="verifyPassword"
               name="verifyPassword"
               type="password"
-              placeholder="Verify Password"
+              placeholder=""
             />
             <Button
               type="submit"
