@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-export const StyledPasswordReset = styled.div`
+interface StyledProps {
+  submitted: boolean;
+}
+
+export const StyledPasswordReset = styled.div<StyledProps>`
   display: block;
   margin: auto;
   max-width: 20rem;
@@ -24,6 +28,12 @@ export const StyledPasswordReset = styled.div`
       font-size: 95%;
       font-weight: lighter;
     }
+
+    p {
+      color: ${(props: StyledProps) =>
+        props.submitted ? "lightgreen" : "red"};
+    }
+
     input {
       width: 20rem;
       height: 1.2rem;
