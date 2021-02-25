@@ -12,6 +12,7 @@ import NotFoundPage from "./NotFoundPage";
 import ChartPage from "./ChartPage";
 import SigninPage from "./SigninPage";
 import SignupPage from "./SignupPage";
+import PasswordResetPage from "./PasswordResetPage";
 import PrivatePage from "./PrivatePage";
 
 export {
@@ -29,5 +30,6 @@ export {
   ChartPage,
   SigninPage,
   SignupPage,
+  PasswordResetPage,
   PrivatePage,
 };

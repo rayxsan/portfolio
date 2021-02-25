@@ -35,19 +35,19 @@ const Signin = () => {
     setIsChecked(event.target.checked);
   };
 
-  const handleSubmit = (values: UserData) => {
+  const handleSubmit = async (values: UserData) => {
     if (isChecked) {
       localStorage.username = values.email;
       localStorage.password = values.password;
       localStorage.checkbox = isChecked;
     }
 
-    auth
+    await auth
       .signInWithEmailAndPassword(values.email, values.password)
       .then((res) => {
         authContext.setUser(res);
         // console.log(res, "res");
-        history.push(path.privatePage);
+        history.push(path.privatePagePath);
         window.location.reload();
       })
       .catch((error) => {
@@ -112,7 +112,7 @@ const Signin = () => {
             <Button primary type="submit">
               Sign in
             </Button>
-            <a href="*">Forgot Password?</a>
+            <a href={path.passwordResetPath}>Forgot Password?</a>
             <span>Don't have an account?</span>
             <a href={path.signupPath}>Sign up here</a>
           </Form>

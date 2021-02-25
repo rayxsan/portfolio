@@ -34,9 +34,15 @@ const App = () => {
           <Route path={path.tablePath} component={page.TablePage} />
           <Route path={path.signinPath} component={page.SigninPage} />
           <Route path={path.signupPath} component={page.SignupPage} />
+          <Route
+            path={path.passwordResetPath}
+            component={page.PasswordResetPage}
+          />
           {/* <Route path="*" exact component={page.NotFoundPage} /> */}
-          <PrivateRoute path={path.privatePage} component={page.PrivatePage} />
-          <Redirect to={path.homePath} />
+          <PrivateRoute
+            path={path.privatePagePath}
+            component={page.PrivatePage}
+          />
         </Layout>
       </Switch>
     </AuthProvider>

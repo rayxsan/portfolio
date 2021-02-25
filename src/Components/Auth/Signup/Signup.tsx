@@ -37,7 +37,7 @@ const Signup = () => {
       .createUserWithEmailAndPassword(values.email, values.password)
       .then(() => {
         console.log("ok");
-        history.push(path.privatePage);
+        history.push(path.privatePagePath);
       })
       .catch((error: any) => {
         setError(error.message);
