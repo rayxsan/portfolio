@@ -11,9 +11,23 @@ interface State {
 interface Props {}
 
 class Layout extends Component<Props, State> {
-  state = {
-    showSidebar: true,
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      showSidebar: false,
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.resizeScreen.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resizeScreen.bind(this));
+  }
+  resizeScreen() {
+    this.setState({ showSidebar: window.innerWidth < 760 });
+  }
 
   sidebarToggleHandler = () => {
     this.setState((prevState) => {
