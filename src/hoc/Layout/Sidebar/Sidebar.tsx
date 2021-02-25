@@ -108,6 +108,7 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
             <ul>
               <NavLink to={path.signinPath}>Sign In</NavLink>
               <NavLink to={path.signupPath}>Sign Up</NavLink>
+              <NavLink to={path.privatePage}>Private Page</NavLink>
               <NavLink to={path.notFoundPath}>
                 {!show ? "404 Page" : <svg.BiErrorAlt title="404 Page" />}
               </NavLink>

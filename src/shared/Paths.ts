@@ -11,6 +11,7 @@ const formPath = "/components/form";
 const tablePath = "/components/table";
 const signinPath = "/auth/signin";
 const signupPath = "/auth/signup";
+const privatePage = "/auth/privatepage";
 const notFoundPath = "*";
 
 export {
@@ -27,5 +28,6 @@ export {
   tablePath,
   signinPath,
   signupPath,
+  privatePage,
   notFoundPath,
 };

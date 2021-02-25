@@ -12,6 +12,7 @@ import NotFoundPage from "./NotFoundPage";
 import ChartPage from "./ChartPage";
 import SigninPage from "./SigninPage";
 import SignupPage from "./SignupPage";
+import PrivatePage from "./PrivatePage";
 
 export {
   HomePage,
@@ -28,4 +29,5 @@ export {
   ChartPage,
   SigninPage,
   SignupPage,
+  PrivatePage,
 };

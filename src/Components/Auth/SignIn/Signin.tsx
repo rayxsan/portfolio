@@ -26,17 +26,29 @@ interface UserData {
 
 const Signin = () => {
   const [error, setError] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
   const authContext = useContext(AuthContext);
 
   const history = useHistory();
 
+  const onChangeCheckbox = (event: any) => {
+    setIsChecked(event.target.checked);
+  };
+
   const handleSubmit = (values: UserData) => {
+    if (isChecked) {
+      localStorage.username = values.email;
+      localStorage.password = values.password;
+      localStorage.checkbox = isChecked;
+    }
+
     auth
       .signInWithEmailAndPassword(values.email, values.password)
       .then((res) => {
         authContext.setUser(res);
         // console.log(res, "res");
-        history.push("/");
+        history.push(path.privatePage);
+        window.location.reload();
       })
       .catch((error) => {
         setError("Invalid email or password");
@@ -91,7 +103,12 @@ const Signin = () => {
               //value={values.password}
               placeholder="Password"
             />
-            <Checkbox primary label="Remember me" />
+            <Checkbox
+              primary
+              label="Remember me"
+              checked={isChecked}
+              onChange={onChangeCheckbox}
+            />
             <Button primary type="submit">
               Sign in
             </Button>

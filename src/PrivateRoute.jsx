@@ -1,7 +1,8 @@
 import React, { useContext } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import { AuthContext } from "./contexts/AuthContext";
-import Layout from "./hoc/Layout/Layout";
+import * as path from "./shared/Paths";
+import ContentBox from "./Components/UI/ContentBox/ContentBox";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
   const { authenticated, loadingAuthState } = useContext(AuthContext);
@@ -19,11 +20,13 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
       {...rest}
       render={(routeProps) =>
         authenticated ? (
-          <Layout>
-            <RouteComponent {...routeProps} />
-          </Layout>
+          <RouteComponent {...routeProps} />
         ) : (
-          <Redirect to="/auth/signin" />
+          <ContentBox title="Private Content">
+            Content only available to authenticated users. Please click{" "}
+            <Link to={path.signinPath}>here</Link> to sign in.
+          </ContentBox>
+          // <Redirect to="/auth/signin" />
         )
       }
     />

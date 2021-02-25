@@ -3,10 +3,7 @@ import Signin from "../Components/Auth/Signin/Signin";
 import styled from "styled-components";
 
 const StyledSigninPage = styled.div`
-  /* display: block;
-  align-items: center;
-  margin: auto; */
-  overflow: hidden;
+  margin-top: 10vh;
 `;
 
 const SigninPage = () => {

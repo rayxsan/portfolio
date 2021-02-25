@@ -30,12 +30,14 @@ const Signup = () => {
 
   const history = useHistory();
 
+  //Disable Sign up for production as we dont want multiple users on site.
   const handleSubmit = async (values: FormItems) => {
+    //setError("Please go to login page and use default user");
     await auth
       .createUserWithEmailAndPassword(values.email, values.password)
       .then(() => {
         console.log("ok");
-        history.push("/");
+        history.push(path.privatePage);
       })
       .catch((error: any) => {
         setError(error.message);
