@@ -38,7 +38,11 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
         <nav>
           <p>Elements</p>
           <div onClick={() => setOpenComponents(!openComponents)}>
-            <p>Components</p>
+            <p>
+              {" "}
+              <svg.CgComponents />
+              Components
+            </p>
             {!show ? (
               openComponents ? (
                 <svg.BiChevronUp />
@@ -85,34 +89,54 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
             </ul>
           )}
           <NavLink to={path.chartPath}>
-            {!show ? "Chart" : <svg.BsGraphUp title="Chart" />}
+            {!show ? (
+              <p>
+                <svg.FiPieChart />
+                Chart
+              </p>
+            ) : (
+              <svg.FiPieChart title="Chart" />
+            )}
           </NavLink>
         </nav>
         <nav>
           <p>Pages</p>
           <div onClick={() => setOpenAuth(!openAuth)}>
-            <div>
-              <p>Auth</p>
-              {!show ? (
-                openAuth ? (
-                  <svg.BiChevronUp />
-                ) : (
-                  <svg.BiChevronDown />
-                )
+            <p>
+              <svg.FiUsers />
+              Auth
+            </p>
+            {!show ? (
+              openAuth ? (
+                <svg.BiChevronUp />
               ) : (
-                <svg.FaPager title="Pages" />
-              )}
-            </div>
+                <svg.BiChevronDown />
+              )
+            ) : (
+              <svg.FiUsers title="Auth" />
+            )}
           </div>
           {openAuth && (
             <ul>
-              <NavLink to={path.signinPath}>Sign In</NavLink>
-              <NavLink to={path.signupPath}>Sign Up</NavLink>
-              <NavLink to={path.passwordResetPath}>Reset Password</NavLink>
-              <NavLink to={path.privatePagePath}>Private Page</NavLink>
-              <NavLink to={path.notFoundPath}>
-                {!show ? "404 Page" : <svg.BiErrorAlt title="404 Page" />}
+              <NavLink to={path.signinPath}>
+                {!show ? "Sign in" : <svg.FiUserCheck title="Sign in" />}
               </NavLink>
+              <NavLink to={path.signupPath}>
+                {!show ? "Sign up" : <svg.FiUserPlus title="Sign up" />}
+              </NavLink>
+              <NavLink to={path.passwordResetPath}>
+                {!show ? (
+                  "Reset Password"
+                ) : (
+                  <svg.RiRotateLockFill title="Reset Password" />
+                )}
+              </NavLink>
+              <NavLink to={path.privatePagePath}>
+                {!show ? "Private Page" : <svg.FiLock title="Private Page" />}
+              </NavLink>
+              {/* <NavLink to={path.notFoundPath}>
+                {!show ? "404 Page" : <svg.BiErrorAlt title="404 Page" />}
+              </NavLink> */}
             </ul>
           )}
         </nav>

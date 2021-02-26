@@ -29,8 +29,9 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
   nav {
     padding: 0.7rem 0.3rem 0rem 0.7rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    :first-child:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+    :hover {
+      background-color: ${(props: StyledSidebarProps) =>
+        props.show ? "none" : "rgba(255, 255, 255, 0.05)"};
     }
     p {
       display: inline-block;
@@ -44,10 +45,23 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
   .sidebarHome {
     :hover {
       background-color: ${(props: StyledSidebarProps) =>
-        props.show ? "none" : "rgba(255, 255, 255, 0.1)"};
+        props.show ? "none" : "rgba(255, 255, 255, 0.05)"};
     }
   }
 
+  div p svg {
+    font-size: 95%;
+    float: left;
+    padding-right: 0.3em;
+    padding-left: 0.3em;
+  }
+
+  nav a p svg {
+    font-size: 95%;
+    float: left;
+    padding-right: 0.3em;
+    padding-left: 0.3em;
+  }
   svg {
     font-size: 1.2rem;
     float: right;

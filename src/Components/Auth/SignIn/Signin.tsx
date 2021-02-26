@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { StyledSignin } from "./Signin.styled";
 import Button from "../../Elements/Button/Button";
@@ -46,13 +46,12 @@ const Signin = () => {
       .signInWithEmailAndPassword(values.email, values.password)
       .then((res) => {
         authContext.setUser(res);
-        // console.log(res, "res");
         history.push(path.privatePagePath);
         window.location.reload();
       })
       .catch((error) => {
         setError("Invalid email or password");
-        console.log(error.message, values.email);
+        //console.log(error.message, values.email);
       });
   };
   return (
@@ -60,18 +59,18 @@ const Signin = () => {
       <p>Welcome, please Sign In</p>
       <Formik
         initialValues={{
-          email: "test01@test.com",
-          password: "password",
+          email: "myuser@test.com",
+          password: "unsafe_password",
         }}
         validationSchema={SignInSchema}
         onSubmit={(values) => handleSubmit(values)}
       >
         {({ errors, touched }) => (
           <Form>
-            {error !== "" && <p>{error}</p>}
             <span>
-              Use <b>test01@test.com</b> and <b>password</b> to sign in
+              Use <b>myuser@test.com</b> and <b>unsafe_password</b> to sign in
             </span>
+            {error !== "" && <p>{error}</p>}
             <label
               htmlFor="email"
               className={
@@ -112,9 +111,9 @@ const Signin = () => {
             <Button primary type="submit">
               Sign in
             </Button>
-            <a href={path.passwordResetPath}>Forgot Password?</a>
+            <Link to={path.passwordResetPath}>Forgot Password?</Link>
             <span>Don't have an account?</span>
-            <a href={path.signupPath}>Sign up here</a>
+            <Link to={path.signupPath}>Sign up here</Link>
           </Form>
         )}
       </Formik>

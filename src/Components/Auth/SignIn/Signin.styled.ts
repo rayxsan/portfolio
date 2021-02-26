@@ -22,7 +22,8 @@ export const StyledSignin = styled.div<StyledSigninProps>`
     //width: 30rem;
 
     p {
-      color: red;
+      color: white;
+      background-color: ${({ theme }) => theme.warningColor};
     }
     span:first-child {
       padding: 0.5rem;

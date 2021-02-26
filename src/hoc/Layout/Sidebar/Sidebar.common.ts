@@ -17,7 +17,15 @@ import {
 import { MdRadioButtonChecked } from "react-icons/md";
 import { GiPlayButton } from "react-icons/gi";
 import { BsCardImage, BsGraphUp } from "react-icons/bs";
-import { FiPercent } from "react-icons/fi";
+import {
+  FiPercent,
+  FiUserCheck,
+  FiUserPlus,
+  FiUsers,
+  FiPieChart,
+  FiLock,
+} from "react-icons/fi";
+import { RiRotateLockFill } from "react-icons/ri";
 
 export {
   BiArrowFromRight,
@@ -36,6 +44,12 @@ export {
   FaWpforms,
   CgMenu,
   FiPercent,
+  FiUserPlus,
+  FiUserCheck,
+  FiUsers,
+  FiPieChart,
+  FiLock,
   BiErrorAlt,
   BsGraphUp,
+  RiRotateLockFill,
 };

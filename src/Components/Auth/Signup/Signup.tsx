@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { StyledSignup } from "./Signup.styled";
 import Button from "../../Elements/Button/Button";
@@ -108,7 +108,7 @@ const Signup = () => {
               Sign Up
             </Button>
             <span>Already have an accouont?</span>
-            <a href={path.signinPath}>Sign in here</a>
+            <Link to={path.signinPath}>Sign in here</Link>
           </Form>
         )}
       </Formik>
