@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { theme } from "../../../shared/Theme";
 
 interface StyledProps {
   submitted: boolean;
@@ -30,8 +31,11 @@ export const StyledPasswordReset = styled.div<StyledProps>`
     }
 
     p {
-      color: ${(props: StyledProps) =>
-        props.submitted ? "lightgreen" : "red"};
+      color: white;
+      font-size: 95%;
+      padding: 0.2em;
+      background-color: ${(props: StyledProps) =>
+        props.submitted ? theme.successColor : theme.warningColor};
     }
 
     input {
@@ -52,6 +56,17 @@ export const StyledPasswordReset = styled.div<StyledProps>`
       width: 20rem;
       margin-top: 0.5rem;
       margin-bottom: 0.5rem;
+    }
+    label {
+      font-size: 95%;
+      a {
+        text-decoration: none;
+        color: ${theme.primaryColor};
+        opacity: 0.8;
+        :hover {
+          opacity: 1;
+        }
+      }
     }
   }
 `;

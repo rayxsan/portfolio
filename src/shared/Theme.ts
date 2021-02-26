@@ -12,6 +12,8 @@ const theme1 = {
   footerBGColor: "rgba(0,0,0,.85)",
   footerFontColor: "#ccc",
   fontColor: "black",
+  warningColor: "#fb6944",
+  successColor: "#99cc33",
 
   //Dimensions
   headerHeight: "3rem",

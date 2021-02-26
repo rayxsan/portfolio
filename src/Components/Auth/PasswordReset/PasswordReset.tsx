@@ -4,6 +4,8 @@ import { Formik, Form, Field, FormikHelpers } from "formik";
 import Button from "../../Elements/Button/Button";
 import { auth } from "../../../firebase";
 import * as Yup from "yup";
+import * as path from "../../../shared/Paths";
+import { Link } from "react-router-dom";
 
 const PasswordResetSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
@@ -26,10 +28,11 @@ const PasswordReset: React.FC<props> = () => {
     try {
       await auth.sendPasswordResetEmail(values.email);
       actions.resetForm();
+      setError("");
       setSubmitted(true);
     } catch (error) {
       setError(error.message);
-      actions.setSubmitting(false);
+      setSubmitted(false);
     }
   };
 
@@ -59,6 +62,9 @@ const PasswordReset: React.FC<props> = () => {
             <Button primary type="submit">
               Reset Password
             </Button>
+            <label>
+              Back to <Link to={path.signinPath}>Sign in</Link>
+            </label>
           </Form>
         )}
       </Formik>
