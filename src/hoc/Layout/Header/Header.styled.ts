@@ -25,17 +25,13 @@ export const StyledHeader = styled.div<StyledHeaderProps>`
     bottom: 0.5rem;
   }
 
-  p {
-    visibility: ${(props: StyledHeaderProps) =>
-      !props.expand ? "visible" : "hidden"};
+  .breadcrumb {
     float: left;
-    font-size: 85%;
     margin: 0;
     padding-left: 0.2em;
     padding-right: 0.2em;
-    border-right: 1px solid #ccc;
-    border-left: 1px solid #ccc;
   }
+
   div {
     float: right;
     span {
@@ -49,9 +45,6 @@ export const StyledHeader = styled.div<StyledHeaderProps>`
       margin-top: 0.5rem;
     }
   }
-  /* div {
-    float: right;
-  } */
   @media (min-width: 500px) {
     svg {
       display: none;

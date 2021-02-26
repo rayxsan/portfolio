@@ -41,18 +41,21 @@ const Signin = () => {
       localStorage.password = values.password;
       localStorage.checkbox = isChecked;
     }
-
-    await auth
-      .signInWithEmailAndPassword(values.email, values.password)
-      .then((res) => {
-        authContext.setUser(res);
-        history.push(path.privatePagePath);
-        window.location.reload();
-      })
-      .catch((error) => {
-        setError("Invalid email or password");
-        //console.log(error.message, values.email);
-      });
+    try {
+      await auth
+        .signInWithEmailAndPassword(values.email, values.password)
+        .then((res) => {
+          authContext.setUser(res);
+          history.push(path.privatePagePath);
+          window.location.reload();
+        })
+        .catch(() => {
+          setError("Invalid email or password");
+          //console.log(error.message, values.email);
+        });
+    } catch {
+      setError("Invalid email or password");
+    }
   };
   return (
     <StyledSignin>

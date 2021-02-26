@@ -6,6 +6,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import * as path from "../../../shared/Paths";
 import { auth } from "../../../firebase";
 import { AuthContext } from "../../../contexts/AuthContext";
+import Breadcrumb from "../../../Components/UI/Breadcrumb/BreadCrumb";
 
 interface Props {
   expand: boolean;
@@ -16,21 +17,6 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
   let history = useHistory();
   const location = useLocation();
   const user = useContext(AuthContext);
-
-  const displayCurrentPage = (string: string) => {
-    if (string.includes("/*")) return "404";
-    if (string.includes("/components/")) {
-      const tempString = string.slice(12);
-      return tempString.charAt(0).toUpperCase() + tempString.slice(1);
-    }
-
-    if (string.includes("/auth/")) {
-      const tempString = string.slice(6);
-      return tempString.charAt(0).toUpperCase() + tempString.slice(1);
-    }
-
-    return "Home";
-  };
 
   const onClickHandler = (value: string) => {
     if (value === "Home") {
@@ -48,7 +34,9 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
   return (
     <StyledHeader expand={!expand}>
       <FiMenu onClick={clicked} />
-      <p>{displayCurrentPage(location.pathname)}</p>
+      <div className="breadcrumb">
+        <Breadcrumb path={location.pathname} />
+      </div>
       <div>
         <span>{user.currentUser && user.currentUser.email}</span>
         <Menu
