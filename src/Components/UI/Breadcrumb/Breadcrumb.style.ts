@@ -6,4 +6,9 @@ export const StyledBreadcrumb = styled.div`
   margin: 0;
   padding-left: 0.2em;
   padding-right: 0.2em;
+
+  list-style: none;
+  li {
+    float: left;
+  }
 `;

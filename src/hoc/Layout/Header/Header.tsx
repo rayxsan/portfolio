@@ -1,8 +1,8 @@
 import React, { FunctionComponent, useContext } from "react";
 import { StyledHeader } from "./Header.styled";
+import { useHistory } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import Menu from "../../../Components/Elements/Menu/Menu";
-import { useHistory, useLocation } from "react-router-dom";
 import * as path from "../../../shared/Paths";
 import { auth } from "../../../firebase";
 import { AuthContext } from "../../../contexts/AuthContext";
@@ -14,10 +14,9 @@ interface Props {
 }
 
 const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
-  let history = useHistory();
-  const location = useLocation();
   const user = useContext(AuthContext);
 
+  let history = useHistory();
   const onClickHandler = (value: string) => {
     if (value === "Home") {
       history.push("/");
@@ -35,7 +34,7 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
     <StyledHeader expand={!expand}>
       <FiMenu onClick={clicked} />
       <div className="breadcrumb">
-        <Breadcrumb path={location.pathname} />
+        <Breadcrumb />
       </div>
       <div>
         <span>{user.currentUser && user.currentUser.email}</span>
