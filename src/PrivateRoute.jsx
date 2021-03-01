@@ -26,7 +26,6 @@ const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
             Content only available to authenticated users. Please click{" "}
             <Link to={path.signinPath}>here</Link> to sign in.
           </ContentBox>
-          // <Redirect to="/auth/signin" />
         )
       }
     />

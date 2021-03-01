@@ -2,6 +2,7 @@ import React from "react";
 import { StyledBreadcrumb } from "./Breadcrumb.style";
 import { useHistory, useLocation } from "react-router-dom";
 import Button from "../../Elements/Button/Button";
+import validPath from "../../../shared/Paths";
 
 interface props {
   path?: string;
@@ -28,7 +29,11 @@ const Breadcrumb: React.FC<props> = (props) => {
       history.push(route);
     } else {
       route = location.slice(0, location.indexOf(value) + value.length);
-      history.push(route);
+      if (validPath(route)) {
+        history.push(route);
+      } else {
+        history.push("/");
+      }
     }
   };
 

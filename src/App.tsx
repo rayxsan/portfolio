@@ -21,10 +21,9 @@ const App = () => {
     <AuthProvider>
       <Switch>
         <Layout>
-          <Route
-            path={path.dashboardPath}
-            exact
-            component={page.DashboardPage}
+          <PrivateRoute
+            path={path.privatePagePath}
+            component={page.PrivatePage}
           />
           <Route path={path.buttonPath} component={page.ButtonPage} />
           <Route path={path.chartPath} component={page.ChartPage} />
@@ -42,11 +41,13 @@ const App = () => {
             path={path.passwordResetPath}
             component={page.PasswordResetPage}
           />
-          {/* <Route path="*" exact component={page.NotFoundPage} /> */}
-          <PrivateRoute
-            path={path.privatePagePath}
-            component={page.PrivatePage}
+          <Route
+            path={path.dashboardPath}
+            exact
+            component={page.DashboardPage}
           />
+          {/* <Redirect to="/" /> */}
+          {/* <Route path="*" exact component={page.NotFoundPage} /> */}
         </Layout>
       </Switch>
     </AuthProvider>

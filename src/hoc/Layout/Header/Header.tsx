@@ -6,7 +6,6 @@ import Menu from "../../../Components/Elements/Menu/Menu";
 import * as path from "../../../shared/Paths";
 import { auth } from "../../../firebase";
 import { AuthContext } from "../../../contexts/AuthContext";
-import Breadcrumb from "../../../Components/UI/Breadcrumb/BreadCrumb";
 
 interface Props {
   expand: boolean;

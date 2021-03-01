@@ -15,6 +15,31 @@ const passwordResetPath = "/auth/password_reset";
 const privatePagePath = "/auth/signin/private_page";
 const notFoundPath = "*";
 
+const validPath = (value: string) => {
+  const validRoutes = [
+    dashboardPath,
+    buttonPath,
+    chartPath,
+    checkboxPath,
+    progressPath,
+    radioPath,
+    menuPath,
+    cardPath,
+    dropdownPath,
+    formPath,
+    tablePath,
+    signinPath,
+    signupPath,
+    passwordResetPath,
+    privatePagePath,
+    notFoundPath,
+  ];
+  for (let i = 0; i < validRoutes.length; i++) {
+    if (value === validRoutes[i]) return true;
+  }
+  return false;
+};
+
 export {
   dashboardPath,
   buttonPath,
@@ -33,3 +58,5 @@ export {
   privatePagePath,
   notFoundPath,
 };
+
+export default validPath;
