@@ -5,6 +5,11 @@ interface Props {
 }
 
 export const Wrapper = styled.div`
+  .breadcrumb {
+    display: block;
+    padding: 1rem;
+  }
+
   @media (min-width: 500px) {
     margin-left: 2rem;
 

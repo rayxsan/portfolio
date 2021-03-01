@@ -3,6 +3,7 @@ import Header from "../Layout/Header/Header";
 import Footer from "./Footer/Footer";
 import Sidebar from "../Layout/Sidebar/Sidebar";
 import { Wrapper, MainContent } from "./Layout.styled";
+import Breadcrumb from "../../Components/UI/Breadcrumb/BreadCrumb";
 
 interface State {
   showSidebar: boolean;
@@ -47,6 +48,9 @@ class Layout extends Component<Props, State> {
             clicked={() => this.sidebarToggleHandler()}
             expand={this.state.showSidebar}
           />
+          <div className="breadcrumb">
+            <Breadcrumb />
+          </div>
           <MainContent>{this.props.children}</MainContent>
           <Footer />
         </Wrapper>

@@ -12,7 +12,7 @@ const tablePath = "/components/table";
 const signinPath = "/auth/signin";
 const signupPath = "/auth/signup";
 const passwordResetPath = "/auth/password_reset";
-const privatePagePath = "/auth/private_page";
+const privatePagePath = "/auth/signin/private_page";
 const notFoundPath = "*";
 
 export {

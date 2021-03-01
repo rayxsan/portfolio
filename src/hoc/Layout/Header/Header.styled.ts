@@ -25,13 +25,6 @@ export const StyledHeader = styled.div<StyledHeaderProps>`
     bottom: 0.5rem;
   }
 
-  .breadcrumb {
-    float: left;
-    margin: 0;
-    padding-left: 0.2em;
-    padding-right: 0.2em;
-  }
-
   div {
     float: right;
     span {

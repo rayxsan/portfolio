@@ -32,7 +32,7 @@ const App = () => {
           <Route path={path.dropdownPath} component={page.DropdownPage} />
           <Route path={path.formPath} component={page.FormPage} />
           <Route path={path.tablePath} component={page.TablePage} />
-          <Route path={path.signinPath} component={page.SigninPage} />
+          <Route path={path.signinPath} exact component={page.SigninPage} />
           <Route path={path.signupPath} component={page.SignupPage} />
           <Route
             path={path.passwordResetPath}
