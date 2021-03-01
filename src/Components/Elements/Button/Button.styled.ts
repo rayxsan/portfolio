@@ -90,7 +90,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
       background: none;
       width: fit-content;
       :hover:enabled {
-        background-color: ${({ theme }) => theme.disabledColor};
+        background-color: inherit;
       }
 
       /* TODO: set primary and secondary transparent colors for hovering */

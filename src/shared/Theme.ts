@@ -3,7 +3,7 @@ const theme1 = {
   primaryColor: "#1976d2",
   secondaryColor: "#FFAF38",
   defaultColor: "#bbb",
-  disabledColor: "#ddd",
+  disabledColor: "#ccc",
   solidBackground: "#fff",
   sidebarBGColor: "rgba(0,0,0,.85)",
   sidebarFontColor: "rgba(255, 255, 255, 0.65)",
