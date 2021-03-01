@@ -1,4 +1,4 @@
-const homePath = "/";
+const dashboardPath = "/";
 const buttonPath = "/components/button";
 const chartPath = "/components/chart";
 const checkboxPath = "/components/checkbox";
@@ -16,7 +16,7 @@ const privatePagePath = "/auth/signin/private_page";
 const notFoundPath = "*";
 
 export {
-  homePath,
+  dashboardPath,
   buttonPath,
   chartPath,
   checkboxPath,

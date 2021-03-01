@@ -33,7 +33,6 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
   return (
     <StyledHeader expand={!expand}>
       <FiMenu onClick={clicked} />
-
       <div>
         <span>{user.currentUser && user.currentUser.email}</span>
         <Menu

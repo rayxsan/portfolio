@@ -31,7 +31,7 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
 
         <NavLink to={"/"} exact>
           <p className="sidebarHome">
-            {!show ? "Home" : <svg.BiHome title="Home" />}
+            {!show ? "Dashboard" : <svg.BiHome title="Dashboard" />}
           </p>
         </NavLink>
 

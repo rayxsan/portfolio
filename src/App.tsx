@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 //import AuthLayout from "./hoc/AuthLayout/AuthLayout";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
@@ -21,7 +21,11 @@ const App = () => {
     <AuthProvider>
       <Switch>
         <Layout>
-          <Route path={path.homePath} exact component={page.HomePage} />
+          <Route
+            path={path.dashboardPath}
+            exact
+            component={page.DashboardPage}
+          />
           <Route path={path.buttonPath} component={page.ButtonPage} />
           <Route path={path.chartPath} component={page.ChartPage} />
           <Route path={path.checkboxPath} component={page.CheckboxPage} />

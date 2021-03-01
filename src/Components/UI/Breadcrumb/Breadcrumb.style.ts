@@ -20,8 +20,9 @@ export const StyledBreadcrumb = styled.div`
       }
     }
 
-    span {
-      opacity: 0.7;
+    span,
+    label {
+      opacity: 0.6;
     }
   }
 `;

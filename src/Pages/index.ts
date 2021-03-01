@@ -1,4 +1,4 @@
-import HomePage from "./HomePage";
+import DashboardPage from "./DashboardPage";
 import ButtonPage from "./ButtonPage";
 import CheckboxPage from "./CheckboxPage";
 import ProgressPage from "./ProgressPage";
@@ -16,7 +16,7 @@ import PasswordResetPage from "./PasswordResetPage";
 import PrivatePage from "./PrivatePage";
 
 export {
-  HomePage,
+  DashboardPage,
   ButtonPage,
   CheckboxPage,
   ProgressPage,

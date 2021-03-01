@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyledBreadcrumb } from "./Breadcrumb.style";
 import { Link, useHistory, useLocation } from "react-router-dom";
 
@@ -7,49 +7,55 @@ interface props {
 }
 
 const Breadcrumb: React.FC<props> = (props) => {
-  let history = useHistory();
-  const location = useLocation();
+  const [selected, setSelected] = useState("/");
 
-  const string = location.pathname;
-  const stringArray: string[] = string.split("/");
-  // stringArray.shift();
-  const lastValue = stringArray[stringArray.length - 1];
-  // const tempArray = stringArray;
-  // const prevPathArray = tempArray.splice(tempArray.length - 1, 1);
-  // const prevPath = stringArray.reduce(
-  //   (acc: string, currV: string) => acc + "/" + currV
-  // );
-  const prevPath = () => {
-    for (let i = 1; i < stringArray.length - 1; i++) {
-      if (stringArray[i + 1] === lastValue) return "/" + stringArray[i];
-      return "/" + stringArray[i] + "/" + stringArray[i + 1];
-    }
-    return "/";
+  let history = useHistory();
+  const location = useLocation().pathname;
+
+  const crumbs = () => {
+    if (location === "/") return ["Dashboard"];
+    const result = location.split("/");
+    result.splice(0, 1, "Dashboard");
+    return result;
   };
 
-  const displayCurrentPage = () => {
-    const result = stringArray.map((value, idx) => {
-      console.log(stringArray, lastValue, prevPath());
-      if (value === "") value = "Dashboard";
+  const lastIdx = () => {
+    return crumbs().length - 1;
+  };
+
+  const clickHandler = (event: any, idx: number) => {
+    event.preventDefault();
+    const selectedCrumb = crumbs()[idx];
+    console.log(selectedCrumb);
+    setSelected(history.location.pathname);
+  };
+  const pathHandler = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    //const value = crumbs()[idx];
+    console.log(event.target);
+    history.push("/");
+  };
+
+  const breadCrumb = () => {
+    console.log(crumbs(), location);
+    return crumbs().map((crumb, idx) => {
       return (
         <li key={idx}>
-          {value === lastValue ? (
-            <label>{value.charAt(0).toUpperCase() + value.substring(1)}</label>
+          {idx === lastIdx() ? (
+            <label>{crumb}</label>
           ) : (
             <div>
-              <Link to={prevPath()}>
-                {value.charAt(0).toUpperCase() + value.substring(1)}
-              </Link>
+              <button onClick={(e) => pathHandler(e)}>{crumb}</button>{" "}
               <span>{" / "}</span>
             </div>
           )}
         </li>
       );
     });
-    return result;
   };
 
-  return <StyledBreadcrumb>{displayCurrentPage()}</StyledBreadcrumb>;
+  return <StyledBreadcrumb>{breadCrumb()}</StyledBreadcrumb>;
 };
 
 export default Breadcrumb;
