@@ -63,7 +63,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
     opacity: 1;
   }
   :disabled {
-    cursor: not-allowed;
+    cursor: default;
     border-color: #bbb;
   }
 

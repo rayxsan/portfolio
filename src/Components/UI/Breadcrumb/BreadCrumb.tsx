@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { StyledBreadcrumb } from "./Breadcrumb.style";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
+import Button from "../../Elements/Button/Button";
 
 interface props {
   path?: string;
 }
 
 const Breadcrumb: React.FC<props> = (props) => {
-  const [selected, setSelected] = useState("/");
-
   let history = useHistory();
   const location = useLocation().pathname;
 
@@ -23,33 +22,30 @@ const Breadcrumb: React.FC<props> = (props) => {
     return crumbs().length - 1;
   };
 
-  const clickHandler = (event: any, idx: number) => {
-    event.preventDefault();
-    const selectedCrumb = crumbs()[idx];
-    console.log(selectedCrumb);
-    setSelected(history.location.pathname);
-  };
-  const pathHandler = (
-    event: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
-    //const value = crumbs()[idx];
-    console.log(event.target);
-    history.push("/");
+  const pathHandler = (value: string) => {
+    let route = "/";
+    if (value === "Dashboard") {
+      history.push(route);
+    } else {
+      route = location.slice(0, location.indexOf(value) + value.length);
+      history.push(route);
+    }
   };
 
   const breadCrumb = () => {
-    console.log(crumbs(), location);
     return crumbs().map((crumb, idx) => {
       return (
         <li key={idx}>
-          {idx === lastIdx() ? (
-            <label>{crumb}</label>
-          ) : (
-            <div>
-              <button onClick={(e) => pathHandler(e)}>{crumb}</button>{" "}
-              <span>{" / "}</span>
-            </div>
-          )}
+          <Button
+            text
+            primary={idx !== lastIdx()}
+            disabled={idx === lastIdx()}
+            size="small"
+            clicked={() => pathHandler(crumb)}
+          >
+            {crumb}
+          </Button>
+          <span>{idx !== lastIdx() ? "/" : ""}</span>
         </li>
       );
     });
