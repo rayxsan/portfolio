@@ -11,7 +11,7 @@ const formPath = "/components/form";
 const tablePath = "/components/table";
 const signinPath = "/auth/signin";
 const signupPath = "/auth/signup";
-const passwordResetPath = "/auth/password_reset";
+const passwordResetPath = "/auth/reset_password";
 const privatePagePath = "/auth/signin/private_page";
 const notFoundPath = "*";
 

@@ -8,7 +8,7 @@ interface props {
   path?: string;
 }
 
-const Breadcrumb: React.FC<props> = (props) => {
+const Breadcrumb: React.FC<props> = () => {
   let history = useHistory();
   const location = useLocation().pathname;
 
@@ -37,6 +37,13 @@ const Breadcrumb: React.FC<props> = (props) => {
     }
   };
 
+  const crumbStyle = (value: string) => {
+    const valueToUppercase =
+      value.charAt(0).toUpperCase() + value.substring(1, value.length);
+    const result = valueToUppercase.replace(/_/g, " ");
+    return result;
+  };
+
   const breadCrumb = () => {
     return crumbs().map((crumb, idx) => {
       return (
@@ -48,7 +55,7 @@ const Breadcrumb: React.FC<props> = (props) => {
             size="small"
             clicked={() => pathHandler(crumb)}
           >
-            {crumb}
+            {crumbStyle(crumb)}
           </Button>
           <span>{idx !== lastIdx() ? "/" : ""}</span>
         </li>
