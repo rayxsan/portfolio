@@ -9,7 +9,7 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
   width: ${({ theme }) => theme.sidebarWidth};
   top: 0;
   margin: 0;
-  height: 100%;
+  height: 100vh;
   background-color: ${({ theme }) => theme.sidebarBGColor};
   color: ${({ theme }) => theme.sidebarFontColor};
   padding: 0;
@@ -19,6 +19,16 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
   user-select: none;
   font-weight: lighter;
   white-space: nowrap;
+
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 0.3rem;
+    background: ${({ theme }) => theme.sidebarColor};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.sidebarColor};
+  }
 
   p {
     margin: 0;
