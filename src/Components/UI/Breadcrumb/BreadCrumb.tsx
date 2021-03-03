@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledBreadcrumb } from "./Breadcrumb.style";
+import { StyledBreadcrumb } from "./Breadcrumb.styled";
 import { useHistory, useLocation } from "react-router-dom";
 import Button from "../../Elements/Button/Button";
 import validPath from "../../../shared/Paths";
