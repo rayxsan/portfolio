@@ -7,7 +7,7 @@ import {
   BiTable,
   BiErrorAlt,
 } from "react-icons/bi";
-import { CgComponents, CgMenu } from "react-icons/cg";
+import { CgComponents, CgMenu, CgProfile } from "react-icons/cg";
 import {
   FaPager,
   FaCheckSquare,
@@ -52,4 +52,5 @@ export {
   BiErrorAlt,
   BsGraphUp,
   RiRotateLockFill,
+  CgProfile,
 };

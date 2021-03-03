@@ -37,6 +37,7 @@ const App = () => {
           <Route path={path.tablePath} component={page.TablePage} />
           <Route path={path.signinPath} exact component={page.SigninPage} />
           <Route path={path.signupPath} component={page.SignupPage} />
+          <Route path={path.profilePath} component={page.ProfilePage} />
           <Route
             path={path.passwordResetPath}
             component={page.PasswordResetPage}

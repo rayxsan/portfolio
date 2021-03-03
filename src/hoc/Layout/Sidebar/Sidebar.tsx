@@ -15,6 +15,7 @@ interface Props {
 const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
   const [openComponents, setOpenComponents] = useState(false);
   const [openAuth, setOpenAuth] = useState(false);
+  const [openPages, setOpenPages] = useState(false);
 
   return (
     <>
@@ -137,6 +138,33 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               {/* <NavLink to={path.notFoundPath}>
                 {!show ? "404 Page" : <svg.BiErrorAlt title="404 Page" />}
               </NavLink> */}
+            </ul>
+          )}
+
+          <div onClick={() => setOpenPages(!openPages)}>
+            <p>
+              <svg.FaPager />
+              Pages
+            </p>
+            {!show ? (
+              openPages ? (
+                <svg.BiChevronUp />
+              ) : (
+                <svg.BiChevronDown />
+              )
+            ) : (
+              <svg.FaPager title="Pages" />
+            )}
+          </div>
+          {openPages && (
+            <ul>
+              <NavLink to={path.profilePath}>
+                {!show ? (
+                  "Profile"
+                ) : (
+                  <svg.CgProfile title="Profile" className="profile" />
+                )}
+              </NavLink>
             </ul>
           )}
         </nav>
