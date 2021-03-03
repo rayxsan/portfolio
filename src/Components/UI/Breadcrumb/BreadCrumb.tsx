@@ -51,7 +51,7 @@ const Breadcrumb: React.FC<props> = () => {
           <Button
             text
             primary={idx !== lastIdx()}
-            disabled={idx === lastIdx()}
+            //disabled={idx === lastIdx()}
             size="small"
             clicked={() => pathHandler(crumb)}
           >

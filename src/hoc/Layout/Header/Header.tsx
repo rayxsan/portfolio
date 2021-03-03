@@ -17,8 +17,8 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
 
   let history = useHistory();
   const onClickHandler = (value: string) => {
-    if (value === "Home") {
-      history.push("/");
+    if (value === "Profile") {
+      history.push(path.profilePath);
     }
     if (value === "Settings") {
       history.push("/");
@@ -35,9 +35,9 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
       <div>
         <span>{user.currentUser && user.currentUser.email}</span>
         <Menu
-          header="Profile"
+          header="Account"
           type="simple"
-          items={["Home", "Settings", "Logout"]}
+          items={["Profile", "Settings", "Logout"]}
           onClick={(value) => onClickHandler(value)}
         />
       </div>
