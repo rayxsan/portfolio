@@ -1,6 +1,14 @@
 import React from "react";
 import { StyledProfile } from "./Profile.styled";
 
+interface fakeUser {
+  image: File;
+  name: string;
+  lastName: string;
+  email: string;
+  social: string;
+}
+
 export interface ProfileProps {}
 
 const Profile: React.FC<ProfileProps> = () => {

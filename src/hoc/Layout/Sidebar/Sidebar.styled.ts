@@ -30,15 +30,6 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
     background: ${({ theme }) => theme.sidebarColor};
   }
 
-  .profile {
-    :hover {
-      :after {
-        content: "Profile";
-        border: 1px solid red;
-      }
-    }
-  }
-
   p {
     margin: 0;
     padding: 0.7rem 0.3rem 0.7rem 0.7rem;

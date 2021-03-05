@@ -65,8 +65,7 @@ const CardPage = () => {
             }}
             footer={
               <Button secondary clicked={() => likeHandler()}>
-                <FcLike />
-                Like
+                <FcLike /> Like
               </Button>
             }
           />
