@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
-import * as svg from "./Sidebar.common";
+import * as svg from "../../../shared/AppIcons";
 import Backdrop from "../../../Components/UI/Backdrop/Backdrop";
 import * as path from "../../../shared/Paths";
 

@@ -24,8 +24,11 @@ import {
   FiUsers,
   FiPieChart,
   FiLock,
+  FiTwitter,
+  FiFacebook,
 } from "react-icons/fi";
 import { RiRotateLockFill } from "react-icons/ri";
+import { AiOutlineMail, AiOutlineInstagram } from "react-icons/ai";
 
 export {
   BiArrowFromRight,
@@ -53,4 +56,8 @@ export {
   BsGraphUp,
   RiRotateLockFill,
   CgProfile,
+  AiOutlineMail,
+  FiTwitter,
+  FiFacebook,
+  AiOutlineInstagram,
 };
