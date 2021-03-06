@@ -6,7 +6,7 @@ import nina from "../Images/Nina.jpeg";
 export interface ProfilePageProps {}
 
 const fakeUser = {
-  //img: nina,
+  img: nina,
   name: "Raymel",
   lastName: "Manreza",
   meta: "React developer",
