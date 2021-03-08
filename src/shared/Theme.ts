@@ -14,7 +14,7 @@ const theme1 = {
   fontColor: "black",
   warningColor: "#fb6944",
   successColor: "#99cc33",
-  layoutColor: "#F5F5F5",
+  layoutColor: "rgb(247, 249, 252)",
 
   //Dimensions
   headerHeight: "3rem",
