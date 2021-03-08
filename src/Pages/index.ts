@@ -15,6 +15,7 @@ import SignupPage from "./SignupPage";
 import PasswordResetPage from "./PasswordResetPage";
 import PrivatePage from "./PrivatePage";
 import ProfilePage from "./ProfilePage";
+import SettingsPage from "./SettingsPage";
 
 export {
   DashboardPage,
@@ -34,4 +35,5 @@ export {
   PasswordResetPage,
   PrivatePage,
   ProfilePage,
+  SettingsPage,
 };

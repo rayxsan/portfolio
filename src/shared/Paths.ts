@@ -14,6 +14,7 @@ const signupPath = "/auth/signup";
 const passwordResetPath = "/auth/reset_password";
 const privatePagePath = "/auth/signin/private_page";
 const profilePath = "/pages/profile";
+const settingsPath = "/pages/settings";
 const notFoundPath = "*";
 
 const validPath = (value: string) => {
@@ -34,6 +35,7 @@ const validPath = (value: string) => {
     passwordResetPath,
     privatePagePath,
     profilePath,
+    settingsPath,
     notFoundPath,
   ];
   for (let i = 0; i < validRoutes.length; i++) {
@@ -59,6 +61,7 @@ export {
   passwordResetPath,
   privatePagePath,
   profilePath,
+  settingsPath,
   notFoundPath,
 };
 

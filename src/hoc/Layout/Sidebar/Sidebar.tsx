@@ -159,11 +159,10 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
           {openPages && (
             <ul>
               <NavLink to={path.profilePath}>
-                {!show ? (
-                  "Profile"
-                ) : (
-                  <svg.CgProfile title="Profile" className="profile" />
-                )}
+                {!show ? "Profile" : <svg.CgProfile title="Profile" />}
+              </NavLink>
+              <NavLink to={path.settingsPath}>
+                {!show ? "Settings" : <svg.FiSettings title="Settings" />}
               </NavLink>
             </ul>
           )}

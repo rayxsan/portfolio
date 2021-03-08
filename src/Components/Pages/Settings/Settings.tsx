@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export interface SettingsProps {
-  img: File;
+  img?: File;
 }
 
 const Settings: React.FC<SettingsProps> = (props) => {

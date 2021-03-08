@@ -27,6 +27,7 @@ import {
   FiLock,
   FiTwitter,
   FiFacebook,
+  FiSettings,
 } from "react-icons/fi";
 import { RiRotateLockFill } from "react-icons/ri";
 import { AiOutlineMail, AiOutlineInstagram } from "react-icons/ai";
@@ -62,4 +63,5 @@ export {
   FiFacebook,
   AiOutlineInstagram,
   BiLocationPlus,
+  FiSettings,
 };
