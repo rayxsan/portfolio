@@ -13,7 +13,6 @@ export interface ProfileProps {
     uid: string;
     img?: string;
     name: string;
-    lastName: string;
     meta?: string;
     email: string;
     location?: string;
@@ -40,7 +39,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
       <StyledUserImg>
         {userImg}
         <div>
-          <span>{user.name + " " + user.lastName}</span>
+          <span>{user.name}</span>
           <label>{user.meta}</label>
         </div>
       </StyledUserImg>
