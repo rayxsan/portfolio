@@ -9,6 +9,7 @@ export interface ProfilePageProps {}
 const StyledProfilePage = styled.div``;
 
 const fakeUser = {
+  uid: "4636ebfa-8039-11eb-9439-0242ac130002",
   img: nina,
   name: "Raymel",
   lastName: "Manreza",

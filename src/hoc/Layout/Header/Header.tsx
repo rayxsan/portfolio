@@ -21,7 +21,7 @@ const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
       history.push(path.profilePath);
     }
     if (value === "Settings") {
-      history.push("/");
+      history.push(path.settingsPath);
     }
     if (value === "Logout") {
       auth.signOut();

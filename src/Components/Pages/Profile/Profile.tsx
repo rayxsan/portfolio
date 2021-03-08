@@ -10,6 +10,7 @@ import blankUser from "../../../Images/blank-profile-picture.png";
 
 export interface ProfileProps {
   user: {
+    uid: string;
     img?: string;
     name: string;
     lastName: string;
