@@ -4,23 +4,32 @@ import { theme } from "../../../shared/Theme";
 export const StyledProfile = styled.div`
   display: grid;
   grid-template-columns: 20rem 1rem 1fr;
-  grid-template-rows: 1fr 1rem 10rem;
+  grid-template-rows: 1fr 0.2rem 10rem;
+
+  @media (max-width: 760px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
 export const StyledUserImg = styled.div`
   grid-column-start: 1;
   grid-column-end: 1;
   text-align: center;
-  padding: 1rem;
-  border: 1px solid grey;
+  padding: 0;
+  //border: 1px solid;
   border-radius: 0.3rem;
-  //box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+  // box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
   img,
   svg {
     width: 15rem;
     height: 15rem;
     font-weight: lighter;
     border-radius: 50%;
+  }
+
+  svg {
+    stroke-width: 0.2;
   }
   div {
     display: flex;
@@ -46,13 +55,14 @@ export const StyledAbout = styled.ul`
   grid-row-start: 3;
   // grid-row-end: 3;
   text-align: left;
-  padding: 1rem;
-  border: 1px solid grey;
+  padding: 0;
+  // box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
   border-radius: 0.3rem;
 
   li {
     display: flex;
     align-items: center;
+    padding: 0.3rem;
     svg {
       margin-right: 0.2rem;
     }
@@ -80,12 +90,15 @@ export const StyledSkills = styled.div`
   display: grid;
   grid-template-rows: 1fr 1fr;
   text-align: left;
+  grid-gap: 1rem;
 
   div {
-    grid-row-start: 1;
-    padding: 1rem;
-    border: 1px solid grey;
-    border-radius: 0.3rem;
     display: block;
+    padding: 1rem;
+    box-shadow: 0 1px 3px 0 #d4d4d5, 0 0 0 1px #d4d4d5;
+    border-radius: 0.3rem;
+    h3 {
+      font-weight: bold;
+    }
   }
 `;

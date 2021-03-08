@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   StyledProfile,
   StyledUserImg,
@@ -6,6 +6,7 @@ import {
   StyledSkills,
 } from "./Profile.styled";
 import * as svg from "../../../shared/AppIcons";
+import blankUser from "../../../Images/blank-profile-picture.png";
 
 export interface ProfileProps {
   user: {
@@ -14,12 +15,14 @@ export interface ProfileProps {
     lastName: string;
     meta?: string;
     email: string;
+    location?: string;
     social?: {
       facebook?: string;
       instagram?: string;
       twitter?: string;
     };
     skills?: string;
+    description?: string;
   };
 }
 
@@ -29,7 +32,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
   const userImg = user.img ? (
     <img src={user.img} alt="userImg" />
   ) : (
-    <svg.CgProfile />
+    <img src={blankUser} alt="userImg" />
   );
   return (
     <StyledProfile>
@@ -41,14 +44,30 @@ const Profile: React.FC<ProfileProps> = (props) => {
         </div>
       </StyledUserImg>
       <StyledAbout>
+        {user.location && (
+          <li>
+            <svg.BiLocationPlus />
+            {user.location}
+          </li>
+        )}
         <li>
           <svg.AiOutlineMail />
-          <a href={`mailto:${user.email}`}>{user.email}</a>
+          <a
+            href={`mailto:${user.email}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {user.email}
+          </a>
         </li>
         {user.social?.twitter && (
           <li>
             <svg.FiTwitter />
-            <a href={`https://twitter.com/${user.social?.twitter}`}>
+            <a
+              href={`https://twitter.com/${user.social?.twitter}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {user.social?.twitter}
             </a>
           </li>
@@ -56,7 +75,11 @@ const Profile: React.FC<ProfileProps> = (props) => {
         {user.social?.facebook && (
           <li>
             <svg.FiFacebook />
-            <a href={`https://www.facebook.com/${user.social?.facebook}`}>
+            <a
+              href={`https://www.facebook.com/${user.social?.facebook}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {user.social?.facebook}
             </a>
           </li>
@@ -64,17 +87,29 @@ const Profile: React.FC<ProfileProps> = (props) => {
         {user.social?.instagram && (
           <li>
             <svg.AiOutlineInstagram />
-            <a href={`https://www.instagram.com/${user.social?.instagram}`}>
+            <a
+              href={`https://www.instagram.com/${user.social?.instagram}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               {user.social?.instagram}
             </a>
           </li>
         )}
       </StyledAbout>
       <StyledSkills>
-        <div>
-          <p>Skills</p>
-          <span>{user.skills}</span>
-        </div>
+        {user.skills && (
+          <div>
+            <h3>Skills</h3>
+            <span>{user.skills}</span>
+          </div>
+        )}
+        {user.description && (
+          <div>
+            <h3>About</h3>
+            <span>{user.description}</span>
+          </div>
+        )}
       </StyledSkills>
     </StyledProfile>
   );

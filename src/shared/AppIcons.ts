@@ -6,6 +6,7 @@ import {
   BiHome,
   BiTable,
   BiErrorAlt,
+  BiLocationPlus,
 } from "react-icons/bi";
 import { CgComponents, CgMenu, CgProfile } from "react-icons/cg";
 import {
@@ -60,4 +61,5 @@ export {
   FiTwitter,
   FiFacebook,
   AiOutlineInstagram,
+  BiLocationPlus,
 };
