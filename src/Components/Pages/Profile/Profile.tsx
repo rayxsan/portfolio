@@ -107,7 +107,7 @@ const Profile: React.FC<ProfileProps> = (props) => {
         )}
         {user.description && (
           <div>
-            <h3>About</h3>
+            <h3>Bio</h3>
             <span>{user.description}</span>
           </div>
         )}
