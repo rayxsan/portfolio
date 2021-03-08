@@ -6,11 +6,6 @@ interface Props {
 }
 
 export const Wrapper = styled.div`
-  .breadcrumb {
-    // display: inline-block;
-    padding: 1rem;
-  }
-
   background-color: ${theme.layoutColor};
   @media (min-width: 500px) {
     margin-left: 2rem;

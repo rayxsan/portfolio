@@ -48,9 +48,7 @@ class Layout extends Component<Props, State> {
             clicked={() => this.sidebarToggleHandler()}
             expand={this.state.showSidebar}
           />
-          <div className="breadcrumb">
-            <Breadcrumb />
-          </div>
+          <Breadcrumb />
           <MainContent>{this.props.children}</MainContent>
           <Footer />
         </Wrapper>
