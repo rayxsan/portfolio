@@ -9,6 +9,7 @@ export const StyledSettings = styled.div`
     text-align: left;
     max-width: 100%;
     h3 {
+      font-weight: bold;
       border-bottom: 1px solid ${theme.disabledColor};
     }
   }
@@ -18,23 +19,21 @@ export const StyledNav = styled.div`
   ul {
     position: relative;
     width: 10rem;
-    height: 6.7rem;
+    //height: 6.7rem;
     text-align: left;
+    font-weight: bold;
     padding: 0;
-    border: 1px solid grey;
-    border-bottom: none;
+    border: 1px solid ${theme.disabledColor};
     border-radius: 0.3rem;
-    // margin: auto;
 
     li {
-      border-bottom: 1px solid grey;
-      padding: 0.5rem 1rem;
+      border-bottom: 1px solid ${theme.disabledColor};
+      padding: 0.5rem;
       :last-child {
-        border-bottom-left-radius: 0.3rem;
-        border-bottom-right-radius: 0.3rem;
+        border: none;
       }
       :hover {
-        background-color: lightgrey;
+        background-color: ${theme.disabledColor};
         cursor: pointer;
       }
     }
@@ -51,30 +50,72 @@ export const StyledProfile = styled.div<StyledProfileProps>`
     props.show &&
     css`
       display: block;
+      box-sizing: border-box;
+
+      .settings-usr-img {
+        position: relative;
+        float: right;
+        img {
+          width: 15rem;
+          height: 15rem;
+          font-weight: lighter;
+          border-radius: 50%;
+        }
+        label {
+          position: absolute;
+          left: 0;
+          bottom: 2rem;
+          z-index: 1;
+          width: 3rem;
+          border: 1px solid ${theme.secondaryColor};
+          border-radius: 0.3rem;
+          padding: 0.2rem;
+          text-align: center;
+          color: #fff;
+          background-color: ${theme.secondaryColor};
+          cursor: pointer;
+          opacity: 0.85;
+          :hover {
+            opacity: 1;
+          }
+          input {
+            display: none;
+          }
+        }
+      }
 
       form {
         display: flex;
         flex-direction: column;
+        justify-content: space-between;
         align-items: left;
         margin: 0.2rem;
+        min-width: 15rem;
 
         label {
           font-size: 80%;
           opacity: 0.7;
         }
 
-        input {
-          width: 20rem;
+        input,
+        textarea {
+          min-width: 20rem;
           height: 1.2rem;
-          margin-bottom: 0.5rem;
-          border: none;
-          border-bottom: 1px solid ${theme.disabledColor};
+          padding: 0.2rem;
+          margin: 0.5rem;
+          border: 1px solid ${theme.disabledColor};
+          border-radius: 0.3rem;
+          //border-bottom: 1px solid ${theme.disabledColor};
           :focus {
             outline: none;
             ::placeholder {
               opacity: 0;
             }
           }
+        }
+
+        textarea {
+          height: 3rem;
         }
       }
     `}

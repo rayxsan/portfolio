@@ -22,7 +22,7 @@ export interface ProfileProps {
       twitter?: string;
     };
     skills?: string;
-    description?: string;
+    bio?: string;
   };
 }
 
@@ -104,10 +104,10 @@ const Profile: React.FC<ProfileProps> = (props) => {
             <span>{user.skills}</span>
           </div>
         )}
-        {user.description && (
+        {user.bio && (
           <div>
-            <h3>Bio</h3>
-            <span>{user.description}</span>
+            <h3>Description</h3>
+            <span>{user.bio}</span>
           </div>
         )}
       </StyledSkills>

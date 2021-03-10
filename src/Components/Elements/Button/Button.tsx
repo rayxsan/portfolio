@@ -16,6 +16,7 @@ interface Props {
   icon?: string; // TODO: use this as the name of the icon to be rendered. See semantic UI for example. https://react.semantic-ui.com/elements/button/#types-icon
   clicked?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   className?: string;
+  id?: string;
 }
 
 const Button: FunctionComponent<Props> = ({

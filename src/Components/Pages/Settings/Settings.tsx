@@ -9,20 +9,39 @@ import {
 import PasswordReset from "../../Auth/PasswordReset/PasswordReset";
 import { Formik, Form, Field } from "formik";
 import Button from "../../Elements/Button/Button";
-import Dropdown from "../../Elements/Dropdown/Dropdown";
+import usrImg from "../../../Images/blank-profile-picture.png";
+//import Dropdown from "../../Elements/Dropdown/Dropdown";
 
 export interface SettingsProps {
   img?: File;
 }
 
 const Settings: React.FC<SettingsProps> = (props) => {
+  const [user, setUser] = useState({
+    uid: "",
+    img: "",
+    name: "",
+    meta: "",
+    email: "",
+    location: "",
+    social: {
+      twitter: "",
+      facebook: "",
+      instagram: "",
+    },
+    skills: "",
+    bio: "",
+  });
   const [file, setFile] = useState("");
   const [profileShow, setProfileShow] = useState(true);
   const [securityShow, setSecurityShow] = useState(false);
   const [themeShow, setThemeShow] = useState(false);
 
   const imgHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) setFile(URL.createObjectURL(event.target.files[0]));
+    if (event.target.files) {
+      setFile(URL.createObjectURL(event.target.files[0]));
+      // setUser({...user, user.img: event.target.files[0]})
+    }
   };
 
   const profileShowHandler = () => {
@@ -43,9 +62,20 @@ const Settings: React.FC<SettingsProps> = (props) => {
     setProfileShow(false);
   };
   const userImg = (
-    <div>
-      <input type="file" onChange={(e) => imgHandleChange(e)} />
-      {file === "" ? <div /> : <img src={file} alt="userImg" />}
+    <div className="settings-usr-img">
+      {file === "" ? (
+        <img src={usrImg} alt="userImg" />
+      ) : (
+        <img src={file} alt="userImg" />
+      )}
+      <label>
+        <input
+          type="file"
+          id="upload-button"
+          onChange={(e) => imgHandleChange(e)}
+        />
+        Edit
+      </label>
     </div>
   );
 
@@ -81,37 +111,20 @@ const Settings: React.FC<SettingsProps> = (props) => {
   //   // />
   // );
 
+  const onSubmitHandler = (value: any) => {
+    console.log(value);
+  };
+
   const profile = (
     <StyledProfile show={profileShow}>
       <h3>Profile</h3>
-      <Formik
-        initialValues={{
-          uid: "",
-          img: "",
-          name: "",
-          twitter: "",
-          email: "",
-          location: "",
-          social: {
-            twitter: "",
-            facebook: "",
-            instagram: "",
-          },
-          skills: "",
-          description: "",
-        }}
-        onSubmit={(values) => console.log(values)}
-      >
+      {userImg}
+      <Formik initialValues={user} onSubmit={onSubmitHandler}>
         <Form>
           <span>Name</span>
           <Field id="name" name="name" type="name" placeholder="Your name" />
           <span>Occupation</span>
-          <Field
-            id="twitter"
-            name="twitter"
-            type="twitter"
-            placeholder="Title"
-          />
+          <Field id="meta" name="meta" type="meta" placeholder="Title" />
           <span>Email</span>
           <Field
             id="email"
@@ -137,26 +150,26 @@ const Settings: React.FC<SettingsProps> = (props) => {
           {valueArray[0] && socialNetworksInputs} */}
           <Field
             id="twitter"
-            name="twitter"
+            name="social.twitter"
             type="twitter"
             placeholder="Twitter"
           />
           <Field
             id="facebook"
-            name="facebook"
+            name="social.facebook"
             type="facebook"
             placeholder="Facebook"
           />
           <Field
             id="instagram"
-            name="instagram"
+            name="social.instagram"
             type="instagram"
             placeholder="Instagram"
           />
           <span>Skills</span>
-          <textarea id="skills" name="skills" />
+          <Field as="textarea" name="skills" />
           <span>Bio</span>
-          <textarea id="bio" name="bio" />
+          <Field as="textarea" name="bio" />
           <Button primary type="submit">
             Update profile
           </Button>

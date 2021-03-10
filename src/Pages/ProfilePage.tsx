@@ -21,7 +21,7 @@ const fakeUser = {
     instagram: "rmanreza",
   },
   skills: "React, HTML, CSS",
-  description: "Just me",
+  bio: "Just me",
 };
 
 const ProfilePage: React.FC<ProfilePageProps> = () => {
