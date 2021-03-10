@@ -48,7 +48,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   transition: 0.2s;
   cursor: pointer;
   border: none;
-  width: fit-content;
+  min-width: fit-content;
   outline: 0;
   opacity: 0.85;
   overflow: hidden;
