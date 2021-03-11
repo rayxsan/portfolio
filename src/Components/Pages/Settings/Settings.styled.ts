@@ -14,6 +14,10 @@ export const StyledSettings = styled.div`
     }
   }
 
+  span.errorClass {
+    color: red;
+  }
+
   @media (max-width: 760px) {
     display: flex;
     flex-direction: column;
@@ -47,6 +51,7 @@ export const StyledNav = styled.div`
 
 interface StyledProfileProps {
   show: boolean;
+  showProfileEditImg: boolean;
 }
 
 export const StyledProfile = styled.div<StyledProfileProps>`
@@ -66,31 +71,49 @@ export const StyledProfile = styled.div<StyledProfileProps>`
         div:first-child {
           position: relative;
           float: right;
+
           img {
             width: 15rem;
             height: 15rem;
-            font-weight: lighter;
+            object-fit: cover;
             border-radius: 50%;
           }
-          label {
+
+          button {
             position: absolute;
             left: 0;
-            bottom: 2rem;
-            z-index: 1;
+            bottom: 3.5rem;
             width: 3rem;
-            border: 1px solid ${theme.secondaryColor};
+          }
+
+          ul {
+            display: ${(props: StyledProfileProps) =>
+              props.showProfileEditImg ? "block" : "none"};
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            border: 1px solid ${theme.disabledColor};
             border-radius: 0.3rem;
-            padding: 0.2rem;
-            text-align: center;
-            color: #fff;
-            background-color: ${theme.secondaryColor};
-            cursor: pointer;
-            opacity: 0.85;
-            :hover {
-              opacity: 1;
-            }
-            input {
-              display: none;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            li {
+              padding: 0.2rem 0.5rem 0.2rem 0.5rem;
+
+              :hover {
+                background-color: ${theme.secondaryColor};
+                cursor: pointer;
+                opacity: 1;
+                color: #fff;
+              }
+
+              label {
+                font-weight: normal;
+                cursor: pointer;
+                input {
+                  display: none;
+                }
+              }
             }
           }
         }

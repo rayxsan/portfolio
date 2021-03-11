@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   StyledSettings,
   StyledProfile,
@@ -10,7 +10,31 @@ import PasswordReset from "../../Auth/PasswordReset/PasswordReset";
 import { Formik, Form, Field } from "formik";
 import Button from "../../Elements/Button/Button";
 import defaultImg from "../../../Images/blank-profile-picture.png";
+import * as Yup from "yup";
+import Menu from "../../Elements/Menu/Menu";
 //import Dropdown from "../../Elements/Dropdown/Dropdown";
+
+const FILE_SIZE = 1920 * 1080;
+
+const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+
+const SettingsSchema = Yup.object().shape({
+  img: Yup.mixed()
+    .notRequired()
+    .default("")
+    .test(
+      "fileSize",
+      "File too large",
+      (value) => value && value.size <= FILE_SIZE
+    )
+    .test(
+      "fileFormat",
+      "Unsupported Format",
+      (value) => value && SUPPORTED_FORMATS.includes(value.type)
+    ),
+  name: Yup.string().min(2, "Too Short!").required("A text is required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+});
 
 export interface props {
   user: user;
@@ -67,28 +91,6 @@ const Settings: React.FC<props> = (props) => {
     </StyledNav>
   );
 
-  // const socialNetworkOptions = [
-  //   { key: 1, value: "twitter", text: "Twitter" },
-  //   { key: 2, value: "facebook", text: "Facebook" },
-  //   { key: 3, value: "instagram", text: "Instagram" },
-  // ];
-
-  // const [valueArray, setValueArray] = useState<(string | number)[]>([]);
-
-  // const onChangeDropdown = (value: string | number) => {
-  //   if (value !== "") setValueArray((oldArray) => [...oldArray, value]);
-  // };
-
-  // const socialNetworksInputs = valueArray.map(
-  //   (value) => console.log(value)
-  //   // <Field
-  //   //   key={value}
-  //   //   id={value.toString()}
-  //   //   type={value.toString()}
-  //   //   placeholder={value.toString()}
-  //   // />
-  // );
-
   const onSubmitHandler = (value: user) => {
     console.log(value);
   };
@@ -99,40 +101,74 @@ const Settings: React.FC<props> = (props) => {
     let reader = new FileReader();
 
     reader.onloadend = () => {
-      //  setImgPreview(reader.result);
       setUser({ ...user, img: reader.result });
     };
-    if (e.target.files) reader.readAsDataURL(e.target.files[0]);
+    if (e.target.files) {
+      reader.readAsDataURL(e.target.files[0]);
+      console.log(e.target.files[0].size);
+    }
   };
 
+  const [showProfileEditImg, setShowProfileEditImg] = useState(false);
+
   const profile = (
-    <StyledProfile show={profileShow}>
+    <StyledProfile show={profileShow} showProfileEditImg={showProfileEditImg}>
       <h3>Profile</h3>
-      <Formik initialValues={user} onSubmit={onSubmitHandler}>
-        {({ values, errors, setFieldValue }) => (
+      <Formik
+        initialValues={user}
+        validationSchema={SettingsSchema}
+        onSubmit={onSubmitHandler}
+      >
+        {({ isValid, errors, touched, setFieldValue }) => (
           <Form>
-            <div className="settings-usr-img">
-              <label>
-                <input
-                  type="file"
-                  id="upload-button"
-                  onChange={(event) => {
-                    if (event.currentTarget.files) {
-                      setFieldValue("img", event.currentTarget.files[0]);
-                      onChangePreview(event);
-                    }
-                  }}
-                />
+            <div>
+              <Button
+                secondary
+                size="tiny"
+                clicked={() => setShowProfileEditImg(!showProfileEditImg)}
+              >
                 Edit
-              </label>
+              </Button>
+              <ul>
+                <li>
+                  <label>
+                    <input
+                      type="file"
+                      id="upload-button"
+                      onChange={(event) => {
+                        if (event.currentTarget.files) {
+                          setFieldValue("img", event.currentTarget.files[0]);
+                          onChangePreview(event);
+                          setShowProfileEditImg(false);
+                        }
+                      }}
+                    />
+                    Upload a photo...
+                  </label>
+                </li>
+                <li>
+                  <label
+                    onClick={() => {
+                      setFieldValue("img", "");
+                      setShowProfileEditImg(false);
+                    }}
+                  >
+                    Remove photo
+                  </label>
+                </li>
+              </ul>
+
               {user.img ? (
                 <img src={user.img} alt="userImg" />
               ) : (
                 <img src={defaultImg} alt="defaultImg" />
               )}
+              <span>{errors.img ? errors.img : ""}</span>
             </div>
             <div>
-              <span>Name</span>
+              <span className={errors.name ? "errorClass" : "isValid"}>
+                {errors.name ? "Name too short" : "Name"}
+              </span>
               <Field
                 id="name"
                 name="name"
@@ -141,7 +177,13 @@ const Settings: React.FC<props> = (props) => {
               />
               <span>Occupation</span>
               <Field id="meta" name="meta" type="meta" placeholder="Title" />
-              <span>Email</span>
+              <span
+                className={
+                  errors.email && touched.email ? "errorClass" : "isValid"
+                }
+              >
+                {errors.email ? "Email not valid" : "Email"}
+              </span>
               <Field
                 id="email"
                 name="email"
@@ -156,14 +198,6 @@ const Settings: React.FC<props> = (props) => {
                 placeholder="Where are you?"
               />
               <span>Social Network</span>
-              {/* <Dropdown
-            multiple
-            fluid
-            options={socialNetworkOptions}
-            placeholder="Select all that apply"
-            onChange={(value) => onChangeDropdown(value)}
-          />
-          {valueArray[0] && socialNetworksInputs} */}
               <Field
                 id="twitter"
                 name="social.twitter"
@@ -186,7 +220,7 @@ const Settings: React.FC<props> = (props) => {
               <Field as="textarea" name="skills" />
               <span>Bio</span>
               <Field as="textarea" name="bio" />
-              <Button primary type="submit">
+              <Button primary type="submit" disabled={!isValid}>
                 Update profile
               </Button>
             </div>
