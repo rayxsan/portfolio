@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Key } from "readline";
 import Profile from "./Profile/Profile";
 import Security from "./Security/Security";
+import ThemeChanger from "./ThemeChanger/ThemeChanger";
 import { StyledSettings, StyledNav } from "./Settings.styled";
 
 const fakeUser = {
@@ -22,21 +22,27 @@ const fakeUser = {
 
 interface props {}
 
+interface Show {
+  profile: boolean;
+  security: boolean;
+  theme: boolean;
+}
+
 const Settings: React.FC<props> = (props) => {
   const [show, setShow] = useState({
-    profile: false,
+    profile: true,
     security: false,
     theme: false,
   });
 
   const handleShow = (value: string) => {
-    const temp = Object.keys(show).reduce((result, k) => {
+    const stateCopy = { ...show };
+
+    const temp: any = Object.keys(stateCopy).reduce((result, k) => {
       return { ...result, [k]: k === value };
     }, {});
 
-    console.log(temp);
-
-    setShow({ ...show, [value]: true });
+    setShow(temp);
   };
 
   const nav = (
@@ -52,8 +58,9 @@ const Settings: React.FC<props> = (props) => {
   return (
     <StyledSettings>
       {nav}
-      <Profile user={fakeUser} />
+      <Profile user={fakeUser} show={show.profile} />
       <Security show={show.security} />
+      <ThemeChanger show={show.theme} />
     </StyledSettings>
   );
 };

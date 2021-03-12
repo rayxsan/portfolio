@@ -23,6 +23,7 @@ const SettingsSchema = Yup.object().shape({
 
 export interface props {
   user: user;
+  show: boolean;
 }
 
 interface user {
@@ -64,7 +65,7 @@ const Profile: React.FC<props> = (props) => {
   };
 
   const profile = (
-    <StyledProfile show={true} showProfileEditImg={showProfileEditImg}>
+    <StyledProfile show={props.show} showProfileEditImg={showProfileEditImg}>
       <h3>Profile</h3>
       <Formik
         initialValues={user}
