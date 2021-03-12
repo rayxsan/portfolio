@@ -7,7 +7,7 @@ export interface SettingsPageProps {}
 
 const fakeUser = {
   uid: "4636ebfa-8039-11eb-9439-0242ac130002",
-  //img: nina,
+  img: nina,
   name: "Raymel Manreza",
   meta: "React developer",
   email: "raymel.manreza@gmail.com",

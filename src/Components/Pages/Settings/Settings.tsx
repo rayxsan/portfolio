@@ -11,27 +11,20 @@ import { Formik, Form, Field } from "formik";
 import Button from "../../Elements/Button/Button";
 import defaultImg from "../../../Images/blank-profile-picture.png";
 import * as Yup from "yup";
-import Menu from "../../Elements/Menu/Menu";
 //import Dropdown from "../../Elements/Dropdown/Dropdown";
 
-const FILE_SIZE = 1920 * 1080;
+const FILE_SIZE = (1920 * 1080) | 0;
 
-const SUPPORTED_FORMATS = ["image/jpg", "image/jpeg", "image/gif", "image/png"];
+const SUPPORTED_FORMATS = [
+  "image/jpg",
+  "image/jpeg",
+  "image/gif",
+  "image/png",
+  "",
+];
 
 const SettingsSchema = Yup.object().shape({
-  img: Yup.mixed()
-    .notRequired()
-    .default("")
-    .test(
-      "fileSize",
-      "File too large",
-      (value) => value && value.size <= FILE_SIZE
-    )
-    .test(
-      "fileFormat",
-      "Unsupported Format",
-      (value) => value && SUPPORTED_FORMATS.includes(value.type)
-    ),
+  img: Yup.mixed().notRequired().default(""),
   name: Yup.string().min(2, "Too Short!").required("A text is required"),
   email: Yup.string().email("Invalid email").required("Required"),
 });
@@ -105,7 +98,6 @@ const Settings: React.FC<props> = (props) => {
     };
     if (e.target.files) {
       reader.readAsDataURL(e.target.files[0]);
-      console.log(e.target.files[0].size);
     }
   };
 
@@ -148,8 +140,9 @@ const Settings: React.FC<props> = (props) => {
                 </li>
                 <li>
                   <label
-                    onClick={() => {
+                    onClick={(e) => {
                       setFieldValue("img", "");
+                      setUser({ ...user, img: "" });
                       setShowProfileEditImg(false);
                     }}
                   >
@@ -220,7 +213,7 @@ const Settings: React.FC<props> = (props) => {
               <Field as="textarea" name="skills" />
               <span>Bio</span>
               <Field as="textarea" name="bio" />
-              <Button primary type="submit" disabled={!isValid}>
+              <Button primary type="submit">
                 Update profile
               </Button>
             </div>

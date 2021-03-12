@@ -71,6 +71,7 @@ export const StyledProfile = styled.div<StyledProfileProps>`
         div:first-child {
           position: relative;
           float: right;
+          height: 20rem;
 
           img {
             width: 15rem;
@@ -81,8 +82,8 @@ export const StyledProfile = styled.div<StyledProfileProps>`
 
           button {
             position: absolute;
-            left: 0;
-            bottom: 3.5rem;
+            left: 1rem;
+            bottom: 5.5rem;
             width: 3rem;
           }
 
@@ -90,13 +91,24 @@ export const StyledProfile = styled.div<StyledProfileProps>`
             display: ${(props: StyledProfileProps) =>
               props.showProfileEditImg ? "block" : "none"};
             position: absolute;
-            left: 0;
-            bottom: 0;
-            border: 1px solid ${theme.disabledColor};
+            left: 1rem;
+            bottom: 1.8rem;
+            border: 1px solid ${theme.secondaryColor};
             border-radius: 0.3rem;
             margin: 0;
             padding: 0;
-            background-color: #fff;
+            background-color: ${theme.secondaryColor};
+            opacity: 1;
+
+            :after {
+              content: " ";
+              position: absolute;
+              left: 0.3rem;
+              top: -1rem;
+              border: 0.5rem solid transparent;
+              border-bottom: 0.5rem solid ${theme.secondaryColor};
+            }
+
             li {
               padding: 0.2rem 0.5rem 0.2rem 0.5rem;
 
@@ -153,6 +165,10 @@ export const StyledProfile = styled.div<StyledProfileProps>`
         form {
           div:first-child {
             float: none;
+            ul {
+              left: 2rem;
+              bottom: 1.4rem;
+            }
           }
           div {
             input,
