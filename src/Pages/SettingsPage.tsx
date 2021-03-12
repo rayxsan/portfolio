@@ -24,7 +24,7 @@ const fakeUser = {
 const SettingsPage: React.FC<SettingsPageProps> = () => {
   return (
     <ContentBox title="Settings">
-      <Settings user={fakeUser} />
+      <Settings />
     </ContentBox>
   );
 };
