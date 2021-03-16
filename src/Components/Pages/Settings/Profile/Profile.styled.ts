@@ -17,6 +17,11 @@ export const StyledProfile = styled.div<StyledProfileProps>`
     margin: 0.2rem;
     min-width: 15rem;
 
+    span,
+    button {
+      margin-left: 0.5rem;
+    }
+
     div:first-child {
       position: relative;
       float: right;

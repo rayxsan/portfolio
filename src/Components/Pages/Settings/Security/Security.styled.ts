@@ -15,6 +15,16 @@ export const StyledSecurity = styled.div<StyledSecurityProps>`
     margin: 0.2rem;
     min-width: 15rem;
 
+    span,
+    label,
+    button {
+      margin-left: 0.5rem;
+    }
+
+    label {
+      font-size: 90%;
+      color: ${theme.warningColor};
+    }
     input {
       min-width: 20rem;
       height: 1.2rem;
@@ -28,6 +38,13 @@ export const StyledSecurity = styled.div<StyledSecurityProps>`
         ::placeholder {
           opacity: 0;
         }
+      }
+    }
+  }
+  @media (max-width: 1080px) {
+    form {
+      input {
+        min-width: auto;
       }
     }
   }
