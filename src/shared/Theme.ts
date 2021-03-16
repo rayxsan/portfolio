@@ -1,4 +1,4 @@
-export const theme = {
+export const theme2 = {
   //Colors
   primaryColor: "#1976d2",
   secondaryColor: "#FFAF38",
@@ -54,4 +54,10 @@ export const theme1 = {
   //Menus
 };
 
+export let theme = theme1;
+
 export type ThemeType = typeof theme;
+
+export const themeChanger = (theme: ThemeType) => {
+  return theme;
+};
