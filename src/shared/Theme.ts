@@ -57,7 +57,3 @@ export const theme1 = {
 export let theme = theme1;
 
 export type ThemeType = typeof theme;
-
-export const themeChanger = (theme: ThemeType) => {
-  return theme;
-};
