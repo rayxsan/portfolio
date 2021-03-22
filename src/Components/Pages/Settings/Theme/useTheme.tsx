@@ -2,7 +2,7 @@ import * as React from "react";
 import { StyledUseTheme } from "./useTheme.styled";
 import Card from "../../../Elements/Card/Card";
 import Button from "../../../Elements/Button/Button";
-import { lightTheme, darkTheme } from "../../../../shared/Theme";
+//import { lightTheme, darkTheme } from "../../../../shared/Theme";
 
 export interface ThemeProps {
   show: boolean;

@@ -5,15 +5,15 @@ import Button from "../../../Elements/Button/Button";
 import defaultImg from "../../../../Images/blank-profile-picture.png";
 import * as Yup from "yup";
 
-const FILE_SIZE = (1920 * 1080) | 0;
+// const FILE_SIZE = (1920 * 1080) | 0;
 
-const SUPPORTED_FORMATS = [
-  "image/jpg",
-  "image/jpeg",
-  "image/gif",
-  "image/png",
-  "",
-];
+// const SUPPORTED_FORMATS = [
+//   "image/jpg",
+//   "image/jpeg",
+//   "image/gif",
+//   "image/png",
+//   "",
+// ];
 
 const SettingsSchema = Yup.object().shape({
   img: Yup.mixed().notRequired().default(""),
