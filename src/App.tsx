@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 //import AuthLayout from "./hoc/AuthLayout/AuthLayout";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
-import { theme } from "./shared/Theme";
+//import { theme } from "./shared/Theme";
 import * as path from "./shared/Paths";
 import * as page from "./Pages";
 import { AuthProvider } from "./contexts/AuthContext";
 import Layout from "./hoc/Layout/Layout";
 import PrivateRoute from "./PrivateRoute";
+import { lightTheme, darkTheme } from "./shared/Theme";
 
 interface OwnProps {}
 interface StateProps {}
@@ -55,8 +56,12 @@ const App = () => {
     </AuthProvider>
   );
 
+  //This is work in progress...
+  const themeMode =
+    window.localStorage.getItem("theme") === "light" ? lightTheme : darkTheme;
+
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeMode}>
       <GlobalStyles />
       {routes}
     </ThemeProvider>

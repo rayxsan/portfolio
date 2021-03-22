@@ -5,7 +5,6 @@ export const StyledSettings = styled.div`
   display: flex;
 
   div {
-    margin-left: 1rem;
     text-align: left;
     max-width: 100%;
     h3 {
@@ -29,6 +28,7 @@ export const StyledNav = styled.div`
     position: relative;
     width: 10rem;
     //height: 6.7rem;
+    margin-right: 1rem;
     text-align: left;
     font-weight: bold;
     padding: 0;

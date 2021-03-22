@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Profile from "./Profile/Profile";
 import Security from "./Security/Security";
-import ThemeChanger from "./ThemeChanger/ThemeChanger";
+import ThemeChanger from "./Theme/useTheme";
 import { StyledSettings, StyledNav } from "./Settings.styled";
 
 const fakeUser = {

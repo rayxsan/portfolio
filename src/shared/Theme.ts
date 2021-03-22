@@ -1,4 +1,4 @@
-export const theme2 = {
+export const darkTheme = {
   //Colors
   primaryColor: "#1976d2",
   secondaryColor: "#FFAF38",
@@ -15,6 +15,7 @@ export const theme2 = {
   warningColor: "#fb6944",
   successColor: "#99cc33",
   layoutColor: "rgb(247, 249, 252)",
+  bodyColor: "rgb(247, 249, 252)",
 
   //Dimensions
   headerHeight: "3rem",
@@ -26,7 +27,7 @@ export const theme2 = {
   //Menus
 };
 
-export const theme1 = {
+export const lightTheme = {
   //Colors
   primaryColor: "#1976d2",
   secondaryColor: "#FFAF38",
@@ -43,6 +44,7 @@ export const theme1 = {
   warningColor: "#fb6944",
   successColor: "#99cc33",
   layoutColor: "rgb(247, 249, 252)",
+  bodyColor: "rgb(247, 249, 252)",
 
   //Dimensions
   headerHeight: "3rem",
@@ -54,6 +56,6 @@ export const theme1 = {
   //Menus
 };
 
-export let theme = theme1;
+export let theme = lightTheme;
 
 export type ThemeType = typeof theme;
