@@ -1,3 +1,6 @@
 import styled from "styled-components";
 
-export const StyledChart = styled.div``;
+export const StyledChart = styled.div`
+  width: 100%;
+  height: 100%;
+`;
