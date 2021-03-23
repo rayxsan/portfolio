@@ -68,6 +68,13 @@ const data = [
   },
 ];
 
+const data01 = [
+  { name: "Group A", value: 400 },
+  { name: "Group B", value: 300 },
+  { name: "Group C", value: 300 },
+  { name: "Group D", value: 200 },
+];
+
 const ChartPage = () => {
   return (
     <StyledChartPage>
@@ -76,6 +83,9 @@ const ChartPage = () => {
       </ContentBox>
       <ContentBox title="Bar Chart">
         <Chart data={data} type="Bar" />
+      </ContentBox>
+      <ContentBox title="Pie Chart">
+        <Chart data={data01} type="Pie" />
       </ContentBox>
     </StyledChartPage>
   );
