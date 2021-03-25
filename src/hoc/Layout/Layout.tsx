@@ -3,6 +3,7 @@ import Header from "../Layout/Header/Header";
 import Footer from "./Footer/Footer";
 import Sidebar from "../Layout/Sidebar/Sidebar";
 import { Wrapper, MainContent } from "./Layout.styled";
+import Breadcrumb from "../../Components/UI/Breadcrumb/BreadCrumb";
 
 interface State {
   showSidebar: boolean;
@@ -11,9 +12,23 @@ interface State {
 interface Props {}
 
 class Layout extends Component<Props, State> {
-  state = {
-    showSidebar: true,
-  };
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      showSidebar: false,
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.resizeScreen.bind(this));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.resizeScreen.bind(this));
+  }
+  resizeScreen() {
+    this.setState({ showSidebar: window.innerWidth < 760 });
+  }
 
   sidebarToggleHandler = () => {
     this.setState((prevState) => {
@@ -33,6 +48,7 @@ class Layout extends Component<Props, State> {
             clicked={() => this.sidebarToggleHandler()}
             expand={this.state.showSidebar}
           />
+          <Breadcrumb />
           <MainContent>{this.props.children}</MainContent>
           <Footer />
         </Wrapper>

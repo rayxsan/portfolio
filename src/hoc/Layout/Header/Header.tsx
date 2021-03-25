@@ -1,8 +1,11 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { StyledHeader } from "./Header.styled";
+import { useHistory } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import Menu from "../../../Components/Elements/Menu/Menu";
-import { useHistory, useLocation } from "react-router-dom";
+import * as path from "../../../shared/Paths";
+import { auth } from "../../../firebase";
+import { AuthContext } from "../../../contexts/AuthContext";
 
 interface Props {
   expand: boolean;
@@ -10,40 +13,31 @@ interface Props {
 }
 
 const Header: FunctionComponent<Props> = ({ clicked, expand }) => {
+  const user = useContext(AuthContext);
+
   let history = useHistory();
-  const location = useLocation();
-
-  const displayCurrentPage = (string: string) => {
-    if (string.includes("/*")) return "404";
-    if (string.includes("/components/")) {
-      const tempString = string.slice(12);
-      return tempString.charAt(0).toUpperCase() + tempString.slice(1);
-    }
-
-    return "Home";
-  };
-
   const onClickHandler = (value: string) => {
-    if (value === "Home") {
-      history.push("/");
+    if (value === "Profile") {
+      history.push(path.profilePath);
     }
     if (value === "Settings") {
-      history.push("*");
+      history.push(path.settingsPath);
     }
     if (value === "Logout") {
-      history.push("*");
+      auth.signOut();
+      history.push(path.signinPath);
     }
   };
 
   return (
     <StyledHeader expand={!expand}>
       <FiMenu onClick={clicked} />
-      <p>{displayCurrentPage(location.pathname)}</p>
       <div>
+        <span>{user.currentUser && user.currentUser.email}</span>
         <Menu
-          header="Profile"
+          header="Account"
           type="simple"
-          items={["Home", "Settings", "Logout"]}
+          items={["Profile", "Settings", "Logout"]}
           onClick={(value) => onClickHandler(value)}
         />
       </div>

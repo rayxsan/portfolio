@@ -13,7 +13,9 @@ html, body {
     height: 100%; 
     text-align: center;
     font-family: 'Roboto', sans-serif; 
-    background-color: #f6f6f6;
+    background-color: ${({ theme }) => theme.bodyColor};
+    color:  ${({ theme }) => theme.fontColor};
+    transition: all 0.50s linear;
    
  ::-webkit-scrollbar {
     width: 0px;

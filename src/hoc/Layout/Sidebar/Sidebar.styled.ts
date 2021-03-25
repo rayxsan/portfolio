@@ -9,7 +9,7 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
   width: ${({ theme }) => theme.sidebarWidth};
   top: 0;
   margin: 0;
-  height: 100%;
+  height: 100vh;
   background-color: ${({ theme }) => theme.sidebarBGColor};
   color: ${({ theme }) => theme.sidebarFontColor};
   padding: 0;
@@ -18,6 +18,17 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
   z-index: 999;
   user-select: none;
   font-weight: lighter;
+  white-space: nowrap;
+
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 0.3rem;
+    background: ${({ theme }) => theme.sidebarColor};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.sidebarColor};
+  }
 
   p {
     margin: 0;
@@ -28,8 +39,9 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
   nav {
     padding: 0.7rem 0.3rem 0rem 0.7rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    :first-child:hover {
-      background-color: rgba(255, 255, 255, 0.2);
+    :hover {
+      background-color: ${(props: StyledSidebarProps) =>
+        props.show ? "none" : "rgba(255, 255, 255, 0.05)"};
     }
     p {
       display: inline-block;
@@ -37,23 +49,29 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
       padding: 0;
       padding-bottom: 0.5rem;
       border: none;
-      svg {
-        padding-left: 1rem;
-        :hover {
-          color: ${({ theme }) => theme.primaryColor};
-          cursor: pointer;
-        }
-      }
     }
   }
 
   .sidebarHome {
     :hover {
       background-color: ${(props: StyledSidebarProps) =>
-        props.show ? "none" : "rgba(255, 255, 255, 0.1)"};
+        props.show ? "none" : "rgba(255, 255, 255, 0.05)"};
     }
   }
 
+  div p svg {
+    font-size: 95%;
+    float: left;
+    padding-right: 0.3em;
+    padding-left: 0.3em;
+  }
+
+  nav a p svg {
+    font-size: 95%;
+    float: left;
+    padding-right: 0.3em;
+    padding-left: 0.3em;
+  }
   svg {
     font-size: 1.2rem;
     float: right;
@@ -101,7 +119,7 @@ export const StyledSidebar = styled.div<StyledSidebarProps>`
       }
       nav {
         padding-top: 0;
-        position: relative;
+        padding-left: 0.2rem;
       }
     `}
 

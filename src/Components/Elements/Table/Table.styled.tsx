@@ -4,6 +4,7 @@ interface styledProps {
   shrink?: boolean;
   sort?: boolean;
   disabled?: boolean;
+  columnLength: number;
 }
 
 export const StyledTable = styled.div<styledProps>`
@@ -22,6 +23,8 @@ export const StyledTable = styled.div<styledProps>`
     width: 100%;
     td,
     th {
+      width: ${(props: styledProps) =>
+        props.columnLength > 0 && `calc(100vw / ${props.columnLength})`};
       padding: 0.5rem;
     }
     tr {

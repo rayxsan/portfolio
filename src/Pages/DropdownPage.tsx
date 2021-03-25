@@ -6,9 +6,17 @@ import { StyledContentBox } from "../Components/UI/ContentBox/ContentBox.styled"
 import styled from "styled-components";
 
 const StyledDropdownPAge = styled.div`
+  //text-align: left;
+  span {
+    padding-left: 1rem;
+  }
+  .testCard {
+    width: 25rem;
+  }
+
   ${StyledContentBox} {
     ${StyledDropdown} {
-      margin-left: 12px;
+      //margin: 0.5rem;
     }
   }
 `;
@@ -39,11 +47,20 @@ const DropdownPage = () => {
       <ContentBox title="Search Dropdown">
         <Dropdown search options={pets} placeholder="My Pets" />
       </ContentBox>
-      <ContentBox title="Multiple Dropdown">
-        <Dropdown multiple options={pets} placeholder="My Pets" />
+      <ContentBox
+        title="Multiple Dropdown"
+        text="Designed to expand to the available width."
+      >
+        <div className="testCard">
+          <Dropdown multiple options={pets} placeholder="My Pets" />
+        </div>
+        <span>Max width: 25rem</span>
       </ContentBox>
-      <ContentBox title="Multiple Search Dropdown">
-        <Dropdown search multiple options={pets} placeholder="My Pets" />
+      <ContentBox
+        title="Multiple Search Dropdown"
+        text="It can expand until max width is reached"
+      >
+        <Dropdown search multiple fluid options={pets} placeholder="My Pets" />
       </ContentBox>
     </StyledDropdownPAge>
   );

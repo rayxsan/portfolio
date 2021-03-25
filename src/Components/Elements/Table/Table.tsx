@@ -27,15 +27,6 @@ const Table = <T extends object>({
     return null;
   }
 
-  // const onChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //   setoffset(0);
-  //   setrowLength(parseInt(event.target.value));
-  // };
-
-  // const onHeaderClick = (item: string | number) => {
-  //   if (sort) return console.log(`"cliked":${item}`);
-  // };
-
   let endIndex = offset + rowLength;
   const dataToDisplay = data.slice(offset, endIndex);
 
@@ -70,7 +61,7 @@ const Table = <T extends object>({
   ];
 
   const pagination = (
-    <StyledPagination shrink={showPages}>
+    <StyledPagination shrink={showPages} columnLength={tableHeader.length}>
       <p>Rows per page:</p>
       <Dropdown
         options={options}
@@ -106,7 +97,7 @@ const Table = <T extends object>({
   );
 
   return (
-    <StyledTable>
+    <StyledTable columnLength={tableHeader.length}>
       <table>
         <thead>
           <tr>{tableHeader}</tr>

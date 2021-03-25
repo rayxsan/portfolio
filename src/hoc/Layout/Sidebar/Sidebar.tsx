@@ -1,9 +1,9 @@
 import React, { FunctionComponent, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { StyledSidebar } from "./Sidebar.styled";
-import * as svg from "./Sidebar.common";
+import * as svg from "../../../shared/AppIcons";
 import Backdrop from "../../../Components/UI/Backdrop/Backdrop";
-import * as path from "../../../shared/Routes";
+import * as path from "../../../shared/Paths";
 
 interface Props {
   show: boolean;
@@ -15,6 +15,7 @@ interface Props {
 const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
   const [openComponents, setOpenComponents] = useState(false);
   const [openAuth, setOpenAuth] = useState(false);
+  const [openPages, setOpenPages] = useState(false);
 
   return (
     <>
@@ -31,25 +32,27 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
 
         <NavLink to={"/"} exact>
           <p className="sidebarHome">
-            {!show ? "Home" : <svg.BiHome title="Home" />}
+            {!show ? "Dashboard" : <svg.BiHome title="Dashboard" />}
           </p>
         </NavLink>
 
         <nav>
           <p>Elements</p>
           <div onClick={() => setOpenComponents(!openComponents)}>
-            <div>
-              <p>Components</p>
-              {!show ? (
-                openComponents ? (
-                  <svg.BiChevronUp />
-                ) : (
-                  <svg.BiChevronDown />
-                )
+            <p>
+              {" "}
+              <svg.CgComponents />
+              Components
+            </p>
+            {!show ? (
+              openComponents ? (
+                <svg.BiChevronUp />
               ) : (
-                <svg.CgComponents title="Components" />
-              )}
-            </div>
+                <svg.BiChevronDown />
+              )
+            ) : (
+              <svg.CgComponents title="Components" />
+            )}
           </div>
           {openComponents && (
             <ul>
@@ -86,30 +89,80 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               </NavLink>
             </ul>
           )}
+          <NavLink to={path.chartPath}>
+            {!show ? (
+              <p>
+                <svg.FiPieChart />
+                Chart
+              </p>
+            ) : (
+              <svg.FiPieChart title="Chart" />
+            )}
+          </NavLink>
         </nav>
-
         <nav>
           <p>Pages</p>
           <div onClick={() => setOpenAuth(!openAuth)}>
-            <div>
-              <p>Auth</p>
-              {!show ? (
-                openAuth ? (
-                  <svg.BiChevronUp />
-                ) : (
-                  <svg.BiChevronDown />
-                )
+            <p>
+              <svg.FiUsers />
+              Auth
+            </p>
+            {!show ? (
+              openAuth ? (
+                <svg.BiChevronUp />
               ) : (
-                <svg.FaPager title="Pages" />
-              )}
-            </div>
+                <svg.BiChevronDown />
+              )
+            ) : (
+              <svg.FiUsers title="Auth" />
+            )}
           </div>
           {openAuth && (
             <ul>
-              {/* <NavLink to={path.notFoundPath}>Sign in</NavLink>
-              <NavLink to={path.notFoundPath}>Sign up</NavLink> */}
-              <NavLink to={path.notFoundPath}>
+              <NavLink to={path.signinPath}>
+                {!show ? "Sign in" : <svg.FiUserCheck title="Sign in" />}
+              </NavLink>
+              <NavLink to={path.signupPath}>
+                {!show ? "Sign up" : <svg.FiUserPlus title="Sign up" />}
+              </NavLink>
+              <NavLink to={path.passwordResetPath}>
+                {!show ? (
+                  "Reset Password"
+                ) : (
+                  <svg.RiRotateLockFill title="Reset Password" />
+                )}
+              </NavLink>
+              <NavLink to={path.privatePagePath}>
+                {!show ? "Private Page" : <svg.FiLock title="Private Page" />}
+              </NavLink>
+              {/* <NavLink to={path.notFoundPath}>
                 {!show ? "404 Page" : <svg.BiErrorAlt title="404 Page" />}
+              </NavLink> */}
+            </ul>
+          )}
+
+          <div onClick={() => setOpenPages(!openPages)}>
+            <p>
+              <svg.FaPager />
+              Pages
+            </p>
+            {!show ? (
+              openPages ? (
+                <svg.BiChevronUp />
+              ) : (
+                <svg.BiChevronDown />
+              )
+            ) : (
+              <svg.FaPager title="Pages" />
+            )}
+          </div>
+          {openPages && (
+            <ul>
+              <NavLink to={path.profilePath}>
+                {!show ? "Profile" : <svg.CgProfile title="Profile" />}
+              </NavLink>
+              <NavLink to={path.settingsPath}>
+                {!show ? "Settings" : <svg.FiSettings title="Settings" />}
               </NavLink>
             </ul>
           )}
