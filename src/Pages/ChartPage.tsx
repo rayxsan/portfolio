@@ -70,7 +70,7 @@ const data = [
 
 const data01 = [
   { name: "Comedy", value: 5 },
-  { name: "Sci FI", value: 3 },
+  { name: "Sci Fi", value: 3 },
   { name: "Action", value: 6 },
   { name: "Drama", value: 1 },
   { name: "Romance", value: 7 },

@@ -99,6 +99,7 @@ const Chart: React.FC<ChartProps> = (props) => {
       "#d509dc",
       "#f00d0d",
     ];
+
     char = (
       <PieChart width={width} height={300}>
         <Pie
@@ -107,13 +108,14 @@ const Chart: React.FC<ChartProps> = (props) => {
           cx="50%"
           cy="50%"
           outerRadius={width / 6}
-          label={<text>klajsd</text>}
           fill={theme.primaryColor}
+          label
         >
           {data.map((entry: any, index: any) => (
             <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
           ))}
         </Pie>
+        <Legend />
         <Tooltip />
       </PieChart>
     );
