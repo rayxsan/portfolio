@@ -10,7 +10,7 @@ export interface ThemeProps {
 
 const useTheme: React.FC<ThemeProps> = (props) => {
   const [theme, setTheme] = React.useState("light");
-  const [mountedComponent, setMountedComponent] = React.useState(false);
+  //const [mountedComponent, setMountedComponent] = React.useState(false);
   const setMode = (mode: string) => {
     window.localStorage.setItem("theme", mode);
     setTheme(mode);
@@ -23,7 +23,7 @@ const useTheme: React.FC<ThemeProps> = (props) => {
   React.useEffect(() => {
     const localTheme = window.localStorage.getItem("theme");
     localTheme ? setTheme(localTheme) : setMode("light");
-    setMountedComponent(true);
+    // setMountedComponent(true);
   }, []);
 
   const theme1 = {
