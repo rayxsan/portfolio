@@ -69,10 +69,11 @@ const data = [
 ];
 
 const data01 = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
+  { name: "Comedy", value: 5 },
+  { name: "Sci FI", value: 3 },
+  { name: "Action", value: 6 },
+  { name: "Drama", value: 1 },
+  { name: "Romance", value: 7 },
 ];
 
 const ChartPage = () => {

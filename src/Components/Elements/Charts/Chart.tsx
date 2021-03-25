@@ -14,6 +14,7 @@ import {
   Legend,
   Pie,
   PieChart,
+  Cell,
 } from "recharts";
 
 interface ChartProps {
@@ -49,7 +50,6 @@ const Chart: React.FC<ChartProps> = (props) => {
   let char = <div></div>;
 
   if (type === "Line") {
-    console.log(size.width);
     char = (
       <LineChart
         width={width}
@@ -92,16 +92,29 @@ const Chart: React.FC<ChartProps> = (props) => {
   }
 
   if (type === "Pie") {
+    const COLORS = [
+      "#56a408",
+      theme.primaryColor,
+      theme.secondaryColor,
+      "#d509dc",
+      "#f00d0d",
+    ];
     char = (
-      <PieChart width={width} height={width}>
+      <PieChart width={width} height={300}>
         <Pie
           data={data}
           dataKey="value"
-          cx={200}
-          cy={200}
-          outerRadius={60}
+          cx="50%"
+          cy="50%"
+          outerRadius={width / 6}
+          label={<text>klajsd</text>}
           fill={theme.primaryColor}
-        />
+        >
+          {data.map((entry: any, index: any) => (
+            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+          ))}
+        </Pie>
+        <Tooltip />
       </PieChart>
     );
   }
