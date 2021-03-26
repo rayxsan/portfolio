@@ -8,7 +8,7 @@ export interface ThemeProps {
   show: boolean;
 }
 
-//Work in progres.
+//Work in progres
 const useTheme: React.FC<ThemeProps> = (props) => {
   const [theme, setTheme] = React.useState("light");
   //const [mountedComponent, setMountedComponent] = React.useState(false);
