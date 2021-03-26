@@ -1,4 +1,4 @@
-import DashboardPage from "./DashboardPage";
+import DashboardPage from "./Dashboard/DashboardPage";
 import ButtonPage from "./ButtonPage";
 import CheckboxPage from "./CheckboxPage";
 import ProgressPage from "./ProgressPage";
