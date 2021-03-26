@@ -15,8 +15,14 @@ const StyledFooter = styled.div`
     margin-right: 5rem;
     text-decoration: none;
     color: white;
+    opacity: 0.6;
+    padding: 0.3rem;
+    label {
+      cursor: pointer;
+      padding: 0.3rem;
+    }
     :hover {
-      color: #ccc;
+      opacity: 0.8;
     }
   }
 `;
@@ -30,6 +36,7 @@ const Footer: FunctionComponent<Props> = () => {
         target="_blank"
         rel="noopener noreferrer"
       >
+        <label>2021</label>
         <FaGithub />
       </a>
     </StyledFooter>
