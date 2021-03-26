@@ -10,7 +10,7 @@ interface styledProps {
 export const StyledTable = styled.div<styledProps>`
   display: table;
   width: 100%;
-  font-size: 65%;
+  font-size: 100%;
   padding: 0;
   margin: 0;
 
