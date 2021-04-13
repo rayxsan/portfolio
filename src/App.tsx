@@ -10,6 +10,11 @@ import { AuthProvider } from "./contexts/AuthContext";
 import Layout from "./hoc/Layout/Layout";
 import PrivateRoute from "./PrivateRoute";
 import { lightTheme, darkTheme } from "./shared/Theme";
+import { observer } from "mobx-react";
+import {
+  todoStore,
+  TodoStoreProvider,
+} from "./Components/State/Store/TodoStore";
 
 interface OwnProps {}
 interface StateProps {}
@@ -17,7 +22,7 @@ type Props = OwnProps & StateProps;
 
 interface State {}
 
-const App = () => {
+const App = observer(() => {
   let routes = (
     <AuthProvider>
       <Switch>
@@ -62,11 +67,13 @@ const App = () => {
     window.localStorage.getItem("theme") === "light" ? lightTheme : darkTheme;
 
   return (
-    <ThemeProvider theme={themeMode}>
-      <GlobalStyles />
-      {routes}
-    </ThemeProvider>
+    <TodoStoreProvider store={todoStore}>
+      <ThemeProvider theme={themeMode}>
+        <GlobalStyles />
+        {routes}
+      </ThemeProvider>
+    </TodoStoreProvider>
   );
-};
+});
 
 export default App;
