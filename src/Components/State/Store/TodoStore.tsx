@@ -5,6 +5,7 @@ export interface TODO {
   id: string | number;
   task: string;
   completed: boolean;
+  note: string;
 }
 
 class Store {
@@ -17,19 +18,26 @@ class Store {
       addTodo: action,
       removeTodo: action,
       toggleStatus: action,
+      markAllCompleted: action,
+      delAllCompleted: action,
       countTodo: computed,
       countCompleted: computed,
     });
   }
 
   private getTodosId() {
+    if (this.todos.length === 0) this.nextTodosId = 1;
     return this.nextTodosId;
   }
 
-  addTodo(task: string) {
-    this.todos.push({ id: this.getTodosId(), task, completed: false });
+  addTodo(task: string, note: string) {
+    this.todos.push({
+      id: this.getTodosId(),
+      task,
+      completed: false,
+      note,
+    });
     this.nextTodosId++;
-    //console.log(this.getTodosId());
   }
 
   removeTodo(id: string | number) {
@@ -38,6 +46,17 @@ class Store {
   }
   toggleStatus(todo: TODO) {
     todo.completed = !todo.completed;
+  }
+
+  markAllCompleted() {
+    this.todos.forEach((todo) => {
+      todo.completed = true;
+    });
+  }
+
+  delAllCompleted() {
+    const todos = this.todos.filter((todos) => todos.completed !== true);
+    this.todos = todos;
   }
 
   get countTodo() {

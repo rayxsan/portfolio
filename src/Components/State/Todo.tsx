@@ -7,11 +7,14 @@ import Button from "../Elements/Button/Button";
 import * as Yup from "yup";
 
 const TodoSchema = Yup.object().shape({
-  task: Yup.string().min(2, "To short").required("A text is required"),
+  task: Yup.string()
+    .min(3, "Task need to be more than 3 characters")
+    .required("A text is required"),
+  note: Yup.string().notRequired(),
 });
 
 const Todo: React.FC = observer(() => {
-  const handleAddTodo = (task: string) => {
+  const handleAddTodo = (task: string, note: string) => {
     // e.preventDefault();
     // //TODO: learn how to use React ref;
     // const task = document.getElementById("input-todo-text");
@@ -19,7 +22,7 @@ const Todo: React.FC = observer(() => {
     // if (task) {
     //   todoStore.addTodo((task as HTMLInputElement).value);
     // }
-    todoStore.addTodo(task);
+    todoStore.addTodo(task, note);
   };
 
   const handleRemoveTodo = (id: string | number) => {
@@ -30,18 +33,28 @@ const Todo: React.FC = observer(() => {
     todoStore.toggleStatus(todo);
   };
 
+  const handleSelectAllTodos = () => {
+    todoStore.markAllCompleted();
+  };
+
+  const handleDelCompletedTodos = () => {
+    todoStore.delAllCompleted();
+  };
+
   const taskInput = (
     <Formik
-      initialValues={{ task: "" }}
-      onSubmit={(value, actions) => {
-        handleAddTodo(value.task);
+      initialValues={{ task: "", note: "" }}
+      onSubmit={(values, actions) => {
+        handleAddTodo(values.task, values.note);
         actions.resetForm();
       }}
       validationSchema={TodoSchema}
     >
-      {({ isValid, errors, touched, isSubmitting, dirty }) => (
+      {({ isValid, errors, isSubmitting, dirty }) => (
         <Form>
-          <Field type="task" name="task" />
+          <Field type="task" name="task" placeholder="New task" />
+          {errors.task !== "" && <span>{errors.task}</span>}
+          <Field as="textarea" name="note" placeholder="Note (Optional)" />
           <Button
             primary
             disabled={isSubmitting || !dirty || !isValid}
@@ -58,12 +71,16 @@ const Todo: React.FC = observer(() => {
   const taskRows = todoStore.todos.map((todo: TODO) => {
     return (
       <tr key={todo.id}>
-        <td>{todo.id}</td>
         <td>{todo.task}</td>
         <td>
-          <input type="checkbox" onChange={() => handleToggleTodo(todo)} />
-          {todo.completed ? <span>Done</span> : <span>Pending</span>}
+          <input
+            type="checkbox"
+            onChange={() => handleToggleTodo(todo)}
+            checked={todo.completed}
+          />
+          {todo.completed ? <span>Completed</span> : <span>Pending</span>}
         </td>
+        <td>{todo.id}</td>
         <td>
           <Button
             secondary
@@ -73,32 +90,42 @@ const Todo: React.FC = observer(() => {
             Del
           </Button>
         </td>
+        <td>{todo.note}</td>
       </tr>
     );
   });
 
+  const taskTable = (
+    <div>
+      <Button text primary clicked={handleSelectAllTodos}>
+        Select all
+      </Button>
+      <Button text secondary clicked={handleDelCompletedTodos}>
+        Del selected
+      </Button>
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Status</th>
+            <th>ID</th>
+            <th>Delete</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>{taskRows}</tbody>
+      </table>
+      <div>
+        <label>Tasks: {todoStore.countTodo}</label>
+        <label>Completed: {todoStore.countCompleted}</label>
+      </div>
+    </div>
+  );
+
   return (
     <StyledTodo>
       {taskInput}
-      <div>
-        <label>Tasks: {todoStore.countTodo}</label>
-      </div>
-      <div>
-        <label>Completed: {todoStore.countCompleted}</label>
-      </div>
-      {todoStore.countTodo > 0 && (
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Task</th>
-              <th>Status</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>{taskRows}</tbody>
-        </table>
-      )}
+      {todoStore.countTodo > 0 && taskTable}
     </StyledTodo>
   );
 });
