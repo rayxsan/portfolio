@@ -70,6 +70,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   ${(props: Props) =>
     props.primary &&
     css`
+      min-width: fit-content;
       color: white;
       background-color: ${({ theme }) => theme.primaryColor};
       :disabled {
@@ -80,6 +81,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   ${(props: Props) =>
     props.secondary &&
     css`
+      min-width: fit-content;
       color: white;
       background-color: ${({ theme }) => theme.secondaryColor};
     `}
@@ -97,6 +99,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
       ${(props: Props) =>
         props.primary &&
         css`
+          min-width: fit-content;
           color: ${({ theme }) => theme.primaryColor};
           :hover:enabled {
             background-color: inherit;
@@ -106,6 +109,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
       ${(props: Props) =>
         props.secondary &&
         css`
+          min-width: fit-content;
           color: ${({ theme }) => theme.secondaryColor};
           :hover:enabled {
             background-color: #ccc;
@@ -130,6 +134,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
       ${(props: Props) =>
         props.secondary &&
         css`
+          min-width: fit-content;
           color: ${({ theme }) => theme.secondaryColor};
           border-color: ${({ theme }) => theme.secondaryColor};
         `}

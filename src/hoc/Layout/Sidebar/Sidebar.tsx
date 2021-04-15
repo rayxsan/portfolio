@@ -167,6 +167,21 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
             </ul>
           )}
         </nav>
+        <nav>
+          <p>State</p>
+          <div>
+            <NavLink to={path.todoPath}>
+              {!show ? (
+                <p>
+                  <svg.FiPieChart />
+                  ToDo
+                </p>
+              ) : (
+                <svg.FiPieChart title="Chart" />
+              )}
+            </NavLink>
+          </div>
+        </nav>
       </StyledSidebar>
     </>
   );

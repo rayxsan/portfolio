@@ -16,6 +16,7 @@ import PasswordResetPage from "./PasswordResetPage";
 import PrivatePage from "./PrivatePage";
 import ProfilePage from "./ProfilePage";
 import SettingsPage from "./SettingsPage";
+import TodoPage from "./TodoPage";
 
 export {
   DashboardPage,
@@ -36,4 +37,5 @@ export {
   PrivatePage,
   ProfilePage,
   SettingsPage,
+  TodoPage,
 };
