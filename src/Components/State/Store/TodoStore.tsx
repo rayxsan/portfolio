@@ -9,7 +9,7 @@ export interface TODO {
 
 class Store {
   todos: Array<TODO> = [];
-  nextTodosId = 0;
+  nextTodosId = 1;
 
   constructor() {
     makeObservable(this, {
@@ -23,11 +23,13 @@ class Store {
   }
 
   private getTodosId() {
-    return this.nextTodosId++;
+    return this.nextTodosId;
   }
 
   addTodo(task: string) {
     this.todos.push({ id: this.getTodosId(), task, completed: false });
+    this.nextTodosId++;
+    //console.log(this.getTodosId());
   }
 
   removeTodo(id: string | number) {

@@ -55,7 +55,9 @@ const Signup = () => {
           verifyPassword: "",
         }}
         validationSchema={SignUpSchema}
-        onSubmit={(values) => handleSubmit(values)}
+        onSubmit={(values) => {
+          handleSubmit(values);
+        }}
       >
         {({ isSubmitting, dirty, isValid, errors, touched }) => (
           <Form>
