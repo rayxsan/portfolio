@@ -112,7 +112,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
           min-width: fit-content;
           color: ${({ theme }) => theme.secondaryColor};
           :hover:enabled {
-            background-color: #ccc;
+            background-color: inherit;
           }
         `}
     `}

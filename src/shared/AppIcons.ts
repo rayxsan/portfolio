@@ -17,7 +17,7 @@ import {
 } from "react-icons/fa";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { GiPlayButton } from "react-icons/gi";
-import { BsCardImage, BsGraphUp } from "react-icons/bs";
+import { BsCardImage, BsGraphUp, BsListCheck } from "react-icons/bs";
 import {
   FiPercent,
   FiUserCheck,
@@ -64,4 +64,5 @@ export {
   AiOutlineInstagram,
   BiLocationPlus,
   FiSettings,
+  BsListCheck,
 };

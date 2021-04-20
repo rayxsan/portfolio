@@ -173,11 +173,11 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
             <NavLink to={path.todoPath}>
               {!show ? (
                 <p>
-                  <svg.FiPieChart />
+                  <svg.BsListCheck />
                   ToDo
                 </p>
               ) : (
-                <svg.FiPieChart title="Chart" />
+                <svg.BsListCheck title="Todo" />
               )}
             </NavLink>
           </div>

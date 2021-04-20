@@ -5,6 +5,8 @@ const StyledDashboard = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   text-align: left;
+  width: 100%;
+  overflow: hidden;
   svg {
     padding-right: 0.2em;
   }
@@ -21,7 +23,7 @@ const StyledDashboard = styled.div`
 
   .dashboard_table {
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 2;
     grid-row-start: 2;
   }
 
