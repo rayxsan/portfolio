@@ -9,19 +9,12 @@ import * as Yup from "yup";
 const TodoSchema = Yup.object().shape({
   task: Yup.string()
     .min(3, "Task need to be more than 3 characters")
-    .required("A text is required"),
-  note: Yup.string().notRequired(),
+    .required("You need to enter a task"),
+  note: Yup.string().optional(),
 });
 
 const Todo: React.FC = observer(() => {
   const handleAddTodo = (task: string, note: string) => {
-    // e.preventDefault();
-    // //TODO: learn how to use React ref;
-    // const task = document.getElementById("input-todo-text");
-
-    // if (task) {
-    //   todoStore.addTodo((task as HTMLInputElement).value);
-    // }
     todoStore.addTodo(task, note);
   };
 
@@ -52,9 +45,14 @@ const Todo: React.FC = observer(() => {
     >
       {({ isValid, errors, isSubmitting, dirty }) => (
         <Form>
+          {errors.task !== "" && <label>{errors.task}</label>}
           <Field type="task" name="task" placeholder="New task" />
-          {errors.task !== "" && <span>{errors.task}</span>}
-          <Field as="textarea" name="note" placeholder="Note (Optional)" />
+          <Field
+            as="textarea"
+            name="note"
+            placeholder="Note (Optional)"
+            disabled={false}
+          />
           <Button
             primary
             disabled={isSubmitting || !dirty || !isValid}

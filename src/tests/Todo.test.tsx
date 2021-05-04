@@ -1,7 +1,8 @@
 import React from "react";
-import { render, fireEvent, cleanup, waitFor } from "@testing-library/react";
+import { render, cleanup, waitFor } from "@testing-library/react";
 import Todo from "../Components/State/Todo";
 import userEvent from "@testing-library/user-event";
+import { act } from "react-dom/test-utils";
 
 describe("Todos tests", () => {
   afterEach(cleanup);
@@ -15,30 +16,22 @@ describe("Todos tests", () => {
   });
 
   test("Allows users to add a new task", async () => {
-    const {
-      getByText,
-      getByRole,
-      getByPlaceholderText,
-      getByLabelText,
-      findByText,
-    } = render(<Todo />);
+    const { getByText, getByPlaceholderText } = render(<Todo />);
 
-    const inputAddTask = await getByPlaceholderText("New task");
-    const inputNote = await getByPlaceholderText("Note (Optional)");
-    const button = await getByText("Add task");
+    const inputAddTask = getByPlaceholderText("New task");
+    const inputNote = getByPlaceholderText("Note (Optional)");
+    const button = getByText("Add task");
 
-    expect(button).toBeDisabled();
+    userEvent.type(inputNote, "New note");
 
     //Simulate user events
     userEvent.type(inputAddTask, "New task");
     await waitFor(() => expect(button).toBeEnabled());
-    userEvent.click(button);
-
-    //Test new task render
-    //getByText("New task");
-    // getByText("Pending");
-    // getByText("Del");
-    // getByText("Tasks: 1");
-    // getByText("Completed: 0");
+    act(() => {
+      userEvent.click(button);
+    });
+    await waitFor(() => {
+      getByText("Select all");
+    });
   });
 });
