@@ -31,7 +31,7 @@ describe("Todos tests", () => {
 
     //Simulate user events
     userEvent.type(inputAddTask, "New task");
-    waitFor(() => expect(button).toBeEnabled());
+    await waitFor(() => expect(button).toBeEnabled());
     userEvent.click(button);
 
     //Test new task render

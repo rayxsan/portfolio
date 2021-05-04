@@ -16,7 +16,7 @@
     "react-icons": "^3.11.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.3",
     "recharts": "^2.0.3",
     "styled-components": "^5.1.1",
     "typescript": "^3.7.5",
@@ -51,7 +51,10 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.5",
     "@types/styled-components": "^5.1.1",
-    "@types/yup": "^0.29.8",
-    "jest": "^24.9.0"
-  }
+    "@types/yup": "^0.29.8"
+  },
+  "main": "index.js",
+  "repository": "git@github.com:rayxsan/portfolio.git",
+  "author": "Raymel Manreza <raymel.manreza@gmail.com>",
+  "license": "MIT"
 }
