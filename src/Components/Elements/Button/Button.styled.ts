@@ -38,7 +38,6 @@ export interface Props {
   secondary?: boolean;
 }
 
-// TODO DRY
 export const StyledButton = styled.button.attrs<Props>((props) => ({
   type: props.type || "button",
   size: props.size || "medium",
