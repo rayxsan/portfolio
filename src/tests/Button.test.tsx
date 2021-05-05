@@ -3,6 +3,8 @@ import Button from "../Components/Elements/Button/Button";
 import { render, screen, fireEvent, cleanup } from "@testing-library/react";
 
 describe("Test button component", () => {
+  afterEach(cleanup);
+
   test("Handle click event", () => {
     const handleClick = jest.fn();
 

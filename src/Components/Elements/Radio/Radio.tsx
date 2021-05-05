@@ -9,6 +9,7 @@ interface Props {
   checked?: boolean;
   disabled?: boolean;
   value?: string | number;
+  readOnly?: boolean;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
@@ -25,6 +26,7 @@ const Radio: FunctionComponent<Props> = (props) => {
     checked,
     disabled,
     value,
+    readOnly,
     onChange,
   } = props;
 
@@ -37,6 +39,7 @@ const Radio: FunctionComponent<Props> = (props) => {
         name={name}
         onChange={onChange}
         checked={checked}
+        readOnly={readOnly}
       />
       <span />
       <label>{label}</label>

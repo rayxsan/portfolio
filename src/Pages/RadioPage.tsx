@@ -20,7 +20,7 @@ const RadioPage = () => {
         <Radio label="Radio button" />
       </ContentBox>
       <ContentBox title="Disabled radio button">
-        <Radio disabled checked label="Disabled checked" />
+        <Radio disabled checked readOnly label="Disabled checked" />
         <Radio disabled label="Disabled not checked" />
       </ContentBox>
       <ContentBox title="Radio Group">
