@@ -41,27 +41,6 @@ describe("Tests Radio component", () => {
   });
 
   test("Radio Group", () => {
-    const handleChange = jest.fn();
-
-    const { getByText } = render(
-      <div>
-        <Radio
-          primary
-          label="Primary"
-          value="primary"
-          name="radioGroup"
-          checked={checkedValue === "primary"}
-          onChange={handleChange}
-        />
-        <Radio
-          secondary
-          label="Secondary"
-          value="secondary"
-          name="radioGroup"
-          checked={checkedValue === "secondary"}
-          onChange={handleChange}
-        />
-      </div>
-    );
+    //TODO
   });
 });

@@ -22,11 +22,11 @@ const fakeUser = {
 
 interface props {}
 
-interface Show {
-  profile: boolean;
-  security: boolean;
-  theme: boolean;
-}
+// interface Show {
+//   profile: boolean;
+//   security: boolean;
+//   theme: boolean;
+// }
 
 const Settings: React.FC<props> = (props) => {
   const [show, setShow] = useState({

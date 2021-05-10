@@ -13,9 +13,9 @@ interface Props {
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface State {
-  checked: boolean;
-}
+// interface State {
+//   checked: boolean;
+// }
 
 const Radio: FunctionComponent<Props> = (props) => {
   const {

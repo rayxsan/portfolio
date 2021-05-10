@@ -16,11 +16,11 @@ import {
   TodoStoreProvider,
 } from "./Components/State/Store/TodoStore";
 
-interface OwnProps {}
-interface StateProps {}
-type Props = OwnProps & StateProps;
+// interface OwnProps {}
+// interface StateProps {}
+// type Props = OwnProps & StateProps;
 
-interface State {}
+//interface State {}
 
 const App = observer(() => {
   let routes = (
