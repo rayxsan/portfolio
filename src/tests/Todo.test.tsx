@@ -15,7 +15,7 @@ describe("Todos tests", () => {
   });
 
   test("Allows users to add a new task", async () => {
-    const { getByText, getByPlaceholderText } = render(<Todo />);
+    const { getByText, getByPlaceholderText, findByText } = render(<Todo />);
 
     const inputAddTask = getByPlaceholderText("New task");
     const inputNote = getByPlaceholderText("Note (Optional)");
@@ -29,8 +29,7 @@ describe("Todos tests", () => {
     act(() => {
       userEvent.click(button);
     });
-    // await waitFor(() => {
-    //   getByText("Select all");
-    // });
+
+    //TODO: check table
   });
 });
