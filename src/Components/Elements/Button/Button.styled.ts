@@ -51,6 +51,8 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   outline: 0;
   opacity: 0.85;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   /* button size: */
 
