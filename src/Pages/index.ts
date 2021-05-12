@@ -17,6 +17,7 @@ import PrivatePage from "./PrivatePage";
 import ProfilePage from "./ProfilePage";
 import SettingsPage from "./SettingsPage";
 import TodoPage from "./TodoPage";
+import RatingPage from "./RatingPage";
 
 export {
   DashboardPage,
@@ -38,4 +39,5 @@ export {
   ProfilePage,
   SettingsPage,
   TodoPage,
+  RatingPage,
 };

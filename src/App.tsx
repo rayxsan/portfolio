@@ -36,6 +36,7 @@ const App = observer(() => {
           <Route path={path.checkboxPath} component={page.CheckboxPage} />
           <Route path={path.progressPath} component={page.ProgressPage} />
           <Route path={path.radioPath} component={page.RadioPage} />
+          <Route path={path.ratingPath} component={page.RatingPage} />
           <Route path={path.menuPath} component={page.MenuPage} />
           <Route path={path.cardPath} component={page.CardPage} />
           <Route path={path.dropdownPath} component={page.DropdownPage} />

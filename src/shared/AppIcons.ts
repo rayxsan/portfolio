@@ -30,7 +30,14 @@ import {
   FiSettings,
 } from "react-icons/fi";
 import { RiRotateLockFill } from "react-icons/ri";
-import { AiOutlineMail, AiOutlineInstagram } from "react-icons/ai";
+import {
+  AiOutlineMail,
+  AiOutlineInstagram,
+  AiFillStar,
+  AiOutlineStar,
+  AiFillHeart,
+  AiOutlineHeart,
+} from "react-icons/ai";
 
 export {
   BiArrowFromRight,
@@ -65,4 +72,8 @@ export {
   BiLocationPlus,
   FiSettings,
   BsListCheck,
+  AiFillStar,
+  AiOutlineStar,
+  AiFillHeart,
+  AiOutlineHeart,
 };

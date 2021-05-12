@@ -84,6 +84,9 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               <NavLink to={path.radioPath}>
                 {!show ? "Radio" : <svg.MdRadioButtonChecked title="Radio" />}
               </NavLink>
+              <NavLink to={path.ratingPath}>
+                {!show ? "Rating" : <svg.AiOutlineStar title="Rating" />}
+              </NavLink>
               <NavLink to={path.tablePath}>
                 {!show ? "Table" : <svg.BiTable title="Table" />}
               </NavLink>
