@@ -9,20 +9,29 @@ export interface RatingProps {
 }
 
 const Rating: React.FC<RatingProps> = (props) => {
-  const { heart, star, count } = props;
+  const { heart } = props;
 
-  const [isChecked, setIsChecked] = useState(true);
+  const [rating, setRating] = useState(true);
 
   const handleCheck = () => {
-    setIsChecked((isChecked) => !isChecked);
+    setRating((isChecked) => !isChecked);
   };
-  let mySvg = <svg.AiFillStar onClick={handleCheck} />;
+
+  const handleMouseEnter = () => {
+    setRating(true);
+  };
+
+  let mySvg = (
+    <div>
+      <svg.AiFillStar onClick={handleCheck} onMouseEnter={handleMouseEnter} />
+    </div>
+  );
 
   if (heart) {
     mySvg = <svg.AiFillHeart />;
   }
 
-  return <StyledRating isChecked={isChecked}>{mySvg}</StyledRating>;
+  return <StyledRating isChecked={rating}>{mySvg}</StyledRating>;
 };
 
 export default Rating;

@@ -185,6 +185,21 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
             </NavLink>
           </div>
         </nav>
+        <nav>
+          <p>Fetch App</p>
+          <div>
+            <NavLink to={path.fetchPath}>
+              {!show ? (
+                <p>
+                  <svg.BiCameraMovie />
+                  IMDB Fetch
+                </p>
+              ) : (
+                <svg.BiCameraMovie title="IMDB" />
+              )}
+            </NavLink>
+          </div>
+        </nav>
       </StyledSidebar>
     </>
   );

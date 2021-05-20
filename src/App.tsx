@@ -47,6 +47,7 @@ const App = observer(() => {
           <Route path={path.profilePath} component={page.ProfilePage} />
           <Route path={path.settingsPath} component={page.SettingsPage} />
           <Route path={path.todoPath} component={page.TodoPage} />
+          <Route path={path.fetchPath} component={page.FetchApiPage} />
           <Route
             path={path.passwordResetPath}
             component={page.PasswordResetPage}

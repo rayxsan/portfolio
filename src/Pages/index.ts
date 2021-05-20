@@ -18,6 +18,7 @@ import ProfilePage from "./ProfilePage";
 import SettingsPage from "./SettingsPage";
 import TodoPage from "./TodoPage";
 import RatingPage from "./RatingPage";
+import FetchApiPage from "./FetchApiPage";
 
 export {
   DashboardPage,
@@ -40,4 +41,5 @@ export {
   SettingsPage,
   TodoPage,
   RatingPage,
+  FetchApiPage,
 };

@@ -7,6 +7,7 @@ import {
   BiTable,
   BiErrorAlt,
   BiLocationPlus,
+  BiCameraMovie,
 } from "react-icons/bi";
 import { CgComponents, CgMenu, CgProfile } from "react-icons/cg";
 import {
@@ -45,6 +46,7 @@ export {
   BiChevronDown,
   BiChevronUp,
   BiHome,
+  BiCameraMovie,
   CgComponents,
   FaPager,
   MdRadioButtonChecked,

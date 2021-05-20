@@ -1,16 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 interface StyledRatingProps {
   isChecked: boolean;
 }
 export const StyledRating = styled.div<StyledRatingProps>`
+  text-align: left;
   svg {
     color: ${(props: StyledRatingProps) =>
       props.isChecked ? "black" : "lightgrey"};
     cursor: pointer;
-    :hover {
-      color: ${(props: StyledRatingProps) =>
-        props.isChecked ? "lightgrey" : "black"};
-    }
   }
+
+  ${(props: StyledRatingProps) =>
+    !props.isChecked &&
+    css`
+      svg :hover {
+        //color: black;
+      }
+    `}
 `;

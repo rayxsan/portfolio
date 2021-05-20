@@ -6,7 +6,7 @@ export interface RatingPageProps {}
 
 const RatingPage: React.FC<RatingPageProps> = () => {
   return (
-    <ContentBox title="Simple Rating">
+    <ContentBox title="Simple Rating" text="Work in progress">
       <Rating />
     </ContentBox>
   );

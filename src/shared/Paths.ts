@@ -17,6 +17,7 @@ const privatePagePath = "/auth/signin/private_page";
 const profilePath = "/pages/profile";
 const settingsPath = "/pages/settings";
 const todoPath = "/state/todo";
+const fetchPath = "/fetch/fetch_app";
 
 const notFoundPath = "*";
 
@@ -41,6 +42,7 @@ const validPath = (value: string) => {
     profilePath,
     settingsPath,
     todoPath,
+    fetchPath,
     notFoundPath,
   ];
   for (let i = 0; i < validRoutes.length; i++) {
@@ -69,6 +71,7 @@ export {
   profilePath,
   settingsPath,
   todoPath,
+  fetchPath,
   notFoundPath,
 };
 
