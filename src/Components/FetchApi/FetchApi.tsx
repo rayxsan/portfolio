@@ -16,7 +16,6 @@ class FetchApi extends Component<Props, State<any>> {
       data: [],
       errMsg: "",
     };
-    this.timer = null;
   }
 
   async getData() {
@@ -37,13 +36,7 @@ class FetchApi extends Component<Props, State<any>> {
         console.log(error);
       });
   }
-  handleCheck = () => {
-    // Clears running timer and starts a new one each time the user types
-    clearTimeout(this.timer);
-    this.timer = setTimeout(() => {
-      this.toggleCheck();
-    }, 1000);
-  };
+
   componentDidMount() {
     this.getData();
   }
