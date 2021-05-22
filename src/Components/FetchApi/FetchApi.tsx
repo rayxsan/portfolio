@@ -1,61 +1,104 @@
-import React, { Component } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { StyledFetchApi } from "./FetchApi.styled";
 import axios from "axios";
+import Card from "../Elements/Card/Card";
 
 interface Props {}
 
-interface State<DataItem> {
-  searchParams: string;
-  data: DataItem[];
-  errMsg: string;
+interface DataItem {
+  i: {
+    height: number;
+    imageUrl: string;
+    width: 1363;
+  };
+  id: string;
+  l: string;
+  q: string;
+  rank: number;
+  s: string;
+  y: number;
+  yr: string;
 }
-class FetchApi extends Component<Props, State<any>> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      searchParams: "",
-      data: [],
-      errMsg: "",
-    };
-  }
 
-  async getData() {
+const FetchApi: React.FC<Props> = (props: Props) => {
+  const [searchParams, setSearchParams] = useState("");
+  const [data, setData] = useState<any[]>([]);
+  const [error, setError] = useState("");
+
+  const prevSearch = useRef(searchParams);
+
+  const getData = async () =>
     await axios
-      .get("https://imdb8.p.rapidapi.com/title/find", {
-        params: { q: this.state.searchParams },
+      .request({
+        method: "GET",
+        url: "https://imdb8.p.rapidapi.com/auto-complete",
+        params: { q: searchParams },
         headers: {
           "x-rapidapi-key":
             "bf9c805b23msh91609a5a1732925p107546jsn0ff96b60aaeb",
           "x-rapidapi-host": "imdb8.p.rapidapi.com",
         },
       })
-      .then((response) => {
-        this.setState({ ...this.state, data: response.data.results });
-        console.log(response.data.results);
+      .then(function (response) {
+        console.log(response.data.d);
+        setData(response.data.d);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(function (error) {
+        console.error(error);
+        setError("error");
       });
-  }
 
-  componentDidMount() {
-    this.getData();
-  }
-  handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    this.setState({ ...this.state, searchParams: event.target.value });
+  useEffect(() => {
+    if (prevSearch.current !== searchParams && searchParams !== "") {
+      const timeOutId = setTimeout(() => {
+        console.log(searchParams);
+        // Send Axios request here
+        getData();
+      }, 500);
+      prevSearch.current = searchParams;
+      return () => clearTimeout(timeOutId);
+    }
+  }, [searchParams]);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchParams(event.target.value);
   };
 
-  render() {
-    return (
-      <div>
-        <input placeholder="Search movie" onChange={this.handleSearchChange} />
-        <div>
-          {this.state.data.map((values, key) => {
-            return <label key={key}>{values.title}</label>;
-          })}
-        </div>
-      </div>
-    );
-  }
-}
+  const dataTable = (
+    <Card group>
+      {data.length > 0 ? (
+        data.map((value, key) => {
+          const imgContent = (
+            <div>
+              {value.i && <img src={value.i.imageUrl} alt="" title={value.l} />}
+              <span>{value.l}</span>
+            </div>
+          );
+          return (
+            <div key={key}>
+              <Card
+                animate
+                content={{
+                  innerContent: imgContent,
+                  description: `${value.s}`,
+                }}
+                footer={value.y && <span>Year: {value.y}</span>}
+              />
+            </div>
+          );
+        })
+      ) : (
+        <p>No results found</p>
+      )}
+    </Card>
+  );
+
+  return (
+    <StyledFetchApi>
+      <input autoFocus placeholder="Search..." onChange={handleSearchChange} />
+      {dataTable}
+    </StyledFetchApi>
+  );
+};
 
 export default FetchApi;
