@@ -23,32 +23,31 @@ interface DataItem {
 const FetchApi: React.FC<Props> = (props: Props) => {
   const [searchParams, setSearchParams] = useState("");
   const [data, setData] = useState<any[]>([]);
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState(true);
 
   const prevSearch = useRef(searchParams);
+  const APIKEY = "edb33d6a";
 
-  const getData = async () =>
-    await axios
-      .request({
-        method: "GET",
-        url: "https://imdb8.p.rapidapi.com/auto-complete",
-        params: { q: searchParams },
-        headers: {
-          "x-rapidapi-key":
-            "bf9c805b23msh91609a5a1732925p107546jsn0ff96b60aaeb",
-          "x-rapidapi-host": "imdb8.p.rapidapi.com",
-        },
-      })
-      .then(function (response) {
-        console.log(response.data.d);
-        setData(response.data.d);
-      })
-      .catch(function (error) {
-        console.error(error);
-        setError("error");
-      });
-
+  //axios requests
   useEffect(() => {
+    const getData = async () => {
+      const urlSearch = `http://www.omdbapi.com/?s=${searchParams}&apikey=${APIKEY}`;
+      const getSearch = axios.get(urlSearch);
+
+      await getSearch
+        .then(function (response) {
+          console.log(response.data);
+          setData(response.data.Search);
+          setError("");
+          setLoading(false);
+        })
+        .catch(function (error) {
+          console.error(error);
+          setError(error.message);
+        });
+    };
+
     if (prevSearch.current !== searchParams && searchParams !== "") {
       const timeOutId = setTimeout(() => {
         console.log(searchParams);
@@ -64,32 +63,38 @@ const FetchApi: React.FC<Props> = (props: Props) => {
     setSearchParams(event.target.value);
   };
 
+  const failSearch = () => {
+    if (error !== "") return <p>{error}</p>;
+    if (searchParams !== "" && loading) return <p>Loading...</p>;
+    if (!data && searchParams !== "") return <p>No results founds</p>;
+  };
+
   const dataTable = (
     <Card group>
-      {data.length > 0 ? (
-        data.map((value, key) => {
-          const imgContent = (
-            <div>
-              {value.i && <img src={value.i.imageUrl} alt="" title={value.l} />}
-              <span>{value.l}</span>
-            </div>
-          );
-          return (
-            <div key={key}>
-              <Card
-                animate
-                content={{
-                  innerContent: imgContent,
-                  description: `${value.s}`,
-                }}
-                footer={value.y && <span>Year: {value.y}</span>}
-              />
-            </div>
-          );
-        })
-      ) : (
-        <p>No results found</p>
-      )}
+      {error === "" && data && data.length > 0
+        ? data.map((value, key) => {
+            const imgContent = (
+              <div>
+                {value.Poster && (
+                  <img src={value.Poster} alt="" title={value.Title} />
+                )}
+                <span>{value.Title}</span>
+              </div>
+            );
+            return (
+              <div key={key}>
+                <Card
+                  animate
+                  content={{
+                    innerContent: imgContent,
+                    description: `${value.Type}`,
+                  }}
+                  footer={value.Year && <span>Year: {value.Year}</span>}
+                />
+              </div>
+            );
+          })
+        : failSearch()}
     </Card>
   );
 
