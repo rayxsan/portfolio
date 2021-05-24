@@ -3,7 +3,7 @@ import { StyledContentBox } from "./ContentBox.styled";
 
 interface Props {
   title: string;
-  text?: string;
+  text?: string | JSX.Element;
   img?: {
     src: string;
     tooltip?: string;

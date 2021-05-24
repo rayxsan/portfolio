@@ -1,3 +1,26 @@
 import styled from "styled-components";
 
-export const StyledFetchApi = styled.div``;
+export const StyledFetchApi = styled.div`
+  > div {
+    text-align: left;
+    svg {
+      position: absolute;
+      float: left;
+      padding-top: 0.5rem;
+      padding-left: 0.2rem;
+      color: ${({ theme }) => theme.primaryColor};
+    }
+    input {
+      max-width: 15rem;
+      height: 2rem;
+      padding-left: 1.2rem;
+      font-size: 1.2rem;
+      box-sizing: border-box;
+    }
+    input:focus {
+      outline: none;
+      border: 1px solid ${({ theme }) => theme.primaryColor};
+      box-sizing: border-box;
+    }
+  }
+`;

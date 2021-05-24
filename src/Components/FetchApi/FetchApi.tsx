@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { StyledFetchApi } from "./FetchApi.styled";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import Card from "../Elements/Card/Card";
+import * as svg from "../../shared/AppIcons";
 
 interface Props {}
 
@@ -27,28 +28,19 @@ const FetchApi: React.FC<Props> = (props: Props) => {
   useEffect(() => {
     const getData = async () => {
       const urlBySearch = `https://www.omdbapi.com/?s=${searchParams}&apikey=${APIKEY}`;
-
       const getBySearch = axios.get(urlBySearch);
 
       await getBySearch
-        .then(function (response) {
-          // console.log(response.data);
-          //setData(response.data.Search);
+        .then(function (response: AxiosResponse) {
           const getByIdArray = response.data.Search.map((value: any) => {
             return axios.get(
               `https://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
             );
           });
-          let temp: any[] = [];
-          //console.log(tempData);
+          let temp: AxiosResponse[] = [];
           Promise.all(getByIdArray)
             .then((response: any) => {
-              // console.log(response[0].data);
-              for (let i = 0; i < response.length; i++) {
-                //console.log("data", response[i].data);
-                if (response[i].data) temp[i] = response[i].data;
-              }
-              console.log(temp);
+              temp = response.map((res: AxiosResponse) => res.data);
               setData(temp);
               setError("");
               setLoading(false);
@@ -56,29 +48,27 @@ const FetchApi: React.FC<Props> = (props: Props) => {
             .catch((error) => {
               setError(error);
             });
-
-          setError("");
-          setLoading(false);
         })
         .catch(function (error) {
-          // console.error(error);
           setError(error.message);
         });
     };
 
     if (prevSearch.current !== searchParams && searchParams !== "") {
       const timeOutId = setTimeout(() => {
-        console.log(searchParams);
         // Send Axios request here
         getData();
       }, 500);
       prevSearch.current = searchParams;
-      return () => clearTimeout(timeOutId);
+      return () => {
+        clearTimeout(timeOutId);
+      };
     }
   }, [searchParams]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchParams(event.target.value);
+    setLoading(true);
   };
 
   const failSearch = () => {
@@ -118,7 +108,10 @@ const FetchApi: React.FC<Props> = (props: Props) => {
 
   return (
     <StyledFetchApi>
-      <input autoFocus placeholder="Search..." onChange={handleSearchChange} />
+      <div>
+        <svg.BiSearch />
+        <input placeholder="Search..." onChange={handleSearchChange} />
+      </div>
       {dataTable}
     </StyledFetchApi>
   );
