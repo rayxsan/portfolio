@@ -192,7 +192,7 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               {!show ? (
                 <p>
                   <svg.BiCameraMovie />
-                  IMDB Fetch
+                  OMDB Fetch
                 </p>
               ) : (
                 <svg.BiCameraMovie title="IMDB" />

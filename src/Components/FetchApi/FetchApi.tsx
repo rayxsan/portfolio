@@ -6,18 +6,12 @@ import Card from "../Elements/Card/Card";
 interface Props {}
 
 interface DataItem {
-  i: {
-    height: number;
-    imageUrl: string;
-    width: 1363;
-  };
-  id: string;
-  l: string;
-  q: string;
-  rank: number;
-  s: string;
-  y: number;
-  yr: string;
+  Poster: string;
+  Title: string;
+  Type: string;
+  Year: string;
+  imdbID: string;
+  Plot?: string;
 }
 
 const FetchApi: React.FC<Props> = (props: Props) => {
@@ -32,18 +26,42 @@ const FetchApi: React.FC<Props> = (props: Props) => {
   //axios requests
   useEffect(() => {
     const getData = async () => {
-      const urlSearch = `http://www.omdbapi.com/?s=${searchParams}&apikey=${APIKEY}`;
-      const getSearch = axios.get(urlSearch);
+      const urlBySearch = `http://www.omdbapi.com/?s=${searchParams}&apikey=${APIKEY}`;
 
-      await getSearch
+      const getBySearch = axios.get(urlBySearch);
+
+      await getBySearch
         .then(function (response) {
-          console.log(response.data);
-          setData(response.data.Search);
+          // console.log(response.data);
+          //setData(response.data.Search);
+          const getByIdArray = response.data.Search.map((value: any) => {
+            return axios.get(
+              `http://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
+            );
+          });
+          let temp: any[] = [];
+          //console.log(tempData);
+          Promise.all(getByIdArray)
+            .then((response: any) => {
+              // console.log(response[0].data);
+              for (let i = 0; i < response.length; i++) {
+                //console.log("data", response[i].data);
+                if (response[i].data) temp[i] = response[i].data;
+              }
+              console.log(temp);
+              setData(temp);
+              setError("");
+              setLoading(false);
+            })
+            .catch((error) => {
+              setError(error);
+            });
+
           setError("");
           setLoading(false);
         })
         .catch(function (error) {
-          console.error(error);
+          // console.error(error);
           setError(error.message);
         });
     };
@@ -64,15 +82,15 @@ const FetchApi: React.FC<Props> = (props: Props) => {
   };
 
   const failSearch = () => {
-    if (error !== "") return <p>{error}</p>;
+    if (error !== "" || (!data && searchParams !== ""))
+      return <p>No results found.</p>;
     if (searchParams !== "" && loading) return <p>Loading...</p>;
-    if (!data && searchParams !== "") return <p>No results founds</p>;
   };
 
   const dataTable = (
     <Card group>
       {error === "" && data && data.length > 0
-        ? data.map((value, key) => {
+        ? data.map((value) => {
             const imgContent = (
               <div>
                 {value.Poster && (
@@ -82,12 +100,12 @@ const FetchApi: React.FC<Props> = (props: Props) => {
               </div>
             );
             return (
-              <div key={key}>
+              <div key={value.imdbID}>
                 <Card
                   animate
                   content={{
                     innerContent: imgContent,
-                    description: `${value.Type}`,
+                    description: `${value.Plot}`,
                   }}
                   footer={value.Year && <span>Year: {value.Year}</span>}
                 />
