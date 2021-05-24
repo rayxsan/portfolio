@@ -5,14 +5,14 @@ import Card from "../Elements/Card/Card";
 
 interface Props {}
 
-interface DataItem {
-  Poster: string;
-  Title: string;
-  Type: string;
-  Year: string;
-  imdbID: string;
-  Plot?: string;
-}
+// interface DataItem {
+//   Poster: string;
+//   Title: string;
+//   Type: string;
+//   Year: string;
+//   imdbID: string;
+//   Plot?: string;
+// }
 
 const FetchApi: React.FC<Props> = (props: Props) => {
   const [searchParams, setSearchParams] = useState("");
