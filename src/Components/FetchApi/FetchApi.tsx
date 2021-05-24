@@ -26,7 +26,7 @@ const FetchApi: React.FC<Props> = (props: Props) => {
   //axios requests
   useEffect(() => {
     const getData = async () => {
-      const urlBySearch = `http://www.omdbapi.com/?s=${searchParams}&apikey=${APIKEY}`;
+      const urlBySearch = `https://www.omdbapi.com/?s=${searchParams}&apikey=${APIKEY}`;
 
       const getBySearch = axios.get(urlBySearch);
 
@@ -36,7 +36,7 @@ const FetchApi: React.FC<Props> = (props: Props) => {
           //setData(response.data.Search);
           const getByIdArray = response.data.Search.map((value: any) => {
             return axios.get(
-              `http://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
+              `https://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
             );
           });
           let temp: any[] = [];
