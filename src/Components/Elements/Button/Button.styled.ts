@@ -38,7 +38,6 @@ export interface Props {
   secondary?: boolean;
 }
 
-// TODO DRY
 export const StyledButton = styled.button.attrs<Props>((props) => ({
   type: props.type || "button",
   size: props.size || "medium",
@@ -52,6 +51,8 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
   outline: 0;
   opacity: 0.85;
   overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 
   /* button size: */
 
@@ -112,7 +113,7 @@ export const StyledButton = styled.button.attrs<Props>((props) => ({
           min-width: fit-content;
           color: ${({ theme }) => theme.secondaryColor};
           :hover:enabled {
-            background-color: #ccc;
+            background-color: inherit;
           }
         `}
     `}

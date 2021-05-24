@@ -4,6 +4,7 @@ const chartPath = "/components/chart";
 const checkboxPath = "/components/checkbox";
 const progressPath = "/components/progress";
 const radioPath = "/components/radio";
+const ratingPath = "/components/rating";
 const menuPath = "/components/menu";
 const cardPath = "/components/card";
 const dropdownPath = "/components/dropdown";
@@ -16,6 +17,8 @@ const privatePagePath = "/auth/signin/private_page";
 const profilePath = "/pages/profile";
 const settingsPath = "/pages/settings";
 const todoPath = "/state/todo";
+const fetchPath = "/fetch/fetch_app";
+
 const notFoundPath = "*";
 
 const validPath = (value: string) => {
@@ -26,6 +29,7 @@ const validPath = (value: string) => {
     checkboxPath,
     progressPath,
     radioPath,
+    ratingPath,
     menuPath,
     cardPath,
     dropdownPath,
@@ -38,6 +42,7 @@ const validPath = (value: string) => {
     profilePath,
     settingsPath,
     todoPath,
+    fetchPath,
     notFoundPath,
   ];
   for (let i = 0; i < validRoutes.length; i++) {
@@ -53,6 +58,7 @@ export {
   checkboxPath,
   progressPath,
   radioPath,
+  ratingPath,
   menuPath,
   cardPath,
   dropdownPath,
@@ -65,6 +71,7 @@ export {
   profilePath,
   settingsPath,
   todoPath,
+  fetchPath,
   notFoundPath,
 };
 

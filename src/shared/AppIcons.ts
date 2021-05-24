@@ -7,6 +7,7 @@ import {
   BiTable,
   BiErrorAlt,
   BiLocationPlus,
+  BiCameraMovie,
 } from "react-icons/bi";
 import { CgComponents, CgMenu, CgProfile } from "react-icons/cg";
 import {
@@ -17,7 +18,7 @@ import {
 } from "react-icons/fa";
 import { MdRadioButtonChecked } from "react-icons/md";
 import { GiPlayButton } from "react-icons/gi";
-import { BsCardImage, BsGraphUp } from "react-icons/bs";
+import { BsCardImage, BsGraphUp, BsListCheck } from "react-icons/bs";
 import {
   FiPercent,
   FiUserCheck,
@@ -30,7 +31,14 @@ import {
   FiSettings,
 } from "react-icons/fi";
 import { RiRotateLockFill } from "react-icons/ri";
-import { AiOutlineMail, AiOutlineInstagram } from "react-icons/ai";
+import {
+  AiOutlineMail,
+  AiOutlineInstagram,
+  AiFillStar,
+  AiOutlineStar,
+  AiFillHeart,
+  AiOutlineHeart,
+} from "react-icons/ai";
 
 export {
   BiArrowFromRight,
@@ -38,6 +46,7 @@ export {
   BiChevronDown,
   BiChevronUp,
   BiHome,
+  BiCameraMovie,
   CgComponents,
   FaPager,
   MdRadioButtonChecked,
@@ -64,4 +73,9 @@ export {
   AiOutlineInstagram,
   BiLocationPlus,
   FiSettings,
+  BsListCheck,
+  AiFillStar,
+  AiOutlineStar,
+  AiFillHeart,
+  AiOutlineHeart,
 };

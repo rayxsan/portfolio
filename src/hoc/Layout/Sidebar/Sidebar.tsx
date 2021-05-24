@@ -84,6 +84,9 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
               <NavLink to={path.radioPath}>
                 {!show ? "Radio" : <svg.MdRadioButtonChecked title="Radio" />}
               </NavLink>
+              <NavLink to={path.ratingPath}>
+                {!show ? "Rating" : <svg.AiOutlineStar title="Rating" />}
+              </NavLink>
               <NavLink to={path.tablePath}>
                 {!show ? "Table" : <svg.BiTable title="Table" />}
               </NavLink>
@@ -173,11 +176,26 @@ const Sidebar: FunctionComponent<Props> = ({ show, clicked }) => {
             <NavLink to={path.todoPath}>
               {!show ? (
                 <p>
-                  <svg.FiPieChart />
+                  <svg.BsListCheck />
                   ToDo
                 </p>
               ) : (
-                <svg.FiPieChart title="Chart" />
+                <svg.BsListCheck title="Todo" />
+              )}
+            </NavLink>
+          </div>
+        </nav>
+        <nav>
+          <p>Fetch App</p>
+          <div>
+            <NavLink to={path.fetchPath}>
+              {!show ? (
+                <p>
+                  <svg.BiCameraMovie />
+                  OMDB Fetch
+                </p>
+              ) : (
+                <svg.BiCameraMovie title="IMDB" />
               )}
             </NavLink>
           </div>
