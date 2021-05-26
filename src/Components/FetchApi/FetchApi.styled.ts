@@ -22,5 +22,8 @@ export const StyledFetchApi = styled.div`
       border: 1px solid ${({ theme }) => theme.primaryColor};
       box-sizing: border-box;
     }
+    button {
+      margin: 0.5rem 1rem 0 0;
+    }
   }
 `;

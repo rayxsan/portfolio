@@ -3,23 +3,24 @@ import { StyledFetchApi } from "./FetchApi.styled";
 import axios, { AxiosResponse } from "axios";
 import Card from "../Elements/Card/Card";
 import * as svg from "../../shared/AppIcons";
+import Button from "../Elements/Button/Button";
 
 interface Props {}
 
-// interface DataItem {
-//   Poster: string;
-//   Title: string;
-//   Type: string;
-//   Year: string;
-//   imdbID: string;
-//   Plot?: string;
-// }
+interface SearchParams {
+  search: string;
+  page: number;
+}
 
 const FetchApi: React.FC<Props> = (props: Props) => {
-  const [searchParams, setSearchParams] = useState("");
+  const [searchParams, setSearchParams] = useState<SearchParams>({
+    search: "",
+    page: 1,
+  });
   const [data, setData] = useState<any[]>([]);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState(true);
+  const [totalPages, setTotalPages] = useState(1);
 
   const prevSearch = useRef(searchParams);
   const APIKEY = "edb33d6a";
@@ -27,21 +28,27 @@ const FetchApi: React.FC<Props> = (props: Props) => {
   //axios requests
   useEffect(() => {
     const getData = async () => {
-      const urlBySearch = `https://www.omdbapi.com/?s=${searchParams}&apikey=${APIKEY}`;
+      const urlBySearch = `https://www.omdbapi.com/?s=${searchParams.search}&page=${searchParams.page}&apikey=${APIKEY}`;
       const getBySearch = axios.get(urlBySearch);
 
       await getBySearch
         .then(function (response: AxiosResponse) {
+          setTotalPages(response.data.totalResults);
           const getByIdArray = response.data.Search.map((value: any) => {
             return axios.get(
               `https://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
             );
           });
-          let temp: AxiosResponse[] = [];
+          //let temp: AxiosResponse[] = [];
           Promise.all(getByIdArray)
             .then((response: any) => {
-              temp = response.map((res: AxiosResponse) => res.data);
-              setData(temp);
+              const resArray = response.map((res: AxiosResponse) => res.data);
+              // if (data.length > 0) {
+              //   temp = data.concat(resArray);
+              // } else {
+              //   temp = resArray;
+              // }
+              setData(resArray);
               setError("");
               setLoading(false);
             })
@@ -54,7 +61,7 @@ const FetchApi: React.FC<Props> = (props: Props) => {
         });
     };
 
-    if (prevSearch.current !== searchParams && searchParams !== "") {
+    if (prevSearch.current !== searchParams && searchParams.search !== "") {
       const timeOutId = setTimeout(() => {
         // Send Axios request here
         getData();
@@ -67,19 +74,42 @@ const FetchApi: React.FC<Props> = (props: Props) => {
   }, [searchParams]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchParams(event.target.value);
+    let str = event.target.value;
+    setSearchParams({ ...searchParams, search: str });
+    setLoading(true);
+  };
+
+  const prevPageHandler = () => {
+    let temp = 1;
+    if (searchParams.page > 1 && searchParams.page < totalPages) {
+      temp = searchParams.page - 1;
+    } else {
+      temp = 1;
+    }
+    setSearchParams({ ...searchParams, page: temp });
+    setLoading(true);
+  };
+
+  const nextPageHandler = () => {
+    let temp = 1;
+    if (searchParams.page <= totalPages) {
+      temp = searchParams.page + 1;
+    } else {
+      temp = 1;
+    }
+    setSearchParams({ ...searchParams, page: temp });
     setLoading(true);
   };
 
   const failSearch = () => {
-    if (error !== "" || (!data && searchParams !== ""))
+    if (error !== "" || (!data && searchParams.search !== ""))
       return <p>No results found.</p>;
-    if (searchParams !== "" && loading) return <p>Loading...</p>;
+    if (searchParams.search !== "" && loading) return <p>Loading...</p>;
   };
 
   const dataTable = (
     <Card group>
-      {error === "" && data && data.length > 0
+      {error === "" && !loading && data && data.length > 0
         ? data.map((value) => {
             const imgContent = (
               <div>
@@ -111,6 +141,24 @@ const FetchApi: React.FC<Props> = (props: Props) => {
       <div>
         <svg.BiSearch />
         <input placeholder="Search..." onChange={handleSearchChange} />
+        <div>
+          <Button
+            text
+            primary
+            clicked={prevPageHandler}
+            disabled={searchParams.page === 1}
+          >
+            Previous
+          </Button>
+          <Button
+            primary
+            text
+            clicked={nextPageHandler}
+            disabled={searchParams.page === totalPages}
+          >
+            Next
+          </Button>
+        </div>
       </div>
       {dataTable}
     </StyledFetchApi>
