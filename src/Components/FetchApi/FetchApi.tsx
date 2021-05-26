@@ -27,8 +27,8 @@ const FetchApi: React.FC<Props> = (props: Props) => {
 
   //axios requests
   useEffect(() => {
-    const getData = async () => {
-      const urlBySearch = `https://www.omdbapi.com/?s=${searchParams.search}&page=${searchParams.page}&apikey=${APIKEY}`;
+    const getData = async (str: string, page: number) => {
+      const urlBySearch = `https://www.omdbapi.com/?s=${str}&page=${page}&apikey=${APIKEY}`;
       const getBySearch = axios.get(urlBySearch);
 
       await getBySearch
@@ -60,11 +60,10 @@ const FetchApi: React.FC<Props> = (props: Props) => {
           setError(error.message);
         });
     };
-
     if (prevSearch.current !== searchParams && searchParams.search !== "") {
       const timeOutId = setTimeout(() => {
         // Send Axios request here
-        getData();
+        getData(searchParams.search, searchParams.page);
       }, 500);
       prevSearch.current = searchParams;
       return () => {
@@ -74,8 +73,7 @@ const FetchApi: React.FC<Props> = (props: Props) => {
   }, [searchParams]);
 
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let str = event.target.value;
-    setSearchParams({ ...searchParams, search: str });
+    setSearchParams({ ...searchParams, search: event.target.value, page: 1 });
     setLoading(true);
   };
 
@@ -92,7 +90,7 @@ const FetchApi: React.FC<Props> = (props: Props) => {
 
   const nextPageHandler = () => {
     let temp = 1;
-    if (searchParams.page <= totalPages) {
+    if (searchParams.page <= totalPages && totalPages > 1) {
       temp = searchParams.page + 1;
     } else {
       temp = 1;
@@ -146,7 +144,7 @@ const FetchApi: React.FC<Props> = (props: Props) => {
             text
             primary
             clicked={prevPageHandler}
-            disabled={searchParams.page === 1}
+            disabled={searchParams.page === 1 || searchParams.search === ""}
           >
             Previous
           </Button>
@@ -154,7 +152,9 @@ const FetchApi: React.FC<Props> = (props: Props) => {
             primary
             text
             clicked={nextPageHandler}
-            disabled={searchParams.page === totalPages}
+            disabled={
+              searchParams.page === totalPages || searchParams.search === ""
+            }
           >
             Next
           </Button>
