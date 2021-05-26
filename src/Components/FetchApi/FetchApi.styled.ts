@@ -25,5 +25,14 @@ export const StyledFetchApi = styled.div`
     button {
       margin: 0.5rem 1rem 0 0;
     }
+    label {
+      float: right;
+      font-size: 0.8rem;
+      margin-right: 0.2rem;
+      margin-top: 1.5rem;
+    }
+  }
+  p {
+    margin-bottom: 3rem;
   }
 `;

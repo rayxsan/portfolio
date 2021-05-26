@@ -4,6 +4,7 @@ import axios, { AxiosResponse } from "axios";
 import Card from "../Elements/Card/Card";
 import * as svg from "../../shared/AppIcons";
 import Button from "../Elements/Button/Button";
+import Progress from "../Elements/Progress/Progress";
 
 interface Props {}
 
@@ -33,7 +34,7 @@ const FetchApi: React.FC<Props> = (props: Props) => {
 
       await getBySearch
         .then(function (response: AxiosResponse) {
-          setTotalPages(response.data.totalResults);
+          setTotalPages(Math.ceil(response.data.totalResults / 10));
           const getByIdArray = response.data.Search.map((value: any) => {
             return axios.get(
               `https://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
@@ -102,7 +103,12 @@ const FetchApi: React.FC<Props> = (props: Props) => {
   const failSearch = () => {
     if (error !== "" || (!data && searchParams.search !== ""))
       return <p>No results found.</p>;
-    if (searchParams.search !== "" && loading) return <p>Loading...</p>;
+    if (searchParams.search !== "" && loading)
+      return (
+        <p>
+          <Progress primary />
+        </p>
+      );
   };
 
   const dataTable = (
@@ -134,33 +140,43 @@ const FetchApi: React.FC<Props> = (props: Props) => {
     </Card>
   );
 
+  const paginationButtons = (
+    <div>
+      <Button
+        text
+        primary
+        clicked={prevPageHandler}
+        disabled={searchParams.page === 1 || searchParams.search === ""}
+      >
+        Previous
+      </Button>
+      <Button
+        primary
+        text
+        clicked={nextPageHandler}
+        disabled={
+          searchParams.page === totalPages || searchParams.search === ""
+        }
+      >
+        Next
+      </Button>
+      {searchParams.search !== "" && !loading && (
+        <label>
+          Page {searchParams.page} of {totalPages}
+        </label>
+      )}
+    </div>
+  );
+
   return (
     <StyledFetchApi>
       <div>
         <svg.BiSearch />
         <input placeholder="Search..." onChange={handleSearchChange} />
-        <div>
-          <Button
-            text
-            primary
-            clicked={prevPageHandler}
-            disabled={searchParams.page === 1 || searchParams.search === ""}
-          >
-            Previous
-          </Button>
-          <Button
-            primary
-            text
-            clicked={nextPageHandler}
-            disabled={
-              searchParams.page === totalPages || searchParams.search === ""
-            }
-          >
-            Next
-          </Button>
-        </div>
+        {searchParams.search !== "" && paginationButtons}
       </div>
       {dataTable}
+      {searchParams.search !== "" && !loading && paginationButtons}
     </StyledFetchApi>
   );
 };
