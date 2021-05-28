@@ -1,10 +1,11 @@
 import React from "react";
 import { StyledTodo } from "./Todo.styled";
-import { TODO, todoStore } from "./Store/TodoStore";
+import { TODO } from "./Store/TodoStore";
 import { observer } from "mobx-react";
 import { Formik, Form, Field } from "formik";
 import Button from "../Elements/Button/Button";
 import * as Yup from "yup";
+import { useRootStore } from "../../RootStore/RootStore";
 
 const TodoSchema = Yup.object().shape({
   task: Yup.string()
@@ -14,6 +15,7 @@ const TodoSchema = Yup.object().shape({
 });
 
 const Todo: React.FC = observer(() => {
+  const { todoStore } = useRootStore();
   const handleAddTodo = (task: string, note: string) => {
     todoStore.addTodo(task, note);
   };

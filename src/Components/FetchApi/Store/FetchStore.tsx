@@ -5,7 +5,6 @@ import {
   makeObservable,
   runInAction,
 } from "mobx";
-import React, { createContext } from "react";
 import { SearchOMDB } from "../FetchApi.service";
 
 class FetchStore {
@@ -52,19 +51,4 @@ class FetchStore {
   }
 }
 
-const fetchStore = new FetchStore();
-
-const fetchStoreContext = createContext<FetchStore>(fetchStore);
-
-const fetchStoreProvider: React.FC<{ store: FetchStore }> = ({
-  store,
-  children,
-}) => {
-  return (
-    <fetchStoreContext.Provider value={store}>
-      {children}
-    </fetchStoreContext.Provider>
-  );
-};
-
-export { fetchStore, fetchStoreProvider, FetchStore };
+export { FetchStore };

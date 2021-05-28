@@ -1,5 +1,5 @@
 import { action, computed, makeObservable, observable } from "mobx";
-import React, { createContext, FC } from "react";
+import { RootStore } from "../../../RootStore/RootStore";
 
 export interface TODO {
   id: string | number;
@@ -11,9 +11,9 @@ export interface TODO {
 class TodoStore {
   todos: Array<TODO> = [];
   nextTodosId = 1;
-  rootStore: any;
+  rootStore: RootStore;
 
-  constructor(rootStore: any) {
+  constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
     makeObservable(this, {
       todos: observable,
@@ -70,16 +70,4 @@ class TodoStore {
   }
 }
 
-const todoStore = new TodoStore(this);
-
-const TodoStoreContext = createContext<TodoStore>(todoStore);
-
-const TodoStoreProvider: FC<{ store: TodoStore }> = ({ store, children }) => {
-  return (
-    <TodoStoreContext.Provider value={store}>
-      {children}
-    </TodoStoreContext.Provider>
-  );
-};
-
-export { todoStore, TodoStoreProvider, TodoStore };
+export { TodoStore };

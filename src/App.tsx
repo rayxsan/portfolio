@@ -1,9 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-//import AuthLayout from "./hoc/AuthLayout/AuthLayout";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./shared/Global";
-//import { theme } from "./shared/Theme";
 import * as path from "./shared/Paths";
 import * as page from "./Pages";
 import { AuthProvider } from "./contexts/AuthContext";
@@ -11,16 +9,7 @@ import Layout from "./hoc/Layout/Layout";
 import PrivateRoute from "./PrivateRoute";
 import { lightTheme, darkTheme } from "./shared/Theme";
 import { observer } from "mobx-react";
-import {
-  todoStore,
-  TodoStoreProvider,
-} from "./Components/State/Store/TodoStore";
-
-// interface OwnProps {}
-// interface StateProps {}
-// type Props = OwnProps & StateProps;
-
-//interface State {}
+import { RootStoreProvider } from "./RootStore/RootStore";
 
 const App = observer(() => {
   let routes = (
@@ -69,12 +58,12 @@ const App = observer(() => {
     window.localStorage.getItem("theme") === "light" ? lightTheme : darkTheme;
 
   return (
-    <TodoStoreProvider store={todoStore}>
+    <RootStoreProvider>
       <ThemeProvider theme={themeMode}>
         <GlobalStyles />
         {routes}
       </ThemeProvider>
-    </TodoStoreProvider>
+    </RootStoreProvider>
   );
 });
 

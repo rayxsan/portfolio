@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { fetchStore } from "./Store/FetchStore";
+import { useRootStore } from "../../RootStore/RootStore";
 import { observer } from "mobx-react";
 import { StyledFetchApi } from "./FetchApi.styled";
 import Card from "../Elements/Card/Card";
@@ -8,6 +8,7 @@ import Button from "../Elements/Button/Button";
 import Progress from "../Elements/Progress/Progress";
 
 const FetchApi: React.FC = observer(() => {
+  const { fetchStore } = useRootStore();
   const handleSearchChange = (event: any) => {
     fetchStore.setTerm(event.target.value);
   };
