@@ -11,7 +11,7 @@ class FetchStore {
   data: Array<any> = [];
   searchTerm: string = "";
   status: "completed" | "pending" | "failed" = "pending";
-  totalCount: number = 0;
+  totalPages: number = 0;
   rootStore: any;
 
   constructor(rootStore: any) {
@@ -20,16 +20,16 @@ class FetchStore {
       searchTerm: observable,
       status: observable,
       data: observable,
-      totalCount: observable,
+      totalPages: observable,
       search: action.bound,
       setTerm: action,
       getPages: computed,
+      isEmpty: computed,
     });
   }
 
   setTerm(term: string) {
     this.searchTerm = term;
-    console.log(this.searchTerm);
   }
   async search() {
     try {
@@ -37,7 +37,7 @@ class FetchStore {
       const results = await SearchOMDB(this.searchTerm, 1);
 
       runInAction(() => {
-        this.totalCount = results.totalPages;
+        this.totalPages = Math.ceil(results.results / 10);
         this.data = results.data;
         this.status = "completed";
       });
@@ -47,8 +47,12 @@ class FetchStore {
     }
   }
 
+  get isEmpty() {
+    return this.data.length === 0;
+  }
+
   get getPages() {
-    return this.totalCount;
+    return this.totalPages;
   }
 }
 

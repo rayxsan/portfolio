@@ -20,7 +20,7 @@ const FetchApi: React.FC = observer(() => {
 
   const dataTable = (
     <Card group>
-      {fetchStore.status === "completed" && fetchStore.totalCount > 0 ? (
+      {fetchStore.status === "completed" && fetchStore.totalPages > 0 ? (
         fetchStore.data.map((value) => {
           const imgContent = (
             <div>

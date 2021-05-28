@@ -5,11 +5,11 @@ const APIKEY = process.env.REACT_APP_OMDB_APIKEY;
 export async function SearchOMDB(searchTerm: string, page: number) {
   const urlBySearch = `https://www.omdbapi.com/?s=${searchTerm}&page=${page}&apikey=${APIKEY}`;
   const getBySearch = axios.get(urlBySearch);
-  let pages = 0;
+  let results = 0;
   let resArray: Array<any> = [];
 
   await getBySearch.then(function (response: AxiosResponse) {
-    pages = Math.ceil(response.data.totalResults / 10);
+    results = response.data.totalResults;
     console.log(response.data);
     resArray = response.data.Search;
 
@@ -24,7 +24,7 @@ export async function SearchOMDB(searchTerm: string, page: number) {
   });
 
   return {
-    totalPages: pages,
+    results: results,
     data: resArray,
   };
 }
