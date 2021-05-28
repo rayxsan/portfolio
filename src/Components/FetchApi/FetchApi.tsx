@@ -17,16 +17,6 @@ const FetchApi: React.FC = observer(() => {
   const handleClick = () => {
     fetchStore.search();
   };
-  // useEffect(() => {
-  //   const timeOutId = setTimeout(() => {
-  //     // Send Axios request here
-  //     fetchStore.search();
-  //   }, 500);
-
-  //   return () => {
-  //     clearTimeout(timeOutId);
-  //   };
-  // }, [fetchStore]);
 
   const dataTable = (
     <Card group>
@@ -63,7 +53,7 @@ const FetchApi: React.FC = observer(() => {
       <div>
         <svg.BiSearch />
         <input placeholder="Search..." onChange={handleSearchChange} />
-        <button onClick={handleClick}>Search</button>
+        <Button clicked={handleClick}>Search</Button>
       </div>
       {dataTable}
     </StyledFetchApi>

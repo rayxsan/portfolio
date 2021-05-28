@@ -11,15 +11,16 @@ export async function SearchOMDB(searchTerm: string, page: number) {
   await getBySearch.then(function (response: AxiosResponse) {
     pages = Math.ceil(response.data.totalResults / 10);
     console.log(response.data);
+    resArray = response.data.Search;
 
-    const getByIdArray = response.data.Search.map((value: any) => {
-      return axios.get(
-        `https://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
-      );
-    });
-    Promise.all(getByIdArray).then((response: any) => {
-      resArray = response.map((res: AxiosResponse) => res.data);
-    });
+    //   const getByIdArray = response.data.Search.map((value: any) => {
+    //     return axios.get(
+    //       `https://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
+    //     );
+    //   });
+    //   Promise.all(getByIdArray).then((response: any) => {
+    //     resArray = response.map((res: AxiosResponse) => res.data);
+    //   });
   });
 
   return {
