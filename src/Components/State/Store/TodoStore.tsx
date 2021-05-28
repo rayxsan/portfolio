@@ -8,11 +8,13 @@ export interface TODO {
   note: string;
 }
 
-class Store {
+class TodoStore {
   todos: Array<TODO> = [];
   nextTodosId = 1;
+  rootStore: any;
 
-  constructor() {
+  constructor(rootStore: any) {
+    this.rootStore = rootStore;
     makeObservable(this, {
       todos: observable,
       addTodo: action,
@@ -68,11 +70,11 @@ class Store {
   }
 }
 
-const todoStore = new Store();
+const todoStore = new TodoStore(this);
 
-const TodoStoreContext = createContext<Store>(todoStore);
+const TodoStoreContext = createContext<TodoStore>(todoStore);
 
-const TodoStoreProvider: FC<{ store: Store }> = ({ store, children }) => {
+const TodoStoreProvider: FC<{ store: TodoStore }> = ({ store, children }) => {
   return (
     <TodoStoreContext.Provider value={store}>
       {children}
@@ -80,4 +82,4 @@ const TodoStoreProvider: FC<{ store: Store }> = ({ store, children }) => {
   );
 };
 
-export { todoStore, TodoStoreProvider };
+export { todoStore, TodoStoreProvider, TodoStore };
