@@ -9,24 +9,28 @@ import Progress from "../Elements/Progress/Progress";
 
 const FetchApi: React.FC = observer(() => {
   const { fetchStore } = useRootStore();
+
   const handleSearchChange = (event: any) => {
     fetchStore.setTerm(event.target.value);
   };
 
-  useEffect(() => {
-    const timeOutId = setTimeout(() => {
-      // Send Axios request here
-      fetchStore.search();
-    }, 500);
+  const handleClick = () => {
+    fetchStore.search();
+  };
+  // useEffect(() => {
+  //   const timeOutId = setTimeout(() => {
+  //     // Send Axios request here
+  //     fetchStore.search();
+  //   }, 500);
 
-    return () => {
-      clearTimeout(timeOutId);
-    };
-  }, []);
+  //   return () => {
+  //     clearTimeout(timeOutId);
+  //   };
+  // }, [fetchStore]);
 
   const dataTable = (
     <Card group>
-      {fetchStore.status === "completed" ? (
+      {fetchStore.status === "completed" && fetchStore.totalCount > 0 ? (
         fetchStore.data.map((value) => {
           const imgContent = (
             <div>
@@ -59,6 +63,7 @@ const FetchApi: React.FC = observer(() => {
       <div>
         <svg.BiSearch />
         <input placeholder="Search..." onChange={handleSearchChange} />
+        <button onClick={handleClick}>Search</button>
       </div>
       {dataTable}
     </StyledFetchApi>

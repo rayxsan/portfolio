@@ -10,6 +10,7 @@ export async function SearchOMDB(searchTerm: string, page: number) {
 
   await getBySearch.then(function (response: AxiosResponse) {
     pages = Math.ceil(response.data.totalResults / 10);
+    console.log(response.data);
 
     const getByIdArray = response.data.Search.map((value: any) => {
       return axios.get(

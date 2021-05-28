@@ -29,6 +29,7 @@ class FetchStore {
 
   setTerm(term: string) {
     this.searchTerm = term;
+    console.log(this.searchTerm);
   }
   async search() {
     try {
