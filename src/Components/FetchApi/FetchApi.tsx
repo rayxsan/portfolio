@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useRootStore } from "../../RootStore/RootStore";
 import { observer } from "mobx-react";
 import { StyledFetchApi } from "./FetchApi.styled";
@@ -16,6 +16,12 @@ const FetchApi: React.FC = observer(() => {
 
   const handleClick = () => {
     fetchStore.search();
+  };
+  const prevPageHandler = () => {
+    fetchStore.prevPage();
+  };
+  const nextPageHandler = () => {
+    fetchStore.nextPage();
   };
 
   const dataTable = (
@@ -48,6 +54,36 @@ const FetchApi: React.FC = observer(() => {
       )}
     </Card>
   );
+
+  const paginationButtons = (
+    <div>
+      <Button
+        text
+        primary
+        clicked={prevPageHandler}
+        disabled={fetchStore.currentPage === 1 || fetchStore.searchTerm === ""}
+      >
+        Previous
+      </Button>
+      <Button
+        primary
+        text
+        clicked={nextPageHandler}
+        disabled={
+          fetchStore.currentPage === fetchStore.totalPages ||
+          fetchStore.data.length === 0 ||
+          fetchStore.searchTerm === ""
+        }
+      >
+        Next
+      </Button>
+      {fetchStore.searchTerm !== "" && fetchStore.status === "completed" && (
+        <label>
+          Page {fetchStore.currentPage} of {fetchStore.totalPages}
+        </label>
+      )}
+    </div>
+  );
   return (
     <StyledFetchApi>
       <div>
@@ -55,6 +91,7 @@ const FetchApi: React.FC = observer(() => {
         <input placeholder="Search..." onChange={handleSearchChange} />
         <Button clicked={handleClick}>Search</Button>
       </div>
+      {paginationButtons}
       {dataTable}
     </StyledFetchApi>
   );

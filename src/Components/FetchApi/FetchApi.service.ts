@@ -6,25 +6,35 @@ export async function SearchOMDB(searchTerm: string, page: number) {
   const urlBySearch = `https://www.omdbapi.com/?s=${searchTerm}&page=${page}&apikey=${APIKEY}`;
   const getBySearch = axios.get(urlBySearch);
   let results = 0;
-  let resArray: Array<any> = [];
+  let resArray: Array<AxiosResponse> = [];
 
   await getBySearch.then(function (response: AxiosResponse) {
     results = response.data.totalResults;
-    console.log(response.data);
     resArray = response.data.Search;
-
-    //   const getByIdArray = response.data.Search.map((value: any) => {
-    //     return axios.get(
-    //       `https://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
-    //     );
-    //   });
-    //   Promise.all(getByIdArray).then((response: any) => {
-    //     resArray = response.map((res: AxiosResponse) => res.data);
-    //   });
   });
 
   return {
     results: results,
+    data: resArray,
+  };
+}
+
+export async function SearchByIdOMDB(searchTerm: string, page: number) {
+  let resArray: Array<AxiosResponse> = [];
+  const searchResults = await SearchOMDB(searchTerm, page);
+
+  const getIdArray = searchResults.data.map((value: any) => {
+    return axios.get(
+      `https://www.omdbapi.com/?i=${value.imdbID}&apikey=${APIKEY}`
+    );
+  });
+
+  await Promise.all(getIdArray).then((response: AxiosResponse[]) => {
+    resArray = response.map((res: AxiosResponse) => res.data);
+  });
+
+  return {
+    results: searchResults.results,
     data: resArray,
   };
 }
