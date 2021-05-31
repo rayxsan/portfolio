@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRootStore } from "../../RootStore/RootStore";
 import { observer } from "mobx-react";
 import { StyledFetchApi } from "./FetchApi.styled";
@@ -7,53 +7,73 @@ import * as svg from "../../shared/AppIcons";
 import Button from "../Elements/Button/Button";
 import Progress from "../Elements/Progress/Progress";
 
+export const RESULTS_PER_PAGE = 10;
+
 const FetchApi: React.FC = observer(() => {
   const { fetchStore } = useRootStore();
+  const [start, setStart] = useState(0);
+  const [localTerm, setLocalTerm] = useState("");
 
   const handleSearchChange = (event: any) => {
-    fetchStore.setTerm(event.target.value);
+    setLocalTerm(event.target.value);
   };
 
   const handleKeyDown = (event: any) => {
     if (event.keyCode === 13) {
+      fetchStore.setTerm(localTerm);
       fetchStore.search();
     }
   };
+
   const prevPageHandler = () => {
     fetchStore.prevPage();
+    setStart((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);
   };
   const nextPageHandler = () => {
     fetchStore.nextPage();
+    setStart((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);
   };
-
+  const failSearch = () => {
+    if (
+      fetchStore.status === "failed" ||
+      (fetchStore.isEmpty && fetchStore.searchTerm !== "")
+    )
+      return <p>No results found.</p>;
+    if (fetchStore.status === "pending" && !fetchStore.isEmpty)
+      return (
+        <p>
+          <Progress primary />
+        </p>
+      );
+  };
   const dataTable = (
     <Card group>
-      {fetchStore.status === "completed" && fetchStore.totalPages > 0 ? (
-        fetchStore.data.map((value) => {
-          const imgContent = (
-            <div>
-              {value.Poster && (
-                <img src={value.Poster} alt="" title={value.Title} />
-              )}
-              <span>{value.Title}</span>
-            </div>
-          );
-          return (
-            <div key={value.imdbID}>
-              <Card
-                animate
-                content={{
-                  innerContent: imgContent,
-                  description: `${value.Plot}`,
-                }}
-                footer={value.Year && <span>Year: {value.Year}</span>}
-              />
-            </div>
-          );
-        })
-      ) : (
-        <div>No results</div>
-      )}
+      {fetchStore.status === "completed" && !fetchStore.isEmpty
+        ? fetchStore.data
+            .slice(start, start + RESULTS_PER_PAGE)
+            .map((value) => {
+              const imgContent = (
+                <div>
+                  {value.Poster && (
+                    <img src={value.Poster} alt="" title={value.Title} />
+                  )}
+                  <span>{value.Title}</span>
+                </div>
+              );
+              return (
+                <div key={value.imdbID}>
+                  <Card
+                    animate
+                    content={{
+                      innerContent: imgContent,
+                      description: `${value.Plot}`,
+                    }}
+                    footer={value.Year && <span>Year: {value.Year}</span>}
+                  />
+                </div>
+              );
+            })
+        : failSearch()}
     </Card>
   );
 
@@ -93,12 +113,13 @@ const FetchApi: React.FC = observer(() => {
         <input
           placeholder="Search..."
           onChange={handleSearchChange}
-          value={fetchStore.searchTerm}
+          value={localTerm}
           onKeyDown={handleKeyDown}
         />
-        {/* <Button clicked={handleClick}>Search</Button> */}
       </div>
-      {paginationButtons}
+      {fetchStore.searchTerm !== "" &&
+        fetchStore.totalPages > 1 &&
+        paginationButtons}
       {dataTable}
     </StyledFetchApi>
   );

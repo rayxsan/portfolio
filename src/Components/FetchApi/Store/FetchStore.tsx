@@ -1,19 +1,8 @@
-import {
-  action,
-  computed,
-  observable,
-  makeObservable,
-  runInAction,
-  flow,
-} from "mobx";
+import { action, computed, observable, makeObservable, flow } from "mobx";
 import { SearchByIdOMDB } from "../FetchApi.service";
 import { RootStore } from "../../../RootStore/RootStore";
-import { AxiosResponse } from "axios";
 
-interface Results {
-  results: number;
-  data: Array<AxiosResponse<any>>;
-}
+import { RESULTS_PER_PAGE } from "../FetchApi";
 
 class FetchStore {
   data: Array<any> = [];
@@ -42,6 +31,7 @@ class FetchStore {
   setTerm(term: string) {
     this.searchTerm = term;
     this.currentPage = 1;
+    this.data = [];
   }
 
   // async search() {
@@ -64,10 +54,15 @@ class FetchStore {
     this.status = "pending";
     try {
       const results = yield SearchByIdOMDB(this.searchTerm, this.currentPage);
-      this.totalPages = Math.ceil(results.results / 10);
-      this.data = results.data;
-      console.log(this.data);
-      this.status = "completed";
+      if (results.data.length > 0) {
+        this.totalPages = Math.ceil(results.results / RESULTS_PER_PAGE);
+        if (this.data.length === 0) {
+          this.data = results.data;
+        } else {
+          this.data = this.data.concat(results.data);
+        }
+        this.status = "completed";
+      }
     } catch (error) {
       this.status = "failed";
       console.log(error);
@@ -77,14 +72,15 @@ class FetchStore {
   nextPage() {
     if (this.currentPage <= this.totalPages) {
       this.currentPage++;
-      this.search();
+      if (this.data.length < this.currentPage * 10) {
+        this.search();
+      }
     }
   }
 
   prevPage() {
     if (this.currentPage > 1) {
       this.currentPage--;
-      this.search();
     }
   }
 
@@ -94,6 +90,12 @@ class FetchStore {
 
   get getPages() {
     return this.totalPages;
+  }
+
+  get resultsIndex() {
+    if (this.currentPage > 1) {
+      return this.currentPage * RESULTS_PER_PAGE;
+    } else return 0;
   }
 }
 
