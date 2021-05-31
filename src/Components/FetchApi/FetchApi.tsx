@@ -14,8 +14,10 @@ const FetchApi: React.FC = observer(() => {
     fetchStore.setTerm(event.target.value);
   };
 
-  const handleClick = () => {
-    fetchStore.search();
+  const handleKeyDown = (event: any) => {
+    if (event.keyCode === 13) {
+      fetchStore.search();
+    }
   };
   const prevPageHandler = () => {
     fetchStore.prevPage();
@@ -88,8 +90,13 @@ const FetchApi: React.FC = observer(() => {
     <StyledFetchApi>
       <div>
         <svg.BiSearch />
-        <input placeholder="Search..." onChange={handleSearchChange} />
-        <Button clicked={handleClick}>Search</Button>
+        <input
+          placeholder="Search..."
+          onChange={handleSearchChange}
+          value={fetchStore.searchTerm}
+          onKeyDown={handleKeyDown}
+        />
+        {/* <Button clicked={handleClick}>Search</Button> */}
       </div>
       {paginationButtons}
       {dataTable}

@@ -4,10 +4,16 @@ import {
   observable,
   makeObservable,
   runInAction,
-  reaction,
+  flow,
 } from "mobx";
 import { SearchByIdOMDB } from "../FetchApi.service";
 import { RootStore } from "../../../RootStore/RootStore";
+import { AxiosResponse } from "axios";
+
+interface Results {
+  results: number;
+  data: Array<AxiosResponse<any>>;
+}
 
 class FetchStore {
   data: Array<any> = [];
@@ -38,23 +44,35 @@ class FetchStore {
     this.currentPage = 1;
   }
 
-  async search() {
-    try {
-      this.status = "pending";
-      const results = await SearchByIdOMDB(this.searchTerm, this.currentPage);
+  // async search() {
+  //   try {
+  //     this.status = "pending";
+  //     const results = await SearchByIdOMDB(this.searchTerm, this.currentPage);
+  //     runInAction(() => {
+  //       this.totalPages = Math.ceil(results.results / 10);
+  //       this.data = results.data;
+  //       console.log(this.data);
+  //       this.status = "completed";
+  //     });
+  //   } catch (error) {
+  //     runInAction(() => (this.status = "failed"));
+  //     console.log(error);
+  //   }
+  // }
 
-      runInAction(() => {
-        // let tempArray = this.data.concat(results.data)
-        this.totalPages = Math.ceil(results.results / 10);
-        this.data = results.data;
-        console.log(this.data);
-        this.status = "completed";
-      });
+  search = flow(function* (this: FetchStore) {
+    this.status = "pending";
+    try {
+      const results = yield SearchByIdOMDB(this.searchTerm, this.currentPage);
+      this.totalPages = Math.ceil(results.results / 10);
+      this.data = results.data;
+      console.log(this.data);
+      this.status = "completed";
     } catch (error) {
-      runInAction(() => (this.status = "failed"));
+      this.status = "failed";
       console.log(error);
     }
-  }
+  });
 
   nextPage() {
     if (this.currentPage <= this.totalPages) {
