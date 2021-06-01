@@ -25,6 +25,18 @@ const FetchApi: React.FC = observer(() => {
     }
   };
 
+  // const handleKeyUp = (event: any) => {
+  //   const timeOutId = setTimeout(() => {
+  //     // fetchStore.setTerm(localTerm);
+  //     console.log("search invoked");
+  //     //fetchStore.search();
+  //   }, 3000);
+
+  //   return () => {
+  //     clearTimeout(timeOutId);
+  //   };
+  // };
+
   const prevPageHandler = () => {
     fetchStore.prevPage();
     setStart((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);

@@ -11,6 +11,7 @@ class FetchStore {
   currentPage: number = 1;
   totalPages: number = 0;
   rootStore: RootStore;
+  prevSearchTerm = "";
 
   constructor(rootStore: any) {
     this.rootStore = rootStore;
@@ -29,9 +30,9 @@ class FetchStore {
   }
 
   setTerm(term: string) {
+    this.prevSearchTerm = this.searchTerm;
     this.searchTerm = term;
     this.currentPage = 1;
-    this.data = [];
   }
 
   // async search() {
@@ -51,8 +52,11 @@ class FetchStore {
   // }
 
   search = flow(function* (this: FetchStore) {
+    console.log(this.prevSearchTerm);
+    // if (this.searchTerm !== this.prevSearchTerm) this.data = [];
     this.status = "pending";
     try {
+      //console.log(this.searchTerm);
       const results = yield SearchByIdOMDB(this.searchTerm, this.currentPage);
       if (results.data.length > 0) {
         this.totalPages = Math.ceil(results.results / RESULTS_PER_PAGE);
@@ -72,7 +76,7 @@ class FetchStore {
   nextPage() {
     if (this.currentPage <= this.totalPages) {
       this.currentPage++;
-      if (this.data.length < this.currentPage * 10) {
+      if (this.data.length < this.currentPage * RESULTS_PER_PAGE) {
         this.search();
       }
     }
