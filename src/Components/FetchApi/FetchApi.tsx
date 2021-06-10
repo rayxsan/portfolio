@@ -11,45 +11,36 @@ export const RESULTS_PER_PAGE = 10;
 
 const FetchApi: React.FC = observer(() => {
   const { fetchStore } = useRootStore();
-  const [start, setStart] = useState(0);
-  const [localTerm, setLocalTerm] = useState("");
+  const [startIndex, setStartIndex] = useState(0);
 
   const handleSearchChange = (event: any) => {
-    setLocalTerm(event.target.value);
+    fetchStore.setTerm(event.target.value);
   };
 
   const handleKeyDown = (event: any) => {
     if (event.keyCode === 13) {
-      fetchStore.setTerm(localTerm);
       fetchStore.search();
     }
   };
 
-  // const handleKeyUp = (event: any) => {
-  //   const timeOutId = setTimeout(() => {
-  //     // fetchStore.setTerm(localTerm);
-  //     console.log("search invoked");
-  //     //fetchStore.search();
-  //   }, 3000);
-
-  //   return () => {
-  //     clearTimeout(timeOutId);
-  //   };
-  // };
+  const handleKeyUp = (event: any) => {
+    if (event.keyCode !== 13) {
+      return;
+    }
+    //fetchStore.search();
+  };
 
   const prevPageHandler = () => {
     fetchStore.prevPage();
-    setStart((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);
+    setStartIndex((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);
   };
   const nextPageHandler = () => {
     fetchStore.nextPage();
-    setStart((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);
+    setStartIndex((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);
+    console.log(startIndex);
   };
   const failSearch = () => {
-    if (
-      fetchStore.status === "failed" ||
-      (fetchStore.isEmpty && fetchStore.searchTerm !== "")
-    )
+    if (fetchStore.status === "failed" || fetchStore.isEmpty)
       return <p>No results found.</p>;
     if (fetchStore.status === "pending" && !fetchStore.isEmpty)
       return (
@@ -61,30 +52,28 @@ const FetchApi: React.FC = observer(() => {
   const dataTable = (
     <Card group>
       {fetchStore.status === "completed" && !fetchStore.isEmpty
-        ? fetchStore.data
-            .slice(start, start + RESULTS_PER_PAGE)
-            .map((value) => {
-              const imgContent = (
-                <div>
-                  {value.Poster && (
-                    <img src={value.Poster} alt="" title={value.Title} />
-                  )}
-                  <span>{value.Title}</span>
-                </div>
-              );
-              return (
-                <div key={value.imdbID}>
-                  <Card
-                    animate
-                    content={{
-                      innerContent: imgContent,
-                      description: `${value.Plot}`,
-                    }}
-                    footer={value.Year && <span>Year: {value.Year}</span>}
-                  />
-                </div>
-              );
-            })
+        ? fetchStore.pages[fetchStore.currentPage - 1].map((value: any) => {
+            const imgContent = (
+              <div>
+                {value.Poster && (
+                  <img src={value.Poster} alt="" title={value.Title} />
+                )}
+                <span>{value.Title}</span>
+              </div>
+            );
+            return (
+              <div key={value.imdbID}>
+                <Card
+                  animate
+                  content={{
+                    innerContent: imgContent,
+                    description: `${value.Plot}`,
+                  }}
+                  footer={value.Year && <span>Year: {value.Year}</span>}
+                />
+              </div>
+            );
+          })
         : failSearch()}
     </Card>
   );
@@ -105,7 +94,7 @@ const FetchApi: React.FC = observer(() => {
         clicked={nextPageHandler}
         disabled={
           fetchStore.currentPage === fetchStore.totalPages ||
-          fetchStore.data.length === 0 ||
+          fetchStore.pages.length === 0 ||
           fetchStore.searchTerm === ""
         }
       >
@@ -125,8 +114,9 @@ const FetchApi: React.FC = observer(() => {
         <input
           placeholder="Search..."
           onChange={handleSearchChange}
-          value={localTerm}
+          value={fetchStore.searchTerm}
           onKeyDown={handleKeyDown}
+          onKeyUp={handleKeyUp}
         />
       </div>
       {fetchStore.searchTerm !== "" &&

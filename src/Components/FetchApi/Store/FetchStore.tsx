@@ -1,24 +1,29 @@
-import { action, computed, observable, makeObservable, flow } from "mobx";
+import {
+  action,
+  computed,
+  observable,
+  makeObservable,
+  runInAction,
+} from "mobx";
 import { SearchByIdOMDB } from "../FetchApi.service";
 import { RootStore } from "../../../RootStore/RootStore";
 
 import { RESULTS_PER_PAGE } from "../FetchApi";
 
 class FetchStore {
-  data: Array<any> = [];
   searchTerm: string = "";
-  status: "completed" | "pending" | "failed" = "pending";
+  status: "" | "completed" | "pending" | "failed" = "";
   currentPage: number = 1;
   totalPages: number = 0;
+  pages: Array<any> = [];
   rootStore: RootStore;
-  prevSearchTerm = "";
 
-  constructor(rootStore: any) {
+  constructor(rootStore: RootStore) {
     this.rootStore = rootStore;
     makeObservable(this, {
       searchTerm: observable,
       status: observable,
-      data: observable,
+      pages: observable.shallow,
       totalPages: observable,
       search: action.bound,
       setTerm: action,
@@ -30,53 +35,39 @@ class FetchStore {
   }
 
   setTerm(term: string) {
-    this.prevSearchTerm = this.searchTerm;
     this.searchTerm = term;
-    this.currentPage = 1;
+    this.status = "";
   }
 
-  // async search() {
-  //   try {
-  //     this.status = "pending";
-  //     const results = await SearchByIdOMDB(this.searchTerm, this.currentPage);
-  //     runInAction(() => {
-  //       this.totalPages = Math.ceil(results.results / 10);
-  //       this.data = results.data;
-  //       console.log(this.data);
-  //       this.status = "completed";
-  //     });
-  //   } catch (error) {
-  //     runInAction(() => (this.status = "failed"));
-  //     console.log(error);
-  //   }
-  // }
-
-  search = flow(function* (this: FetchStore) {
-    console.log(this.prevSearchTerm);
-    // if (this.searchTerm !== this.prevSearchTerm) this.data = [];
-    this.status = "pending";
+  async search() {
+    if (this.status === "") {
+      this.reset();
+    }
     try {
-      //console.log(this.searchTerm);
-      const results = yield SearchByIdOMDB(this.searchTerm, this.currentPage);
-      if (results.data.length > 0) {
-        this.totalPages = Math.ceil(results.results / RESULTS_PER_PAGE);
-        if (this.data.length === 0) {
-          this.data = results.data;
-        } else {
-          this.data = this.data.concat(results.data);
+      this.status = "pending";
+      const results = await SearchByIdOMDB(this.searchTerm, this.currentPage);
+      runInAction(() => {
+        if (results.data.length > 0) {
+          this.totalPages = Math.ceil(results.results / RESULTS_PER_PAGE);
+          this.pages[this.currentPage - 1] = results.data;
+          this.status = "completed";
         }
-        this.status = "completed";
-      }
+      });
     } catch (error) {
-      this.status = "failed";
+      runInAction(() => (this.status = "failed"));
       console.log(error);
     }
-  });
+  }
+
+  private reset() {
+    this.pages = [];
+    this.currentPage = 1;
+  }
 
   nextPage() {
     if (this.currentPage <= this.totalPages) {
       this.currentPage++;
-      if (this.data.length < this.currentPage * RESULTS_PER_PAGE) {
+      if (this.pages.length < this.totalPages - 1) {
         this.search();
       }
     }
@@ -89,7 +80,7 @@ class FetchStore {
   }
 
   get isEmpty() {
-    return this.data.length === 0;
+    return this.pages.length === 0;
   }
 
   get getPages() {
