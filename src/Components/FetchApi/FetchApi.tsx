@@ -11,7 +11,6 @@ export const RESULTS_PER_PAGE = 10;
 
 const FetchApi: React.FC = observer(() => {
   const { fetchStore } = useRootStore();
-  const [startIndex, setStartIndex] = useState(0);
 
   const handleSearchChange = (event: any) => {
     fetchStore.setTerm(event.target.value);
@@ -32,12 +31,9 @@ const FetchApi: React.FC = observer(() => {
 
   const prevPageHandler = () => {
     fetchStore.prevPage();
-    setStartIndex((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);
   };
   const nextPageHandler = () => {
     fetchStore.nextPage();
-    setStartIndex((fetchStore.currentPage - 1) * RESULTS_PER_PAGE);
-    console.log(startIndex);
   };
   const failSearch = () => {
     if (fetchStore.status === "failed" || fetchStore.isEmpty)
