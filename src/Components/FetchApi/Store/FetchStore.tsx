@@ -23,9 +23,10 @@ class FetchStore {
     makeObservable(this, {
       searchTerm: observable,
       status: observable,
+      currentPage: observable,
       pages: observable.shallow,
       totalPages: observable,
-      search: action.bound,
+      search: action,
       setTerm: action,
       nextPage: action,
       prevPage: action,
@@ -65,7 +66,7 @@ class FetchStore {
   }
 
   nextPage() {
-    if (this.currentPage <= this.totalPages) {
+    if (this.currentPage < this.totalPages) {
       this.currentPage++;
       if (this.pages.length < this.totalPages - 1) {
         this.search();
